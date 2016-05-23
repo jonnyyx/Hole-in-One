@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-05-23T09:39:59
+# Project created by QtCreator 2016-05-23T19:11:13
 #
 #-------------------------------------------------
 
@@ -8,15 +8,16 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Hole_in_one
+TARGET = Hole_in_one1
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    game.cpp \
+    button.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    game.h \
+    button.h
 
 FORMS    += mainwindow.ui
-
-RESOURCES += resource.qrc

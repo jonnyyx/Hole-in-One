@@ -1,25 +1,26 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 
-class Button: public QGraphicsRectItem{
+class Button : public QObject, public QGraphicsRectItem
+{
+    Q_OBJECT
 
 public:
-    /*!constructor of Buttons in MainMenu*/
+    //constructor
     Button(QString buttonName, QGraphicsItem* parent=NULL);
-    /*!functions in MainMenu*/
+
+    //public methods
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-
 signals:
     void clicked();
 private:
-    QString buttonText;
+    QGraphicsTextItem* text;
 
 };
 
-
-#endif // MAINWINDOW_H
+#endif // BUTTON_H

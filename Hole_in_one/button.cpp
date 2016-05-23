@@ -1,5 +1,6 @@
-#include "mainwindow.h"
+#include "button.h"
 #include <QGraphicsTextItem>
+#include <QBrush>
 
 Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
@@ -8,7 +9,7 @@ Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(pa
     QBrush buttonBrush;
      /*!solid color*/
     buttonBrush.setStyle(Qt::SolidPattern);
-    brush.setColor(Qt::darkRed);
+    buttonBrush.setColor(Qt::darkRed);
      /*!now set the brush*/
     setBrush(buttonBrush);
 
@@ -39,14 +40,11 @@ void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
 void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
-     /*!Change color Back*/
+     /*!Change color back*/
     QBrush buttonBrush;
     buttonBrush.setStyle(Qt::SolidPattern);
     buttonBrush.setColor(Qt::darkRed);
     setBrush(buttonBrush);
 }
 
-void Button::displayMenu()
-{
 
-}
