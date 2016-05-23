@@ -51,7 +51,7 @@ OBJECTS       = release/main.o \
 		release/object.o \
 		release/moc_mainwindow.o
 
-DIST          =  ..\Hole_in_one\mainwindow.h \
+DIST          = Papierkneul.png ..\Hole_in_one\mainwindow.h \
 		..\Hole_in_one\object.h ..\Hole_in_one\main.cpp \
 		..\Hole_in_one\mainwindow.cpp \
 		..\Hole_in_one\object.cpp
@@ -494,7 +494,9 @@ release/mainwindow.o: ../Hole_in_one/mainwindow.cpp ../Hole_in_one/mainwindow.h 
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpainter.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qtextoption.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpen.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/QPixmap
+		C:/Qt/5.6/mingw49_32/include/QtGui/QPixmap \
+		C:/Qt/5.6/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/5.6/mingw49_32/include/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\Hole_in_one\mainwindow.cpp
 
 release/object.o: ../Hole_in_one/object.cpp ../Hole_in_one/object.h

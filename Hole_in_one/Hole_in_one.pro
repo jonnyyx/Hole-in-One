@@ -20,3 +20,6 @@ HEADERS  += mainwindow.h \
     object.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    Papierkneul.png

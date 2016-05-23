@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QLabel *mylabel;
     //QPixmap papierknuel("qrc:/Papierkneul.png");
-    ui->mylabel->setPixmap(QPixmap("qrc:/Papierkneul.png"));
+    ui->  mylabel->setPixmap(QPixmap("qrc:/Papierkneul.png"));
     ui->mylabel->show();
    // QPixmap pix(200,100);
    // QPainter painter();
