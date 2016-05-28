@@ -5,14 +5,15 @@
 #include <QGraphicsScene>
 #include "mainmenu.h"
 
-
+class MainMenu;
 class LevelMenu : public QGraphicsView
 {
-    friend class MainMenu;
+    Q_OBJECT
+
 public:
     //constructor of LevelMenu
     LevelMenu(QWidget* parent=NULL);
-
+    MainMenu* mainmenu;
     int getStatus(bool status);
     void setStatus();
 

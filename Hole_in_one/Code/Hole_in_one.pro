@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
     button.cpp \
     levelmenu.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    levels.cpp
 
 HEADERS  += \
     button.h \
     levelmenu.h \
-    mainmenu.h
+    mainmenu.h \
+    levels.h
 
 FORMS    += mainwindow.ui

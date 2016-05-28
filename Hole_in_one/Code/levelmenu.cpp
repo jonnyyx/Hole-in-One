@@ -6,6 +6,11 @@
 
 LevelMenu::LevelMenu(QWidget *parent)
 {
+
+}
+
+void LevelMenu::startLevelMenu()
+{
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Level Menu"));
     QFont titleFont("comic sans", 50);
@@ -13,7 +18,7 @@ LevelMenu::LevelMenu(QWidget *parent)
     int titlexPos = 50;
     int titleyPos = 80;
     titleText->setPos(titlexPos,titleyPos);
-    MainMenu().scene->addItem(titleText);
+    mainmenu->scene->addItem(titleText);
 
     /*!create level menu button*/
     Button* level1 = new Button(QString("Level 1"));
@@ -21,13 +26,7 @@ LevelMenu::LevelMenu(QWidget *parent)
     int levelyPos = 150;
     level1->setPos(levelxPos,levelyPos);
     //connect(level1, SIGNAL(clicked()), this, SLOT(close()));
-    MainMenu().scene->addItem(level1);
-}
-
-void LevelMenu::startLevelMenu()
-{
-    MainMenu().scene->clear();
-    LevelMenu();
+    mainmenu->scene->addItem(level1);
 }
 
 
