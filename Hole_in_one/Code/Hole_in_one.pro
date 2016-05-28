@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Hole_in_one1
+TARGET = Hole_in_one
 TEMPLATE = app
 
 
