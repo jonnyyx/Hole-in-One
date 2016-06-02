@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     MainWindow* test;
     test = new MainWindow();
     test->show();
-    test->displayLevel();
+    //test->displayLevel();
 
     return a.exec();
 }

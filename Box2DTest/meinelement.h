@@ -10,9 +10,9 @@ class MeinElement
 public:
     MeinElement(b2World* world,QGraphicsScene* scene,QPointF position,qreal angle);
     void draw();
+    b2Body* body;
 private:
     QGraphicsItem* graphics;
-    b2Body* body;
 };
 
 #endif // MEINELEMENT_H

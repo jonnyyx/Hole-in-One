@@ -13,7 +13,7 @@ class MainWindow : public QGraphicsView
 
 public:
     MainWindow(QWidget *parent = 0);
-    void displayLevel();
+    //void displayLevel();
 public slots:
     void update();
 
@@ -21,7 +21,11 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     MeinElement* elem;
+    MeinElement* elem1;
     QTimer* timer;
+    int anzahl;
+    b2Vec2 positionElem;
+
 
 
 
