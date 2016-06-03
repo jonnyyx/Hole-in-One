@@ -24,6 +24,8 @@ private:
     QGraphicsScene* level;
     MeinElement* elem;
     MeinElement* elem1;
+    MeinElement* elem2;
+    MeinElement* elem3;
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;

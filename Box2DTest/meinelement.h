@@ -8,9 +8,11 @@
 class MeinElement
 {
 public:
-    MeinElement(b2World* world,QGraphicsScene* scene,QPointF position,qreal angle, b2BodyType type);
+    MeinElement(b2World* world, QGraphicsScene* level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle);
+    MeinElement(b2World* world, QGraphicsScene* level, QPointF a, QPointF b, QPointF c, QPointF d, b2BodyType type, b2PolygonShape &polygon);
     void draw();
     b2Body* body;
+
 private:
     QGraphicsItem* graphics;
 };
