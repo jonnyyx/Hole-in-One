@@ -8,7 +8,7 @@
 class MeinElement
 {
 public:
-    MeinElement(b2World* world,QGraphicsScene* scene,QPointF position,qreal angle);
+    MeinElement(b2World* world,QGraphicsScene* scene,QPointF position,qreal angle, b2BodyType type);
     void draw();
     b2Body* body;
 private:

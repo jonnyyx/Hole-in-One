@@ -800,7 +800,11 @@ release/mainwindow.o: ../Box2DTest/mainwindow.cpp ../Box2DTest/mainwindow.h \
 		../Box2DTest/meinelement.h \
 		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtWidgets/QGraphicsItem \
 		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/QPointF
+		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/QPointF \
+		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/QTime \
+		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/qdatetime.h \
+		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \
+		C:/Program\ Files\ (x86)/Qt/5.6/mingw49_32/include/QtCore/qelapsedtimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\Box2DTest\mainwindow.cpp
 
 release/b2ChainShape.o: ../Box2DTest/Box2D/Collision/Shapes/b2ChainShape.cpp ../Box2DTest/Box2D/Collision/Shapes/b2ChainShape.h \

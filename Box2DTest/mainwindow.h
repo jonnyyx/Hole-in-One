@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "meinelement.h"
+#define framerate 60
 
 class MainWindow : public QGraphicsView
 {
@@ -17,7 +18,6 @@ public:
 
 public slots:
     void update();
-    double getCurrentTimeInSecounds();
 
 private:
     b2World* myWorld;
@@ -27,9 +27,6 @@ private:
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;
-
-    const float updateInterval = 1.0f/60.0f;
-    const double secoundsPerUpdate = 0.1;
 
 };
 
