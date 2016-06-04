@@ -6,7 +6,7 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "meinelement.h"
-#define framerate 60
+#define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
 class MainWindow : public QGraphicsView
 {
@@ -29,7 +29,6 @@ private:
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;
-
 };
 
 #endif // MAINWINDOW_H

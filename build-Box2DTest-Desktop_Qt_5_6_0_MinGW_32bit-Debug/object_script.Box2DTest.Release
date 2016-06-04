@@ -48,6 +48,10 @@ INPUT(
 ./release\b2WorldCallbacks.o
 ./release\b2Rope.o
 ./release\meinelement.o
+./release\button.o
+./release\gui.o
 ./release\qrc_pic.o
 ./release\moc_mainwindow.o
+./release\moc_button.o
+./release\moc_gui.o
 );

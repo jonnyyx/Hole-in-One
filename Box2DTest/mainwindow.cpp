@@ -21,14 +21,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     myWorld = new b2World(gravity);
 
-    float32 timeStep = 1.0/100.0;      //the length of time passed to simulate (seconds)
+    float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
     int32 velocityIterations = 8.0;   //how strongly to correct velocity
     int32 positionIterations = 3.0;   //how strongly to correct position
 
     myWorld->Step(timeStep, velocityIterations, positionIterations);
 
     b2CircleShape circle;
-    circle.m_radius = 23.0;
+    circle.m_radius = 21.0;
     b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
 
     elem  = new MeinElement(myWorld, level, QPointF(100.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);

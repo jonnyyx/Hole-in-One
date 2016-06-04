@@ -48,6 +48,10 @@ INPUT(
 ./debug\b2WorldCallbacks.o
 ./debug\b2Rope.o
 ./debug\meinelement.o
+./debug\button.o
+./debug\gui.o
 ./debug\qrc_pic.o
 ./debug\moc_mainwindow.o
+./debug\moc_button.o
+./debug\moc_gui.o
 );

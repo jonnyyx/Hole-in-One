@@ -4,6 +4,7 @@
 #include"QGraphicsItem"
 #include<QPointF>
 
+class MainWindow;
 
 class MeinElement
 {

@@ -12,10 +12,10 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
 
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.shape = &circle;
-    circleFixtureDef.density = 10;
+    circleFixtureDef.density = 20;
     body->CreateFixture(&circleFixtureDef);
 
-    //body->SetLinearVelocity(b2Vec2(0.0,0.0));
+//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 
     QPixmap bkgnd(":/new/prefix1/paper.png");
     bkgnd.scaled(QSize(42,42));
@@ -34,11 +34,11 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPoin
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
     polygonFixtureDef.density=20;
-    //polygonFixtureDef.friction=XX;
+//  polygonFixtureDef.friction=XX;
     body->CreateFixture(&polygonFixtureDef);
 
-//    QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
-//    poly->setVisible(true);
+//  QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
+//  poly->setVisible(true);
 
     QPolygonF polyf;
     polyf << a << b << c << d;
