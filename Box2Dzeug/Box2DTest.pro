@@ -67,7 +67,9 @@ SOURCES += main.cpp\
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
-    meinelement.cpp
+    meinelement.cpp \
+    button.cpp \
+    gui.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Box2D.h \
@@ -117,7 +119,10 @@ HEADERS  += mainwindow.h \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
-    meinelement.h
+    meinelement.h \
+    button.h \
+    gui.h \
+    main.h
 
 DISTFILES += \
     paper.png
