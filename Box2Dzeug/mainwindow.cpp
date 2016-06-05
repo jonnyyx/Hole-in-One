@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <QDebug>
+#include "gui.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -35,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     polygon.SetAsBox(10,20);
 
 
-    elem = new MeinElement(myWorld, level, QPointF(100.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+    elem = new MeinElement(myWorld, level, QPointF(100.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle); // level...
     elem1 = new MeinElement(myWorld, level, QPointF(80.0,170.0), 0*(3.14/180.0), b2_staticBody, circle);
     elem2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
     elem3 = new MeinElement(myWorld, level, QPointF(30.0,500.0),QPointF(400.0,600.0),QPointF(400.0,650.0),QPointF(30.0,550.0),b2_staticBody, polygon);

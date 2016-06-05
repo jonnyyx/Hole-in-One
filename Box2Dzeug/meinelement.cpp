@@ -30,14 +30,13 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     //bkgnd.scaled(QSize(10,10),Qt::IgnoreAspectRatio);
 
 //    graphics = level->addPixmap(bkgnd);
-    graphics = level->addEllipse(1,3,40,40);
+    graphics = level->addEllipse(1,3,40,40); //---------------------
 
 
 
 }
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, QPointF d,  b2BodyType type, b2PolygonShape &polygon)
-
 {
     b2BodyDef myBodyDef;
     myBodyDef.type=type;//b2_staticBody, b2_kinematicBody,b2_dynamicBody
@@ -53,7 +52,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPoin
 //    poly->setVisible(true);
     QPolygonF polyf;
     polyf<< a << b << c << d;
-    graphics = level->addPolygon(polyf);
+    graphics = level->addPolygon(polyf); //-----------------------
 }
 void MeinElement::draw()
  {

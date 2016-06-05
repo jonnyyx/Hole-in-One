@@ -7,18 +7,21 @@
 #include <QTimer>
 #include "meinelement.h"
 #define framerate 1.0/10.0
+
+class GUI;  //-------------------
 class MainWindow : public QGraphicsView
 {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = 0);
+
 public slots:
     void update();
 
 private:
     b2World* myWorld;
-    QGraphicsScene* level;
+    QGraphicsScene* level; //----------------------
     MeinElement* elem;
     MeinElement* elem1;
     MeinElement* elem2;

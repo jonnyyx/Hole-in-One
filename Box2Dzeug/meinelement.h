@@ -4,7 +4,9 @@
 #include"QGraphicsItem"
 #include<QPointF>
 
+
 class MainWindow;
+class GUI; //------------------------
 class MeinElement
 {
 public:
