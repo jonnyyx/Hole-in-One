@@ -2,6 +2,7 @@
 #include <button.h>
 #include <QGraphicsTextItem>
 #include <QGraphicsScene>
+#include <QtSvg/QGraphicsSvgItem>
 
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
@@ -18,13 +19,26 @@ GUI::GUI(QWidget *parent){
 void GUI::displayGUI()
 {
     /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Hole in One"));
-    QFont titleFont("comic sans", 50);
-    titleText->setFont(titleFont);
-    int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
-    int titleyPos = 150;
-    titleText->setPos(titlexPos,titleyPos);
-    scene->addItem(titleText);
+    //QGraphicsView view(&scene);
+    QGraphicsSvgItem *item = new QGraphicsSvgItem("\\title.svg");
+    scene->addItem(item);
+
+    //QImage title;
+    //QSvgRenderer svgRenderer("title.svg");
+    //QPixmap pix( svgRenderer.defaultSize());
+    //QPainter pixPainter (&pix);
+    //svgRenderer.render(&pixPainter);
+    //title.load("title.png");
+    //QPixmap title_pixmap = QPixmap::fromImage(title);
+    //QGraphicsPixmapItem* title_item;
+    //title_item->setPixmap(title_pixmap);
+    //QFont titleFont("comic sans", 50);
+    //titleText->setFont(titleFont);
+    //titleText->setScale(0.1);
+    //int titlexPos = this->width()/2-title_item->boundingRect().width()/2;
+    //int titleyPos = 150;
+    //titleText->setPos(titlexPos,titleyPos);
+    //scene->addItem(title_item);
 
     /*!create level menu button*/
     Button* levelButton = new Button(QString("Levels"));

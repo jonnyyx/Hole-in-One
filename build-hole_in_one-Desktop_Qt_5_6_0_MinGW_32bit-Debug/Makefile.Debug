@@ -53,7 +53,8 @@ OBJECTS       = debug/main.o \
 		debug/moc_gui.o \
 		debug/moc_button.o
 
-DIST          =  "..\GUI only\gui.h" \
+DIST          = title.png \
+		title.svg "..\GUI only\gui.h" \
 		"..\GUI only\button.h" \
 		"..\GUI only\main.h" "..\GUI only\main.cpp" \
 		"..\GUI only\gui.cpp" \

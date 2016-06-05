@@ -21,3 +21,7 @@ HEADERS  += gui.h \
     main.h
 
 FORMS    +=
+
+DISTFILES += \
+    title.png \
+    title.svg
