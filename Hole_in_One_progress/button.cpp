@@ -2,10 +2,10 @@
 #include <QGraphicsTextItem>
 #include <QBrush>
 
-Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(parent)
+Button::Button(QString buttonName, qreal length, qreal width, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
     /*Rectangle for buttons!*/
-    setRect(0,0,250,80);
+    setRect(0,0,length,width);
     QBrush buttonBrush;
      /*!solid color*/
     buttonBrush.setStyle(Qt::SolidPattern);

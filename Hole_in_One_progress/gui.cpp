@@ -104,21 +104,21 @@ void GUI::helpMenu()
     /*!create help menu buttons*/
     Button* howto = new Button(QString("How to Play"), 250, 80);
     int htxPos = 50;
-    int htyPos = 150;
+    int htyPos = 180;
     howto->setPos(htxPos,htyPos);
     //connect(howto, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addItem(howto);
 
     Button* tool = new Button(QString("Tools"), 250, 80);
     int toolxPos = 50;
-    int toolyPos = 250;
+    int toolyPos = 280;
     tool->setPos(toolxPos,toolyPos);
     //connect(level1, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addItem(tool);
 
     Button* backButton = new Button(QString("Back"), 250, 40);
     int backxPos = 50;
-    int backyPos = 550;
+    int backyPos = 580;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(backButton);
