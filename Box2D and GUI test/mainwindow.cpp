@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     b2CircleShape circle;
     circle.m_radius = 21.0;
     b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
-
+    polygon.SetAsBox(1.0,1.0);
 
     elem  = new MeinElement(myWorld, level, QPointF(100.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
     elem1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
