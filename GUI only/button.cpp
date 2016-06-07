@@ -36,6 +36,7 @@ void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     buttonBrush.setStyle(Qt::SolidPattern);
     buttonBrush.setColor(Qt::red);
     setBrush(buttonBrush);
+        qDebug("Hover");
 }
 
 void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

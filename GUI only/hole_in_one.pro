@@ -14,14 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gui.cpp \
-    button.cpp
+    button.cpp \
+    picbutton.cpp
 
 HEADERS  += gui.h \
     button.h \
-    main.h
+    main.h \
+    picbutton.h
 
 FORMS    +=
 
 DISTFILES += \
-    title.png \
     title.svg
+
+RESOURCES += \
+    images.qrc
