@@ -17,6 +17,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.shape=&circle;
     circleFixtureDef.density=10;
+    circleFixtureDef.restitution = 0.5;
 
     body->CreateFixture(&circleFixtureDef);
 
