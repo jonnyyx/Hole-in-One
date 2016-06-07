@@ -8,11 +8,13 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     myBodyDef.position.Set(position.x(),position.y());
     myBodyDef.angle=angle;
 
+
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.shape = &circle;
     circleFixtureDef.density = 20;
+    circleFixtureDef.restitution = 0.6;
     body->CreateFixture(&circleFixtureDef);
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
@@ -28,6 +30,8 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPoin
 {
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
+    myBodyDef.active = true;
+    myBodyDef.gravityScale = 1000.0;
 
     body=world->CreateBody(&myBodyDef);
 
