@@ -1,13 +1,12 @@
 #include "meinelement.h"
 #include <QGraphicsScene>
-#include <QGraphicsEllipseItem>
+#include <QPoint>
+#include <QSize>
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
-
-
     b2BodyDef myBodyDef;
-    myBodyDef.type=type;//b2_staticBody, b2_kinematicBody,b2_dynamicBody
+    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.position.Set(position.x(),position.y());
     myBodyDef.angle=angle;
 
@@ -15,47 +14,51 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef circleFixtureDef;
-    circleFixtureDef.shape=&circle;
-    circleFixtureDef.density=10;
-    circleFixtureDef.restitution = 0.5;
-
+    circleFixtureDef.shape = &circle;
+    circleFixtureDef.density = 20;
+    circleFixtureDef.restitution = 0.6;
     body->CreateFixture(&circleFixtureDef);
 
-    //body->SetLinearVelocity(b2Vec2(0.0,0.0));
-    //body->ApplyLinearImpulse(b2Vec2(10.0,3.0),b2Vec2(4.0,0.0),true);
-    QGraphicsEllipseItem* circ = new QGraphicsEllipseItem();
-    //circle.setRect(qreal 10, qreal 5, qreal 10,qreal 10);
-    circ->setVisible(true);
+//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 
-    //QPixmap bkgnd(":/new/prefix1/paper.png");
-    //bkgnd.scaled(QSize(10,10),Qt::IgnoreAspectRatio);
-
-//    graphics = level->addPixmap(bkgnd);
-    graphics = level->addEllipse(1,3,40,40); //---------------------
+    QPixmap bkgnd(":/new/prefix1/paper.png");
+    bkgnd.scaled(QSize(42,42));
 
 
-
+    graphics = level->addPixmap(bkgnd);
 }
 
-MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, QPointF d,  b2BodyType type, b2PolygonShape &polygon)
+MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
+    b2PolygonShape polygon;
+    polygon.SetAsBox(length, width, center, angle);
     b2BodyDef myBodyDef;
-    myBodyDef.type=type;//b2_staticBody, b2_kinematicBody,b2_dynamicBody
+    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
+
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
-    polygonFixtureDef.density=10;
-    //polygonFixtureDef.friction=10;
+    polygonFixtureDef.density=20;
+    polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
-//    QGraphicsPolygonItem* poly = new QGraphicsPolygonItem();
-//    poly->setVisible(true);
-    QPolygonF polyf;
-    polyf<< a << b << c << d;
-    graphics = level->addPolygon(polyf); //-----------------------
+//  QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
+//  poly->setVisible(true);
+
+
+    int x=center.x;
+    int y=center.y;
+    QRectF polyf(QPoint(x,y),QSize(length,width));
+    graphics = level->addRect(polyf);
+
+//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
+//  QPixmap bkgnd(":/new/prefix1/paper.png");
+//  bkgnd.scaled(QSize(42,42));
+//  graphics = scene->addPixmap(bkgnd);
 }
-void MeinElement::draw()
+
+ void MeinElement::draw()
  {
      b2Vec2 v=body->GetPosition();
      graphics->setPos(QPointF(v.x,v.y));

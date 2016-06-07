@@ -6,30 +6,35 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "meinelement.h"
-#define framerate 1.0/10.0
+#include <QPushButton>
+#define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
-class GUI;  //-------------------
 class MainWindow : public QGraphicsView
 {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = 0);
+    //void displayLevel();
 
 public slots:
     void update();
+    void startLevel();
+    void pauseLevel();
 
 private:
     b2World* myWorld;
-    QGraphicsScene* level; //----------------------
+    QGraphicsScene* level;
     MeinElement* elem;
     MeinElement* elem1;
     MeinElement* elem2;
     MeinElement* elem3;
+    MeinElement* bottom;
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;
-
+    QPushButton* bt_start;
+    QPushButton* bt_pause;
 };
 
 #endif // MAINWINDOW_H

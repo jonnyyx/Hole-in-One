@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
     menu->show();
     menu->displayGUI();
 
-    //MainWindow* test;
-    //test = new MainWindow();
-    //test->show();
+    /*MainWindow* test;
+    test = new MainWindow();
+    test->show();*/
     //test->displayLevel();
 
     return a.exec();

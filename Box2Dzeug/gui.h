@@ -5,7 +5,8 @@
 #include <QGraphicsScene>
 #include <button.h>
 
-class MainWindow;               //.....................
+class MainWindow;
+
 class GUI : public QGraphicsView
 {
     Q_OBJECT
@@ -17,15 +18,11 @@ public:
 
     QGraphicsScene* scene;  //attributes
 
-
 public slots:
     void levelMenu();
     void highscore();
     void back();
-    void showLevel1();      //........................
-
-
-
+    void showLevel1();
 };
 
 #endif // GUI_H

@@ -55,7 +55,6 @@ void GUI::displayGUI()
 
 void GUI::levelMenu()
 {
-
     scene->clear();
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Level Menu"));
@@ -71,7 +70,7 @@ void GUI::levelMenu()
     int levelxPos = 50;
     int levelyPos = 150;
     level1->setPos(levelxPos,levelyPos);
-    connect(level1, SIGNAL(clicked()), this, SLOT(showLevel1())); //............................
+    connect(level1, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addItem(level1);
 
     Button* backButton = new Button(QString("Back"));
@@ -87,11 +86,11 @@ void GUI::back(){
     displayGUI();
 }
 
-void GUI::showLevel1()
+void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
-     MainWindow* test; //.............................
-     test = new MainWindow();
-     test->show();
+    MainWindow *test;
+    test = new MainWindow();
+    test->show();
 }
 
 void GUI::highscore()
