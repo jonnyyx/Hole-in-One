@@ -67,7 +67,8 @@ SOURCES += main.cpp\
     Box2D/Rope/b2Rope.cpp \
     meinelement.cpp \
     button.cpp \
-    gui.cpp
+    gui.cpp \
+    picbutton.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Box2D.h \
@@ -120,10 +121,12 @@ HEADERS  += mainwindow.h \
     meinelement.h \
     button.h \
     gui.h \
-    main.h
+    main.h \
+    picbutton.h
 
 DISTFILES += \
     paper.png
 
 RESOURCES += \
-    pic.qrc
+    pic.qrc \
+    images.qrc

@@ -9,6 +9,7 @@ GUI::GUI(QWidget *parent){
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
+    setBackgroundBrush(QBrush(QColor(191,153,89), Qt::SolidPattern));
 
     /*!Scene setup*/
     scene = new QGraphicsScene();
@@ -18,60 +19,59 @@ GUI::GUI(QWidget *parent){
 
 void GUI::displayGUI()
 {
-    /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Hole in One"));
-    QFont titleFont("comic sans", 50);
-    titleText->setFont(titleFont);
+    scene->clear();
+     /*!create title text*/
+    QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 150;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
     /*!create level menu button*/
-    Button* levelButton = new Button(QString("Levels"));
-    int levelxPos = this->width()/2-levelButton->boundingRect().width()/2;
+    picButton* levelpicButton = new picButton(QPixmap(":/images/images/levelbuttondefault.png"), QPixmap(":/images/images/levelbuttonhover.png"));
+    int levelxPos = this->width()/2-levelpicButton->width()/2;
     int levelyPos = 310;
-    levelButton->setPos(levelxPos,levelyPos);
-    connect(levelButton, SIGNAL(clicked()), this, SLOT(levelMenu())); //TODO levelMenu()
-    scene->addItem(levelButton);
+    levelpicButton->move(levelxPos,levelyPos);
+    connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()));
+    scene->addWidget(levelpicButton);
 
     /*!create highscore button*/
-    Button* scoreButton = new Button(QString("Highscore"));
-    int scorexPos = this->width()/2-scoreButton->boundingRect().width()/2;
+
+    picButton* scorepicButton = new picButton(QPixmap(":/images/images/highscorebuttonhover.png"), QPixmap(":/images/images/highscorebuttondefault.png"));
+    int scorexPos = this->width()/2-scorepicButton->width()/2;
     int scoreyPos = 410;
-    scoreButton->setPos(scorexPos,scoreyPos);
-    connect(scoreButton, SIGNAL(clicked()), this, SLOT(highscore())); //TODO highscore
-    scene->addItem(scoreButton);
+    scorepicButton->move(scorexPos,scoreyPos);
+    connect(scorepicButton, SIGNAL(clicked()), this, SLOT(highscore()));
+    scene->addWidget(scorepicButton);
 
     /*!create quit button*/
-    Button* quitButton = new Button(QString("Quit"));
-    int quitxPos = this->width()/2-quitButton->boundingRect().width()/2;
+    picButton* quitpicButton = new picButton(QPixmap(":/images/images/quitbuttonhover.png"), QPixmap(":/images/images/quitbuttondefault.png"));
+    int quitxPos = this->width()/2-quitpicButton->width()/2;
     int quityPos = 510;
-    quitButton->setPos(quitxPos,quityPos);
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
-    scene->addItem(quitButton);
+    quitpicButton->move(quitxPos,quityPos);
+    connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
+    scene->addWidget(quitpicButton);
+
 
 }
 
 void GUI::levelMenu()
 {
     scene->clear();
-    /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Level Menu"));
-    QFont titleFont("comic sans", 40);
-    titleText->setFont(titleFont);
-    int titlexPos = 50;
-    int titleyPos = 80;
+    QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
+    int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
+    int titleyPos = 60;
     titleText->setPos(titlexPos,titleyPos);
+
     scene->addItem(titleText);
 
     /*!create level menu button*/
-    Button* level1 = new Button(QString("Level 1"));
-    int levelxPos = 50;
-    int levelyPos = 150;
-    level1->setPos(levelxPos,levelyPos);
-    connect(level1, SIGNAL(clicked()), this, SLOT(showLevel1()));
-    scene->addItem(level1);
+    picButton* onepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+    int onexPos = 148;
+    int oneyPos = 250;
+    onepicButton->move(onexPos,oneyPos);
+    connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
+    scene->addWidget(onepicButton);
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
@@ -110,7 +110,7 @@ void GUI::highscore()
     int levelxPos = 50;
     int levelyPos = 150;
     level1->setPos(levelxPos,levelyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(close()));
+    connect(level1, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(level1);
 
     Button* backButton = new Button(QString("Back"));
@@ -119,4 +119,6 @@ void GUI::highscore()
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(backButton);
+
+   
 }

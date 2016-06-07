@@ -1,5 +1,7 @@
 #include "meinelement.h"
 #include <QGraphicsScene>
+#include <QPoint>
+#include <QSize>
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
@@ -26,8 +28,10 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     graphics = level->addPixmap(bkgnd);
 }
 
-MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, QPointF d, b2BodyType type, b2PolygonShape &polygon)
+MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
+    b2PolygonShape polygon;
+    polygon.SetAsBox(length, width, center, angle);
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
@@ -38,15 +42,17 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF a, QPoin
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
     polygonFixtureDef.density=20;
-//  polygonFixtureDef.friction=XX;
+    polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
 //  QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
 //  poly->setVisible(true);
 
-    QPolygonF polyf;
-    polyf << a << b << c << d;
-    graphics = level->addPolygon(polyf);
+
+    int x=center.x;
+    int y=center.y;
+    QRectF polyf(QPoint(x,y),QSize(length,width));
+    graphics = level->addRect(polyf);
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 //  QPixmap bkgnd(":/new/prefix1/paper.png");

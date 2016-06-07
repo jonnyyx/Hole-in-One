@@ -4,8 +4,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <button.h>
+#include <picbutton.h>
 
-class MainWindow;
 
 class GUI : public QGraphicsView
 {
