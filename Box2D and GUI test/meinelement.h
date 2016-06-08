@@ -5,7 +5,9 @@
 #include<QPointF>
 
 class MainWindow;
-
+class GUI;
+class Button;
+class picButton;
 class MeinElement
 {
 public:

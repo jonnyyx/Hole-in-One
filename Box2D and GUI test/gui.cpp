@@ -31,7 +31,7 @@ void GUI::displayGUI()
     int levelxPos = this->width()/2-levelpicButton->width()/2;
     int levelyPos = 310;
     levelpicButton->move(levelxPos,levelyPos);
-    connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()));
+    connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()), Qt::QueuedConnection);
     scene->addWidget(levelpicButton);
 
     /*!create highscore button*/
@@ -51,13 +51,11 @@ void GUI::displayGUI()
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addWidget(quitpicButton);
 
-
 }
 
 void GUI::levelMenu()
 {
-    //scene->clear();
-
+    scene->clear();
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 60;
