@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 
-#include <QDebug>
+
 
 
 
@@ -65,19 +65,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     myWorld->Step(timeStep, velocityIterations, positionIterations);
 
-
+    b2CircleShape circle;
     circle.m_radius = 21.0;
 
     //b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
     //polygon.SetAsBox(1.0,1.0);
 
 
-    elem  = new MeinElement(myWorld, level, QPointF(85.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+    elem  = new MeinElement(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
     elem1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
     elem2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    elem3 = new MeinElement(myWorld, level, b2Vec2 (150.0,100.0), 0, 120, 25, b2_staticBody,0.01);
+    elem3 = new MeinElement(myWorld, level, b2Vec2 (80.0,400.0), 0, 100, 30, b2_staticBody,1.0);
     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
-    bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), 0, level->width(), 35, b2_staticBody,20.0);
+    bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), 0, level->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
     //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
 
@@ -105,12 +105,10 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::update(){
     myWorld->Step(framerate, 20, 20);
     elem->draw(); //nur bewegende Elemente in Update
-    elem->drawGraphic();
 
 }
 
 void MainWindow::startLevel(){
-    elem3->drawGraphic();
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
     timer->connect(timer, SIGNAL(timeout()),this, SLOT(update()));
