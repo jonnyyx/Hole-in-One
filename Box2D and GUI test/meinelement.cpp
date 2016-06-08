@@ -32,7 +32,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
     b2PolygonShape polygon;
-    polygon.SetAsBox(length, width, center, angle);
+    polygon.SetAsBox(length/2, width/2, center, angle);
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
@@ -50,8 +50,8 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 //  poly->setVisible(true);
 
 
-    int x=center.x;
-    int y=center.y;
+    int x=center.x-(length/2);
+    int y=center.y-(width/2);
     QRectF polyf(QPoint(x,y),QSize(length,width));
     graphics = level->addRect(polyf);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
@@ -110,7 +110,8 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
  void MeinElement::draw()
  {
-     b2Vec2 v=body->GetPosition();
+     b2Vec2 v=body->GetWorldPoint(body->GetPosition());
+
      graphics->setPos(QPointF(v.x,v.y));
      qreal a=body->GetAngle();
      graphics->setRotation(a);
