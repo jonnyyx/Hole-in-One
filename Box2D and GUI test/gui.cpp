@@ -22,14 +22,14 @@ void GUI::displayGUI()
      /*!create title text*/
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
-    int titleyPos = 150;
+    int titleyPos = 120;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
     /*!create level menu button*/
     picButton* levelpicButton = new picButton(QPixmap(":/images/images/levelbuttondefault.png"), QPixmap(":/images/images/levelbuttonhover.png"));
     int levelxPos = this->width()/2-levelpicButton->width()/2;
-    int levelyPos = 310;
+    int levelyPos = 270;
     levelpicButton->move(levelxPos,levelyPos);
     connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()), Qt::QueuedConnection);
     scene->addWidget(levelpicButton);
@@ -38,15 +38,24 @@ void GUI::displayGUI()
 
     picButton* scorepicButton = new picButton(QPixmap(":/images/images/highscorebuttonhover.png"), QPixmap(":/images/images/highscorebuttondefault.png"));
     int scorexPos = this->width()/2-scorepicButton->width()/2;
-    int scoreyPos = 410;
+    int scoreyPos = 370;
     scorepicButton->move(scorexPos,scoreyPos);
-    connect(scorepicButton, SIGNAL(clicked()), this, SLOT(highscore()));
+    connect(scorepicButton, SIGNAL(clicked()), this, SLOT(highscore()), Qt::QueuedConnection);
     scene->addWidget(scorepicButton);
+
+    /*!create help button*/
+
+    picButton* helppicButton = new picButton(QPixmap(":/images/images/helpbuttonhover.png"), QPixmap(":/images/images/helpbuttondefault.png"));
+    int helpxPos = this->width()/2-helppicButton->width()/2;
+    int helpyPos = 470;
+    helppicButton->move(helpxPos,helpyPos);
+    connect(helppicButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
+    scene->addWidget(helppicButton);
 
     /*!create quit button*/
     picButton* quitpicButton = new picButton(QPixmap(":/images/images/quitbuttonhover.png"), QPixmap(":/images/images/quitbuttondefault.png"));
     int quitxPos = this->width()/2-quitpicButton->width()/2;
-    int quityPos = 510;
+    int quityPos = 570;
     quitpicButton->move(quitxPos,quityPos);
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addWidget(quitpicButton);
@@ -149,7 +158,7 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
 
 void GUI::highscore()
 {
-    //scene->clear();
+    scene->clear();
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Highscore"));
     QFont titleFont("comic sans", 40);
@@ -175,4 +184,26 @@ void GUI::highscore()
     scene->addItem(backButton);
 
    
+}
+
+void GUI::help()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 80;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 550;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    scene->addItem(backButton);
+
+
 }

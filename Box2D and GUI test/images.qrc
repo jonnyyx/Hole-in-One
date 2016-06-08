@@ -12,5 +12,7 @@
         <file>images/quitbuttonhover.png</file>
         <file>images/quithover.png</file>
         <file>images/Title.png</file>
+        <file>images/helpbuttondefault.png</file>
+        <file>images/helpbuttonhover.png</file>
     </qresource>
 </RCC>

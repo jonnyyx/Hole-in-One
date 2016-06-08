@@ -26,6 +26,7 @@ public slots:
     void highscore();
     void back();
     void showLevel1();
+    void help();
 
 private:
 
