@@ -1,0 +1,1 @@
+The cirlce is a very similar to the block, but the rebounce behavior is different. It can not be rotated (since this would not be useful). To move the object click and hold on the object and drag it with your mouse.
