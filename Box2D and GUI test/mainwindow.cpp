@@ -77,15 +77,15 @@ MainWindow::MainWindow(QWidget *parent)
     elem2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
     elem3 = new MeinElement(myWorld, level, b2Vec2 (80.0,400.0), 0, 100, 30, b2_staticBody,1.0);
     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
-    bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), 0, level->width(), 22, b2_staticBody,20.0);
+    bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
     //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
 
-
+    elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     elem1->draw(); //Static Elemente lassen sich auch hier "drawn"
     elem2->draw();
     elem3->draw();
-    bottom->draw();
+    bottom->drawBottom();
 
 
 
@@ -110,6 +110,12 @@ void MainWindow::update(){
 
 void MainWindow::startLevel(){
     elem3->drawGraphics();
+    elem1->drawGraphics();
+    elem2->drawGraphics();
+    elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    elem1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    elem2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    elem3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
     timer->connect(timer, SIGNAL(timeout()),this, SLOT(update()));
