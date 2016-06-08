@@ -27,6 +27,7 @@ public slots:
     void resumeLevel();
 
 private:
+    b2CircleShape circle;
     b2World* myWorld;
     QGraphicsScene* level;
     MeinElement* elem;
