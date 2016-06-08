@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include <QPoint>
 #include <QSize>
+#include <qdebug.h>
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
@@ -50,16 +51,15 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 //  poly->setVisible(true);
 
 
-    int x=center.x-(length/2);
-    int y=center.y-(width/2);
+    int x=center.x-length/4;
+    int y=center.y-width/4;
+
     QRectF polyf(QPoint(x,y),QSize(length,width));
     graphics = level->addRect(polyf);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
-//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
-//  QPixmap bkgnd(":/new/prefix1/paper.png");
-//  bkgnd.scaled(QSize(42,42));
-//  graphics = scene->addPixmap(bkgnd);
+    drawRec(x+length/2,y+width/2);
+
 }
 
 /*!
@@ -110,11 +110,19 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
  void MeinElement::draw()
  {
-     b2Vec2 v=body->GetWorldPoint(body->GetPosition());
+     b2Vec2 v=body->GetPosition();
 
      graphics->setPos(QPointF(v.x,v.y));
      qreal a=body->GetAngle();
      graphics->setRotation(a);
+ }
+
+ void MeinElement::drawRec(int x,int y){
+
+     graphics->setPos(QPointF(x,y));
+     qreal a=body->GetAngle();
+     graphics->setRotation(a);
+
  }
 
  void MeinElement::drawBottom(){
@@ -124,6 +132,8 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
  void MeinElement::drawGraphics(){
      QPointF v=graphics->pos();
+     qDebug()<<v.x();
+     qDebug()<<v.y();
      body->SetTransform(b2Vec2(v.x(),v.y()),body->GetAngle());
  }
 

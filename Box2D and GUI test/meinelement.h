@@ -15,6 +15,8 @@ public:
     void draw();
     void drawGraphics();
     void drawBottom();
+    void drawRec(int x,int y);
+
     b2Body* body;
     QGraphicsItem* graphics;
 

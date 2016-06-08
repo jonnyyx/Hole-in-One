@@ -151,7 +151,7 @@ void GUI::levelMenu()
     int backxPos = 50;
     int backyPos = 550;
     backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back( backButton )));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(backButton);
 }
 

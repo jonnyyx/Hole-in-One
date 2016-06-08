@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
     elem  = new MeinElement(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
     elem1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
     elem2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    elem3 = new MeinElement(myWorld, level, b2Vec2 (80.0,400.0), 0, 100, 30, b2_staticBody,1.0);
+    elem3 = new MeinElement(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
     bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     elem1->draw(); //Static Elemente lassen sich auch hier "drawn"
     elem2->draw();
-    elem3->draw();
+    //elem3->drawRec(elem3->body->GetPosition());
     bottom->drawBottom();
 
 
