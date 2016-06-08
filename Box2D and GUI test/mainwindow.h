@@ -10,10 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
-class GUI;
-class Button;
-class MeinElement;
-class picButton;
+
 class MainWindow : public QGraphicsView
 {
     Q_OBJECT

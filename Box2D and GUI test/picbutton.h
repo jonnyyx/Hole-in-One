@@ -7,10 +7,6 @@
 #include <QPixmap>
 #include <QGraphicsSceneMouseEvent>
 
-class GUI;
-class MeinElement;
-class MainWindow;
-class Button;
 class picButton : public QPushButton
 {
 public:

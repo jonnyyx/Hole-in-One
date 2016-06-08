@@ -7,10 +7,7 @@
 #include <button.h>
 #include <picbutton.h>
 
-class Button;
-class MainWindow;
-class MeinElement;
-class picButton;
+
 class GUI : public QGraphicsView
 {
     Q_OBJECT
