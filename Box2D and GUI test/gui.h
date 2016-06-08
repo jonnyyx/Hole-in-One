@@ -1,11 +1,12 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <button.h>
 
-class MainWindow;
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <button.h>
+#include <picbutton.h>
+
 
 class GUI : public QGraphicsView
 {
@@ -18,11 +19,17 @@ public:
 
     QGraphicsScene* scene;  //attributes
 
+
+
 public slots:
     void levelMenu();
     void highscore();
     void back();
     void showLevel1();
+
+private:
+
+
 };
 
 #endif // GUI_H

@@ -13,6 +13,7 @@ Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(pa
      /*!now set the brush*/
     setBrush(buttonBrush);
 
+
      /*!Text on the scene*/
     text = new QGraphicsTextItem(buttonName, this);
     int x = rect().width()/2 - text->boundingRect().width()/2;
