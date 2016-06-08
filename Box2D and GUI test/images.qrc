@@ -14,5 +14,7 @@
         <file>images/Title.png</file>
         <file>images/helpbuttondefault.png</file>
         <file>images/helpbuttonhover.png</file>
+        <file>images/soundoff.png</file>
+        <file>images/soundon.png</file>
     </qresource>
 </RCC>

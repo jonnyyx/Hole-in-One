@@ -14,6 +14,10 @@ GUI::GUI(QWidget *parent){
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1024,768);
     setScene(scene);
+
+    /*!ismute false by default*/
+    ismute=false;
+
 }
 
 void GUI::displayGUI()
@@ -27,7 +31,7 @@ void GUI::displayGUI()
     scene->addItem(titleText);
 
     /*!create level menu button*/
-    picButton* levelpicButton = new picButton(QPixmap(":/images/images/levelbuttondefault.png"), QPixmap(":/images/images/levelbuttonhover.png"));
+    picButton* levelpicButton = new picButton(QPixmap(":/images/images/levelbuttonhover.png"), QPixmap(":/images/images/levelbuttondefault.png"));
     int levelxPos = this->width()/2-levelpicButton->width()/2;
     int levelyPos = 270;
     levelpicButton->move(levelxPos,levelyPos);
@@ -36,7 +40,7 @@ void GUI::displayGUI()
 
     /*!create highscore button*/
 
-    picButton* scorepicButton = new picButton(QPixmap(":/images/images/highscorebuttonhover.png"), QPixmap(":/images/images/highscorebuttondefault.png"));
+    picButton* scorepicButton = new picButton(QPixmap(":/images/images/highscorebuttondefault.png"), QPixmap(":/images/images/highscorebuttonhover.png"));
     int scorexPos = this->width()/2-scorepicButton->width()/2;
     int scoreyPos = 370;
     scorepicButton->move(scorexPos,scoreyPos);
@@ -45,7 +49,7 @@ void GUI::displayGUI()
 
     /*!create help button*/
 
-    picButton* helppicButton = new picButton(QPixmap(":/images/images/helpbuttonhover.png"), QPixmap(":/images/images/helpbuttondefault.png"));
+    picButton* helppicButton = new picButton(QPixmap(":/images/images/helpbuttondefault.png"), QPixmap(":/images/images/helpbuttonhover.png"));
     int helpxPos = this->width()/2-helppicButton->width()/2;
     int helpyPos = 470;
     helppicButton->move(helpxPos,helpyPos);
@@ -53,12 +57,20 @@ void GUI::displayGUI()
     scene->addWidget(helppicButton);
 
     /*!create quit button*/
-    picButton* quitpicButton = new picButton(QPixmap(":/images/images/quitbuttonhover.png"), QPixmap(":/images/images/quitbuttondefault.png"));
+    picButton* quitpicButton = new picButton(QPixmap(":/images/images/quitbuttondefault.png"), QPixmap(":/images/images/quitbuttonhover.png"));
     int quitxPos = this->width()/2-quitpicButton->width()/2;
     int quityPos = 570;
     quitpicButton->move(quitxPos,quityPos);
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addWidget(quitpicButton);
+
+    /*!create quit button*/
+    mutepicButton = new picButton(QPixmap(":/images/images/soundon.png"), QPixmap(":/images/images/soundon.png"), false);
+    int mutexPos = 920;
+    int muteyPos = 680;
+    mutepicButton->move(mutexPos,muteyPos);
+    connect(mutepicButton, SIGNAL(clicked()), this, SLOT(mute()), Qt::QueuedConnection);
+    scene->addWidget(mutepicButton);
 
 }
 
@@ -139,7 +151,7 @@ void GUI::levelMenu()
     int backxPos = 50;
     int backyPos = 550;
     backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back( backButton )));
     scene->addItem(backButton);
 }
 
@@ -206,4 +218,18 @@ void GUI::help()
     scene->addItem(backButton);
 
 
+}
+
+void GUI::mute()
+{
+
+
+    if(ismute==false){
+        ismute=true;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
+    }
+    else if(ismute==true){
+        ismute=false;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
+    }
 }
