@@ -109,6 +109,7 @@ void MainWindow::update(){
 }
 
 void MainWindow::startLevel(){
+    elem3->drawGraphics();
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
     timer->connect(timer, SIGNAL(timeout()),this, SLOT(update()));

@@ -26,6 +26,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
 
 
     graphics = level->addPixmap(bkgnd);
+    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 }
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
@@ -53,6 +54,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
     int y=center.y;
     QRectF polyf(QPoint(x,y),QSize(length,width));
     graphics = level->addRect(polyf);
+    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 //  QPixmap bkgnd(":/new/prefix1/paper.png");
@@ -66,5 +68,10 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
      graphics->setPos(QPointF(v.x,v.y));
      qreal a=body->GetAngle();
      graphics->setRotation(a);
+ }
+
+ void MeinElement::drawGraphics(){
+     QPointF v=graphics->pos();
+     body->SetTransform(b2Vec2(v.x(),v.y()),body->GetAngle());
  }
 
