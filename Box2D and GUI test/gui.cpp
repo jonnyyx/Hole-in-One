@@ -1,7 +1,6 @@
 #include "gui.h"
-#include <button.h>
+
 #include <QGraphicsTextItem>
-#include <QGraphicsScene>
 #include "mainwindow.h"
 
 GUI::GUI(QWidget *parent){
@@ -19,7 +18,7 @@ GUI::GUI(QWidget *parent){
 
 void GUI::displayGUI()
 {
-    scene->clear();
+
      /*!create title text*/
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
@@ -57,7 +56,8 @@ void GUI::displayGUI()
 
 void GUI::levelMenu()
 {
-    scene->clear();
+    //scene->clear();
+
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 60;
@@ -72,6 +72,61 @@ void GUI::levelMenu()
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addWidget(onepicButton);
+
+    picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int twoxPos = 348;
+    int twoyPos = 250;
+    twopicButton->move(twoxPos,twoyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(twopicButton);
+
+
+    picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int threexPos = 548;
+    int threeyPos = 250;
+    threepicButton->move(threexPos,threeyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(threepicButton);
+
+
+    picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int fourxPos = 748;
+    int fouryPos = 250;
+    fourpicButton->move(fourxPos,fouryPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(fourpicButton);
+
+
+    picButton* fivepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int fivexPos = 148;
+    int fiveyPos = 450;
+    fivepicButton->move(fivexPos,fiveyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(fivepicButton);
+
+
+    picButton* sixpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int sixxPos = 348;
+    int sixyPos = 450;
+    sixpicButton->move(sixxPos,sixyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(sixpicButton);
+
+
+    picButton* sevenpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int sevenxPos = 548;
+    int sevenyPos = 450;
+    sevenpicButton->move(sevenxPos,sevenyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(sevenpicButton);
+
+
+    picButton* eightpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    int eightxPos = 748;
+    int eightyPos = 450;
+    eightpicButton->move(eightxPos,eightyPos);
+    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    scene->addWidget(eightpicButton);
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
@@ -91,11 +146,12 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
     MainWindow *test;
     test = new MainWindow();
     test->show();
+
 }
 
 void GUI::highscore()
 {
-    scene->clear();
+    //scene->clear();
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Highscore"));
     QFont titleFont("comic sans", 40);

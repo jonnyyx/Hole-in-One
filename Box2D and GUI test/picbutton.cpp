@@ -34,4 +34,3 @@ void picButton::leaveEvent(QEvent *event)
     qDebug("LEave");
 }
 
-

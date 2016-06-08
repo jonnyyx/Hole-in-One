@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QPushButton>
+#include <QGraphicsItem>
 #include <QPixmap>
 #include <QGraphicsSceneMouseEvent>
 
@@ -10,7 +11,7 @@
 class picButton : public QPushButton
 {
 public:
-    picButton(QPixmap defaultpic, QPixmap hoverpic);
+    picButton(QPixmap _defaultpic, QPixmap _hoverpic);
 
     QPixmap defaultpic;
     QPixmap hoverpic;
