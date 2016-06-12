@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/1disabled.png</file>
+        <file>images/1enabled.png</file>
+        <file>images/1hover.png</file>
+        <file>images/highscorebuttondefault.png</file>
+        <file>images/highscorebuttonhover.png</file>
+        <file>images/levelbuttondefault.png</file>
+        <file>images/levelbuttonhover.png</file>
+        <file>images/LevelTitle.png</file>
+        <file>images/quitbuttondefault.png</file>
+        <file>images/quitbuttonhover.png</file>
+        <file>images/quithover.png</file>
+        <file>images/Title.png</file>
+        <file>images/helpbuttondefault.png</file>
+        <file>images/helpbuttonhover.png</file>
+        <file>images/soundoff.png</file>
+        <file>images/soundon.png</file>
+    </qresource>
+</RCC>

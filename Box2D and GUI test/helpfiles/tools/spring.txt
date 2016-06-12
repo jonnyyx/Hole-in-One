@@ -1,0 +1,1 @@
+The spring is a very useful and powerful tool. The spring is prestressed and triggers once the ball touches the surface of it. It will accelerate the paperball (within the physical boundaries of: angle of incidence equals angle of reflection). Once it is used it will not accelerate the ball again. To move the object click and hold on the object and drag it with your mouse. 

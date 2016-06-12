@@ -1,0 +1,1 @@
+The block is the most common tool in the game. It can even be rotated, simply select the object (through clicking on it) and push the arrow buttons "<-" & "->" to rotate the object. Pressing the "->" button will lead to a clockwise rotation, and vise versa. To unselect the object just click elsewhere. To move the object click and hold on the object and drag it with your mouse.
