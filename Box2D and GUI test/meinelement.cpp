@@ -4,6 +4,7 @@
 #include <QSize>
 #include <qdebug.h>
 
+
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
     b2BodyDef myBodyDef;
@@ -16,7 +17,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
 
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.shape = &circle;
-    circleFixtureDef.density = 20;
+    circleFixtureDef.density = 0.8;
     circleFixtureDef.restitution = 0.6;
     body->CreateFixture(&circleFixtureDef);
 
@@ -28,6 +29,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
 
     graphics = level->addPixmap(bkgnd);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+
 }
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
@@ -62,19 +64,6 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
 }
 
-/*!
- * Function only for bottom
- *
- * \brief MeinElement::MeinElement
- * \param world
- * \param level
- * \param center
- * \param length
- * \param width
- * \param type
- * \param friction
- *
- */
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal length, qreal width, b2BodyType type, qreal friction)
 {
     b2PolygonShape polygon;
@@ -114,7 +103,22 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
      graphics->setPos(QPointF(v.x,v.y));
      qreal a=body->GetAngle();
-     graphics->setRotation(180.0/3.14159*a);
+
+ }
+
+ void MeinElement::drawBall()
+ {
+     b2Vec2 v=body->GetPosition();
+     qreal a=body->GetAngle();
+     qreal grad=a*(180.0/3.14);
+
+
+     graphics->setPos(v.x,v.y);
+
+
+//     graphics->setRotation(grad); //Urechnung von rad in grad; Box2D gibt in rad zurück muss aber in grad an QTGraphicsItem übergeben werden
+
+
  }
 
  void MeinElement::drawRec(int x,int y){
