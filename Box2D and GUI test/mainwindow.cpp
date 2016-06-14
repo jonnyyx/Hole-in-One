@@ -90,18 +90,19 @@ MainWindow::MainWindow(QWidget *parent)
     //polygon.SetAsBox(1.0,1.0);
 
 
-    elem  = new MeinElement(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
-    elem1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-    elem2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    elem3 = new MeinElement(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
+    ball  = new MeinElement(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+    kreis1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+    kreis2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+    rechteck1 = new MeinElement(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
     bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
     //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
 
-    elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    elem1->draw(); //Static Elemente lassen sich auch hier "drawn"
-    elem2->draw();
+    ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    kreis1->draw(); //Static Elemente lassen sich auch hier "drawn"
+    kreis2->draw();
+    //rechteck1->draw();
     //elem3->drawRec(elem3->body->GetPosition());
     bottom->drawBottom();
 
@@ -122,14 +123,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::update(){
     myWorld->Step(framerate, 20, 20);
-    elem->draw(); //nur bewegende Elemente in Update
+    ball->drawBall(); //nur bewegende Elemente in Update
 
 }
 
 void MainWindow::startLevel(){
-    elem3->drawGraphics();
-    elem1->drawGraphics();
-    elem2->drawGraphics();
+
     if(NULL!=elem4){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
@@ -142,10 +141,15 @@ void MainWindow::startLevel(){
         elem6->drawGraphics();
         elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
-    elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    elem1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    elem2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    elem3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
+    rechteck1->drawGraphics();
+    kreis1->drawGraphics();
+    kreis2->drawGraphics();
+    ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    kreis1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    kreis2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
     timer->connect(timer, SIGNAL(timeout()),this, SLOT(update()));

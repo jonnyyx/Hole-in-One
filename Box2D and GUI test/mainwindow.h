@@ -33,13 +33,13 @@ public slots:
 private:
     b2World* myWorld;
     QGraphicsScene* level;
-    MeinElement* elem;
-    MeinElement* elem1;
-    MeinElement* elem2;
-    MeinElement* elem3;
     MeinElement* elem4;
     MeinElement* elem5;
     MeinElement* elem6;
+    MeinElement* ball;
+    MeinElement* kreis1;
+    MeinElement* kreis2;
+    MeinElement* rechteck1;
     MeinElement* bottom;
     QTimer* timer;
     int anzahl;
