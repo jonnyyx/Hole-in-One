@@ -8,6 +8,8 @@
 #include "meinelement.h"
 #include <QPushButton>
 #include <QGraphicsSceneMouseEvent>
+#include <QElapsedTimer>
+#include <QTime>
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
@@ -25,6 +27,8 @@ public slots:
     void startLevel();
     void pauseLevel();
     void resumeLevel();
+    void countObjects();
+    void addRectangle();
 
 private:
     b2World* myWorld;
@@ -33,6 +37,9 @@ private:
     MeinElement* elem1;
     MeinElement* elem2;
     MeinElement* elem3;
+    MeinElement* elem4;
+    MeinElement* elem5;
+    MeinElement* elem6;
     MeinElement* bottom;
     QTimer* timer;
     int anzahl;
@@ -40,6 +47,12 @@ private:
     QPushButton* bt_start;
     QPushButton* bt_pause;
     QPushButton* bt__resume;
+    QElapsedTimer leveltime_elapsed;
+    QTime leveltime_normal;
+    QPushButton* bt__rect;
+    QPushButton* bt__circle;
+    int counter = 0;
+
 };
 
 #endif // MAINWINDOW_H

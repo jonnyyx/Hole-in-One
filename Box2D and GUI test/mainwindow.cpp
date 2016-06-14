@@ -4,6 +4,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <qdebug.h>
 
 
 
@@ -47,6 +48,23 @@ MainWindow::MainWindow(QWidget *parent)
     bt__resume->move(900.0,700.0);
     connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
     level->addWidget(bt__resume);
+
+    //Rect Button
+    bt__rect=new QPushButton();
+    bt__rect->setText("Rectangle");
+    bt__rect->setEnabled(true);
+    bt__rect->move(200.0,700.0);
+    connect(bt__rect,SIGNAL(clicked()),this,SLOT(countObjects()));
+    connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
+    level->addWidget(bt__rect);
+
+    //Circle Button
+    bt__circle=new QPushButton();
+    bt__circle->setText("Circle");
+    bt__circle->setEnabled(true);
+    bt__circle->move(400.0,700.0);
+    connect(bt__circle,SIGNAL(clicked()),this,SLOT(countObjects()));
+    level->addWidget(bt__circle);
 
 
 
@@ -112,6 +130,18 @@ void MainWindow::startLevel(){
     elem3->drawGraphics();
     elem1->drawGraphics();
     elem2->drawGraphics();
+    if(NULL!=elem4){
+        elem4->drawGraphics();
+        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+    if(NULL!=elem5){
+        elem5->drawGraphics();
+        elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+    if(NULL!=elem6){
+        elem6->drawGraphics();
+        elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
     elem->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     elem1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     elem2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
@@ -124,12 +154,18 @@ void MainWindow::startLevel(){
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
+    leveltime_elapsed.start();
+    leveltime_normal.start();
+
 }
 void MainWindow::pauseLevel(){
     timer->stop();
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
+
+    qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
+    qDebug()<<leveltime_normal.elapsed()<<"milliseconds";
 }
 
 void MainWindow::resumeLevel()
@@ -140,7 +176,36 @@ void MainWindow::resumeLevel()
     bt_start->setEnabled(false);
 }
 
+void MainWindow::countObjects()
+{
+    counter=counter+1;
 
+    if(counter>=3){
+        bt__rect->setEnabled(false);
+        bt__circle->setEnabled(false);
+    }
+
+    qDebug()<<counter;
+}
+
+void MainWindow::addRectangle()
+{
+    if (counter==1){
+        elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4->draw();
+
+    }
+
+    else if(counter==2){
+        elem5 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5->draw();
+    }
+
+    else if(counter==3){
+        elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6->draw();
+    }
+}
 
 
 
