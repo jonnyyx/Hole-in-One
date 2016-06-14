@@ -136,8 +136,6 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
  void MeinElement::drawGraphics(){
      QPointF v=graphics->pos();
-     qDebug()<<v.x();
-     qDebug()<<v.y();
      body->SetTransform(b2Vec2(v.x(),v.y()),body->GetAngle());
  }
 

@@ -129,15 +129,17 @@ void MainWindow::update(){
 
 void MainWindow::startLevel(){
 
-    if(NULL!=elem4){
+    if(elem4!=NULL){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
-    if(NULL!=elem5){
+
+    if(elem5!=NULL){
         elem5->drawGraphics();
         elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
-    if(NULL!=elem6){
+
+    if(elem6!=NULL){
         elem6->drawGraphics();
         elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
