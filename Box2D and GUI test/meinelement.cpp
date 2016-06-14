@@ -114,7 +114,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
      graphics->setPos(QPointF(v.x,v.y));
      qreal a=body->GetAngle();
-     graphics->setRotation(a);
+     graphics->setRotation(180.0/3.14159*a);
  }
 
  void MeinElement::drawRec(int x,int y){

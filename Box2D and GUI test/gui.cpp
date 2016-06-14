@@ -64,7 +64,7 @@ void GUI::displayGUI()
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addWidget(quitpicButton);
 
-    /*!create quit button*/
+    /*!create sound button*/
     mutepicButton = new picButton(QPixmap(":/images/images/soundon.png"), QPixmap(":/images/images/soundon.png"), false);
     int mutexPos = 920;
     int muteyPos = 680;
@@ -149,7 +149,7 @@ void GUI::levelMenu()
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
-    int backyPos = 550;
+    int backyPos = 650;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(backButton);
@@ -206,17 +206,114 @@ void GUI::help()
     QFont titleFont("comic sans", 40);
     titleText->setFont(titleFont);
     int titlexPos = 50;
-    int titleyPos = 80;
+    int titleyPos = 30;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
+
+    //Game instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("What is it all about?""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* firstText = new QGraphicsTextItem(QString(
+                                                             "Welcome to 'Hole in One', this unique physic game will be your perfect companion" "\n"
+                                                             "for diverting hours. The aim is to lead the paperball through different levels to the" "\n"
+                                                             "trash can, to fullfill its purpose of life. To succeed the different tasks there is a" "\n"
+                                                             "wide set of tools ready to be used by the player. These tools are necessary to" "\n"
+                                                             "bypass different and many evil obstacles, which will do everything to prevent the" "\n"
+                                                             "ball from reaching his goal.""\n"
+                                                             "Be the chosen one and support the paperball!" "\n"
+                                                             "____________________________________________________________________"
+                                                             ));
+    QFont firstFont("comic sans", 18);
+    firstText->setFont(firstFont);
+    int firstxPos = 50;
+    int firstyPos = 160;
+    firstText->setPos(firstxPos,firstyPos);
+    scene -> addItem(firstText);
+
+
+    //Tool instruction
+    QGraphicsTextItem* secondCap = new QGraphicsTextItem(QString("Tools:""\n"));
+    QFont secondCFont("comic sans", 26);
+    secondCap->setFont(secondCFont);
+    int secondCxPos = 50;
+    int secondCyPos = 412;
+    secondCap->setPos(secondCxPos,secondCyPos);
+    scene -> addItem(secondCap);
+
+    //Tool instruction buttons
+    Button* boxButton = new Button(QString("Rectangle"));
+    boxButton->setRect(0,0,100,100);
+    int boxxPos = 180;
+    int boxyPos = 412;
+    boxButton->setPos(boxxPos,boxyPos);
+    connect(boxButton, SIGNAL(clicked()), this, SLOT(box()));
+    scene->addItem(boxButton);
+
+    Button* cirlceButton = new Button(QString("Cirlce"));
+    cirlceButton->setRect(0,0,100,100);
+    int cirlcexPos = 310;
+    int cirlceyPos = 412;
+    cirlceButton->setPos(cirlcexPos,cirlceyPos);
+    connect(cirlceButton, SIGNAL(clicked()), this, SLOT(circle()));
+    scene->addItem(cirlceButton);
+
+    Button* triangleButton = new Button(QString("Triangle"));
+    triangleButton->setRect(0,0,100,100);
+    int trianglexPos = 440;
+    int triangleyPos = 412;
+    triangleButton->setPos(trianglexPos,triangleyPos);
+    connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()));
+    scene->addItem(triangleButton);
+
+    Button* springButton = new Button(QString("Spring"));
+    springButton->setRect(0,0,100,100);
+    int springxPos = 570;
+    int springyPos = 412;
+    springButton->setPos(springxPos,springyPos);
+    connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
+    scene->addItem(springButton);
+
+    Button* trampolineButton = new Button(QString("Trampoline"));
+    trampolineButton->setRect(0,0,100,100);
+    int trampolinexPos = 700;
+    int trampolineyPos = 412;
+    trampolineButton->setPos(trampolinexPos,trampolineyPos);
+    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
+    scene->addItem(trampolineButton);
+
+    Button* conveyorButton = new Button(QString("Conveyor"));
+    conveyorButton->setRect(0,0,100,100);
+    int conveyorxPos = 830;
+    int conveyoryPos = 412;
+    conveyorButton->setPos(conveyorxPos,conveyoryPos);
+    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
+    scene->addItem(conveyorButton);
+
+
+    QGraphicsTextItem* secondText = new QGraphicsTextItem(QString(
+     "____________________________________________________________________"
+                                                             ));
+    QFont secondFont("comic sans", 18);
+    secondText->setFont(secondFont);
+    int secondxPos = 50;
+    int secondyPos = 500;
+    secondText->setPos(secondxPos,secondyPos);
+    scene -> addItem(secondText);
+
+
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
-    int backyPos = 550;
+    int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
     scene->addItem(backButton);
-
 
 }
 
@@ -232,4 +329,189 @@ void GUI::mute()
         ismute=false;
         mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
     }
+}
+
+void GUI::box()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+
+    //Rect instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Rectangle""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* rectText = new QGraphicsTextItem(QString("The block is the most common tool in the game. It can even be rotated, simply select" "\n"
+                                                                "the object (through clicking on it) and push the arrow buttons '<-' & '->' to rotate the" "\n"
+                                                                "object. Pressing the '->' button will lead to a clockwise rotation, and vise versa." "\n"
+                                                                "To unselect the object just click elsewhere." "\n"
+                                                                "To move the object click and hold on the object and drag it with your mouse."
+                                                                ));
+    QFont rectFont("comic sans", 18);
+    rectText->setFont(rectFont);
+    int rectxPos = 50;
+    int rectyPos = 160;
+    rectText->setPos(rectxPos,rectyPos);
+    scene -> addItem(rectText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
+}
+
+void GUI::circle()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    //Circle instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Circle""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* circleText = new QGraphicsTextItem(QString("The cirlce is a very similar to the block, but the rebounce behavior is different. It can" "\n"
+                                                                  "not be rotated (since this would not be useful). To move the object click and hold on" "\n"
+                                                                  "the object and drag it with your mouse."
+                                                                ));
+    QFont circleFont("comic sans", 18);
+    circleText->setFont(circleFont);
+    int circlexPos = 50;
+    int circleyPos = 160;
+    circleText->setPos(circlexPos,circleyPos);
+    scene -> addItem(circleText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
+}
+
+void GUI::triangle()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
+}
+
+void GUI::spring()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
+}
+
+void GUI::trampoline()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
+}
+
+void GUI::conveyor()
+{
+    scene->clear();
+    /*!create title text*/
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+    QFont titleFont("comic sans", 40);
+    titleText->setFont(titleFont);
+    int titlexPos = 50;
+    int titleyPos = 30;
+    titleText->setPos(titlexPos,titleyPos);
+    scene->addItem(titleText);
+
+    //Conveyor instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Conveyor""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* conveyorText = new QGraphicsTextItem(QString("The conveyor is a very powerful tool, too. Once the paperball lands on it, the ball " "\n"
+                                                                    "will be accelerated in the direction the conveyor is aiming at" "\n"
+                                                                    "('<': left direction, '>': right direction). There are different models, which can" "\n"
+                                                                    "be identified by '<<' '<' '>' '>>', which is written on the side of the tool." "\n"
+                                                                    "Neither can it be rotated, nor can the direction be changed by the player."
+                                                                ));
+    QFont conveyorFont("comic sans", 18);
+    conveyorText->setFont(conveyorFont);
+    int conveyorxPos = 50;
+    int conveyoryPos = 160;
+    conveyorText->setPos(conveyorxPos,conveyoryPos);
+    scene -> addItem(conveyorText);
+
+    Button* backButton = new Button(QString("Back"));
+    int backxPos = 50;
+    int backyPos = 670;
+    backButton->setPos(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    scene->addItem(backButton);
 }
