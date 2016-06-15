@@ -4,7 +4,6 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QMediaPlayer>
 #include <button.h>
 #include <picbutton.h>
 
@@ -20,11 +19,8 @@ public:
 
     QGraphicsScene* scene;  //attributes
 
-    //for sound
     picButton* mutepicButton;
-    QMediaPlayer * click;
-    QMediaPlayer * win;
-    QMediaPlayer * move;
+
     bool ismute;
 
 

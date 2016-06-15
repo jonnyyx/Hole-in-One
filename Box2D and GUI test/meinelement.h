@@ -21,6 +21,8 @@ public:
     b2Body* body;
     QGraphicsItem* graphics;
 
+
+
 private:
 
 };
