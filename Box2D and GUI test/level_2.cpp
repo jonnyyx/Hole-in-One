@@ -5,6 +5,9 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <qdebug.h>
+#include <circle.h>
+#include <block.h>
+
 
 
 
@@ -76,13 +79,13 @@ Level_2::Level_2(QWidget *parent)
 
     b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
 
-    myWorld2 = new b2World(gravity);
+    myWorld = new b2World(gravity);
 
     float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
     int32 velocityIterations = 8.0;   //how strongly to correct velocity
     int32 positionIterations = 3.0;   //how strongly to correct position
 
-    myWorld2->Step(timeStep, velocityIterations, positionIterations);
+    myWorld->Step(timeStep, velocityIterations, positionIterations);
 
     b2CircleShape circle;
     circle.m_radius = 21.0;
@@ -91,18 +94,21 @@ Level_2::Level_2(QWidget *parent)
     //polygon.SetAsBox(1.0,1.0);
 
 
-    ball  = new MeinElement(myWorld2, level2, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
-    kreis1 = new MeinElement(myWorld2, level2, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-    kreis2 = new MeinElement(myWorld2, level2, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    rechteck1 = new Block(myWorld2, level2, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
-    //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
-    bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody,20.0);
+
+
+    ball  = new Circle(myWorld, level2, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+    obstaclescircle1 = new Circle(myWorld, level2, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+    obstaclescircle2 = new Circle(myWorld, level2, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+    rechteck1 = new Block(myWorld, level2, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
+
+    //elem3 = new MeinElement(myWorld, level2, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
+    bottom= new MeinElement(myWorld, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
     //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    kreis1->draw(); //Static Elemente lassen sich auch hier "drawn"
-    kreis2->draw();
+    obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
+    obstaclescircle2->draw();
     //rechteck1->draw();
     //elem3->drawRec(elem3->body->GetPosition());
     bottom->drawBottom();
@@ -112,8 +118,18 @@ Level_2::Level_2(QWidget *parent)
 
 }
 
+/*void Level_2::displayLevel(){
+
+    QPixmap bkgnd(":/new/prefix1/paper.png");
+    //bkgnd.scaled(10,Qt::IgnoreAspectRatio);
+
+    level2->addPixmap(bkgnd);
+
+}
+*/
+
 void Level_2::update(){
-    myWorld2->Step(framerate, 20, 20);
+    myWorld->Step(framerate, 20, 20);
     ball->drawBall(); //nur bewegende Elemente in Update
 
 }
@@ -121,11 +137,11 @@ void Level_2::update(){
 void Level_2::startLevel(){
 
     rechteck1->drawGraphics();
-    kreis1->drawGraphics();
-    kreis2->drawGraphics();
+    obstaclescircle1->drawGraphics();
+    obstaclescircle2->drawGraphics();
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    kreis1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    kreis2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
 
@@ -151,24 +167,24 @@ void Level_2::startLevel(){
     }
 
     if(counterCircle==1){
-        circle1->drawGraphics();
-        circle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle1->drawGraphics();
+        addcircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
 
     if(counterCircle==2){
-        circle1->drawGraphics();
-        circle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        circle2->drawGraphics();
-        circle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle1->drawGraphics();
+        addcircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle2->drawGraphics();
+        addcircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
 
     if(counterCircle==3){
-        circle1->drawGraphics();
-        circle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        circle2->drawGraphics();
-        circle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        circle3->drawGraphics();
-        circle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle1->drawGraphics();
+        addcircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle2->drawGraphics();
+        addcircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addcircle3->drawGraphics();
+        addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
 
 
@@ -209,17 +225,17 @@ void Level_2::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new MeinElement(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem4->draw();
     }
 
     else if(counterRec==2){
-        elem5 = new MeinElement(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem5->draw();
     }
 
     else if(counterRec==3){
-        elem6 = new MeinElement(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem6->draw();
 
         bt__rect->setEnabled(false);
@@ -236,22 +252,22 @@ void Level_2::addCircle(){
     qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        circle1 = new MeinElement(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        circle1->draw();
+        addcircle1 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle1->draw();
 
     }
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        circle2 = new MeinElement(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        circle2->draw();
+        addcircle2 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle2->draw();
 
     }
 
     if(counterCircle==3){
         circle.m_radius = 21.0;
-        circle3 = new MeinElement(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        circle3->draw();
+        addcircle3 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle3->draw();
 
         bt__rect->setEnabled(false);
         bt__circle->setEnabled(false);
@@ -259,3 +275,10 @@ void Level_2::addCircle(){
     }
 
 }
+
+
+
+
+
+
+

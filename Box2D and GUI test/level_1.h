@@ -10,7 +10,12 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
+
+#include "circle.h"
+#include "gui.h"
+
 #include <block.h>
+
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
@@ -31,23 +36,33 @@ public slots:
     void addRectangle();
     void addCircle();
     void highscoreCounter();
+    void reset();
+
 
 private:
+
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
     MeinElement* elem4;
     MeinElement* elem5;
     MeinElement* elem6;
-    MeinElement* circle1;
-    MeinElement* circle2;
-    MeinElement* circle3;
+    Circle* addcircle1;
+    Circle* addcircle2;
+    Circle* addcircle3;
     //fixed Elements
-    MeinElement* ball;
-    MeinElement* kreis1;
-    MeinElement* kreis2;
+
+    Circle* ball;
+    Circle* obstaclescircle1;
+    Circle* obstaclescircle2;
+
+
     Block* rechteck1;
+
     MeinElement* bottom;
+    MeinElement* umrandung1;
+    MeinElement* umrandung2;
+
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;
@@ -58,12 +73,14 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
+    QPushButton* bt_reset;
     int counterRec = 0;
     int counterCircle=0;
     int highscore = 0;
     int counterTogether = 0;
     int leveltime;
 
+    void showLevel();
 };
 
 #endif // LEVEL_1_H
