@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "level_1.h"
 #include "meinelement.h"
 #include <iostream>
 #include <QTime>
@@ -10,7 +10,7 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent)
+Level_1::Level_1(QWidget *parent)
 {
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -54,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent)
     bt__rect->setText("Rectangle");
     bt__rect->setEnabled(true);
     bt__rect->move(200.0,700.0);
-    connect(bt__rect,SIGNAL(clicked()),this,SLOT(countObjects()));
     connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
     level->addWidget(bt__rect);
 
@@ -63,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     bt__circle->setText("Circle");
     bt__circle->setEnabled(true);
     bt__circle->move(400.0,700.0);
-    connect(bt__circle,SIGNAL(clicked()),this,SLOT(countObjects()));
+    connect(bt__rect,SIGNAL(clicked()),this,SLOT(addCircle()));
     level->addWidget(bt__circle);
 
 
@@ -111,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-/*void MainWindow::displayLevel(){
+/*void Level_1::displayLevel(){
 
     QPixmap bkgnd(":/new/prefix1/paper.png");
     //bkgnd.scaled(10,Qt::IgnoreAspectRatio);
@@ -121,13 +120,13 @@ MainWindow::MainWindow(QWidget *parent)
 }
 */
 
-void MainWindow::update(){
+void Level_1::update(){
     myWorld->Step(framerate, 20, 20);
     ball->drawBall(); //nur bewegende Elemente in Update
 
 }
 
-void MainWindow::startLevel(){
+void Level_1::startLevel(){
 
     if(elem4!=NULL){
         elem4->drawGraphics();
@@ -164,7 +163,7 @@ void MainWindow::startLevel(){
     leveltime_normal.start();
 
 }
-void MainWindow::pauseLevel(){
+void Level_1::pauseLevel(){
     timer->stop();
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
@@ -174,7 +173,7 @@ void MainWindow::pauseLevel(){
     qDebug()<<leveltime_normal.elapsed()<<"milliseconds";
 }
 
-void MainWindow::resumeLevel()
+void Level_1::resumeLevel()
 {
     timer->start();
     bt_pause->setEnabled(true);
@@ -182,23 +181,22 @@ void MainWindow::resumeLevel()
     bt_start->setEnabled(false);
 }
 
-void MainWindow::countObjects()
+void Level_1::countObjects()
 {
-    counter=counter+1;
 
-    if(counter>=3){
-        bt__rect->setEnabled(false);
-        bt__circle->setEnabled(false);
-    }
 
     qDebug()<<counter;
 }
 
-void MainWindow::addRectangle()
+void Level_1::addRectangle()
 {
+    counter++;
+
+
     if (counter==1){
         elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem4->draw();
+
 
     }
 
@@ -210,9 +208,16 @@ void MainWindow::addRectangle()
     else if(counter==3){
         elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem6->draw();
+
+        bt__rect->setEnabled(false);
+        bt__circle->setEnabled(false);
     }
+
 }
 
+void Level_1::addCircle(){
+
+}
 
 
 

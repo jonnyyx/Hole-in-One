@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LEVEL_1_H
+#define LEVEL_1_H
 #include"Box2D/Box2D.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -13,12 +13,12 @@
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
-class MainWindow : public QGraphicsView
+class Level_1 : public QGraphicsView
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+    Level_1(QWidget *parent = 0);
     //void displayLevel();
 
 
@@ -29,6 +29,7 @@ public slots:
     void resumeLevel();
     void countObjects();
     void addRectangle();
+    void addCircle();
 
 private:
     b2World* myWorld;
@@ -55,4 +56,4 @@ private:
 
 };
 
-#endif // MAINWINDOW_H
+#endif // LEVEL_1_H

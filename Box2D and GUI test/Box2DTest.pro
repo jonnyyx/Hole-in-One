@@ -18,7 +18,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
     Box2D/Collision/Shapes/b2CircleShape.cpp \
     Box2D/Collision/Shapes/b2EdgeShape.cpp \
@@ -68,9 +67,10 @@ SOURCES += main.cpp\
     meinelement.cpp \
     button.cpp \
     gui.cpp \
-    picbutton.cpp
+    picbutton.cpp \
+    level_1.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     Box2D/Box2D.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
     Box2D/Collision/Shapes/b2CircleShape.h \
@@ -122,7 +122,8 @@ HEADERS  += mainwindow.h \
     button.h \
     gui.h \
     main.h \
-    picbutton.h
+    picbutton.h \
+    level_1.h
 
 DISTFILES += \
     paper.png
