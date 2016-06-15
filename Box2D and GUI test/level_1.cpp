@@ -150,11 +150,12 @@ void Level_1::resumeLevel()
 
     QFile file("level1.txt");
     if(file.exists()){
-        file.remove("level1.txt");
+       file.remove("level1.txt");
        QFile file("level1.txt");
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
+    out.reset();
     out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<"10000"<<endl;
     file.close();
 }
