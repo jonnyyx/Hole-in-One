@@ -31,6 +31,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     graphics = level->addPolygon(triangle);
 
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+    graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
 void Triangle::draw()
