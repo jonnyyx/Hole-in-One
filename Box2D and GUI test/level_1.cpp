@@ -5,10 +5,10 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <qdebug.h>
+#include <QFile>
+#include <QTextStream>
 
-
-
-
+using namespace std;
 
 
 Level_1::Level_1(QWidget *parent)
@@ -214,6 +214,12 @@ void Level_1::resumeLevel()
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
+
+    QFile file("level.txt");
+    file.open(QIODevice::WriteOnly |QIODevice::Text);
+    QTextStream out(&file);
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl;
+    file.close();
 }
 
 
@@ -273,6 +279,8 @@ void Level_1::addCircle(){
     }
 
 }
+
+
 
 
 

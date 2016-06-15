@@ -35,6 +35,7 @@ public slots:
     void addRectangle();
     void addCircle();
 
+
 private:
 
     b2World* myWorld;

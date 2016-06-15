@@ -23,6 +23,7 @@ public:
 
     bool ismute;
 
+
 public slots:
     void levelMenu();   //for level menu-button
     void highscore();   //for highscore menu-button
@@ -39,7 +40,8 @@ public slots:
     void conveyor();    //instruction-button for conveyor
 
 private:
-
+    void checkLevel();
+    QStringList levelenab;
 
 };
 
