@@ -30,6 +30,7 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
+    void highscoreCounter();
 
 private:
     b2World* myWorld;
@@ -59,6 +60,9 @@ private:
     QPushButton* bt__circle;
     int counterRec = 0;
     int counterCircle=0;
+    int highscore = 0;
+    int counterTogether = 0;
+    int leveltime;
 
 };
 

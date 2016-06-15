@@ -40,6 +40,7 @@ Level_1::Level_1(QWidget *parent)
     bt_pause->setEnabled(false);
     bt_pause->move(900.0,660.0);
 
+    connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()));
     connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
     level->addWidget(bt_pause);
 
@@ -200,8 +201,12 @@ void Level_1::pauseLevel(){
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
 
+    leveltime = leveltime_normal.elapsed()/1000;
+
+
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
     qDebug()<<leveltime_normal.elapsed()<<"milliseconds";
+    qDebug()<<highscore;
 }
 
 void Level_1::resumeLevel()
@@ -267,6 +272,38 @@ void Level_1::addCircle(){
         bt__circle->setEnabled(false);
 
     }
+
+}
+
+void Level_1::highscoreCounter(){
+
+    counterTogether = counterRec + counterCircle;
+
+    if ( (counterTogether==6)||(counterTogether==5) ){
+        highscore = 1;
+    }
+
+    else if( (counterTogether==4)||(counterTogether==3) ){
+        highscore = 2;
+    }
+
+    else if( (counterTogether==1)||(counterTogether==2)||(counterTogether==0) ){
+        highscore = 3;
+    }
+
+    if ( (leveltime>=30) ){
+        highscore = highscore*1;
+    }
+
+    else if( (leveltime<=30)&&(leveltime>=15) ){
+        highscore = highscore*2;
+    }
+
+    else if( (leveltime<=15)&&(leveltime>=0) ){
+        highscore = highscore*3;
+    }
+
+    highscore=highscore*100;
 
 }
 
