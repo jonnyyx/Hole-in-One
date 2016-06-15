@@ -1,7 +1,7 @@
 #include "gui.h"
 
 #include <QGraphicsTextItem>
-#include "mainwindow.h"
+#include "level_1.h"
 
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
@@ -162,8 +162,8 @@ void GUI::back(){
 
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
-    MainWindow *test;
-    test = new MainWindow();
+    Level_1 *test;
+    test = new Level_1();
     test->show();
 
 }
