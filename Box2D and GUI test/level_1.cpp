@@ -115,7 +115,9 @@ void Level_1::startLevel(){
 
 }
 void Level_1::pauseLevel(){
-    timer->stop();
+    if(timer!=NULL){
+        timer->stop();
+    }
 
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
