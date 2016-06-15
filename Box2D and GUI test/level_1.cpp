@@ -26,94 +26,7 @@ Level_1::Level_1(QWidget *parent)
     setScene(level);
 
 
-
-   //Start Button
-    bt_start=new QPushButton();
-    bt_start->setText("Start");
-    bt_start->move(900.0,620.0);
-    connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
-    level->addWidget(bt_start);
-
-
-    //Pause Button
-    bt_pause=new QPushButton();
-    bt_pause->setText("Pause");
-    bt_pause->setEnabled(false);
-    bt_pause->move(900.0,660.0);
-
-    connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
-    level->addWidget(bt_pause);
-
-    //Resume Button
-    bt__resume=new QPushButton();
-    bt__resume->setText("Resume");
-    bt__resume->setEnabled(false);
-    bt__resume->move(900.0,700.0);
-    connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
-    level->addWidget(bt__resume);
-
-    //Rect Button
-    bt__rect=new QPushButton();
-    bt__rect->setText("Rectangle");
-    bt__rect->setEnabled(true);
-    bt__rect->move(200.0,700.0);
-    connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
-    level->addWidget(bt__rect);
-
-    //Circle Button
-    bt__circle=new QPushButton();
-    bt__circle->setText("Circle");
-    bt__circle->setEnabled(true);
-    bt__circle->move(400.0,700.0);
-    connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
-    level->addWidget(bt__circle);
-
-
-
-
-
-
-
-
-    b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
-
-    myWorld = new b2World(gravity);
-
-    float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
-    int32 velocityIterations = 8.0;   //how strongly to correct velocity
-    int32 positionIterations = 3.0;   //how strongly to correct position
-
-    myWorld->Step(timeStep, velocityIterations, positionIterations);
-
-    b2CircleShape circle;
-    circle.m_radius = 21.0;
-
-    //b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
-    //polygon.SetAsBox(1.0,1.0);
-
-
-
-
-    ball  = new Circle(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
-    obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-    obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
-
-    //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
-    bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody,20.0);
-    //anzahl=myWorld->GetBodyCount();
-    //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
-
-    ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
-    obstaclescircle2->draw();
-    //rechteck1->draw();
-    //elem3->drawRec(elem3->body->GetPosition());
-    bottom->drawBottom();
-
-
-
-
+    showLevel();
 }
 
 /*void Level_1::displayLevel(){
@@ -135,11 +48,13 @@ void Level_1::update(){
 void Level_1::startLevel(){
 
     rechteck1->drawGraphics();
+
     obstaclescircle1->drawGraphics();
     obstaclescircle2->drawGraphics();
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
 
@@ -200,6 +115,7 @@ void Level_1::startLevel(){
 }
 void Level_1::pauseLevel(){
     timer->stop();
+
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
@@ -280,6 +196,126 @@ void Level_1::addCircle(){
 
 }
 
+void Level_1::reset(){
+    pauseLevel();
+   level->clear();
+
+   showLevel();
+
+}
+
+void Level_1::showLevel(){
+    //Start Button
+     bt_start=new QPushButton();
+     bt_start->setText("Start");
+     bt_start->move(900.0,620.0);
+     connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
+     level->addWidget(bt_start);
+
+
+     //Pause Button
+     bt_pause=new QPushButton();
+     bt_pause->setText("Pause");
+     bt_pause->setEnabled(false);
+     bt_pause->move(900.0,660.0);
+
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
+     level->addWidget(bt_pause);
+
+     //Resume Button
+     bt__resume=new QPushButton();
+     bt__resume->setText("Resume");
+     bt__resume->setEnabled(false);
+     bt__resume->move(900.0,700.0);
+     connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
+     level->addWidget(bt__resume);
+
+     //Reset
+     bt_reset=new QPushButton();
+     bt_reset->setText("Reset");
+     bt_reset->setEnabled(true);
+     bt_reset->move(900.0, 740.0);
+     connect(bt_reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
+     level->addWidget(bt_reset);
+
+     //Rect Button
+     bt__rect=new QPushButton();
+     bt__rect->setText("Rectangle");
+     bt__rect->setEnabled(true);
+     bt__rect->move(200.0,700.0);
+     connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
+     level->addWidget(bt__rect);
+
+     //Circle Button
+     bt__circle=new QPushButton();
+     bt__circle->setText("Circle");
+     bt__circle->setEnabled(true);
+     bt__circle->move(400.0,700.0);
+     connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
+     level->addWidget(bt__circle);
+
+
+
+
+
+
+
+
+     b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
+
+     myWorld = new b2World(gravity);
+
+     float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
+     int32 velocityIterations = 8.0;   //how strongly to correct velocity
+     int32 positionIterations = 3.0;   //how strongly to correct position
+
+     myWorld->Step(timeStep, velocityIterations, positionIterations);
+
+     b2CircleShape circle;
+     circle.m_radius = 21.0;
+
+     //b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
+     //polygon.SetAsBox(1.0,1.0);
+
+
+
+     umrandung1 = new MeinElement(myWorld,level, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
+     umrandung2 = new MeinElement(myWorld,level, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
+
+
+
+     ball  = new Circle(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+     obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+     rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
+
+
+     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
+     bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
+     //anzahl=myWorld->GetBodyCount();
+     //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
+
+     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
+     obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
+     obstaclescircle2->draw();
+     //rechteck1->draw();
+     //elem3->drawRec(elem3->body->GetPosition());
+     bottom->drawBottom();
+
+
+
+
+     umrandung2->graphics->hide();
+
+     //rechteck1->draw();
+     //elem3->drawRec(elem3->body->GetPosition());
+     //bottom->drawBottom();
+     //umrandung1->drawBottom();
+     //umrandung2->drawBottom();
+     //umrandung2->draw();
+
+}
 
 
 

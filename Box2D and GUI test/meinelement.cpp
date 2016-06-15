@@ -6,6 +6,23 @@
 
 
 
+MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
+{
+    b2BodyDef myBodyDef;
+    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
+    myBodyDef.position.Set(position.x(),position.y());
+    myBodyDef.angle=angle;
+
+
+    body=world->CreateBody(&myBodyDef);
+
+    b2FixtureDef circleFixtureDef;
+    circleFixtureDef.shape = &circle;
+    circleFixtureDef.density = 1.0;
+    circleFixtureDef.restitution = 0.6;
+    body->CreateFixture(&circleFixtureDef);
+
+}
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
@@ -14,13 +31,13 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
-    myBodyDef.gravityScale = 1000.0;
+    myBodyDef.gravityScale = 1.0;
 
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
-    polygonFixtureDef.density=20;
+    polygonFixtureDef.density=1.0;
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
@@ -46,13 +63,14 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
-    myBodyDef.gravityScale = 1000.0;
+    myBodyDef.gravityScale = 1.0;
+
 
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
-    polygonFixtureDef.density=20;
+    polygonFixtureDef.density=1.0;
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
