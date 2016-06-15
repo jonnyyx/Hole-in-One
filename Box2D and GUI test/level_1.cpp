@@ -25,7 +25,6 @@ Level_1::Level_1(QWidget *parent)
     level->setSceneRect(0,0,1024,768);
     setScene(level);
 
-
     showLevel();
 
 
@@ -118,11 +117,14 @@ void Level_1::startLevel(){
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
+    bt__rect->setEnabled(false);
+    bt__circle->setEnabled(false);
+
 
     leveltime_elapsed.start();
-    leveltime_normal.start();
 
 }
+
 void Level_1::pauseLevel(){
     if(timer!=NULL){
         timer->stop();
@@ -132,30 +134,27 @@ void Level_1::pauseLevel(){
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
 
-    leveltime = leveltime_normal.elapsed()/1000;
-
-
+    qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
-    qDebug()<<leveltime_normal.elapsed()<<"milliseconds";
+    qDebug()<<leveltime;
     qDebug()<<highscore;
 }
 
 void Level_1::resumeLevel()
 {
-    highscoreCounter();
     timer->start();
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
     QFile file("level1.txt");
-    if(file.exists()){
-        file.remove("level1.txt");
+    if(file.exists("level1.txt")){
+       file.remove("level1.txt");
        QFile file("level1.txt");
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<"10000"<<endl;
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
     file.close();
 }
 
@@ -166,17 +165,17 @@ void Level_1::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem4->draw();
     }
 
     else if(counterRec==2){
-        elem5 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem5->draw();
     }
 
     else if(counterRec==3){
-        elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem6->draw();
 
         bt__rect->setEnabled(false);
@@ -217,6 +216,11 @@ void Level_1::addCircle(){
 
 }
 
+void Level_1::getTime(){
+    leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
+    leveltime = leveltime/1000; //leveltime in sec
+}
+
 void Level_1::highscoreCounter(){
 
     counterTogether = counterRec + counterCircle;
@@ -237,11 +241,11 @@ void Level_1::highscoreCounter(){
         highscore = highscore*1;
     }
 
-    else if( (leveltime<=30)&&(leveltime>=15) ){
+    else if( (leveltime<30)&&(leveltime>=15) ){
         highscore = highscore*2;
     }
 
-    else if( (leveltime<=15)&&(leveltime>=0) ){
+    else if( (leveltime<15)&&(leveltime>=0) ){
         highscore = highscore*3;
     }
 
@@ -255,6 +259,16 @@ void Level_1::reset(){
    level->clear();
 
    showLevel();
+
+}
+
+void Level_1::rotateLeft()
+{
+
+}
+
+void Level_1::rotateRight()
+{
 
 }
 
@@ -273,6 +287,8 @@ void Level_1::showLevel(){
      bt_pause->setEnabled(false);
      bt_pause->move(900.0,660.0);
 
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(getTime()));
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()));
      connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
      level->addWidget(bt_pause);
 
@@ -285,12 +301,12 @@ void Level_1::showLevel(){
      level->addWidget(bt__resume);
 
      //Reset
-     bt_reset=new QPushButton();
-     bt_reset->setText("Reset");
-     bt_reset->setEnabled(true);
-     bt_reset->move(900.0, 740.0);
-     connect(bt_reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
-     level->addWidget(bt_reset);
+     bt__reset=new QPushButton();
+     bt__reset->setText("Reset");
+     bt__reset->setEnabled(true);
+     bt__reset->move(900.0, 740.0);
+     connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
+     level->addWidget(bt__reset);
 
      //Rect Button
      bt__rect=new QPushButton();

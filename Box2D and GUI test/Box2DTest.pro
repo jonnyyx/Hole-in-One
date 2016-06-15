@@ -3,8 +3,10 @@
 # Project created by QtCreator 2016-06-01T12:43:19
 #
 #-------------------------------------------------
-QT       += multimedia
+
 QT       += core gui
+QT       += multimedia
+
 greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG += c++11
 } else {
@@ -77,7 +79,6 @@ SOURCES += main.cpp\
 
 
 
-
 HEADERS  += \
     Box2D/Box2D.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -135,7 +136,7 @@ HEADERS  += \
     triangle.h\
     circle.h\
     block.h \
-    level_2.h\
+   level_2.h\
     recyclebin.h
 
 
@@ -143,5 +144,6 @@ DISTFILES += \
     paper.png
 
 RESOURCES += \
-    images.qrc \
-    src.qrc
+    src.qrc \
+    images.qrc
+

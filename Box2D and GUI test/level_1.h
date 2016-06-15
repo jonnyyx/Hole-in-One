@@ -14,6 +14,7 @@
 #include "recyclebin.h"
 #include "circle.h"
 #include "gui.h"
+#include <QItemSelection>
 
 #include <block.h>
 
@@ -28,6 +29,7 @@ public:
     Level_1(QWidget *parent = 0);
     //void displayLevel();
 
+    std::vector<QObject*> vect;
 
 public slots:
     void update();
@@ -36,8 +38,17 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
-
     void reset();
+
+    void rotateLeft();
+    void rotateRight();
+//    void enableRotation();
+//    void disableRotation();
+
+
+    void getTime();
+    void highscoreCounter();
+
 
 
 private:
@@ -45,13 +56,14 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
-    MeinElement* elem4;
-    MeinElement* elem5;
-    MeinElement* elem6;
-	RecycleBin* recyclebin1;
+    Block* elem4;
+    Block* elem5;
+    Block* elem6;
+
+    RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     Triangle* triangle1;
-    void highscoreCounter();
+
 
     Circle* addcircle1;
     Circle* addcircle2;
@@ -62,7 +74,6 @@ private:
     Circle* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
-
 
     Block* rechteck1;
 
@@ -80,7 +91,9 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
-    QPushButton* bt_reset;
+    QPushButton* bt__reset;
+    QPushButton* bt__left;
+    QPushButton* bt__right;
     int counterRec = 0;
     int counterCircle=0;
     int highscore = 0;
@@ -88,6 +101,8 @@ private:
     int leveltime;
 
     void showLevel();
+
+
 };
 
 #endif // LEVEL_1_H

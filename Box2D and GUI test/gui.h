@@ -21,7 +21,6 @@ public:
 
     QGraphicsScene* scene;  //attributes
 
-    //for sound
     picButton* mutepicButton;
 
     bool ismute;

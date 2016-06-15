@@ -5,7 +5,6 @@
 #include "level_1.h"
 #include "level_2.h"
 #include "qdebug.h"
-
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -20,6 +19,7 @@ GUI::GUI(QWidget *parent){
 
     /*!ismute false by default*/
     ismute=false;
+
 
     /*
            if (XXXsound -> state() == QMediaPlayer::PlayingState) {
@@ -42,6 +42,7 @@ GUI::GUI(QWidget *parent){
                XXXsound -> play();
            }
     */
+
 
 }
 
@@ -503,7 +504,7 @@ void GUI::highscore()
     connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
-   
+
 }
 
 void GUI::help()
@@ -538,7 +539,7 @@ void GUI::help()
                                                              "Be the chosen one and support the paperball!" "\n"
                                                              "_____________________________________________________________________"
                                                              ));
-    QFont firstFont("comic sans", 14);
+    QFont firstFont("comic sans", 18);
     firstText->setFont(firstFont);
     int firstxPos = 50;
     int firstyPos = 160;
@@ -639,7 +640,7 @@ void GUI::help()
                                                              "you may use them in your favour. Mostly they are fixed in the" "\n"
                                                              "scene, but some managed to move around to raise difficulty."
                                                              ));
-    QFont obstFont("comic sans", 14);
+    QFont obstFont("comic sans", 18);
     obstText->setFont(obstFont);
     int obstxPos = 260;
     int obstyPos = 552;
@@ -656,6 +657,8 @@ void GUI::help()
     scene->addItem(backButton);
 
 }
+
+
 
 
 
@@ -687,7 +690,7 @@ void GUI::box()
                                                                 "To unselect the object just click elsewhere." "\n"
                                                                 "To move the object click and hold on the object and drag it with your mouse."
                                                                 ));
-    QFont rectFont("comic sans", 14);
+    QFont rectFont("comic sans", 18);
     rectText->setFont(rectFont);
     int rectxPos = 50;
     int rectyPos = 160;
@@ -728,7 +731,7 @@ void GUI::circle()
                                                                   "not be rotated (since this would not be useful). To move the object click and hold on" "\n"
                                                                   "the object and drag it with your mouse."
                                                                 ));
-    QFont circleFont("comic sans", 14);
+    QFont circleFont("comic sans", 18);
     circleText->setFont(circleFont);
     int circlexPos = 50;
     int circleyPos = 160;
@@ -772,7 +775,7 @@ void GUI::triangle()
                                                                "To unselect the object just click elsewhere. To move the object click and hold " "\n"
                                                                "on the object and drag it with your mouse."
                                                                 ));
-    QFont triFont("comic sans", 14);
+    QFont triFont("comic sans", 18);
     triText->setFont(triFont);
     int trixPos = 50;
     int triyPos = 160;
@@ -815,7 +818,7 @@ void GUI::spring()
                                                                   "used it will not accelerate the ball again. To move the object click and hold on the" "\n"
                                                                   "object and drag it with your mouse."
                                                                 ));
-    QFont springFont("comic sans", 14);
+    QFont springFont("comic sans", 18);
     springText->setFont(springFont);
     int springxPos = 50;
     int springyPos = 160;
@@ -858,7 +861,7 @@ void GUI::trampoline()
                                                                  "reflected, due to friction losses etc.). To move the object click and hold on the" "\n"
                                                                  "object and drag it with your mouse."
                                                                 ));
-    QFont trampFont("comic sans", 14);
+    QFont trampFont("comic sans", 18);
     trampText->setFont(trampFont);
     int trampxPos = 50;
     int trampyPos = 160;
@@ -901,7 +904,7 @@ void GUI::conveyor()
                                                                     "be identified by '<<' '<' '>' '>>', which is written on the side of the tool." "\n"
                                                                     "Neither can it be rotated, nor can the direction be changed by the player."
                                                                 ));
-    QFont conveyorFont("comic sans", 14);
+    QFont conveyorFont("comic sans", 18);
     conveyorText->setFont(conveyorFont);
     int conveyorxPos = 50;
     int conveyoryPos = 160;
