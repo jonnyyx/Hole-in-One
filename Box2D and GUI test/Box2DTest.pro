@@ -3,7 +3,7 @@
 # Project created by QtCreator 2016-06-01T12:43:19
 #
 #-------------------------------------------------
-
+QT       += multimedia
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG += c++11
@@ -144,4 +144,5 @@ DISTFILES += \
 
 RESOURCES += \
     pic.qrc \
-    images.qrc
+    images.qrc \
+    sounds.qrc
