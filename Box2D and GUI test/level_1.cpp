@@ -27,6 +27,7 @@ Level_1::Level_1(QWidget *parent)
 
     showLevel();
 
+
 }
 
 /*void Level_1::displayLevel(){
@@ -49,13 +50,21 @@ void Level_1::startLevel(){
 
     rechteck1->drawGraphics();
 
+    triangle1->drawGraphics();
+
+	recyclebin1->drawGraphics();
+    recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    recyclebin2->drawGraphics();
+    recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->drawGraphics();
     obstaclescircle2->drawGraphics();
+
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    triangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
 
     if(counterRec==1){
@@ -117,7 +126,9 @@ void Level_1::startLevel(){
 }
 
 void Level_1::pauseLevel(){
-    timer->stop();
+    if(timer!=NULL){
+        timer->stop();
+    }
 
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
@@ -131,15 +142,20 @@ void Level_1::pauseLevel(){
 
 void Level_1::resumeLevel()
 {
+    highscoreCounter();
     timer->start();
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
-    QFile file("level.txt");
+    QFile file("level1.txt");
+    if(file.exists()){
+        file.remove("level1.txt");
+       QFile file("level1.txt");
+    }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl;
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<"10000"<<endl;
     file.close();
 }
 
@@ -333,7 +349,10 @@ void Level_1::showLevel(){
      obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
      obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
      rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
+	 recyclebin1 = new RecycleBin(myWorld, level, QPointF(200,200),QPointF(210,200),QPointF(230,260),QPointF(220,260), 0.0, b2_staticBody, 0.5);
+	 recyclebin2 = new RecycleBin(myWorld, level, QPointF(250,260),QPointF(270,200),QPointF(280,200),QPointF(260,260), 0.0, b2_staticBody, 0.5);
 
+     triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody);
 
      //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);

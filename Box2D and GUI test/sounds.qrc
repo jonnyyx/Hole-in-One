@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ton">
+        <file>click.wav</file>
+        <file>win.wav</file>
+    </qresource>
+</RCC>

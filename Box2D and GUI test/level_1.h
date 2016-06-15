@@ -6,11 +6,12 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "meinelement.h"
+#include "triangle.h"
 #include <QPushButton>
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
-
+#include "recyclebin.h"
 #include "circle.h"
 #include "gui.h"
 
@@ -35,7 +36,7 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
-    void highscoreCounter();
+
     void reset();
     void getTime();
 
@@ -45,12 +46,21 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
+
     Block* elem4;
     Block* elem5;
     Block* elem6;
+
+	RecycleBin* recyclebin1;
+    RecycleBin* recyclebin2;
+    Triangle* triangle1;
+    void highscoreCounter();
+
+
     Circle* addcircle1;
     Circle* addcircle2;
     Circle* addcircle3;
+
     //fixed Elements
 
     Circle* ball;
