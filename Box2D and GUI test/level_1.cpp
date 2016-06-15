@@ -221,9 +221,6 @@ void Level_1::addRectangle()
     if (counterRec==1){
         elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem4->draw();
-
-
-
     }
 
     else if(counterRec==2){
@@ -255,14 +252,14 @@ void Level_1::addCircle(){
     }
 
     if(counterCircle==2){
-        circle.m_radius = 10.0;
+        circle.m_radius = 21.0;
         circle2 = new MeinElement(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
         circle2->draw();
 
     }
 
     if(counterCircle==3){
-        circle.m_radius = 10.0;
+        circle.m_radius = 21.0;
         circle3 = new MeinElement(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
         circle3->draw();
 
