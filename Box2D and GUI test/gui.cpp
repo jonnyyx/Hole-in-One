@@ -1,8 +1,9 @@
 #include "gui.h"
-
+#include <QFile>
 #include <QGraphicsTextItem>
 #include "level_1.h"
-
+#include "level_2.h"
+#include "qdebug.h"
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -76,6 +77,7 @@ void GUI::displayGUI()
 
 void GUI::levelMenu()
 {
+    checkLevel();
     scene->clear();
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
@@ -91,30 +93,56 @@ void GUI::levelMenu()
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addWidget(onepicButton);
+    qDebug()<<levelenab.isEmpty();
+    if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+        int twoxPos = 348;
+        int twoyPos = 250;
+        twopicButton->move(twoxPos,twoyPos);
+        connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
+        scene->addWidget(twopicButton);
 
-    picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int twoxPos = 348;
-    int twoyPos = 250;
-    twopicButton->move(twoxPos,twoyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(twopicButton);
+    }
+    else{
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int twoxPos = 348;
+        int twoyPos = 250;
+        twopicButton->move(twoxPos,twoyPos);
 
+        scene->addWidget(twopicButton);
+    }
+    if(!levelenab.isEmpty()&&levelenab.at(2)=="true\n"){
+            picButton* threepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+            int threexPos = 548;
+            int threeyPos = 250;
+            threepicButton->move(threexPos,threeyPos);
+            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            scene->addWidget(threepicButton);
 
-    picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int threexPos = 548;
-    int threeyPos = 250;
-    threepicButton->move(threexPos,threeyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(threepicButton);
+    }
+    else{
+        picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int threexPos = 548;
+        int threeyPos = 250;
+        threepicButton->move(threexPos,threeyPos);
 
+        scene->addWidget(threepicButton);
+    }
+    if(!levelenab.isEmpty()&&levelenab.at(3)=="true\n"){
+            picButton* fourpicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1disabled.png"));
+            int fourxPos = 748;
+            int fouryPos = 250;
+            fourpicButton->move(fourxPos,fouryPos);
+            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            scene->addWidget(fourpicButton);
 
-    picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int fourxPos = 748;
-    int fouryPos = 250;
-    fourpicButton->move(fourxPos,fouryPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(fourpicButton);
-
+    }else{
+        picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int fourxPos = 748;
+        int fouryPos = 250;
+        fourpicButton->move(fourxPos,fouryPos);
+        scene->addWidget(fourpicButton);
+    }
 
     picButton* fivepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
     int fivexPos = 148;
@@ -165,6 +193,14 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
     Level_1 *test;
     test = new Level_1();
     test->show();
+
+}
+
+void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
+{
+    Level_2 *test2;
+    test2 = new Level_2();
+    test2->show();
 
 }
 
@@ -607,3 +643,17 @@ void GUI::conveyor()
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
     scene->addItem(backButton);
 }
+
+void GUI::checkLevel(){
+    QFile file("level.txt");
+    if(file.exists()==true){
+        file.open(QIODevice::ReadOnly |QIODevice::Text);
+
+        while(!file.atEnd()){
+            levelenab+=file.readLine();
+        }
+        qDebug()<< levelenab;
+        file.close();
+    }
+}
+
