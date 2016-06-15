@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include "meinelement.h"
+#include "triangle.h"
 #include <QPushButton>
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
@@ -40,6 +41,8 @@ private:
     MeinElement* circle1;
     MeinElement* circle2;
     MeinElement* circle3;
+    Triangle* triangle1;
+
     //fixed Elements
     MeinElement* ball;
     MeinElement* kreis1;

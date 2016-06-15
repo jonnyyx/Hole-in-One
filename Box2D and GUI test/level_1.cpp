@@ -95,6 +95,7 @@ Level_1::Level_1(QWidget *parent)
     kreis1 = new MeinElement(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
     kreis2 = new MeinElement(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
     rechteck1 = new MeinElement(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
+    triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody);
     //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
     bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody,20.0);
     //anzahl=myWorld->GetBodyCount();
@@ -133,10 +134,12 @@ void Level_1::startLevel(){
     rechteck1->drawGraphics();
     kreis1->drawGraphics();
     kreis2->drawGraphics();
+    triangle1->drawGraphics();
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     kreis1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     kreis2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    triangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
 
     if(counterRec==1){
