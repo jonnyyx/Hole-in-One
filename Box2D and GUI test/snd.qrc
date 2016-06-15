@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/snd">
-        <file>soundfiles/click.wav</file>
+        <file>click.mp3</file>
     </qresource>
 </RCC>

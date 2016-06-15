@@ -33,7 +33,7 @@ Level_1::Level_1(QWidget *parent)
 
 /*void Level_1::displayLevel(){
 
-    QPixmap bkgnd(":/new/prefix1/paper.png");
+    QPixmap bkgnd(":/pic/paper.png");
     //bkgnd.scaled(10,Qt::IgnoreAspectRatio);
 
     level->addPixmap(bkgnd);

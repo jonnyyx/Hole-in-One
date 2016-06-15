@@ -1,6 +1,7 @@
 #include "gui.h"
 #include <QFile>
 #include <QGraphicsTextItem>
+#include <QSound>
 #include "level_1.h"
 #include "level_2.h"
 #include "qdebug.h"
@@ -20,28 +21,22 @@ GUI::GUI(QWidget *parent){
     /*!ismute false by default*/
     ismute=false;
 
-    //initialize sounds
-    click = new QMediaPlayer();
-    click -> setMedia(QUrl("qrc:/sounds/click.wav"));
-    win = new QMediaPlayer();
-    win -> setMedia(QUrl("qrc:/sounds/ton/win.wav"));
-
     /*
            if (XXXsound -> state() == QMediaPlayer::PlayingState) {
-               if(mute == false) {
+               if(ismute == false) {
                    XXXsound -> setVolume(100);
                }
-               else if(mute == true) {
+               else if(ismute == true) {
                    XXXsound -> setVolume(0);
                }
                XXXsound -> setPosition(0);
            }
 
            else if (numsound0->state() == QMediaPlayer::StoppedState) {
-               if(mute == false) {
+               if(ismute == false) {
                    XXXsound -> setVolume(100);
                }
-               else if(mute == true) {
+               else if(ismute == true) {
                    XXXsound -> setVolume(0);
                }
                XXXsound -> play();
@@ -49,6 +44,49 @@ GUI::GUI(QWidget *parent){
     */
 
 }
+
+
+//Sound
+void GUI::mute()
+{
+    if(ismute==false){
+        ismute=true;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
+    }
+    else if(ismute==true){
+        ismute=false;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
+    }
+}
+
+void GUI::csnd()
+{
+    //QSound::play(":/click.mp3");
+    clicksnd = new QMediaPlayer();
+    clicksnd -> setMedia(QUrl("qrc:/pic/click.mp3"));
+
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(100);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+
+    else if (clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(100);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+}
+
+
 
 void GUI::displayGUI()
 {
@@ -66,6 +104,7 @@ void GUI::displayGUI()
     int levelyPos = 270;
     levelpicButton->move(levelxPos,levelyPos);
     connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()), Qt::QueuedConnection);
+    connect(levelpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(levelpicButton);
 
     /*!create highscore button*/
@@ -75,6 +114,7 @@ void GUI::displayGUI()
     int scoreyPos = 370;
     scorepicButton->move(scorexPos,scoreyPos);
     connect(scorepicButton, SIGNAL(clicked()), this, SLOT(highscore()), Qt::QueuedConnection);
+    connect(scorepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(scorepicButton);
 
     /*!create help button*/
@@ -84,6 +124,7 @@ void GUI::displayGUI()
     int helpyPos = 470;
     helppicButton->move(helpxPos,helpyPos);
     connect(helppicButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
+    connect(helppicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(helppicButton);
 
     /*!create quit button*/
@@ -92,6 +133,7 @@ void GUI::displayGUI()
     int quityPos = 570;
     quitpicButton->move(quitxPos,quityPos);
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(quitpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(quitpicButton);
 
     /*!create sound button*/
@@ -121,6 +163,7 @@ void GUI::levelMenu()
     int oneyPos = 250;
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
+    connect(onepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(onepicButton);
     qDebug()<<levelenab.isEmpty();
     if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
@@ -129,6 +172,7 @@ void GUI::levelMenu()
         int twoyPos = 250;
         twopicButton->move(twoxPos,twoyPos);
         connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
+        connect(twopicButton, SIGNAL(clicked()), this, SLOT(csnd()));
         scene->addWidget(twopicButton);
 
     }
@@ -209,11 +253,13 @@ void GUI::levelMenu()
     int backyPos = 650;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
 void GUI::back(){
     scene->clear();
+    ismute=false;
     displayGUI();
 }
 
@@ -454,6 +500,7 @@ void GUI::highscore()
     int backyPos = 550;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
    
@@ -515,6 +562,7 @@ void GUI::help()
     int boxyPos = 412;
     boxButton->setPos(boxxPos,boxyPos);
     connect(boxButton, SIGNAL(clicked()), this, SLOT(box()));
+    connect(boxButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(boxButton);
 
     Button* cirlceButton = new Button(QString("Cirlce"));
@@ -523,6 +571,7 @@ void GUI::help()
     int cirlceyPos = 412;
     cirlceButton->setPos(cirlcexPos,cirlceyPos);
     connect(cirlceButton, SIGNAL(clicked()), this, SLOT(circle()));
+    connect(cirlceButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(cirlceButton);
 
 
@@ -532,6 +581,7 @@ void GUI::help()
     int triangleyPos = 412;
     triangleButton->setPos(trianglexPos,triangleyPos);
     connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()));
+    connect(triangleButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(triangleButton);
 
     Button* springButton = new Button(QString("Spring"));
@@ -540,6 +590,7 @@ void GUI::help()
     int springyPos = 412;
     springButton->setPos(springxPos,springyPos);
     connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
+    connect(springButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(springButton);
 
     Button* trampolineButton = new Button(QString("Trampoline"));
@@ -548,6 +599,7 @@ void GUI::help()
     int trampolineyPos = 412;
     trampolineButton->setPos(trampolinexPos,trampolineyPos);
     connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
+    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(trampolineButton);
 
     Button* conveyorButton = new Button(QString("Conveyor"));
@@ -556,6 +608,7 @@ void GUI::help()
     int conveyoryPos = 412;
     conveyorButton->setPos(conveyorxPos,conveyoryPos);
     connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
+    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(conveyorButton);
 
 
@@ -599,21 +652,12 @@ void GUI::help()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
 }
 
-void GUI::mute()
-{
-    if(ismute==false){
-        ismute=true;
-        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
-    }
-    else if(ismute==true){
-        ismute=false;
-        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
-    }
-}
+
 
 void GUI::box()
 {
@@ -655,6 +699,7 @@ void GUI::box()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -695,6 +740,7 @@ void GUI::circle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -738,6 +784,7 @@ void GUI::triangle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -780,6 +827,7 @@ void GUI::spring()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -822,6 +870,7 @@ void GUI::trampoline()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -864,6 +913,7 @@ void GUI::conveyor()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 

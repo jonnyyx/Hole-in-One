@@ -143,6 +143,5 @@ DISTFILES += \
     paper.png
 
 RESOURCES += \
-    pic.qrc \
     images.qrc \
-    sounds.qrc
+    src.qrc
