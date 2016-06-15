@@ -37,6 +37,7 @@ public slots:
     void addCircle();
     void highscoreCounter();
     void reset();
+    void getTime();
 
 
 private:
@@ -44,9 +45,9 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
-    MeinElement* elem4;
-    MeinElement* elem5;
-    MeinElement* elem6;
+    Block* elem4;
+    Block* elem5;
+    Block* elem6;
     Circle* addcircle1;
     Circle* addcircle2;
     Circle* addcircle3;
@@ -70,7 +71,6 @@ private:
     QPushButton* bt_pause;
     QPushButton* bt__resume;
     QElapsedTimer leveltime_elapsed;
-    QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
     QPushButton* bt_reset;
@@ -78,7 +78,7 @@ private:
     int counterCircle=0;
     int highscore = 0;
     int counterTogether = 0;
-    int leveltime;
+    int leveltime = 0;
 
     void showLevel();
 };
