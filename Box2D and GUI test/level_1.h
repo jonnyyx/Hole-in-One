@@ -34,9 +34,14 @@ public slots:
 private:
     b2World* myWorld;
     QGraphicsScene* level;
+    //Elements to add
     MeinElement* elem4;
     MeinElement* elem5;
     MeinElement* elem6;
+    MeinElement* circle1;
+    MeinElement* circle2;
+    MeinElement* circle3;
+    //fixed Elements
     MeinElement* ball;
     MeinElement* kreis1;
     MeinElement* kreis2;
@@ -52,7 +57,8 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
-    int counter = 0;
+    int counterRec = 0;
+    int counterCircle=0;
 
 };
 

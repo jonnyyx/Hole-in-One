@@ -25,12 +25,14 @@ Level_1::Level_1(QWidget *parent)
     setScene(level);
 
 
+
    //Start Button
     bt_start=new QPushButton();
     bt_start->setText("Start");
     bt_start->move(900.0,620.0);
     connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
     level->addWidget(bt_start);
+
 
     //Pause Button
     bt_pause=new QPushButton();
@@ -62,7 +64,7 @@ Level_1::Level_1(QWidget *parent)
     bt__circle->setText("Circle");
     bt__circle->setEnabled(true);
     bt__circle->move(400.0,700.0);
-    connect(bt__rect,SIGNAL(clicked()),this,SLOT(addCircle()));
+    connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
     level->addWidget(bt__circle);
 
 
@@ -128,21 +130,6 @@ void Level_1::update(){
 
 void Level_1::startLevel(){
 
-    if(elem4!=NULL){
-        elem4->drawGraphics();
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    }
-
-    if(elem5!=NULL){
-        elem5->drawGraphics();
-        elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    }
-
-    if(elem6!=NULL){
-        elem6->drawGraphics();
-        elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    }
-
     rechteck1->drawGraphics();
     kreis1->drawGraphics();
     kreis2->drawGraphics();
@@ -150,6 +137,38 @@ void Level_1::startLevel(){
     kreis1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     kreis2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
+
+    if(counterRec==1){
+        elem4->drawGraphics();
+        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
+    if(counterRec==2){
+        elem5->drawGraphics();
+        elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
+    if(counterRec==3){
+        elem6->drawGraphics();
+        elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
+    if(counterCircle==1){
+        circle1->drawGraphics();
+        circle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
+    if(counterCircle==2){
+        circle2->drawGraphics();
+        circle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
+    if(counterCircle==3){
+        circle3->drawGraphics();
+        circle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    }
+
 
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
@@ -181,31 +200,26 @@ void Level_1::resumeLevel()
     bt_start->setEnabled(false);
 }
 
-void Level_1::countObjects()
-{
-
-
-    qDebug()<<counter;
-}
 
 void Level_1::addRectangle()
 {
-    counter++;
+    counterRec++;
 
 
-    if (counter==1){
+    if (counterRec==1){
         elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem4->draw();
 
 
+
     }
 
-    else if(counter==2){
+    else if(counterRec==2){
         elem5 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem5->draw();
     }
 
-    else if(counter==3){
+    else if(counterRec==3){
         elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem6->draw();
 
@@ -216,6 +230,34 @@ void Level_1::addRectangle()
 }
 
 void Level_1::addCircle(){
+    counterCircle++;
+
+    b2CircleShape circle;
+
+    qDebug()<<counterCircle;
+    if(counterCircle==1){
+        circle.m_radius = 21.0;
+        circle1 = new MeinElement(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        circle1->draw();
+
+    }
+
+    if(counterCircle==2){
+        circle.m_radius = 10.0;
+        circle2 = new MeinElement(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        circle2->draw();
+
+    }
+
+    if(counterCircle==3){
+        circle.m_radius = 10.0;
+        circle3 = new MeinElement(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        circle3->draw();
+
+        bt__rect->setEnabled(false);
+        bt__circle->setEnabled(false);
+
+    }
 
 }
 
