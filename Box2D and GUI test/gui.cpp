@@ -228,7 +228,7 @@ void GUI::help()
                                                              "bypass different and many evil obstacles, which will do everything to prevent the" "\n"
                                                              "ball from reaching his goal.""\n"
                                                              "Be the chosen one and support the paperball!" "\n"
-                                                             "____________________________________________________________________"
+                                                             "_____________________________________________________________________"
                                                              ));
     QFont firstFont("comic sans", 18);
     firstText->setFont(firstFont);
@@ -264,6 +264,7 @@ void GUI::help()
     connect(cirlceButton, SIGNAL(clicked()), this, SLOT(circle()));
     scene->addItem(cirlceButton);
 
+
     Button* triangleButton = new Button(QString("Triangle"));
     triangleButton->setRect(0,0,100,100);
     int trianglexPos = 440;
@@ -298,7 +299,7 @@ void GUI::help()
 
 
     QGraphicsTextItem* secondText = new QGraphicsTextItem(QString(
-     "____________________________________________________________________"
+     "_____________________________________________________________________"
                                                              ));
     QFont secondFont("comic sans", 18);
     secondText->setFont(secondFont);
@@ -306,6 +307,30 @@ void GUI::help()
     int secondyPos = 500;
     secondText->setPos(secondxPos,secondyPos);
     scene -> addItem(secondText);
+
+    //Obstacles instruction
+    QGraphicsTextItem* obstaCap = new QGraphicsTextItem(QString("Obstacles:""\n"));
+    QFont obstaCFont("comic sans", 26);
+    obstaCap->setFont(obstaCFont);
+    int obstaCxPos = 50;
+    int obstaCyPos = 540;
+    obstaCap->setPos(obstaCxPos,obstaCyPos);
+    scene -> addItem(obstaCap);
+
+    QGraphicsTextItem* obstText = new QGraphicsTextItem(QString(
+                                                             "Obstacles are objects which can not be moved by the player." "\n"
+                                                             "Since obstacles can be of the same type as tools (such as" "\n"
+                                                             "trampolines, springs, conveyors etc.) they just vary in colour." "\n"
+                                                             "They hamper the ball of paper to reach the trash basket, but" "\n"
+                                                             "you may use them in your favour. Mostly they are fixed in the" "\n"
+                                                             "scene, but some managed to move around to raise difficulty."
+                                                             ));
+    QFont obstFont("comic sans", 18);
+    obstText->setFont(obstFont);
+    int obstxPos = 260;
+    int obstyPos = 552;
+    obstText->setPos(obstxPos,obstyPos);
+    scene -> addItem(obstText);
 
 
     Button* backButton = new Button(QString("Back"));
@@ -426,6 +451,29 @@ void GUI::triangle()
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
+    //Triangle instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Triangle""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* triText = new QGraphicsTextItem(QString("The triangle is similar to the block, too. When placed correctly it might be very" "\n"
+                                                               "useful to solve levels. It can be rotated, simply select the object (through" "\n"
+                                                               "clicking on it) and push the arrow buttons '<-' & '->' to rotate the object." "\n"
+                                                               "Pressing the '->' button will lead to a clockwise rotation, and vise versa." "\n"
+                                                               "To unselect the object just click elsewhere. To move the object click and hold " "\n"
+                                                               "on the object and drag it with your mouse."
+                                                                ));
+    QFont triFont("comic sans", 18);
+    triText->setFont(triFont);
+    int trixPos = 50;
+    int triyPos = 160;
+    triText->setPos(trixPos,triyPos);
+    scene -> addItem(triText);
+
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
     int backyPos = 670;
@@ -446,6 +494,28 @@ void GUI::spring()
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
+    //Spring instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Spring""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* springText = new QGraphicsTextItem(QString("The spring is a very useful and powerful tool. The spring is prestressed and triggers" "\n"
+                                                                  "once the ball touches the surface of it. It will accelerate the paperball (within the" "\n"
+                                                                  "physical boundaries of: angle of incidence equals angle of reflection). Once it is" "\n"
+                                                                  "used it will not accelerate the ball again. To move the object click and hold on the" "\n"
+                                                                  "object and drag it with your mouse."
+                                                                ));
+    QFont springFont("comic sans", 18);
+    springText->setFont(springFont);
+    int springxPos = 50;
+    int springyPos = 160;
+    springText->setPos(springxPos,springyPos);
+    scene -> addItem(springText);
+
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
     int backyPos = 670;
@@ -465,6 +535,28 @@ void GUI::trampoline()
     int titleyPos = 30;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
+
+    //Trampoline instruction
+    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Trampoline""\n"));
+    QFont firstCFont("comic sans", 26);
+    firstCap->setFont(firstCFont);
+    int firstCxPos = 50;
+    int firstCyPos = 110;
+    firstCap->setPos(firstCxPos,firstCyPos);
+    scene -> addItem(firstCap);
+
+    QGraphicsTextItem* trampText = new QGraphicsTextItem(QString("The trampolin is quite similar to the spring. The difference is, that the trampoline" "\n"
+                                                                 "can be used multiple times, and it will not add power to the ball (e.g. If the ball" "\n"
+                                                                 "drops from a certain heigth on the trampoline it will not reach the start value when" "\n"
+                                                                 "reflected, due to friction losses etc.). To move the object click and hold on the" "\n"
+                                                                 "object and drag it with your mouse."
+                                                                ));
+    QFont trampFont("comic sans", 18);
+    trampText->setFont(trampFont);
+    int trampxPos = 50;
+    int trampyPos = 160;
+    trampText->setPos(trampxPos,trampyPos);
+    scene -> addItem(trampText);
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
