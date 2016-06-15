@@ -1,5 +1,5 @@
-#ifndef LEVEL_1_H
-#define LEVEL_1_H
+#ifndef LEVEL_2_H
+#define LEVEL_2_H
 #include"Box2D/Box2D.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -10,20 +10,18 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
-<<<<<<< HEAD
-#include "circle.h"
-=======
 #include <block.h>
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
-class Level_1 : public QGraphicsView
+
+
+class Level_2 : public QGraphicsView
 {
     Q_OBJECT
 
 public:
-    Level_1(QWidget *parent = 0);
+    Level_2(QWidget *parent = 0);
     //void displayLevel();
 
 
@@ -36,28 +34,20 @@ public slots:
     void addCircle();
 
 private:
-
-    b2World* myWorld;
-    QGraphicsScene* level;
+    b2World* myWorld2;
+    QGraphicsScene* level2;
     //Elements to add
     MeinElement* elem4;
     MeinElement* elem5;
     MeinElement* elem6;
-    Circle* addcircle1;
-    Circle* addcircle2;
-    Circle* addcircle3;
+    MeinElement* circle1;
+    MeinElement* circle2;
+    MeinElement* circle3;
     //fixed Elements
-<<<<<<< HEAD
-    Circle* ball;
-    Circle* obstaclescircle1;
-    Circle* obstaclescircle2;
-    MeinElement* rechteck1;
-=======
     MeinElement* ball;
     MeinElement* kreis1;
     MeinElement* kreis2;
     Block* rechteck1;
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
     MeinElement* bottom;
     QTimer* timer;
     int anzahl;
@@ -74,4 +64,4 @@ private:
 
 };
 
-#endif // LEVEL_1_H
+#endif // LEVEL_2_H
