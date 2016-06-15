@@ -3,7 +3,7 @@
 # Project created by QtCreator 2016-06-01T12:43:19
 #
 #-------------------------------------------------
-QT       += multimedia
+
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG += c++11
@@ -72,9 +72,7 @@ SOURCES += main.cpp\
     triangle.cpp\
     circle.cpp \
     block.cpp\
-    level_2.cpp\
-    recyclebin.cpp
-
+    level_2.cpp
 
 
 
@@ -135,8 +133,7 @@ HEADERS  += \
     triangle.h\
     circle.h\
     block.h \
-    level_2.h\
-    recyclebin.h
+   level_2.h
 
 
 DISTFILES += \
@@ -144,5 +141,4 @@ DISTFILES += \
 
 RESOURCES += \
     pic.qrc \
-    images.qrc \
-    sounds.qrc
+    images.qrc
