@@ -63,6 +63,17 @@ void Block::drawGraphics(){
     body->SetTransform(b2Vec2(v.x(),v.y()),body->GetAngle());
 }
 
-void Block::rotate(){
-    graphics->setRotation(45);
+void Block::rotateright(){
+
+    qreal a=body->GetAngle();
+    graphics->setRotation(a+30);
+    b2Vec2 b=body->GetPosition();
+    body->SetTransform(b,a+30);
+}
+void Block::rotateleft(){
+
+    qreal a=body->GetAngle();
+    graphics->setRotation(a-30);
+    b2Vec2 b=body->GetPosition();
+    body->SetTransform(b,a-30);
 }

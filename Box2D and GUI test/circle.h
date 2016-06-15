@@ -3,7 +3,7 @@
 #include "Box2D/Box2D.h"
 #include"QGraphicsItem"
 #include<QPointF>
-
+#include "meinelement.h"
 
 class Circle : public QObject
 {

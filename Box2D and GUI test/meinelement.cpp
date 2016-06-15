@@ -6,24 +6,6 @@
 
 
 
-MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
-{
-    b2BodyDef myBodyDef;
-    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-    myBodyDef.position.Set(position.x(),position.y());
-    myBodyDef.angle=angle;
-
-
-    body=world->CreateBody(&myBodyDef);
-
-    b2FixtureDef circleFixtureDef;
-    circleFixtureDef.shape = &circle;
-    circleFixtureDef.density = 1.0;
-    circleFixtureDef.restitution = 0.6;
-    body->CreateFixture(&circleFixtureDef);
-
-}
-
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
     b2PolygonShape polygon;
@@ -41,8 +23,8 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
-//  QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
-//  poly->setVisible(true);
+    //  QGraphicsPolygonItem *poly = new QGraphicsPolygonItem();
+    //  poly->setVisible(true);
 
 
     int x=center.x-length/4;
@@ -90,6 +72,35 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 //  graphics = scene->addPixmap(bkgnd);
 }
 
+MeinElement::MeinElement(b2World* world, QGraphicsScene* level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction){
+
+    b2BodyDef myBodyDef;
+    myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
+    myBodyDef.angle = angle;
+
+    body = world->CreateBody(&myBodyDef);
+
+    //set each vertex of polygon in an array
+    b2Vec2 vertices[3];
+    vertices[0].Set(a.x(), a.y());
+    vertices[1].Set(b.x(), b.y());
+    vertices[2].Set(c.x(), c.y());
+
+    b2PolygonShape polygon;
+    polygon.Set(vertices, 3); //pass array to the shape
+
+    b2FixtureDef triangleFixtureDef;
+    triangleFixtureDef.shape = &polygon; //change the shape of the fixture
+    triangleFixtureDef.friction=friction;
+    body->CreateFixture(&triangleFixtureDef); //add a fixture to the body
+
+    QPolygonF triangle;
+    triangle << a << b << c;
+    graphics = level->addPolygon(triangle);
+
+    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+}
+
  void MeinElement::draw()
  {
      b2Vec2 v=body->GetPosition();
@@ -99,20 +110,6 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
  }
 
- void MeinElement::drawBall()
- {
-     b2Vec2 v=body->GetPosition();
-     qreal a=body->GetAngle();
-     qreal grad=a*(180.0/3.14);
-
-
-     graphics->setPos(v.x,v.y);
-
-
-//     graphics->setRotation(grad); //Urechnung von rad in grad; Box2D gibt in rad zurück muss aber in grad an QTGraphicsItem übergeben werden
-
-
- }
 
  void MeinElement::drawRec(int x,int y){
 
