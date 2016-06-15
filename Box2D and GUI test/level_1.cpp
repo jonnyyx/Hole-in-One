@@ -8,7 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFocusEvent>
-
+#include "block.h"
 
 using namespace std;
 
@@ -160,24 +160,24 @@ void Level_1::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
-        vect.push_back(&elem4);
+        elem4 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(elem4);
         bt__rect->setText("Rectangle (2)");
         bt__circle->setText("Circle (2)");
         elem4->draw();
     }
 
     else if(counterRec==2){
-        elem5 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
-        vect.push_back(&elem5);
+        elem5 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(elem5);
         bt__rect->setText("Rectangle (1)");
         bt__circle->setText("Circle (1)");
         elem5->draw();
     }
 
     else if(counterRec==3){
-        elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
-        vect.push_back(&elem6);
+        elem6 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(elem6);
         elem6->draw();
         bt__rect->setText("Rectangle (0)");
         bt__circle->setText("Circle (0)");
@@ -196,7 +196,7 @@ void Level_1::addCircle(){
     if(counterCircle==1){
         circle.m_radius = 21.0;
         addcircle1 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        vect.push_back(&addcircle1);
+        vect.push_back(addcircle1);
         bt__rect->setText("Rectangle (2)");
         bt__circle->setText("Circle (2)");
         addcircle1->draw();
@@ -206,7 +206,7 @@ void Level_1::addCircle(){
     if(counterCircle==2){
         circle.m_radius = 21.0;
         addcircle2 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        vect.push_back(&addcircle2);
+        vect.push_back(addcircle2);
         bt__rect->setText("Rectangle (1)");
         bt__circle->setText("Circle (1)");
         addcircle2->draw();
@@ -216,7 +216,7 @@ void Level_1::addCircle(){
     if(counterCircle==3){
         circle.m_radius = 21.0;
         addcircle3 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-        vect.push_back(&addcircle3);
+        vect.push_back(addcircle3);
         bt__rect->setText("Rectangle (0)");
         bt__circle->setText("Circle (0)");
         addcircle3->draw();
@@ -370,7 +370,7 @@ void Level_1::showLevel(){
      rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
     vect.push_back(rechteck1);
      triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody);
-    vect.push_back(&triangle1);
+    vect.push_back(triangle1);
      //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
      //anzahl=myWorld->GetBodyCount();
@@ -410,9 +410,9 @@ void Level_1::showLevel(){
 void Level_1::rotateLeft(){
 
     for(int i=0; i<vect.size(); i++){
-        if(vect.at(i)->graphics->isSelected()){
+        //if(vect.at(i)->graphics->isSelected()){
             qDebug("Hallo");
-        }
+        //}
     }
 
 

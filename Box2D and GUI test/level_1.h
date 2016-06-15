@@ -55,9 +55,9 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
-    MeinElement* elem4;
-    MeinElement* elem5;
-    MeinElement* elem6;
+    Block* elem4;
+    Block* elem5;
+    Block* elem6;
 
     Triangle* triangle1;
 
