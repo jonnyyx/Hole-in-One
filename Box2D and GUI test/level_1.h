@@ -12,6 +12,7 @@
 #include <QTime>
 
 #include "circle.h"
+#include "gui.h"
 
 #include <block.h>
 
@@ -34,6 +35,7 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
+    void reset();
 
 private:
 
@@ -69,9 +71,11 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
+    QPushButton* bt_reset;
     int counterRec = 0;
     int counterCircle=0;
 
+    void showLevel();
 };
 
 #endif // LEVEL_1_H
