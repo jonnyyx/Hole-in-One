@@ -2,6 +2,7 @@
 
 #include <QGraphicsTextItem>
 #include "level_1.h"
+#include "level_2.h"
 
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
@@ -92,11 +93,11 @@ void GUI::levelMenu()
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     scene->addWidget(onepicButton);
 
-    picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+    picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
     int twoxPos = 348;
     int twoyPos = 250;
     twopicButton->move(twoxPos,twoyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+    connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
     scene->addWidget(twopicButton);
 
 
@@ -165,6 +166,14 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
     Level_1 *test;
     test = new Level_1();
     test->show();
+
+}
+
+void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
+{
+    Level_2 *test2;
+    test2 = new Level_2();
+    test2->show();
 
 }
 

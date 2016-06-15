@@ -10,6 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
+#include <block.h>
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
@@ -44,7 +45,7 @@ private:
     MeinElement* ball;
     MeinElement* kreis1;
     MeinElement* kreis2;
-    MeinElement* rechteck1;
+    Block* rechteck1;
     MeinElement* bottom;
     QTimer* timer;
     int anzahl;
