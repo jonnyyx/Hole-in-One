@@ -1,6 +1,5 @@
 INPUT(
 ./debug\main.o
-./debug\mainwindow.o
 ./debug\b2ChainShape.o
 ./debug\b2CircleShape.o
 ./debug\b2EdgeShape.o
@@ -51,9 +50,15 @@ INPUT(
 ./debug\button.o
 ./debug\gui.o
 ./debug\picbutton.o
+./debug\level_1.o
+./debug\triangle.o
+./debug\circle.o
+./debug\block.o
+./debug\level_2.o
 ./debug\qrc_pic.o
 ./debug\qrc_images.o
-./debug\moc_mainwindow.o
 ./debug\moc_button.o
 ./debug\moc_gui.o
+./debug\moc_level_1.o
+./debug\moc_level_2.o
 );

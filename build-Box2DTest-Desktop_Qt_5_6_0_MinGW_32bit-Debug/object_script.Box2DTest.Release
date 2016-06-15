@@ -1,6 +1,5 @@
 INPUT(
 ./release\main.o
-./release\mainwindow.o
 ./release\b2ChainShape.o
 ./release\b2CircleShape.o
 ./release\b2EdgeShape.o
@@ -51,9 +50,15 @@ INPUT(
 ./release\button.o
 ./release\gui.o
 ./release\picbutton.o
+./release\level_1.o
+./release\triangle.o
+./release\circle.o
+./release\block.o
+./release\level_2.o
 ./release\qrc_pic.o
 ./release\qrc_images.o
-./release\moc_mainwindow.o
 ./release\moc_button.o
 ./release\moc_gui.o
+./release\moc_level_1.o
+./release\moc_level_2.o
 );

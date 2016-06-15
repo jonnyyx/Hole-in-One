@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Maximilian/Desktop/TUM/6.Semester/Grundkurs C++/Hauptprojekt/gruppe4_hauptprojekt/gruppe4_hauptprojekt/Box2D/HelloWorld/HelloWorld.cpp
+Box2D/Box2D.h
+-
+stdio.h
+-
+

@@ -5,7 +5,7 @@
 Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
     /*Rectangle for buttons!*/
-    setRect(0,0,250,80);
+    setRect(0,0,130,60);
     QBrush buttonBrush;
      /*!solid color*/
     buttonBrush.setStyle(Qt::SolidPattern);

@@ -9,13 +9,22 @@ class MainWindow;
 class MeinElement
 {
 public:
-    MeinElement(b2World* world, QGraphicsScene* level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle);
+    MeinElement(b2World* world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle);
     MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction);
+    MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal length, qreal width, b2BodyType type, qreal friction);
     void draw();
+    void drawBall();
+    void drawGraphics();
+    void drawBottom();
+    void drawRec(int x,int y);
+
     b2Body* body;
+    QGraphicsItem* graphics;
+
+
 
 private:
-    QGraphicsItem* graphics;
+
 };
 
 #endif // MEINELEMENT_H

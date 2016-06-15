@@ -1,0 +1,1 @@
+Obstacles are objects which can not be moved by the player. Since obstacles can be of the same type as tools (such as trampolines, springs, conveyors etc.) they vary in colour. They hamper the ball of paper to reach the trash basket, but you may use them in your favour.  Mostly they are fixed in the scene, but some managed to move around to raise difficulty.
