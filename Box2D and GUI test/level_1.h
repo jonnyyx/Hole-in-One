@@ -46,6 +46,9 @@ private:
     MeinElement* kreis2;
     MeinElement* rechteck1;
     MeinElement* bottom;
+    MeinElement* umrandung1;
+    MeinElement* umrandung2;
+
     QTimer* timer;
     int anzahl;
     b2Vec2 positionElem;
