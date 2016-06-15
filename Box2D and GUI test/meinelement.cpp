@@ -5,6 +5,7 @@
 #include <qdebug.h>
 
 
+
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
     b2BodyDef myBodyDef;
@@ -20,15 +21,6 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position
     circleFixtureDef.density = 1.0;
     circleFixtureDef.restitution = 0.6;
     body->CreateFixture(&circleFixtureDef);
-
-//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
-
-    QPixmap bkgnd(":/new/prefix1/paper.png");
-    bkgnd.scaled(QSize(42,42));
-
-
-    graphics = level->addPixmap(bkgnd);
-    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
 }
 
