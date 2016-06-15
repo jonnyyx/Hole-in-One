@@ -142,15 +142,20 @@ void Level_1::pauseLevel(){
 
 void Level_1::resumeLevel()
 {
+    highscoreCounter();
     timer->start();
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
-    QFile file("level.txt");
+    QFile file("level1.txt");
+    if(file.exists()){
+        file.remove("level1.txt");
+       QFile file("level1.txt");
+    }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl;
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<"10000"<<endl;
     file.close();
 }
 

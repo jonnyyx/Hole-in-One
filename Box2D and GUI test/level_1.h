@@ -36,7 +36,7 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
-    void highscoreCounter();
+
     void reset();
 
 
@@ -51,7 +51,7 @@ private:
 	RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     Triangle* triangle1;
-
+    void highscoreCounter();
 
     Circle* addcircle1;
     Circle* addcircle2;
