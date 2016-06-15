@@ -11,7 +11,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
-
+#include "recyclebin.h"
 #include "circle.h"
 #include "gui.h"
 #include <QItemSelection>
@@ -60,6 +60,8 @@ private:
     Block* elem5;
     Block* elem6;
 
+    RecycleBin* recyclebin1;
+    RecycleBin* recyclebin2;
     Triangle* triangle1;
 
 
@@ -72,7 +74,6 @@ private:
     Circle* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
-
 
     Block* rechteck1;
 
