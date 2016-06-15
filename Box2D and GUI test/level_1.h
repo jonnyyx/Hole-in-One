@@ -39,6 +39,7 @@ public slots:
 
     void reset();
     void getTime();
+    void highscoreCounter();
 
 
 private:
@@ -54,7 +55,6 @@ private:
 	RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     Triangle* triangle1;
-    void highscoreCounter();
 
 
     Circle* addcircle1;

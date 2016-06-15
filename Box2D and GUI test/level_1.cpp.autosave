@@ -149,7 +149,7 @@ void Level_1::resumeLevel()
 
     QFile file("level1.txt");
     if(file.exists("level1.txt")){
-        file.remove("level1.txt");
+       file.remove("level1.txt");
        QFile file("level1.txt");
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
