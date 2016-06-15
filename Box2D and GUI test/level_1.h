@@ -27,7 +27,6 @@ public slots:
     void startLevel();
     void pauseLevel();
     void resumeLevel();
-    void countObjects();
     void addRectangle();
     void addCircle();
 
