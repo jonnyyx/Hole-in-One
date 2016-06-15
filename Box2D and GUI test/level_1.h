@@ -10,6 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
+#include "circle.h"
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
@@ -31,19 +32,20 @@ public slots:
     void addCircle();
 
 private:
+
     b2World* myWorld;
     QGraphicsScene* level;
     //Elements to add
     MeinElement* elem4;
     MeinElement* elem5;
     MeinElement* elem6;
-    MeinElement* circle1;
-    MeinElement* circle2;
-    MeinElement* circle3;
+    Circle* addcircle1;
+    Circle* addcircle2;
+    Circle* addcircle3;
     //fixed Elements
-    MeinElement* ball;
-    MeinElement* kreis1;
-    MeinElement* kreis2;
+    Circle* ball;
+    Circle* obstaclescircle1;
+    Circle* obstaclescircle2;
     MeinElement* rechteck1;
     MeinElement* bottom;
     QTimer* timer;

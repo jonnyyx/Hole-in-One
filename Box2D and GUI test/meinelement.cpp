@@ -5,32 +5,7 @@
 #include <qdebug.h>
 
 
-MeinElement::MeinElement(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
-{
-    b2BodyDef myBodyDef;
-    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-    myBodyDef.position.Set(position.x(),position.y());
-    myBodyDef.angle=angle;
 
-
-    body=world->CreateBody(&myBodyDef);
-
-    b2FixtureDef circleFixtureDef;
-    circleFixtureDef.shape = &circle;
-    circleFixtureDef.density = 0.8;
-    circleFixtureDef.restitution = 0.6;
-    body->CreateFixture(&circleFixtureDef);
-
-//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
-
-    QPixmap bkgnd(":/new/prefix1/paper.png");
-    bkgnd.scaled(QSize(42,42));
-
-
-    graphics = level->addPixmap(bkgnd);
-    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
-
-}
 
 MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {

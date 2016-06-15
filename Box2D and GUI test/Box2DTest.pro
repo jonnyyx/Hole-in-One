@@ -68,7 +68,8 @@ SOURCES += main.cpp\
     button.cpp \
     gui.cpp \
     picbutton.cpp \
-    level_1.cpp
+    level_1.cpp \
+    circle.cpp
 
 HEADERS  += \
     Box2D/Box2D.h \
@@ -123,7 +124,8 @@ HEADERS  += \
     gui.h \
     main.h \
     picbutton.h \
-    level_1.h
+    level_1.h \
+    circle.h
 
 DISTFILES += \
     paper.png
