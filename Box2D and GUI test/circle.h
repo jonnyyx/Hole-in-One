@@ -5,8 +5,9 @@
 #include<QPointF>
 
 
-class Circle
+class Circle : public QObject
 {
+
 public:
     Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle);
 

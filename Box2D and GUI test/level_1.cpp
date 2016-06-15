@@ -7,6 +7,8 @@
 #include <qdebug.h>
 #include <QFile>
 #include <QTextStream>
+#include <QFocusEvent>
+
 
 using namespace std;
 
@@ -19,12 +21,10 @@ Level_1::Level_1(QWidget *parent)
     setFixedSize(1024,768);
 
 
-
     /*!Scene setup*/
     level = new QGraphicsScene();
     level->setSceneRect(0,0,1024,768);
     setScene(level);
-
 
     showLevel();
 
@@ -68,6 +68,7 @@ void Level_1::startLevel(){
     if(counterRec==1){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
     }
 
     if(counterRec==2){
@@ -106,6 +107,7 @@ void Level_1::startLevel(){
         addcircle3->drawGraphics();
         addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
+
 
 
     timer=new QTimer(this);
@@ -159,18 +161,26 @@ void Level_1::addRectangle()
 
     if (counterRec==1){
         elem4 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(&elem4);
+        bt__rect->setText("Rectangle (2)");
+        bt__circle->setText("Circle (2)");
         elem4->draw();
     }
 
     else if(counterRec==2){
         elem5 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(&elem5);
+        bt__rect->setText("Rectangle (1)");
+        bt__circle->setText("Circle (1)");
         elem5->draw();
     }
 
     else if(counterRec==3){
         elem6 = new MeinElement(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        vect.push_back(&elem6);
         elem6->draw();
-
+        bt__rect->setText("Rectangle (0)");
+        bt__circle->setText("Circle (0)");
         bt__rect->setEnabled(false);
         bt__circle->setEnabled(false);
     }
@@ -186,6 +196,9 @@ void Level_1::addCircle(){
     if(counterCircle==1){
         circle.m_radius = 21.0;
         addcircle1 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        vect.push_back(&addcircle1);
+        bt__rect->setText("Rectangle (2)");
+        bt__circle->setText("Circle (2)");
         addcircle1->draw();
 
     }
@@ -193,6 +206,9 @@ void Level_1::addCircle(){
     if(counterCircle==2){
         circle.m_radius = 21.0;
         addcircle2 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        vect.push_back(&addcircle2);
+        bt__rect->setText("Rectangle (1)");
+        bt__circle->setText("Circle (1)");
         addcircle2->draw();
 
     }
@@ -200,6 +216,9 @@ void Level_1::addCircle(){
     if(counterCircle==3){
         circle.m_radius = 21.0;
         addcircle3 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        vect.push_back(&addcircle3);
+        bt__rect->setText("Rectangle (0)");
+        bt__circle->setText("Circle (0)");
         addcircle3->draw();
 
         bt__rect->setEnabled(false);
@@ -259,6 +278,7 @@ void Level_1::showLevel(){
      level->addWidget(bt_start);
 
 
+
      //Pause Button
      bt_pause=new QPushButton();
      bt_pause->setText("Pause");
@@ -277,16 +297,16 @@ void Level_1::showLevel(){
      level->addWidget(bt__resume);
 
      //Reset
-     bt_reset=new QPushButton();
-     bt_reset->setText("Reset");
-     bt_reset->setEnabled(true);
-     bt_reset->move(900.0, 740.0);
-     connect(bt_reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
-     level->addWidget(bt_reset);
+     bt__reset=new QPushButton();
+     bt__reset->setText("Reset");
+     bt__reset->setEnabled(true);
+     bt__reset->move(900.0, 740.0);
+     connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
+     level->addWidget(bt__reset);
 
      //Rect Button
      bt__rect=new QPushButton();
-     bt__rect->setText("Rectangle");
+     bt__rect->setText("Rectangle (3)");
      bt__rect->setEnabled(true);
      bt__rect->move(200.0,700.0);
      connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
@@ -294,16 +314,27 @@ void Level_1::showLevel(){
 
      //Circle Button
      bt__circle=new QPushButton();
-     bt__circle->setText("Circle");
+     bt__circle->setText("Circle (3)");
      bt__circle->setEnabled(true);
      bt__circle->move(400.0,700.0);
      connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
      level->addWidget(bt__circle);
 
+     //Rotate Right
+     bt__right=new QPushButton();
+     bt__right->setText("Rotate Right");
+     bt__right->setEnabled(true);
+     bt__right->move(5.0,600.0);
+     connect(bt__right, SIGNAL(clicked()), this, SLOT(rotateRight()));
+     level->addWidget(bt__right);
 
-
-
-
+     //Rotate Left
+     bt__left=new QPushButton();
+     bt__left->setText("Rotate Left");
+     bt__left->setEnabled(true);
+     bt__left->move(105.0,600.0);
+     connect(bt__left, SIGNAL(clicked()), this, SLOT(rotateLeft()));
+     level->addWidget(bt__left);
 
 
 
@@ -332,11 +363,14 @@ void Level_1::showLevel(){
 
      ball  = new Circle(myWorld, level, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+     vect.push_back(obstaclescircle1);
+
      obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+    vect.push_back(obstaclescircle2);
      rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
-
+    vect.push_back(rechteck1);
      triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody);
-
+    vect.push_back(&triangle1);
      //elem3 = new MeinElement(myWorld, level, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
      //anzahl=myWorld->GetBodyCount();
@@ -364,7 +398,29 @@ void Level_1::showLevel(){
 
 }
 
+//void Level_1::enableRotation(){
+//    bt__left->setEnabled(true);
+//    bt__right->setEnabled(true);
+//}
 
+//void Level_1::disableRotation(){
+
+//}
+
+void Level_1::rotateLeft(){
+
+    for(int i=0; i<vect.size(); i++){
+        if(vect.at(i)->graphics->isSelected()){
+            qDebug("Hallo");
+        }
+    }
+
+
+}
+
+void Level_1::rotateRight(){
+
+}
 
 
 

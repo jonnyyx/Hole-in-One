@@ -14,6 +14,7 @@
 
 #include "circle.h"
 #include "gui.h"
+#include <QItemSelection>
 
 #include <block.h>
 
@@ -28,6 +29,7 @@ public:
     Level_1(QWidget *parent = 0);
     //void displayLevel();
 
+    std::vector<QObject*> vect;
 
 public slots:
     void update();
@@ -38,6 +40,14 @@ public slots:
     void addCircle();
     void highscoreCounter();
     void reset();
+    void rotateLeft();
+    void rotateRight();
+//    void enableRotation();
+//    void disableRotation();
+
+signals:
+    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+
 
 
 private:
@@ -79,7 +89,9 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
-    QPushButton* bt_reset;
+    QPushButton* bt__reset;
+    QPushButton* bt__left;
+    QPushButton* bt__right;
     int counterRec = 0;
     int counterCircle=0;
     int highscore = 0;
@@ -87,6 +99,8 @@ private:
     int leveltime;
 
     void showLevel();
+
+
 };
 
 #endif // LEVEL_1_H
