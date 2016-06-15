@@ -69,12 +69,10 @@ SOURCES += main.cpp\
     gui.cpp \
     picbutton.cpp \
     level_1.cpp \
-<<<<<<< HEAD
-    circle.cpp
-=======
-    block.cpp \
+    circle.cpp \
+    block.cpp\
     level_2.cpp
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
+
 
 HEADERS  += \
     Box2D/Box2D.h \
@@ -130,12 +128,10 @@ HEADERS  += \
     main.h \
     picbutton.h \
     level_1.h \
-<<<<<<< HEAD
-    circle.h
-=======
+    circle.h\
     block.h \
-    level_2.h
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
+   level_2.h
+
 
 DISTFILES += \
     paper.png

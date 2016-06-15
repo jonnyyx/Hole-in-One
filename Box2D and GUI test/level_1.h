@@ -10,11 +10,11 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QElapsedTimer>
 #include <QTime>
-<<<<<<< HEAD
+
 #include "circle.h"
-=======
+
 #include <block.h>
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
+
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
@@ -47,17 +47,14 @@ private:
     Circle* addcircle2;
     Circle* addcircle3;
     //fixed Elements
-<<<<<<< HEAD
+
     Circle* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
-    MeinElement* rechteck1;
-=======
-    MeinElement* ball;
-    MeinElement* kreis1;
-    MeinElement* kreis2;
+
+
     Block* rechteck1;
->>>>>>> 5486aed225b9064aedad5d3a3994600993541371
+
     MeinElement* bottom;
     QTimer* timer;
     int anzahl;
