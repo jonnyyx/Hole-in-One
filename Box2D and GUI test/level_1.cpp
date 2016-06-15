@@ -146,10 +146,16 @@ void Level_1::resumeLevel()
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
-    QFile file("level.txt");
+
+    QFile file("level1.txt");
+    if(file.exists("level1.txt")){
+        file.remove("level1.txt");
+       QFile file("level1.txt");
+    }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl;
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+
     file.close();
 }
 
@@ -163,7 +169,7 @@ void Level_1::addRectangle()
         elem4 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         vect.push_back(elem4);
         bt__rect->setText("Rectangle (2)");
-        bt__circle->setText("Circle (2)");
+        //bt__circle->setText("Circle (2)");
         elem4->draw();
     }
 
@@ -171,7 +177,7 @@ void Level_1::addRectangle()
         elem5 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         vect.push_back(elem5);
         bt__rect->setText("Rectangle (1)");
-        bt__circle->setText("Circle (1)");
+        //bt__circle->setText("Circle (1)");
         elem5->draw();
     }
 
@@ -180,9 +186,9 @@ void Level_1::addRectangle()
         vect.push_back(elem6);
         elem6->draw();
         bt__rect->setText("Rectangle (0)");
-        bt__circle->setText("Circle (0)");
+        //bt__circle->setText("Circle (0)");
         bt__rect->setEnabled(false);
-        bt__circle->setEnabled(false);
+        //bt__circle->setEnabled(false);
     }
 
 }
@@ -197,7 +203,7 @@ void Level_1::addCircle(){
         circle.m_radius = 21.0;
         addcircle1 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
         vect.push_back(addcircle1);
-        bt__rect->setText("Rectangle (2)");
+        //bt__rect->setText("Rectangle (2)");
         bt__circle->setText("Circle (2)");
         addcircle1->draw();
 
@@ -207,7 +213,7 @@ void Level_1::addCircle(){
         circle.m_radius = 21.0;
         addcircle2 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
         vect.push_back(addcircle2);
-        bt__rect->setText("Rectangle (1)");
+        //bt__rect->setText("Rectangle (1)");
         bt__circle->setText("Circle (1)");
         addcircle2->draw();
 
@@ -217,11 +223,11 @@ void Level_1::addCircle(){
         circle.m_radius = 21.0;
         addcircle3 = new Circle(myWorld, level, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
         vect.push_back(addcircle3);
-        bt__rect->setText("Rectangle (0)");
+        //bt__rect->setText("Rectangle (0)");
         bt__circle->setText("Circle (0)");
         addcircle3->draw();
 
-        bt__rect->setEnabled(false);
+        //bt__rect->setEnabled(false);
         bt__circle->setEnabled(false);
 
     }
@@ -419,6 +425,11 @@ void Level_1::rotateLeft(){
 }
 
 void Level_1::rotateRight(){
+
+}
+
+void Level_1::getTime()
+{
 
 }
 

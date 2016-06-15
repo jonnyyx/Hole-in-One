@@ -38,15 +38,16 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
-    void highscoreCounter();
     void reset();
+
     void rotateLeft();
     void rotateRight();
 //    void enableRotation();
 //    void disableRotation();
 
-signals:
-    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+
+    void getTime();
+    void highscoreCounter();
 
 
 
