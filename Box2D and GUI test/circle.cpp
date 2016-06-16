@@ -1,6 +1,8 @@
 #include "circle.h"
 #include "Box2D/Box2D.h"
 #include <QGraphicsScene>
+#include <QDebug>
+#include <level_1.h>
 
 Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
 {
@@ -20,7 +22,7 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 
-    QPixmap bkgnd(":/new/prefix1/paper.png");
+    QPixmap bkgnd(":/pic/paper.png");
     bkgnd.scaled(QSize(42,42));
 
 
@@ -37,14 +39,22 @@ void Circle::draw()
 
 }
 
-void Circle::drawBall()
+bool Circle::drawBall()
 {
+
     b2Vec2 v=body->GetPosition();
     qreal a=body->GetAngle();
     qreal grad=a*(180.0/3.14);
-
-
+    qDebug() << v.x << v.y;
     graphics->setPos(v.x,v.y);
+    float32 dx=519;
+    float32 dy=510.581;
+
+    if (v.x==dx && v.y==dy) //set postition of win for level_1
+        return true;
+    else return false;
+
+
 
 }
 

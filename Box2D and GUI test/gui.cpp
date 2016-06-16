@@ -1,10 +1,10 @@
 #include "gui.h"
-
+#include <QFile>
 #include <QGraphicsTextItem>
+#include <QSound>
 #include "level_1.h"
 #include "level_2.h"
-
-
+#include "qdebug.h"
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -20,11 +20,78 @@ GUI::GUI(QWidget *parent){
     /*!ismute false by default*/
     ismute=false;
 
+
+    /*
+           if (XXXsound -> state() == QMediaPlayer::PlayingState) {
+               if(ismute == false) {
+                   XXXsound -> setVolume(100);
+               }
+               else if(ismute == true) {
+                   XXXsound -> setVolume(0);
+               }
+               XXXsound -> setPosition(0);
+           }
+
+           else if (numsound0->state() == QMediaPlayer::StoppedState) {
+               if(ismute == false) {
+                   XXXsound -> setVolume(100);
+               }
+               else if(ismute == true) {
+                   XXXsound -> setVolume(0);
+               }
+               XXXsound -> play();
+           }
+    */
+
+
 }
+
+
+//Sound
+void GUI::mute()
+{
+    if(ismute==false){
+        ismute=true;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
+    }
+    else if(ismute==true){
+        ismute=false;
+        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
+    }
+}
+
+void GUI::csnd()
+{
+    //QSound::play(":/click.mp3");
+    clicksnd = new QMediaPlayer();
+    clicksnd -> setMedia(QUrl("qrc:/pic/click.mp3"));
+
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(100);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+
+    else if (clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(100);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+}
+
+
 
 void GUI::displayGUI()
 {
-
+    checkLevel();
      /*!create title text*/
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
@@ -38,6 +105,7 @@ void GUI::displayGUI()
     int levelyPos = 270;
     levelpicButton->move(levelxPos,levelyPos);
     connect(levelpicButton, SIGNAL(clicked()), this, SLOT(levelMenu()), Qt::QueuedConnection);
+    connect(levelpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(levelpicButton);
 
     /*!create highscore button*/
@@ -47,6 +115,7 @@ void GUI::displayGUI()
     int scoreyPos = 370;
     scorepicButton->move(scorexPos,scoreyPos);
     connect(scorepicButton, SIGNAL(clicked()), this, SLOT(highscore()), Qt::QueuedConnection);
+    connect(scorepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(scorepicButton);
 
     /*!create help button*/
@@ -56,6 +125,7 @@ void GUI::displayGUI()
     int helpyPos = 470;
     helppicButton->move(helpxPos,helpyPos);
     connect(helppicButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
+    connect(helppicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(helppicButton);
 
     /*!create quit button*/
@@ -64,6 +134,7 @@ void GUI::displayGUI()
     int quityPos = 570;
     quitpicButton->move(quitxPos,quityPos);
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(quitpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(quitpicButton);
 
     /*!create sound button*/
@@ -78,6 +149,7 @@ void GUI::displayGUI()
 
 void GUI::levelMenu()
 {
+
     scene->clear();
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
@@ -92,31 +164,59 @@ void GUI::levelMenu()
     int oneyPos = 250;
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
+    connect(onepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(onepicButton);
+    qDebug()<<levelenab.isEmpty();
+    if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+        int twoxPos = 348;
+        int twoyPos = 250;
+        twopicButton->move(twoxPos,twoyPos);
+        connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
+        connect(twopicButton, SIGNAL(clicked()), this, SLOT(csnd()));
+        scene->addWidget(twopicButton);
 
-    picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
-    int twoxPos = 348;
-    int twoyPos = 250;
-    twopicButton->move(twoxPos,twoyPos);
-    connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
-    scene->addWidget(twopicButton);
+    }
+    else{
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int twoxPos = 348;
+        int twoyPos = 250;
+        twopicButton->move(twoxPos,twoyPos);
 
+        scene->addWidget(twopicButton);
+    }
+    if(!levelenab.isEmpty()&&levelenab.at(2)=="true\n"){
+            picButton* threepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+            int threexPos = 548;
+            int threeyPos = 250;
+            threepicButton->move(threexPos,threeyPos);
+            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            scene->addWidget(threepicButton);
 
-    picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int threexPos = 548;
-    int threeyPos = 250;
-    threepicButton->move(threexPos,threeyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(threepicButton);
+    }
+    else{
+        picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int threexPos = 548;
+        int threeyPos = 250;
+        threepicButton->move(threexPos,threeyPos);
 
+        scene->addWidget(threepicButton);
+    }
+    if(!levelenab.isEmpty()&&levelenab.at(3)=="true\n"){
+            picButton* fourpicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1disabled.png"));
+            int fourxPos = 748;
+            int fouryPos = 250;
+            fourpicButton->move(fourxPos,fouryPos);
+            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            scene->addWidget(fourpicButton);
 
-    picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int fourxPos = 748;
-    int fouryPos = 250;
-    fourpicButton->move(fourxPos,fouryPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(fourpicButton);
-
+    }else{
+        picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        int fourxPos = 748;
+        int fouryPos = 250;
+        fourpicButton->move(fourxPos,fouryPos);
+        scene->addWidget(fourpicButton);
+    }
 
     picButton* fivepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
     int fivexPos = 148;
@@ -154,11 +254,13 @@ void GUI::levelMenu()
     int backyPos = 650;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
 void GUI::back(){
     scene->clear();
+    ismute=false;
     displayGUI();
 }
 
@@ -180,32 +282,229 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
 
 void GUI::highscore()
 {
+    QStringList object;
+    QStringList scorelevel;
+    QStringList timelevel;
+    for(int i=0;i<levelenab.size();i++){
+        if(levelenab.at(i)=="Highscore\n"){
+            i++;
+            for(int j=i;j<levelenab.size();j++){
+                timelevel+=levelenab.at(j);
+                j++;
+                object+=levelenab.at(j);
+                j++;
+                scorelevel+=levelenab.at(j);
+            }
+        }
+    }
     scene->clear();
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Highscore"));
-    QFont titleFont("comic sans", 40);
+    QFont titleFont("comic sans", 20);
     titleText->setFont(titleFont);
-    int titlexPos = 50;
-    int titleyPos = 80;
+    int titlexPos = 20;
+    int titleyPos = 20;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
-    /*!create level menu button*/
-    Button* level1 = new Button(QString("#1"));
-    int levelxPos = 50;
-    int levelyPos = 150;
-    level1->setPos(levelxPos,levelyPos);
-    connect(level1, SIGNAL(clicked()), this, SLOT(back()));
-    scene->addItem(level1);
+    QGraphicsTextItem* timeText = new QGraphicsTextItem(QString("Time"));
+    QFont timeTextFont("comic sans", 20);
+    timeText->setFont(timeTextFont);
+    int timeTextxPos = 250;
+    int timeTextyPos = 20;
+    timeText->setPos(timeTextxPos,timeTextyPos);
+    scene->addItem(timeText);
+
+    QGraphicsTextItem* objecttext = new QGraphicsTextItem(QString("#Objects"));
+    QFont objecttextFont("comic sans", 20);
+    objecttext->setFont(objecttextFont);
+    int objecttextxPos = 450;
+    int objecttextyPos = 20;
+    objecttext->setPos(objecttextxPos,objecttextyPos);
+    scene->addItem(objecttext);
+
+    QGraphicsTextItem* scoretext = new QGraphicsTextItem(QString("Score"));
+    QFont scoretextFont("comic sans", 20);
+    scoretext->setFont(scoretextFont);
+    int scoretextxPos =750;
+    int scoretextyPos = 20;
+    scoretext->setPos(scoretextxPos,scoretextyPos);
+    scene->addItem(scoretext);
+
+
+    QGraphicsTextItem* level1Text = new QGraphicsTextItem(QString("Level 1"));
+    QFont level1TextFont("comic sans", 20);
+    level1Text->setFont(level1TextFont);
+    int level1TextxPos = 20;
+    int level1TextyPos = 100;
+    level1Text->setPos(level1TextxPos,level1TextyPos);
+    scene->addItem(level1Text);
+
+    QGraphicsTextItem* level2Text = new QGraphicsTextItem(QString("Level 2"));
+    QFont level2TextFont("comic sans", 20);
+    level2Text->setFont(level2TextFont);
+    int level2TextxPos = 20;
+    int level2TextyPos = 200;
+    level2Text->setPos(level2TextxPos,level2TextyPos);
+    scene->addItem(level2Text);
+
+    QGraphicsTextItem* level3Text = new QGraphicsTextItem(QString("Level 3"));
+    QFont level3TextFont("comic sans", 20);
+    level3Text->setFont(level3TextFont);
+    int level3TextxPos = 20;
+    int level3TextyPos = 300;
+    level3Text->setPos(level3TextxPos,level3TextyPos);
+    scene->addItem(level3Text);
+
+    QGraphicsTextItem* level4Text = new QGraphicsTextItem(QString("Level 4"));
+    QFont level4TextFont("comic sans", 20);
+    level4Text->setFont(level4TextFont);
+    int level4TextxPos = 20;
+    int level4TextyPos = 400;
+    level4Text->setPos(level4TextxPos,level4TextyPos);
+    scene->addItem(level4Text);
+
+    QGraphicsTextItem* time1Text = new QGraphicsTextItem(QString("-"));
+    QFont time1Font("comic sans", 20);
+    time1Text->setFont(time1Font);
+    if(!timelevel.isEmpty()){
+        time1Text->setPlainText(timelevel.at(0));
+    }
+    int time1TextxPos = 250;
+    int time1TextyPos = 100;
+    time1Text->setPos(time1TextxPos,time1TextyPos);
+    scene->addItem(time1Text);
+
+    QGraphicsTextItem* time2Text = new QGraphicsTextItem(QString("-"));
+    QFont time2Font("comic sans", 20);
+    time2Text->setFont(time2Font);
+    if(!timelevel.isEmpty()&&timelevel.size()>=2){
+        time2Text->setPlainText(timelevel.at(1));
+    }
+    int time2TextxPos = 250;
+    int time2TextyPos = 200;
+    time2Text->setPos(time2TextxPos,time2TextyPos);
+    scene->addItem(time2Text);
+
+    QGraphicsTextItem* time3Text = new QGraphicsTextItem(QString("-"));
+    QFont time3Font("comic sans", 20);
+    time3Text->setFont(time3Font);
+    if(!timelevel.isEmpty()&&timelevel.size()>=3){
+        time3Text->setPlainText(timelevel.at(2));
+    }
+    int time3TextxPos = 250;
+    int time3TextyPos = 300;
+    time3Text->setPos(time3TextxPos,time3TextyPos);
+    scene->addItem(time3Text);
+
+    QGraphicsTextItem* time4Text = new QGraphicsTextItem(QString("-"));
+    QFont time4Font("comic sans", 20);
+    time4Text->setFont(time4Font);
+    if(!timelevel.isEmpty()&&timelevel.size()>=4){
+        time4Text->setPlainText(timelevel.at(3));
+    }
+    int time4TextxPos = 250;
+    int time4TextyPos = 400;
+    time4Text->setPos(time4TextxPos,time4TextyPos);
+    scene->addItem(time4Text);
+
+    QGraphicsTextItem* object1text = new QGraphicsTextItem(QString("-"));
+    QFont object1Font("comic sans", 20);
+    object1text->setFont(object1Font);
+    if(!object.isEmpty()){
+        object1text->setPlainText(object.at(0));
+    }
+    int object1xPos = 450;
+    int object1yPos = 100;
+    object1text->setPos(object1xPos,object1yPos);
+    scene->addItem(object1text);
+
+    QGraphicsTextItem* object2text = new QGraphicsTextItem(QString("-"));
+    QFont object2Font("comic sans", 20);
+    object2text->setFont(object2Font);
+    if(!object.isEmpty()&&object.size()>=2){
+        object2text->setPlainText(object.at(1));
+    }
+    int object2xPos = 450;
+    int object2yPos = 200;
+    object2text->setPos(object2xPos,object2yPos);
+    scene->addItem(object2text);
+
+    QGraphicsTextItem* object3text = new QGraphicsTextItem(QString("-"));
+    QFont object3Font("comic sans", 20);
+    object3text->setFont(object3Font);
+    if(!object.isEmpty()&&object.size()>=3){
+        object3text->setPlainText(object.at(2));
+    }
+    int object3xPos = 450;
+    int object3yPos = 300;
+    object3text->setPos(object3xPos,object3yPos);
+    scene->addItem(object3text);
+
+    QGraphicsTextItem* object4text = new QGraphicsTextItem(QString("-"));
+    QFont object4Font("comic sans", 20);
+    object4text->setFont(object4Font);
+    if(!object.isEmpty()&&object.size()>=4){
+        object4text->setPlainText(object.at(3));
+    }
+    int object4xPos = 450;
+    int object4yPos = 400;
+    object4text->setPos(object4xPos,object4yPos);
+    scene->addItem(object4text);
+
+    QGraphicsTextItem* score1text = new QGraphicsTextItem(QString("-"));
+    QFont score1textFont("comic sans", 20);
+    score1text->setFont(score1textFont);
+    if(!scorelevel.isEmpty()){
+        score1text->setPlainText(scorelevel.at(0));
+    }
+    int score1textxPos =750;
+    int score1textyPos = 100;
+    score1text->setPos(score1textxPos,score1textyPos);
+    scene->addItem(score1text);
+
+    QGraphicsTextItem* score2text = new QGraphicsTextItem(QString("-"));
+    QFont score2textFont("comic sans", 20);
+    score2text->setFont(score2textFont);
+    if(!scorelevel.isEmpty()&&scorelevel.size()>=2){
+        score2text->setPlainText(scorelevel.at(1));
+    }
+    int score2textxPos =750;
+    int score2textyPos = 200;
+    score2text->setPos(score2textxPos,score2textyPos);
+    scene->addItem(score2text);
+
+    QGraphicsTextItem* score3text = new QGraphicsTextItem(QString("-"));
+    QFont score3textFont("comic sans", 20);
+    score3text->setFont(score3textFont);
+    if(!scorelevel.isEmpty()&&scorelevel.size()>=3){
+        score3text->setPlainText(scorelevel.at(2));
+    }
+    int score3textxPos =750;
+    int score3textyPos = 300;
+    score3text->setPos(score3textxPos,score3textyPos);
+    scene->addItem(score3text);
+
+    QGraphicsTextItem* score4text = new QGraphicsTextItem(QString("-"));
+    QFont score4textFont("comic sans", 20);
+    score4text->setFont(score4textFont);
+    if(!scorelevel.isEmpty()&&scorelevel.size()>=4){
+        score4text->setPlainText(scorelevel.at(3));
+    }
+    int score4textxPos =750;
+    int score4textyPos = 400;
+    score4text->setPos(score4textxPos,score4textyPos);
+    scene->addItem(score4text);
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
     int backyPos = 550;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
-   
+
 }
 
 void GUI::help()
@@ -264,6 +563,7 @@ void GUI::help()
     int boxyPos = 412;
     boxButton->setPos(boxxPos,boxyPos);
     connect(boxButton, SIGNAL(clicked()), this, SLOT(box()));
+    connect(boxButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(boxButton);
 
     Button* cirlceButton = new Button(QString("Cirlce"));
@@ -272,6 +572,7 @@ void GUI::help()
     int cirlceyPos = 412;
     cirlceButton->setPos(cirlcexPos,cirlceyPos);
     connect(cirlceButton, SIGNAL(clicked()), this, SLOT(circle()));
+    connect(cirlceButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(cirlceButton);
 
 
@@ -281,6 +582,7 @@ void GUI::help()
     int triangleyPos = 412;
     triangleButton->setPos(trianglexPos,triangleyPos);
     connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()));
+    connect(triangleButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(triangleButton);
 
     Button* springButton = new Button(QString("Spring"));
@@ -289,6 +591,7 @@ void GUI::help()
     int springyPos = 412;
     springButton->setPos(springxPos,springyPos);
     connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
+    connect(springButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(springButton);
 
     Button* trampolineButton = new Button(QString("Trampoline"));
@@ -297,6 +600,7 @@ void GUI::help()
     int trampolineyPos = 412;
     trampolineButton->setPos(trampolinexPos,trampolineyPos);
     connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
+    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(trampolineButton);
 
     Button* conveyorButton = new Button(QString("Conveyor"));
@@ -305,6 +609,7 @@ void GUI::help()
     int conveyoryPos = 412;
     conveyorButton->setPos(conveyorxPos,conveyoryPos);
     connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
+    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(conveyorButton);
 
 
@@ -348,23 +653,14 @@ void GUI::help()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
 }
 
-void GUI::mute()
-{
 
 
-    if(ismute==false){
-        ismute=true;
-        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
-    }
-    else if(ismute==true){
-        ismute=false;
-        mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
-    }
-}
+
 
 void GUI::box()
 {
@@ -406,6 +702,7 @@ void GUI::box()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -446,6 +743,7 @@ void GUI::circle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -489,6 +787,7 @@ void GUI::triangle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -531,6 +830,7 @@ void GUI::spring()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -573,6 +873,7 @@ void GUI::trampoline()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
@@ -615,5 +916,20 @@ void GUI::conveyor()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
+
+void GUI::checkLevel(){
+    QFile file("level1.txt");
+    if(file.exists()==true){
+        file.open(QIODevice::ReadOnly |QIODevice::Text);
+
+        while(!file.atEnd()){
+            levelenab+=file.readLine();
+        }
+        qDebug()<< levelenab;
+        file.close();
+    }
+}
+

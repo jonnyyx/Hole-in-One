@@ -3,10 +3,11 @@
 #include "Box2D/Box2D.h"
 #include"QGraphicsItem"
 #include<QPointF>
+#include "meinelement.h"
 
-
-class Circle
+class Circle : public QObject
 {
+
 public:
     Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle);
 
@@ -15,7 +16,7 @@ public:
 
     b2Body* body;
     QGraphicsItem* graphics;
-    void drawBall();
+    bool drawBall();
     void drawGraphics();
 };
 

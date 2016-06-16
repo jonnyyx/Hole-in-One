@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
+
 greaterThan(QT_MAJOR_VERSION, 4){
 CONFIG += c++11
 } else {
@@ -69,10 +71,12 @@ SOURCES += main.cpp\
     gui.cpp \
     picbutton.cpp \
     level_1.cpp \
+    triangle.cpp\
     circle.cpp \
     block.cpp\
-    level_2.cpp \
+    level_2.cpp\
     recyclebin.cpp
+
 
 
 HEADERS  += \
@@ -129,9 +133,10 @@ HEADERS  += \
     main.h \
     picbutton.h \
     level_1.h \
+    triangle.h\
     circle.h\
     block.h \
-   level_2.h \
+   level_2.h\
     recyclebin.h
 
 
@@ -139,5 +144,6 @@ DISTFILES += \
     paper.png
 
 RESOURCES += \
-    pic.qrc \
+    src.qrc \
     images.qrc
+

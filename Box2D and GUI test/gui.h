@@ -4,6 +4,8 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QMediaPlayer>
+#include <QSound>
 #include <button.h>
 #include <picbutton.h>
 
@@ -23,6 +25,7 @@ public:
 
     bool ismute;
 
+
 public slots:
     void levelMenu();   //for level menu-button
     void highscore();   //for highscore menu-button
@@ -30,7 +33,7 @@ public slots:
     void showLevel1();
     void showLevel2();
     void help();        //for help-menu-button
-    void mute();        //for mute-button
+
     void box();         //instruction-button for rect
     void circle();      //instruction-button for circle
     void triangle();    //instruction-button for triangle
@@ -38,8 +41,14 @@ public slots:
     void trampoline();  //instruction-button for trampoline
     void conveyor();    //instruction-button for conveyor
 
-private:
+    //sound slots
+    void mute();        //for mute-button
+    void csnd();
 
+private:
+    void checkLevel();
+    QStringList levelenab;
+    QMediaPlayer *clicksnd;
 
 };
 
