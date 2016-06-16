@@ -4,7 +4,7 @@
 #include <QSize>
 #include <qdebug.h>
 
-Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type)
+Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction)
 {
     b2BodyDef myBodyDef;
     myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
@@ -23,6 +23,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 
     b2FixtureDef triangleFixtureDef;
     triangleFixtureDef.shape = &polygon; //change the shape of the fixture
+    triangleFixtureDef.friction=friction;
     body->CreateFixture(&triangleFixtureDef); //add a fixture to the body
 
     QPolygonF triangle;
@@ -30,6 +31,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     graphics = level->addPolygon(triangle);
 
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+    graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
 void Triangle::draw()

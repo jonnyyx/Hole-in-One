@@ -16,7 +16,9 @@
 #include "gui.h"
 #include <QItemSelection>
 
-#include <block.h>
+#include "block.h"
+
+
 
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
@@ -29,7 +31,8 @@ public:
     Level_1(QWidget *parent = 0);
     //void displayLevel();
 
-    std::vector<QObject*> vect;
+    std::vector<Block*> vectb;
+    std::vector<Triangle*> vectt;
 
 public slots:
     void update();

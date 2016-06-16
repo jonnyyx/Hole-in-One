@@ -3,6 +3,7 @@
 #include"Box2D/Box2D.h"
 #include"QGraphicsItem"
 #include<QPointF>
+#include "meinelement.h"
 
 class MainWindow;
 
@@ -13,7 +14,8 @@ public:
     void draw();
     void drawGraphics();
     void drawRec(int x,int y);
-    void rotate();
+    void rotateleft();
+    void rotateright();
 
 
     b2Body* body;
