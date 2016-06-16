@@ -37,14 +37,26 @@ void Circle::draw()
 
 }
 
-void Circle::drawBall()
+bool Circle::drawBall()
 {
     b2Vec2 v=body->GetPosition();
     qreal a=body->GetAngle();
     qreal grad=a*(180.0/3.14);
-
-
+//  qDebug() << v.x << v.y;
     graphics->setPos(v.x,v.y);
+
+    qreal dx=519;
+    qreal dy=510;
+
+	if ((v.x<=dx)&&(v.y>=dy)){ //set postition of win for level_1
+        return true;
+    }
+    else{
+        return false;
+    }
+
+	
+
 
 }
 
