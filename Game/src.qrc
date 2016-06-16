@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/pic">
+        <file>paper.png</file>
+        <file>dummy.png</file>
+        <file>click.mp3</file>
+    </qresource>
+</RCC>
