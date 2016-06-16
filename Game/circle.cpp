@@ -48,7 +48,7 @@ bool Circle::drawBall()
     qreal dx=519;
     qreal dy=510;
 
-	if ((v.x<=dx)&&(v.y>=dy)){ //set postition of win for level_1
+	if ((v.x<=dx)&&(v.x>=517)&&(v.y>=dy)){ //set postition of win for level_1
         return true;
     }
     else{
