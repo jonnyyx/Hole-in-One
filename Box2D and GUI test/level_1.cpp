@@ -400,7 +400,7 @@ void Level_1::showLevel(){
      obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
 
      obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-     rechteck1 = new Block(myWorld, level, b2Vec2 (45.0,170.0), 0, 100, 40, b2_staticBody,1.0);
+     rechteck1 = new Block(myWorld, level, b2Vec2 (50,20), 0, 100, 40, b2_staticBody,1.0);
 	 recyclebin1 = new RecycleBin(myWorld, level, QPointF(200,200),QPointF(210,200),QPointF(230,260),QPointF(220,260), 0.0, b2_staticBody, 0.5);
 	 recyclebin2 = new RecycleBin(myWorld, level, QPointF(250,260),QPointF(270,200),QPointF(280,200),QPointF(260,260), 0.0, b2_staticBody, 0.5);
 

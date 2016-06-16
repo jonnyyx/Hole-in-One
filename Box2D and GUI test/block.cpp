@@ -26,8 +26,8 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
 //  poly->setVisible(true);
 
 
-    int x=center.x-length/4;
-    int y=center.y-width/4;
+    int x=center.x-length/2;
+    int y=center.y-width/2;
 
     QRectF polyf(QPoint(x,y),QSize(length,width));
     graphics = level->addRect(polyf);
@@ -35,9 +35,9 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
 
 
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    graphics->setTransformOriginPoint(length/2,width/2);
 
-
-    drawRec(x+length/2,y+width/2);
+    drawRec(x,y);
 
 }
 
