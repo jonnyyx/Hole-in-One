@@ -336,7 +336,7 @@ void Level_1::quitLevel()
     QTextStream out(&file);
 
 
-    out.reset();
+
     out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
 
@@ -504,21 +504,29 @@ void Level_1::rotateLeft(){
     if(counterRec==1){
         if(elem4->graphics->isSelected()){
             elem4->rotateleft();
-
         }
     }
     if(counterRec==2){
-        if(elem5->graphics->isSelected()){
-            elem5->rotateleft();
+        if(elem4->graphics->isSelected()){
+            elem4->rotateleft();
+        }
 
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateleft();
         }
     }
 
     if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateleft();
+        }
 
-        if(elem6->graphics->isSelected()){
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateleft();
+        }
+
+        else if(elem6->graphics->isSelected()){
             elem6->rotateleft();
-
         }
     }
 
@@ -545,14 +553,25 @@ void Level_1::rotateRight(){
         }
     }
     if(counterRec==2){
-        if(elem5->graphics->isSelected()){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateright();
+        }
+
+        else if(elem5->graphics->isSelected()){
             elem5->rotateright();
         }
     }
 
     if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateright();
+        }
 
-        if(elem6->graphics->isSelected()){
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateright();
+        }
+
+        else if(elem6->graphics->isSelected()){
             elem6->rotateright();
         }
     }
