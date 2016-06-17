@@ -158,7 +158,7 @@ void GUI::levelMenu()
 
     scene->addItem(titleText);
 
-    levelenab[2]="true";
+    //levelenab[2]="true";
 
     /*!create level menu button*/
     picButton* onepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
