@@ -6,6 +6,8 @@
 #include <qdebug.h>
 #include <QFile>
 #include <QTextStream>
+#include "string"
+
 
 using namespace std;
 
@@ -49,6 +51,17 @@ void Level_1::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 1");
         level->addItem(winText);
+        QGraphicsTextItem * timeText = new QGraphicsTextItem;
+        timeText->setPos(400,350);
+        QString time = QString("Time: %1").arg(leveltime);
+        qDebug()<<time;
+        timeText->setPlainText( time);
+        level->addItem(timeText);
+        QPushButton* quitLevel = new QPushButton("Quit");
+        quitLevel->move(400,400);
+        level->addWidget(quitLevel);
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+
     }
 
 
@@ -150,15 +163,16 @@ void Level_1::pauseLevel(){
     if(timer!=NULL){
         timer->stop();
     }
-
+    Level_1::getTime();
+    Level_1::highscoreCounter();
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
 
     qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
-    qDebug()<<leveltime;
-    qDebug()<<highscore;
+    //qDebug()<<leveltime;
+    //qDebug()<<highscore;
 }
 
 void Level_1::resumeLevel()
@@ -168,22 +182,7 @@ void Level_1::resumeLevel()
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
 
-    QFile file("level1.txt");
 
-    if(file.exists("level1.txt")){
-       file.remove("level1.txt");
-
-       QFile file("level1.txt");
-    }
-    file.open(QIODevice::WriteOnly |QIODevice::Text);
-    QTextStream out(&file);
-
-
-    out.reset();
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
-
-
-    file.close();
 }
 
 
@@ -322,6 +321,27 @@ void Level_1::reset(){
    
    showLevel();
 
+}
+
+void Level_1::quitLevel()
+{
+    QFile file("level1.txt");
+
+    if(file.exists("level1.txt")){
+       file.remove("level1.txt");
+
+       QFile file("level1.txt");
+    }
+    file.open(QIODevice::WriteOnly |QIODevice::Text);
+    QTextStream out(&file);
+
+
+    out.reset();
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+
+
+    file.close();
+    this->close();
 }
 /*!
  * \brief Level_1::showLevel
@@ -503,7 +523,7 @@ void Level_1::rotateLeft(){
     }
 
     if(triangle1->graphics->isSelected()){
-        //triangle1->rotateleft();
+        triangle1->rotateleft();
 
     }
 
@@ -516,6 +536,7 @@ void Level_1::rotateRight(){
 
     if(rechteck1->graphics->isSelected()){
         rechteck1->rotateright();
+
     }
 
     if(counterRec==1){
@@ -537,7 +558,7 @@ void Level_1::rotateRight(){
     }
 
     if(triangle1->graphics->isSelected()){
-        //triangle1->rotateright();
+        triangle1->rotateright();
     }
 }
 
