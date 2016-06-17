@@ -335,7 +335,7 @@ void Level_1::quitLevel()
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
 
-
+    //out.reset();
 
     out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
