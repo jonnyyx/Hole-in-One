@@ -41,8 +41,11 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     triangle << a << b << c;
     graphics = level->addPolygon(triangle);
 
+
+    graphics->setTransformOriginPoint(b);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
+
 }
 
 /*!
@@ -66,4 +69,19 @@ void Triangle::drawGraphics()
 {
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
+}
+
+void Triangle::rotateright(){
+
+    qreal a=body->GetAngle();
+    graphics->setRotation(a-30);
+    b2Vec2 b=body->GetPosition();
+    body->SetTransform(b,a-30);
+}
+void Triangle::rotateleft(){
+
+    qreal a=body->GetAngle();
+    graphics->setRotation(a+30);
+    b2Vec2 b=body->GetPosition();
+    body->SetTransform(b,a+30);
 }

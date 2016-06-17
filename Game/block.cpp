@@ -12,13 +12,13 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
-    myBodyDef.gravityScale = 1000.0;
+    myBodyDef.gravityScale = 1.0;
 
     body=world->CreateBody(&myBodyDef);
 
     b2FixtureDef polygonFixtureDef;
     polygonFixtureDef.shape=&polygon;
-    polygonFixtureDef.density=20;
+    polygonFixtureDef.density=1;
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
@@ -35,7 +35,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
 
 
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
-    graphics->setTransformOriginPoint(length/2,width/2);
+    graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
     drawRec(x,y);
 
@@ -60,15 +60,21 @@ void Block::drawRec(int x,int y){
 
 void Block::drawGraphics(){
     QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x(),v.y()),body->GetAngle());
+    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
 }
 
 void Block::rotateright(){
 
     qreal a=body->GetAngle();
+    b2Vec2 p=body->GetPosition();
+    body->SetTransform(p,a-30);
     graphics->setRotation(a-30);
-    b2Vec2 b=body->GetPosition();
-    body->SetTransform(b,a-30);
+    //b2Vec2 b=body->GetPosition();
+    //body->SetTransform(b,a-30);
+    QPointF v=graphics->pos();
+    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),a-30);
+    Block::drawGraphics();
+
 }
 void Block::rotateleft(){
 
@@ -76,4 +82,5 @@ void Block::rotateleft(){
     graphics->setRotation(a+30);
     b2Vec2 b=body->GetPosition();
     body->SetTransform(b,a+30);
+    graphics->setRotation(a+30);
 }

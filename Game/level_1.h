@@ -42,6 +42,7 @@ public slots:
     void addRectangle();
     void addCircle();
     void reset();
+    void quitLevel();
 
     void rotateLeft();
     void rotateRight();

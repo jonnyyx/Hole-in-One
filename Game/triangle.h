@@ -18,6 +18,8 @@ public:
 
     void draw();
     void drawGraphics();
+    void rotateleft();
+    void rotateright();
 
     b2Body* body;
     QGraphicsItem* graphics;
