@@ -12,6 +12,10 @@ GUI::GUI(QWidget *parent){
     setFixedSize(1024,768);
     setBackgroundBrush(QBrush(QColor(191,153,89), Qt::SolidPattern));
 
+
+    /*!Set Application-Name*/
+    setWindowTitle(tr("Hole in One"));
+
     /*!Scene setup*/
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1024,768);

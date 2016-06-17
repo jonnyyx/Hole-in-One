@@ -75,7 +75,8 @@ SOURCES += main.cpp\
     circle.cpp \
     block.cpp\
     level_2.cpp\
-    recyclebin.cpp
+    recyclebin.cpp \
+    paperball.cpp
 
 
 
@@ -137,7 +138,8 @@ HEADERS  += \
     circle.h\
     block.h \
    level_2.h\
-    recyclebin.h
+    recyclebin.h \
+    paperball.h
 
 
 DISTFILES += \
@@ -147,3 +149,4 @@ RESOURCES += \
     src.qrc \
     images.qrc
 
+RC_ICONS = Icon.ico \
