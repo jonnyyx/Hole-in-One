@@ -1,8 +1,6 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
-#endif // TRIANGLE_H
-
 #include"Box2D/Box2D.h"
 #include"QGraphicsItem"
 #include<QPointF>
@@ -27,3 +25,5 @@ public:
 private:
 
 };
+
+#endif // TRIANGLE_H

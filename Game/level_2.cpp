@@ -1,16 +1,15 @@
 #include "level_2.h"
-#include "meinelement.h"
 #include <iostream>
 #include <QTime>
 #include <QTimer>
 #include <QElapsedTimer>
 #include <qdebug.h>
-#include <circle.h>
-#include <block.h>
+#include <QFile>
+#include <QTextStream>
+#include "string"
 
 
-
-
+using namespace std;
 
 
 Level_2::Level_2(QWidget *parent)
@@ -27,143 +26,88 @@ Level_2::Level_2(QWidget *parent)
     level2->setSceneRect(0,0,1024,768);
     setScene(level2);
 
-
-
-   //Start Button
-    bt_start=new QPushButton();
-    bt_start->setText("Start");
-    bt_start->move(900.0,620.0);
-    connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
-    level2->addWidget(bt_start);
-
-
-    //Pause Button
-    bt_pause=new QPushButton();
-    bt_pause->setText("Pause");
-    bt_pause->setEnabled(false);
-    bt_pause->move(900.0,660.0);
-
-    connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
-    level2->addWidget(bt_pause);
-
-    //Resume Button
-    bt__resume=new QPushButton();
-    bt__resume->setText("Resume");
-    bt__resume->setEnabled(false);
-    bt__resume->move(900.0,700.0);
-    connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
-    level2->addWidget(bt__resume);
-
-    //Rect Button
-    bt__rect=new QPushButton();
-    bt__rect->setText("Rectangle");
-    bt__rect->setEnabled(true);
-    bt__rect->move(200.0,700.0);
-    connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
-    level2->addWidget(bt__rect);
-
-    //Circle Button
-    bt__circle=new QPushButton();
-    bt__circle->setText("Circle");
-    bt__circle->setEnabled(true);
-    bt__circle->move(400.0,700.0);
-    connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
-    level2->addWidget(bt__circle);
-
-
-
-
-
-
-
-
-    b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
-
-    myWorld = new b2World(gravity);
-
-    float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
-    int32 velocityIterations = 8.0;   //how strongly to correct velocity
-    int32 positionIterations = 3.0;   //how strongly to correct position
-
-    myWorld->Step(timeStep, velocityIterations, positionIterations);
-
-    b2CircleShape circle;
-    circle.m_radius = 21.0;
-
-    //b2PolygonShape polygon;  //manchmal ist b2PolygonShape.SetBox(hx,hy) nötig //Assertion error
-    //polygon.SetAsBox(1.0,1.0);
-
-
-
-
-    ball  = new Circle(myWorld, level2, QPointF(81.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
-    obstaclescircle1 = new Circle(myWorld, level2, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-    obstaclescircle2 = new Circle(myWorld, level2, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-    rechteck1 = new Block(myWorld, level2, b2Vec2 (45.0,170.0), 0, 100, 100, b2_staticBody,1.0);
-
-    //elem3 = new MeinElement(myWorld, level2, QPointF(330.0,200.0), QPointF(400.0,200.0), QPointF(400.0,300.0), QPointF(330.0,300.0), b2_staticBody, polygon);
-    bottom= new MeinElement(myWorld, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody,20.0);
-    //anzahl=myWorld->GetBodyCount();
-    //positionElem=elem->body->GetPosition(); //falls sich neues Objakt bewegen soll, muss >> positionElem=elemX->body->GetPosition();
-
-    ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
-    obstaclescircle2->draw();
-    //rechteck1->draw();
-    //elem3->drawRec(elem3->body->GetPosition());
-    bottom->drawBottom();
-
-
+    showLevel();
 
 
 }
-
-/*void Level_2::displayLevel(){
-
-    QPixmap bkgnd(":/new/prefix1/paper.png");
-    //bkgnd.scaled(10,Qt::IgnoreAspectRatio);
-
-    level2->addPixmap(bkgnd);
-
-}
-*/
 
 void Level_2::update(){
-    myWorld->Step(framerate, 20, 20);
-    ball->drawBall(); //nur bewegende Elemente in Update
+    myWorld2->Step(framerate, 20, 20);
+    win = ball->drawBall(); //nur bewegende Elemente in Update
+
+        if (win==true){
+        Level_2::pauseLevel();
+        QGraphicsTextItem * winText = new QGraphicsTextItem;
+        winText->setPos(400,300);
+        winText->setPlainText("You have finished Level 2");
+        level2->addItem(winText);
+        QGraphicsTextItem * timeText = new QGraphicsTextItem;
+        timeText->setPos(400,350);
+        QString time = QString("Time: %1").arg(leveltime);
+        timeText->setPlainText( time);
+        level2->addItem(timeText);
+        QPushButton* quitLevel = new QPushButton("Quit");
+        quitLevel->move(400,400);
+        level2->addWidget(quitLevel);
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+    }
 
 }
 
+/*!
+ * \brief Level_1::startLevel
+ * Set the flag of the QGraphicsItem, after click Start.
+ */
 void Level_2::startLevel(){
 
     rechteck1->drawGraphics();
+
+    triangle1->drawGraphics();
+
+    recyclebin1->drawGraphics();
+    recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    recyclebin2->drawGraphics();
+    recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->drawGraphics();
-    obstaclescircle2->drawGraphics();
+    //obstaclescircle2->drawGraphics();
+
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    rechteck1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    triangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    triangle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
 
 
     if(counterRec==1){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
 
     if(counterRec==2){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
         elem5->drawGraphics();
         elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem5->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
 
     if(counterRec==3){
         elem4->drawGraphics();
         elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
         elem5->drawGraphics();
         elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem5->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
         elem6->drawGraphics();
         elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        elem6->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
 
     if(counterCircle==1){
@@ -195,19 +139,28 @@ void Level_2::startLevel(){
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
+    bt__rect->setEnabled(false);
+    bt__circle->setEnabled(false);
+
 
     leveltime_elapsed.start();
-    leveltime_normal.start();
 
 }
+
 void Level_2::pauseLevel(){
-    timer->stop();
+    if(timer!=NULL){
+        timer->stop();
+    }
+    Level_2::getTime();
+    Level_2::highscoreCounter();
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
 
+    qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
-    qDebug()<<leveltime_normal.elapsed()<<"milliseconds";
+    //qDebug()<<leveltime;
+    //qDebug()<<highscore;
 }
 
 void Level_2::resumeLevel()
@@ -216,8 +169,8 @@ void Level_2::resumeLevel()
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
-}
 
+}
 
 void Level_2::addRectangle()
 {
@@ -225,17 +178,25 @@ void Level_2::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+
+        bt__rect->setText("Rectangle (2)");
+        //bt__circle->setText("Circle (2)");
+
         elem4->draw();
     }
 
     else if(counterRec==2){
-        elem5 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+
+        bt__rect->setText("Rectangle (1)");
+        //bt__circle->setText("Circle (1)");
+
         elem5->draw();
     }
 
     else if(counterRec==3){
-        elem6 = new MeinElement(myWorld, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
         elem6->draw();
 
         bt__rect->setEnabled(false);
@@ -244,29 +205,42 @@ void Level_2::addRectangle()
 
 }
 
+/*!
+ * \brief Level_1::addCircle
+ * Create new Circle and count the circle items. If you want to add more than 3 Circle, don't add a new Circle anymore.
+ */
+
 void Level_2::addCircle(){
     counterCircle++;
 
     b2CircleShape circle;
 
-    qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle1 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+
+        bt__circle->setText("Circle (2)");
+
         addcircle1->draw();
 
     }
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle2 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+
+        bt__circle->setText("Circle (1)");
+
         addcircle2->draw();
 
     }
 
     if(counterCircle==3){
         circle.m_radius = 21.0;
-        addcircle3 = new Circle(myWorld, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle3 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+
+        bt__circle->setText("Circle (0)");
+
         addcircle3->draw();
 
         bt__rect->setEnabled(false);
@@ -276,9 +250,287 @@ void Level_2::addCircle(){
 
 }
 
+/*!
+ * \brief Level_1::getTime
+ * Stop time and convert it to ms.
+ */
+void Level_2::getTime(){
+    leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
+    leveltime = leveltime/1000; //leveltime in sec
+}
+
+/*!
+ * \brief Level_1::highscoreCounter
+ * Calculate the highscore.
+ */
+void Level_2::highscoreCounter(){
+
+    counterTogether = counterRec + counterCircle;
+
+    if ( (counterTogether==6)||(counterTogether==5) ){
+        highscore = 1;
+    }
+
+    else if( (counterTogether==4)||(counterTogether==3) ){
+        highscore = 2;
+    }
+
+    else if( (counterTogether==1)||(counterTogether==2)||(counterTogether==0) ){
+        highscore = 3;
+    }
+
+    if ( (leveltime>=30) ){
+        highscore = highscore*1;
+    }
+
+    else if( (leveltime<30)&&(leveltime>=15) ){
+        highscore = highscore*2;
+    }
+
+    else if( (leveltime<15)&&(leveltime>=0) ){
+        highscore = highscore*3;
+    }
+
+    highscore=highscore*100;
+
+}
+
+/*!
+ * \brief Level_1::reset
+ * Clear scene and load Level again.
+ */
+void Level_2::reset(){
+    pauseLevel();
+   level2->clear();
+   counterRec = 0;
+   counterCircle = 0;
+
+   showLevel();
+
+}
+
+void Level_2::quitLevel()
+{
+    QFile file("level2.txt");
+
+    if(file.exists("level2.txt")){
+       file.remove("level2.txt");
+
+       QFile file("level2.txt");
+    }
+    file.open(QIODevice::WriteOnly |QIODevice::Text);
+    QTextStream out(&file);
+
+    //out.reset();
+
+    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
 
+    file.close();
+    this->close();
+}
+
+/*!
+ * \brief Level_1::showLevel
+ * Create all Objects for Level 1.
+ * Connect Buttons with SLOT.
+ */
+void Level_2::showLevel(){
+
+    //Start Button
+
+     bt_start=new QPushButton();
+     bt_start->setText("Start");
+     bt_start->move(900.0,620.0);
+     connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
+     level2->addWidget(bt_start);
 
 
+     //Pause Button
+     bt_pause=new QPushButton();
+     bt_pause->setText("Pause");
+     bt_pause->setEnabled(false);
+     bt_pause->move(900.0,660.0);
+
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(getTime()));
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()));
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
+     level2->addWidget(bt_pause);
+
+     //Resume Button
+     bt__resume=new QPushButton();
+     bt__resume->setText("Resume");
+     bt__resume->setEnabled(false);
+     bt__resume->move(900.0,700.0);
+     connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
+     level2->addWidget(bt__resume);
+
+     //Reset
+     bt__reset=new QPushButton();
+     bt__reset->setText("Reset");
+     bt__reset->setEnabled(true);
+     bt__reset->move(900.0, 740.0);
+     connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
+     level2->addWidget(bt__reset);
+
+     //Rect Button
+     bt__rect=new QPushButton();
+     bt__rect->setText("Rectangle (3)");
+     bt__rect->setEnabled(true);
+     bt__rect->move(200.0,700.0);
+     connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
+     level2->addWidget(bt__rect);
+
+     //Circle Button
+     bt__circle=new QPushButton();
+     bt__circle->setText("Circle  (3)");
+     bt__circle->setEnabled(true);
+     bt__circle->move(400.0,700.0);
+     connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
+     level2->addWidget(bt__circle);
+
+     //Rotate Left
+     bt__left=new QPushButton();
+     bt__left->setText("Rotate Left");
+     bt__left->setEnabled(true);
+     bt__left->move(5.0,650.0);
+     connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()));
+     level2->addWidget(bt__left);
+
+     //Rotate Left
+     bt__right=new QPushButton();
+     bt__right->setText("Rotate Right");
+     bt__right->setEnabled(true);
+     bt__right->move(105.0,650.0);
+     connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()));
+     level2->addWidget(bt__right);
 
 
+     b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
+     myWorld2 = new b2World(gravity);
+
+     float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
+     int32 velocityIterations = 8.0;   //how strongly to correct velocity
+     int32 positionIterations = 3.0;   //how strongly to correct position
+
+     myWorld2->Step(timeStep, velocityIterations, positionIterations);
+
+     b2CircleShape circle;
+     circle.m_radius = 21.0;
+
+     umrandung1 = new MeinElement(myWorld2,level2, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
+     umrandung2 = new MeinElement(myWorld2,level2, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
+
+     ball  = new Circle(myWorld2, level2, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     obstaclescircle1 = new Circle(myWorld2, level2, QPointF(400.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+     rechteck1 = new Block(myWorld2, level2, b2Vec2 (300,150), 0, 100, 40, b2_staticBody,1.0);
+     recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(530,508),QPointF(540,508),QPointF(560,568),QPointF(550,568), 0.0, b2_staticBody, 0.5);
+     recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(580,568),QPointF(600,508),QPointF(610,508),QPointF(590,568), 0.0, b2_staticBody, 0.5);
+
+     triangle1 = new Triangle(myWorld2, level2, QPointF(160.0,100.0), QPointF(260.0,100.0), QPointF(260.0,200.0), 0, b2_staticBody, 1.0);
+
+     bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);
+
+     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
+     obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
+     //obstaclescircle2->draw();
+     ball->drawBall();
+
+     bottom->drawBottom();
+
+     umrandung2->graphics->hide();
+
+}
+
+
+//void Level_1::enableRotation(){
+//    bt__left->setEnabled(true);
+//    bt__right->setEnabled(true);
+//}
+
+//void Level_1::disableRotation(){
+
+//}
+
+void Level_2::rotateLeft(){
+
+    if(rechteck1->graphics->isSelected()){
+        rechteck1->rotateleft();
+
+    }
+
+    if(counterRec==1){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateleft();
+        }
+    }
+    if(counterRec==2){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateleft();
+        }
+
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateleft();
+        }
+    }
+
+    if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateleft();
+        }
+
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateleft();
+        }
+
+        else if(elem6->graphics->isSelected()){
+            elem6->rotateleft();
+        }
+    }
+
+    if(triangle1->graphics->isSelected()){
+        triangle1->rotateleft();
+    }
+
+}
+
+void Level_2::rotateRight(){
+
+    if(rechteck1->graphics->isSelected()){
+        rechteck1->rotateright();
+    }
+
+    if(counterRec==1){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateright();
+        }
+    }
+    if(counterRec==2){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateright();
+        }
+
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateright();
+        }
+    }
+
+    if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            elem4->rotateright();
+        }
+
+        else if(elem5->graphics->isSelected()){
+            elem5->rotateright();
+        }
+
+        else if(elem6->graphics->isSelected()){
+            elem6->rotateright();
+        }
+    }
+
+    if(triangle1->graphics->isSelected()){
+        triangle1->rotateright();
+    }
+}
