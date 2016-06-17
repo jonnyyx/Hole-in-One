@@ -13,5 +13,8 @@
         <file>triangle_tool.png</file>
         <file>music.mp3</file>
         <file>Icon.ico</file>
+        <file>block_bttn.png</file>
+        <file>circle_bttn.png</file>
+        <file>triangle_bttn.png</file>
     </qresource>
 </RCC>
