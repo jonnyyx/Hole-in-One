@@ -444,41 +444,42 @@ void Level_2::showLevel(){
 void Level_2::rotateLeft(){
 
     if(rechteck1->graphics->isSelected()){
-        rechteck1->rotateleft();
+
 
     }
 
     if(counterRec==1){
         if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
+
         }
+
     }
     if(counterRec==2){
         if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
+
         }
 
         else if(elem5->graphics->isSelected()){
-            elem5->rotateleft();
+
         }
     }
 
     if(counterRec==3){
         if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
+
         }
 
         else if(elem5->graphics->isSelected()){
-            elem5->rotateleft();
+
         }
 
         else if(elem6->graphics->isSelected()){
-            elem6->rotateleft();
+
         }
     }
 
     if(triangle1->graphics->isSelected()){
-        triangle1->rotateleft();
+
     }
 
 }
@@ -486,39 +487,40 @@ void Level_2::rotateLeft(){
 void Level_2::rotateRight(){
 
     if(rechteck1->graphics->isSelected()){
-        rechteck1->rotateright();
+
     }
 
     if(counterRec==1){
         if(elem4->graphics->isSelected()){
-            elem4->rotateright();
+
         }
+
     }
     if(counterRec==2){
         if(elem4->graphics->isSelected()){
-            elem4->rotateright();
+
         }
 
         else if(elem5->graphics->isSelected()){
-            elem5->rotateright();
+
         }
     }
 
     if(counterRec==3){
         if(elem4->graphics->isSelected()){
-            elem4->rotateright();
+
         }
 
         else if(elem5->graphics->isSelected()){
-            elem5->rotateright();
+
         }
 
         else if(elem6->graphics->isSelected()){
-            elem6->rotateright();
+
         }
     }
 
     if(triangle1->graphics->isSelected()){
-        triangle1->rotateright();
+
     }
 }

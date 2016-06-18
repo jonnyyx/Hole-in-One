@@ -10,14 +10,13 @@ class MainWindow;
 class Block : public QObject
 {
 public:
-    Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction);
+    Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal length, qreal width, b2BodyType type, qreal friction);
     void draw();
     void drawGraphics();
     void drawRec(int x,int y);
-    void rotateleft();
-    void rotateright();
 
 
+    qreal angle;
     b2Body* body;
     QGraphicsItem* graphics;
 

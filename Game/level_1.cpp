@@ -424,7 +424,7 @@ void Level_1::showLevel(){
      ball  = new Circle(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
      //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-     rechteck1 = new Block(myWorld, level, b2Vec2 (290,200), 0, 100, 40, b2_staticBody,1.0);
+     rechteck1 = new Block(myWorld, level, b2Vec2 (290,200),0 , 100, 40, b2_staticBody,1.0);
 	 recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
      recyclebin2 = new RecycleBin2(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
@@ -447,35 +447,40 @@ void Level_1::showLevel(){
 void Level_1::rotateLeft(){
 
     if(rechteck1->graphics->isSelected()){
-        rechteck1->rotateleft();
+        qreal angle=rechteck1->angle-0.5235;
+        qreal degreeangle=angle*180/3.1415;
+        level->removeItem(rechteck1->graphics);
+        rechteck1 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1->graphics->setRotation(degreeangle);
+
     }
 
     if(counterRec==1){
         if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
+            qreal angle=elem4->angle-0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
         }
     }
     if(counterRec==2){
-        if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
-        }
-
-        else if(elem5->graphics->isSelected()){
-            elem5->rotateleft();
+       if(elem5->graphics->isSelected()){
+           qreal angle=elem5->angle-0.5235;
+           qreal degreeangle=angle*180/3.1415;
+           level->removeItem(elem5->graphics);
+           elem5 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+           elem5->graphics->setRotation(degreeangle);
         }
     }
 
     if(counterRec==3){
-        if(elem4->graphics->isSelected()){
-            elem4->rotateleft();
-        }
-
-        else if(elem5->graphics->isSelected()){
-            elem5->rotateleft();
-        }
-
-        else if(elem6->graphics->isSelected()){
-            elem6->rotateleft();
+        if(elem6->graphics->isSelected()){
+            qreal angle=elem6->angle-0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem6->graphics);
+            elem6 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem6->graphics->setRotation(degreeangle);
         }
     }
 
@@ -491,42 +496,46 @@ void Level_1::rotateLeft(){
 void Level_1::rotateRight(){
 
     if(rechteck1->graphics->isSelected()){
-        rechteck1->rotateright();
+        //rechteck1->rotateright();
+        qreal angle=rechteck1->angle+0.5235;
+        qreal degreeangle=angle*180/3.1415;
+        level->removeItem(rechteck1->graphics);
+        rechteck1 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1->graphics->setRotation(degreeangle);
 
     }
 
     if(counterRec==1){
         if(elem4->graphics->isSelected()){
-            elem4->rotateright();
+            qreal angle=elem4->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
         }
     }
     if(counterRec==2){
-        if(elem4->graphics->isSelected()){
-            elem4->rotateright();
-        }
 
-        else if(elem5->graphics->isSelected()){
-            elem5->rotateright();
+        if(elem5->graphics->isSelected()){
+            qreal angle=elem5->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem5->graphics);
+            elem5 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem5->graphics->setRotation(degreeangle);
         }
     }
 
     if(counterRec==3){
-        if(elem4->graphics->isSelected()){
-            elem4->rotateright();
-        }
-
-        else if(elem5->graphics->isSelected()){
-            elem5->rotateright();
-        }
-
-        else if(elem6->graphics->isSelected()){
-            elem6->rotateright();
+       if(elem6->graphics->isSelected()){
+           qreal angle=elem6->angle+0.5235;
+           qreal degreeangle=angle*180/3.1415;
+           level->removeItem(elem6->graphics);
+           elem6 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+           elem6->graphics->setRotation(degreeangle);
         }
     }
 
-//    if(triangle1->graphics->isSelected()){
-//        triangle1->rotateright();
-//    }
+
 }
 
 
