@@ -5,8 +5,9 @@
 #include <qdebug.h>
 
 
-Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, qreal length, qreal width, b2BodyType type, qreal friction)
+Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal length, qreal width, b2BodyType type, qreal friction)
 {
+    angle=m_angle;
     b2PolygonShape polygon;
     polygon.SetAsBox(length/2, width/2, center, angle);
     b2BodyDef myBodyDef;
@@ -30,9 +31,10 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
     int y=center.y-width/2;
 
     QRectF polyf(QPoint(x,y),QSize(length,width));
+
     graphics = level->addRect(polyf);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
-
+    graphics->setRotation(30);
 
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
@@ -60,32 +62,6 @@ void Block::drawRec(int x,int y){
 
 void Block::drawGraphics(){
     QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
+    body->SetTransform(b2Vec2(v.x()-21,v.y()-20),body->GetAngle());
 }
 
-void Block::rotateright(){
-    Block::drawGraphics();
-    QPointF v=graphics->pos();
-    qreal a=body->GetAngle();
-    //b2Vec2 p=body->GetPosition();
-    body->SetTransform(b2Vec2(v.x(),v.y()),0); // FEHLER bei 0 wird der body nicht gedreht und der Ball fällt nicht durch
-    // bei angle ungleich 0 wird der body irgendwohin verschoben und ich checks nicht...
-    //ansonsten müsst so passen, man kann das rechteck irgendwo hin machen und es wird an der stelle dann gedreht.
-
-    graphics->setRotation(a-30);
-
-    //b2Vec2 b=body->GetPosition();
-    //body->SetTransform(b,a-30);
-    //QPointF v=graphics->pos();
-    //body->SetTransform(b2Vec2(v.x()-21,v.y()-21),a-30);
-    //Block::drawGraphics();
-
-}
-void Block::rotateleft(){
-
-    qreal a=body->GetAngle();
-    graphics->setRotation(a+30);
-    b2Vec2 b=body->GetPosition();
-    body->SetTransform(b,a+30);
-    graphics->setRotation(a+30);
-}

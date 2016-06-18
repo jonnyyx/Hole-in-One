@@ -34,6 +34,7 @@ public:
     std::vector<Block*> vectb;
     std::vector<Triangle*> vectt;
 
+
 public slots:
     void update();
     void startLevel();
