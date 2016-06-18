@@ -37,9 +37,6 @@ RecycleBin2::RecycleBin2(b2World *world, QGraphicsScene *level, QPointF a, QPoin
     //QGraphicsPolygonItem *polygon2 = new QGraphicsPolygonItem();
     //polygon2->setVisible(true);
 
-    QPixmap bkgnd(":/pic/basket.png");
-    bkgnd.scaled(QSize(86,86));
-    graphics = level->addPixmap(bkgnd);
 
     graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 

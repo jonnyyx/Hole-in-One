@@ -15,6 +15,7 @@
 #include "circle.h"
 #include "gui.h"
 #include <QItemSelection>
+#include <paperball.h>
 
 #include "block.h"
 
@@ -75,7 +76,7 @@ private:
 
     //fixed Elements
 
-    Circle* ball;
+    Paperball* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
 
