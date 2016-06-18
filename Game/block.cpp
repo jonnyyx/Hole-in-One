@@ -33,7 +33,6 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal angle, 
     graphics = level->addRect(polyf);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
-
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
@@ -61,6 +60,7 @@ void Block::drawRec(int x,int y){
 void Block::drawGraphics(){
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
+
 }
 
 void Block::rotateright(){
