@@ -39,8 +39,12 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 
     QPolygonF triangle;
     triangle << a << b << c;
-    graphics = level->addPolygon(triangle);
+//    graphics = level->addPolygon(triangle);
 
+    QPixmap bkgnd(":/pic/triangle_tool.png");
+    bkgnd.scaled(QSize(100,100));
+    graphics = level->addPixmap(bkgnd);
+    graphics->setPos(a);
 
     graphics->setTransformOriginPoint(b);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);

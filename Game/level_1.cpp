@@ -196,7 +196,7 @@ void Level_1::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 40, b2_staticBody,1.0);
 
         bt__rect->setText("Rectangle (2)");
         //bt__circle->setText("Circle (2)");
@@ -205,7 +205,7 @@ void Level_1::addRectangle()
     }
 
     else if(counterRec==2){
-        elem5 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 40, b2_staticBody,1.0);
 
         bt__rect->setText("Rectangle (1)");
         //bt__circle->setText("Circle (1)");
@@ -214,7 +214,7 @@ void Level_1::addRectangle()
     }
 
     else if(counterRec==3){
-        elem6 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6 = new Block(myWorld, level, b2Vec2 (400.0,400.0), 0, 100, 40, b2_staticBody,1.0);
         elem6->draw();
 
         bt__rect->setEnabled(false);
@@ -332,14 +332,39 @@ void Level_1::quitLevel()
     QFile file("level1.txt");
 
     if(file.exists("level1.txt")){
-       file.remove("level1.txt");
-
-       QFile file("level1.txt");
+        file.open(QIODevice::ReadOnly |QIODevice::Text);
+        levelenab.clear();
+        while(!file.atEnd()){
+            levelenab+=file.readLine();
+        }
+       file.resize(0);
+       file.close();
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
+    out.reset();
+    if(levelenab.size()>0){
+        levelenab.replace(1,"true");
+        levelenab.replace(5,QString::number(leveltime));
+        levelenab.replace(6,QString::number(counterTogether));
+        levelenab.replace(7,QString::number(highscore));
 
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+    }
+    else{
+        levelenab.insert(0,"true");
+        levelenab.insert(1,"false");
+        levelenab.insert(2,"false");
+        levelenab.insert(3,"false");
+        levelenab.insert(4,"Highscore");
+        levelenab.insert(5,QString::number(leveltime));
+        levelenab.insert(6,QString::number(counterTogether));
+        levelenab.insert(7,QString::number(highscore));
+    }
+    for(int i=0;i<levelenab.size();i++){
+
+        out<<levelenab.at(i)<<endl;
+    }
+   // out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
     file.close();
     this->close();
@@ -445,12 +470,14 @@ void Level_1::showLevel(){
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
 
      // game Objects
-     ball  = new Circle(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
-     //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-     //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+     ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      rechteck1 = new Block(myWorld, level, b2Vec2 (290,200),0 , 100, 40, b2_staticBody,1.0);
 	 recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
+     recyclebin1->graphics->setPos(498,505); //Set Graphic of Bin to desired position
      recyclebin2 = new RecycleBin2(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+
+     //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
+     //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
      //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
 
      //so that ball is not moveable like the other objects
@@ -550,7 +577,13 @@ void Level_1::rotateRight(){
         }
     }
     if(counterRec==2){
-
+        if(elem4->graphics->isSelected()){
+            qreal angle=elem4->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
+        }
         if(elem5->graphics->isSelected()){
             qreal angle=elem5->angle+0.5235;
             qreal degreeangle=angle*180/3.1415;
@@ -561,6 +594,20 @@ void Level_1::rotateRight(){
     }
 
     if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            qreal angle=elem4->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
+        }
+        if(elem5->graphics->isSelected()){
+            qreal angle=elem5->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem5->graphics);
+            elem5 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem5->graphics->setRotation(degreeangle);
+        }
        if(elem6->graphics->isSelected()){
            qreal angle=elem6->angle+0.5235;
            qreal degreeangle=angle*180/3.1415;

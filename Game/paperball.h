@@ -17,7 +17,8 @@ public:
 
     b2Body* body;
     QGraphicsItem* graphics;
-    void drawBall();
+    bool drawBall1();
+    bool drawBall2();
     void drawGraphics();
 };
 

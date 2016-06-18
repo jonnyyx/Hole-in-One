@@ -16,6 +16,7 @@
 #include "circle.h"
 #include "gui.h"
 #include <QItemSelection>
+#include "paperball.h"
 
 #include "block.h"
 
@@ -67,6 +68,7 @@ private:
     Block* elem5;
     Block* elem6;
 
+    QStringList levelenab;
     RecycleBin* recyclebin1;
     RecycleBin2* recyclebin2;
     Triangle* triangle1;
@@ -78,7 +80,7 @@ private:
 
     //fixed Elements
 
-    Circle* ball;
+    Paperball* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
 

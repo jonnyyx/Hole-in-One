@@ -1,0 +1,8 @@
+true
+false
+false
+false
+Highscore
+5
+4
+600
