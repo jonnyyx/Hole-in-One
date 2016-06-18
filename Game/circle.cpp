@@ -46,10 +46,12 @@ bool Circle::drawBall1()
     //qDebug() << v.x << v.y;
     graphics->setPos(v.x,v.y);
 
-    qreal dx=519;
+    qreal dx=549;
     qreal dy=510;
 
+
     if ((v.x<=dx)&&(v.x>=518)&&(v.y>=dy)){ //set postition of win for level_1
+
         return true;
     }
     else{

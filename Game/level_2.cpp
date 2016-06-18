@@ -33,6 +33,7 @@ Level_2::Level_2(QWidget *parent)
 
 void Level_2::update(){
     myWorld2->Step(framerate, 20, 20);
+
     win = ball->drawBall2(); //nur bewegende Elemente in Update
 
         if (win==true){
@@ -435,7 +436,9 @@ void Level_2::showLevel(){
 
      obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
      //obstaclescircle2->draw();
+
      ball->drawBall2();
+
 
      bottom->drawBottom();
 

@@ -1,11 +1,10 @@
 #ifndef GUI_H
 #define GUI_H
 
-
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QMediaPlayer>
-#include <QSound>
+#include <QMediaPlaylist>
 #include <button.h>
 #include <picbutton.h>
 
@@ -23,7 +22,7 @@ public:
 
     picButton* mutepicButton;
 
-    bool ismute;
+    bool ismute = false;
 
 
 public slots:
@@ -34,12 +33,12 @@ public slots:
     void showLevel2();
     void help();        //for help-menu-button
 
-    void box();         //instruction-button for rect
-    void circle();      //instruction-button for circle
-    void triangle();    //instruction-button for triangle
-    void spring();      //instruction-button for spring
-    void trampoline();  //instruction-button for trampoline
-    void conveyor();    //instruction-button for conveyor
+    void box();         //instruction for rect
+    void circle();      //instruction for circle
+    void triangle();    //instruction for triangle
+//    void spring();      //instruction for spring
+//    void trampoline();  //instruction for trampoline
+//    void conveyor();    //instruction for conveyor
 
     //sound slots
     void mute();        //for mute-button
@@ -49,6 +48,8 @@ private:
     void checkLevel();
     QStringList levelenab;
     QMediaPlayer *clicksnd;
+    QMediaPlayer *bksnd;
+    QMediaPlaylist *playlist;
 
 };
 

@@ -430,7 +430,9 @@ void Level_1::showLevel(){
 
      //so that ball is not moveable like the other objects
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
      ball->drawBall1();
+
      //obstaclescircle1->draw(); //static Elemente may be drawn here
      //obstaclescircle2->draw();
      bottom->drawBottom();

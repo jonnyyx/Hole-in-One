@@ -1,10 +1,13 @@
 #include "gui.h"
 #include <QFile>
-#include <QGraphicsTextItem>
+#include <QGraphicsItem>
+#include <QPushButton>
 #include <QSound>
+#include <QRect>
 #include "level_1.h"
 #include "level_2.h"
 #include "qdebug.h"
+
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -12,14 +15,34 @@ GUI::GUI(QWidget *parent){
     setFixedSize(1024,768);
     setBackgroundBrush(QBrush(QColor(191,153,89), Qt::SolidPattern));
 
+
+    /*!Set Application-Name*/
+    setWindowTitle(tr("Hole in One"));
+
     /*!Scene setup*/
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1024,768);
     setScene(scene);
 
-    /*!ismute false by default*/
-    ismute=false;
+    /*!ismute false by default*/ //ismute = false declared in .h
 
+
+    /*!Sound */  //All Sound is free and useable without licence (http://www.orangefreesounds.com/category/music/relaxing-music/page/1
+    //Clicksound
+    clicksnd = new QMediaPlayer();
+    clicksnd->setMedia(QUrl("qrc:/pic/click.mp3"));
+    clicksnd->setVolume(60);
+
+    //Background music
+    playlist = new QMediaPlaylist;
+    playlist->addMedia(QUrl("qrc:/pic/music.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    playlist->setCurrentIndex(1);
+
+    bksnd = new QMediaPlayer();
+    bksnd -> setPlaylist(playlist);
+    bksnd -> setVolume(90);
+    bksnd -> play();
 
     /*
            if (XXXsound -> state() == QMediaPlayer::PlayingState) {
@@ -32,7 +55,7 @@ GUI::GUI(QWidget *parent){
                XXXsound -> setPosition(0);
            }
 
-           else if (numsound0->state() == QMediaPlayer::StoppedState) {
+           else if (XXXsound->state() == QMediaPlayer::StoppedState) {
                if(ismute == false) {
                    XXXsound -> setVolume(100);
                }
@@ -53,39 +76,29 @@ void GUI::mute()
     if(ismute==false){
         ismute=true;
         mutepicButton->setdefaultpic(QPixmap(":/images/images/soundoff.png"));
+        bksnd -> setVolume(0);
+        bksnd -> play();
     }
     else if(ismute==true){
         ismute=false;
         mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
+        bksnd -> setVolume(90);
+        bksnd -> play();
     }
 }
 
 void GUI::csnd()
 {
-    //QSound::play(":/click.mp3");
-    clicksnd = new QMediaPlayer();
-    clicksnd -> setMedia(QUrl("qrc:/pic/click.mp3"));
-
-    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
         if(ismute == false) {
-            clicksnd -> setVolume(100);
+            clicksnd -> setVolume(60);
+            clicksnd -> play();
         }
         else if(ismute == true) {
             clicksnd -> setVolume(0);
+            clicksnd -> play();
         }
-        clicksnd -> setPosition(0);
-    }
-
-    else if (clicksnd->state() == QMediaPlayer::StoppedState) {
-        if(ismute == false) {
-            clicksnd -> setVolume(100);
-        }
-        else if(ismute == true) {
-            clicksnd -> setVolume(0);
-        }
-        clicksnd -> play();
-    }
 }
+
 
 
 
@@ -270,8 +283,27 @@ void GUI::levelMenu()
 
 void GUI::back(){
     scene->clear();
-    ismute=false;
     displayGUI();
+
+    //workaround for clickbutton
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+    else if(clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
 }
 
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
@@ -511,7 +543,6 @@ void GUI::highscore()
     int backyPos = 550;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
 
@@ -520,11 +551,33 @@ void GUI::highscore()
 void GUI::help()
 {
     scene->clear();
+
+    //workaround for clickbutton
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+    else if(clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+
+
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
+    QFont titleFont("comic sans", 26);
     titleText->setFont(titleFont);
-    int titlexPos = 50;
+    int titlexPos = 120;
     int titleyPos = 30;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
@@ -532,10 +585,10 @@ void GUI::help()
 
     //Game instruction
     QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("What is it all about?""\n"));
-    QFont firstCFont("comic sans", 26);
+    QFont firstCFont("comic sans", 18);
     firstCap->setFont(firstCFont);
-    int firstCxPos = 50;
-    int firstCyPos = 110;
+    int firstCxPos = 120;
+    int firstCyPos = 80;
     firstCap->setPos(firstCxPos,firstCyPos);
     scene -> addItem(firstCap);
 
@@ -548,96 +601,94 @@ void GUI::help()
                                                              "ball from reaching his goal.""\n"
                                                              "Be the chosen one and support the paperball!" "\n"
                                                              "_____________________________________________________________________"
-                                                             ));
-    QFont firstFont("comic sans", 18);
+                                                             "\n""\n""\n""\n""\n""\n""\n"
+                                                             "_____________________________________________________________________"));
+    QFont firstFont("comic sans", 12);
     firstText->setFont(firstFont);
-    int firstxPos = 50;
-    int firstyPos = 160;
+    int firstxPos = 120;
+    int firstyPos = 130;
     firstText->setPos(firstxPos,firstyPos);
     scene -> addItem(firstText);
 
 
     //Tool instruction
     QGraphicsTextItem* secondCap = new QGraphicsTextItem(QString("Tools:""\n"));
-    QFont secondCFont("comic sans", 26);
+    QFont secondCFont("comic sans", 18);
     secondCap->setFont(secondCFont);
-    int secondCxPos = 50;
-    int secondCyPos = 412;
+    int secondCxPos = 120;
+    int secondCyPos = 290;
     secondCap->setPos(secondCxPos,secondCyPos);
     scene -> addItem(secondCap);
 
     //Tool instruction buttons
-    Button* boxButton = new Button(QString("Rectangle"));
-    boxButton->setRect(0,0,100,100);
-    int boxxPos = 180;
-    int boxyPos = 412;
-    boxButton->setPos(boxxPos,boxyPos);
-    connect(boxButton, SIGNAL(clicked()), this, SLOT(box()));
-    connect(boxButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(boxButton);
 
-    Button* cirlceButton = new Button(QString("Cirlce"));
-    cirlceButton->setRect(0,0,100,100);
-    int cirlcexPos = 310;
-    int cirlceyPos = 412;
-    cirlceButton->setPos(cirlcexPos,cirlceyPos);
-    connect(cirlceButton, SIGNAL(clicked()), this, SLOT(circle()));
-    connect(cirlceButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(cirlceButton);
+    picButton* boxButton = new picButton(QPixmap("qrc:/pic/block_bttn.png"), QPixmap("qrc:/pic/circle_bttn.png"));
+    int blockxPos = 200;
+    int blockyPos = 350;
+    boxButton->move(blockxPos,blockyPos);
+    connect(boxButton, SIGNAL(clicked()), this, SLOT(box()), Qt::QueuedConnection);
+    scene->addWidget(boxButton);
+
+//    Button* boxButton = new Button(QString("Block"));
+//    circleButton->setRect(0,0,100,100);
+//    circleButton->setBrush(QPixmap("qrc:/pic/circle_bttn.png"));
+//    int circlexPos = 350;
+//    int circleyPos = 350;
+//    circleButton->setPos(circlexPos,circleyPos);
+//    connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()));
+//    scene->addItem(circleButton);
+
+    Button* circleButton = new Button(QString("Cirlce"));
+    circleButton->setRect(0,0,100,100);
+    circleButton->setBrush(QPixmap("qrc:/pic/circle_bttn.png"));
+    int circlexPos = 350;
+    int circleyPos = 350;
+    circleButton->setPos(circlexPos,circleyPos);
+    connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()));
+    scene->addItem(circleButton);
 
 
     Button* triangleButton = new Button(QString("Triangle"));
     triangleButton->setRect(0,0,100,100);
-    int trianglexPos = 440;
-    int triangleyPos = 412;
+    int trianglexPos = 500;
+    int triangleyPos = 350;
     triangleButton->setPos(trianglexPos,triangleyPos);
     connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()));
-    connect(triangleButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(triangleButton);
 
-    Button* springButton = new Button(QString("Spring"));
-    springButton->setRect(0,0,100,100);
-    int springxPos = 570;
-    int springyPos = 412;
-    springButton->setPos(springxPos,springyPos);
-    connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
-    connect(springButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(springButton);
+//    Button* springButton = new Button(QString("Spring"));
+//    springButton->setRect(0,0,100,100);
+//    int springxPos = 570;
+//    int springyPos = 412;
+//    springButton->setPos(springxPos,springyPos);
+//    connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
+//    connect(springButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(springButton);
 
-    Button* trampolineButton = new Button(QString("Trampoline"));
-    trampolineButton->setRect(0,0,100,100);
-    int trampolinexPos = 700;
-    int trampolineyPos = 412;
-    trampolineButton->setPos(trampolinexPos,trampolineyPos);
-    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
-    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(trampolineButton);
+//    Button* trampolineButton = new Button(QString("Trampoline"));
+//    trampolineButton->setRect(0,0,100,100);
+//    int trampolinexPos = 700;
+//    int trampolineyPos = 412;
+//    trampolineButton->setPos(trampolinexPos,trampolineyPos);
+//    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
+//    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(trampolineButton);
 
-    Button* conveyorButton = new Button(QString("Conveyor"));
-    conveyorButton->setRect(0,0,100,100);
-    int conveyorxPos = 830;
-    int conveyoryPos = 412;
-    conveyorButton->setPos(conveyorxPos,conveyoryPos);
-    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
-    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(conveyorButton);
+//    Button* conveyorButton = new Button(QString("Conveyor"));
+//    conveyorButton->setRect(0,0,100,100);
+//    int conveyorxPos = 830;
+//    int conveyoryPos = 412;
+//    conveyorButton->setPos(conveyorxPos,conveyoryPos);
+//    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
+//    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(conveyorButton);
 
-
-    QGraphicsTextItem* secondText = new QGraphicsTextItem(QString(
-     "_____________________________________________________________________"
-                                                             ));
-    QFont secondFont("comic sans", 18);
-    secondText->setFont(secondFont);
-    int secondxPos = 50;
-    int secondyPos = 500;
-    secondText->setPos(secondxPos,secondyPos);
-    scene -> addItem(secondText);
 
     //Obstacles instruction
     QGraphicsTextItem* obstaCap = new QGraphicsTextItem(QString("Obstacles:""\n"));
-    QFont obstaCFont("comic sans", 26);
+    QFont obstaCFont("comic sans", 18);
     obstaCap->setFont(obstaCFont);
-    int obstaCxPos = 50;
+    int obstaCxPos = 120;
     int obstaCyPos = 540;
     obstaCap->setPos(obstaCxPos,obstaCyPos);
     scene -> addItem(obstaCap);
@@ -650,7 +701,7 @@ void GUI::help()
                                                              "you may use them in your favour. Mostly they are fixed in the" "\n"
                                                              "scene, but some managed to move around to raise difficulty."
                                                              ));
-    QFont obstFont("comic sans", 18);
+    QFont obstFont("comic sans", 12);
     obstText->setFont(obstFont);
     int obstxPos = 260;
     int obstyPos = 552;
@@ -663,7 +714,6 @@ void GUI::help()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 
 }
@@ -675,9 +725,30 @@ void GUI::help()
 void GUI::box()
 {
     scene->clear();
+
+    //workaround for clickbutton
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+    else if(clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
+    QFont titleFont("comic sans", 26);
     titleText->setFont(titleFont);
     int titlexPos = 50;
     int titleyPos = 30;
@@ -687,7 +758,7 @@ void GUI::box()
 
     //Rect instruction
     QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Rectangle""\n"));
-    QFont firstCFont("comic sans", 26);
+    QFont firstCFont("comic sans", 18);
     firstCap->setFont(firstCFont);
     int firstCxPos = 50;
     int firstCyPos = 110;
@@ -700,7 +771,7 @@ void GUI::box()
                                                                 "To unselect the object just click elsewhere." "\n"
                                                                 "To move the object click and hold on the object and drag it with your mouse."
                                                                 ));
-    QFont rectFont("comic sans", 18);
+    QFont rectFont("comic sans", 12);
     rectText->setFont(rectFont);
     int rectxPos = 50;
     int rectyPos = 160;
@@ -712,16 +783,36 @@ void GUI::box()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
 void GUI::circle()
 {
     scene->clear();
+
+    //workaround for clickbutton
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+    else if(clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
+    QFont titleFont("comic sans", 26);
     titleText->setFont(titleFont);
     int titlexPos = 50;
     int titleyPos = 30;
@@ -730,7 +821,7 @@ void GUI::circle()
 
     //Circle instruction
     QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Circle""\n"));
-    QFont firstCFont("comic sans", 26);
+    QFont firstCFont("comic sans", 18);
     firstCap->setFont(firstCFont);
     int firstCxPos = 50;
     int firstCyPos = 110;
@@ -741,7 +832,7 @@ void GUI::circle()
                                                                   "not be rotated (since this would not be useful). To move the object click and hold on" "\n"
                                                                   "the object and drag it with your mouse."
                                                                 ));
-    QFont circleFont("comic sans", 18);
+    QFont circleFont("comic sans", 12);
     circleText->setFont(circleFont);
     int circlexPos = 50;
     int circleyPos = 160;
@@ -753,16 +844,36 @@ void GUI::circle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
 void GUI::triangle()
 {
     scene->clear();
+
+    //workaround for clickbutton
+    if (clicksnd -> state() == QMediaPlayer::PlayingState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> setPosition(0);
+    }
+    else if(clicksnd->state() == QMediaPlayer::StoppedState) {
+        if(ismute == false) {
+            clicksnd -> setVolume(60);
+        }
+        else if(ismute == true) {
+            clicksnd -> setVolume(0);
+        }
+        clicksnd -> play();
+    }
+
     /*!create title text*/
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
+    QFont titleFont("comic sans", 26);
     titleText->setFont(titleFont);
     int titlexPos = 50;
     int titleyPos = 30;
@@ -771,7 +882,7 @@ void GUI::triangle()
 
     //Triangle instruction
     QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Triangle""\n"));
-    QFont firstCFont("comic sans", 26);
+    QFont firstCFont("comic sans", 18);
     firstCap->setFont(firstCFont);
     int firstCxPos = 50;
     int firstCyPos = 110;
@@ -785,7 +896,7 @@ void GUI::triangle()
                                                                "To unselect the object just click elsewhere. To move the object click and hold " "\n"
                                                                "on the object and drag it with your mouse."
                                                                 ));
-    QFont triFont("comic sans", 18);
+    QFont triFont("comic sans", 12);
     triText->setFont(triFont);
     int trixPos = 50;
     int triyPos = 160;
@@ -797,138 +908,137 @@ void GUI::triangle()
     int backyPos = 670;
     backButton->setPos(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addItem(backButton);
 }
 
-void GUI::spring()
-{
-    scene->clear();
-    /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
-    titleText->setFont(titleFont);
-    int titlexPos = 50;
-    int titleyPos = 30;
-    titleText->setPos(titlexPos,titleyPos);
-    scene->addItem(titleText);
+//void GUI::spring()
+//{
+//    scene->clear();
+//    /*!create title text*/
+//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+//    QFont titleFont("comic sans", 40);
+//    titleText->setFont(titleFont);
+//    int titlexPos = 50;
+//    int titleyPos = 30;
+//    titleText->setPos(titlexPos,titleyPos);
+//    scene->addItem(titleText);
 
-    //Spring instruction
-    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Spring""\n"));
-    QFont firstCFont("comic sans", 26);
-    firstCap->setFont(firstCFont);
-    int firstCxPos = 50;
-    int firstCyPos = 110;
-    firstCap->setPos(firstCxPos,firstCyPos);
-    scene -> addItem(firstCap);
+//    //Spring instruction
+//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Spring""\n"));
+//    QFont firstCFont("comic sans", 26);
+//    firstCap->setFont(firstCFont);
+//    int firstCxPos = 50;
+//    int firstCyPos = 110;
+//    firstCap->setPos(firstCxPos,firstCyPos);
+//    scene -> addItem(firstCap);
 
-    QGraphicsTextItem* springText = new QGraphicsTextItem(QString("The spring is a very useful and powerful tool. The spring is prestressed and triggers" "\n"
-                                                                  "once the ball touches the surface of it. It will accelerate the paperball (within the" "\n"
-                                                                  "physical boundaries of: angle of incidence equals angle of reflection). Once it is" "\n"
-                                                                  "used it will not accelerate the ball again. To move the object click and hold on the" "\n"
-                                                                  "object and drag it with your mouse."
-                                                                ));
-    QFont springFont("comic sans", 18);
-    springText->setFont(springFont);
-    int springxPos = 50;
-    int springyPos = 160;
-    springText->setPos(springxPos,springyPos);
-    scene -> addItem(springText);
+//    QGraphicsTextItem* springText = new QGraphicsTextItem(QString("The spring is a very useful and powerful tool. The spring is prestressed and triggers" "\n"
+//                                                                  "once the ball touches the surface of it. It will accelerate the paperball (within the" "\n"
+//                                                                  "physical boundaries of: angle of incidence equals angle of reflection). Once it is" "\n"
+//                                                                  "used it will not accelerate the ball again. To move the object click and hold on the" "\n"
+//                                                                  "object and drag it with your mouse."
+//                                                                ));
+//    QFont springFont("comic sans", 18);
+//    springText->setFont(springFont);
+//    int springxPos = 50;
+//    int springyPos = 160;
+//    springText->setPos(springxPos,springyPos);
+//    scene -> addItem(springText);
 
-    Button* backButton = new Button(QString("Back"));
-    int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(backButton);
-}
+//    Button* backButton = new Button(QString("Back"));
+//    int backxPos = 50;
+//    int backyPos = 670;
+//    backButton->setPos(backxPos,backyPos);
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(backButton);
+//}
 
-void GUI::trampoline()
-{
-    scene->clear();
-    /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
-    titleText->setFont(titleFont);
-    int titlexPos = 50;
-    int titleyPos = 30;
-    titleText->setPos(titlexPos,titleyPos);
-    scene->addItem(titleText);
+//void GUI::trampoline()
+//{
+//    scene->clear();
+//    /*!create title text*/
+//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+//    QFont titleFont("comic sans", 40);
+//    titleText->setFont(titleFont);
+//    int titlexPos = 50;
+//    int titleyPos = 30;
+//    titleText->setPos(titlexPos,titleyPos);
+//    scene->addItem(titleText);
 
-    //Trampoline instruction
-    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Trampoline""\n"));
-    QFont firstCFont("comic sans", 26);
-    firstCap->setFont(firstCFont);
-    int firstCxPos = 50;
-    int firstCyPos = 110;
-    firstCap->setPos(firstCxPos,firstCyPos);
-    scene -> addItem(firstCap);
+//    //Trampoline instruction
+//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Trampoline""\n"));
+//    QFont firstCFont("comic sans", 26);
+//    firstCap->setFont(firstCFont);
+//    int firstCxPos = 50;
+//    int firstCyPos = 110;
+//    firstCap->setPos(firstCxPos,firstCyPos);
+//    scene -> addItem(firstCap);
 
-    QGraphicsTextItem* trampText = new QGraphicsTextItem(QString("The trampolin is quite similar to the spring. The difference is, that the trampoline" "\n"
-                                                                 "can be used multiple times, and it will not add power to the ball (e.g. If the ball" "\n"
-                                                                 "drops from a certain heigth on the trampoline it will not reach the start value when" "\n"
-                                                                 "reflected, due to friction losses etc.). To move the object click and hold on the" "\n"
-                                                                 "object and drag it with your mouse."
-                                                                ));
-    QFont trampFont("comic sans", 18);
-    trampText->setFont(trampFont);
-    int trampxPos = 50;
-    int trampyPos = 160;
-    trampText->setPos(trampxPos,trampyPos);
-    scene -> addItem(trampText);
+//    QGraphicsTextItem* trampText = new QGraphicsTextItem(QString("The trampolin is quite similar to the spring. The difference is, that the trampoline" "\n"
+//                                                                 "can be used multiple times, and it will not add power to the ball (e.g. If the ball" "\n"
+//                                                                 "drops from a certain heigth on the trampoline it will not reach the start value when" "\n"
+//                                                                 "reflected, due to friction losses etc.). To move the object click and hold on the" "\n"
+//                                                                 "object and drag it with your mouse."
+//                                                                ));
+//    QFont trampFont("comic sans", 18);
+//    trampText->setFont(trampFont);
+//    int trampxPos = 50;
+//    int trampyPos = 160;
+//    trampText->setPos(trampxPos,trampyPos);
+//    scene -> addItem(trampText);
 
-    Button* backButton = new Button(QString("Back"));
-    int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(backButton);
-}
+//    Button* backButton = new Button(QString("Back"));
+//    int backxPos = 50;
+//    int backyPos = 670;
+//    backButton->setPos(backxPos,backyPos);
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(backButton);
+//}
 
-void GUI::conveyor()
-{
-    scene->clear();
-    /*!create title text*/
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-    QFont titleFont("comic sans", 40);
-    titleText->setFont(titleFont);
-    int titlexPos = 50;
-    int titleyPos = 30;
-    titleText->setPos(titlexPos,titleyPos);
-    scene->addItem(titleText);
+//void GUI::conveyor()
+//{
+//    scene->clear();
+//    /*!create title text*/
+//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
+//    QFont titleFont("comic sans", 40);
+//    titleText->setFont(titleFont);
+//    int titlexPos = 50;
+//    int titleyPos = 30;
+//    titleText->setPos(titlexPos,titleyPos);
+//    scene->addItem(titleText);
 
-    //Conveyor instruction
-    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Conveyor""\n"));
-    QFont firstCFont("comic sans", 26);
-    firstCap->setFont(firstCFont);
-    int firstCxPos = 50;
-    int firstCyPos = 110;
-    firstCap->setPos(firstCxPos,firstCyPos);
-    scene -> addItem(firstCap);
+//    //Conveyor instruction
+//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Conveyor""\n"));
+//    QFont firstCFont("comic sans", 26);
+//    firstCap->setFont(firstCFont);
+//    int firstCxPos = 50;
+//    int firstCyPos = 110;
+//    firstCap->setPos(firstCxPos,firstCyPos);
+//    scene -> addItem(firstCap);
 
-    QGraphicsTextItem* conveyorText = new QGraphicsTextItem(QString("The conveyor is a very powerful tool, too. Once the paperball lands on it, the ball " "\n"
-                                                                    "will be accelerated in the direction the conveyor is aiming at" "\n"
-                                                                    "('<': left direction, '>': right direction). There are different models, which can" "\n"
-                                                                    "be identified by '<<' '<' '>' '>>', which is written on the side of the tool." "\n"
-                                                                    "Neither can it be rotated, nor can the direction be changed by the player."
-                                                                ));
-    QFont conveyorFont("comic sans", 18);
-    conveyorText->setFont(conveyorFont);
-    int conveyorxPos = 50;
-    int conveyoryPos = 160;
-    conveyorText->setPos(conveyorxPos,conveyoryPos);
-    scene -> addItem(conveyorText);
+//    QGraphicsTextItem* conveyorText = new QGraphicsTextItem(QString("The conveyor is a very powerful tool, too. Once the paperball lands on it, the ball " "\n"
+//                                                                    "will be accelerated in the direction the conveyor is aiming at" "\n"
+//                                                                    "('<': left direction, '>': right direction). There are different models, which can" "\n"
+//                                                                    "be identified by '<<' '<' '>' '>>', which is written on the side of the tool." "\n"
+//                                                                    "Neither can it be rotated, nor can the direction be changed by the player."
+//                                                                ));
+//    QFont conveyorFont("comic sans", 18);
+//    conveyorText->setFont(conveyorFont);
+//    int conveyorxPos = 50;
+//    int conveyoryPos = 160;
+//    conveyorText->setPos(conveyorxPos,conveyoryPos);
+//    scene -> addItem(conveyorText);
 
-    Button* backButton = new Button(QString("Back"));
-    int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(backButton);
-}
+//    Button* backButton = new Button(QString("Back"));
+//    int backxPos = 50;
+//    int backyPos = 670;
+//    backButton->setPos(backxPos,backyPos);
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
+//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
+//    scene->addItem(backButton);
+//}
 
 void GUI::checkLevel(){
     QFile file("level1.txt");
