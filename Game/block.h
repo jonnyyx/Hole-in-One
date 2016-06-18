@@ -21,6 +21,7 @@ public:
     b2Body* body;
     QGraphicsItem* graphics;
 
+
 signals:
     clicked();
 
