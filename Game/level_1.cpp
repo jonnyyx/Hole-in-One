@@ -504,11 +504,15 @@ void Level_1::rotateRight(){
         QPointF pos=rechteck1->graphics->pos();
 
         qreal degreeangle=angle*180/3.1415;
+        QPointF pos = rechteck1->graphics->pos();
+
         level->removeItem(rechteck1->graphics);
+
         qDebug()<<pos.x()+(rechteck1->length)/2.0;
         qDebug()<<pos.y()+(rechteck1->width)/2.0;
 //        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
         rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()-21,pos.y()-21),angle , 100, 40, b2_staticBody,1.0);
+
         rechteck1->graphics->setRotation(degreeangle);
 
     }
