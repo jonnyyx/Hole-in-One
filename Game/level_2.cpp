@@ -421,10 +421,9 @@ void Level_2::showLevel(){
      ball  = new Paperball(myWorld2, level2, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      obstaclescircle1 = new Circle(myWorld2, level2, QPointF(400.0,170), 0*(3.14/180.0), b2_staticBody, circle);
      rechteck1 = new Block(myWorld2, level2, b2Vec2 (300,150), 0, 100, 40, b2_staticBody,1.0);
-     recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(530,508),QPointF(540,508),QPointF(560,568),QPointF(550,568), 0.0, b2_staticBody, 0.5);
-     recyclebin1->graphics->setPos(528,505); //Set Graphic of Bin to desired position
-     recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(580,568),QPointF(600,508),QPointF(610,508),QPointF(590,568), 0.0, b2_staticBody, 0.5);
-
+     recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
+     recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin3 = new RecycleBinGraphics(level2);
      triangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0);
 
      bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);

@@ -1,4 +1,4 @@
-#ifndef LEVEL_1_H
+﻿#ifndef LEVEL_1_H
 #define LEVEL_1_H
 #include"Box2D/Box2D.h"
 #include <QMainWindow>
@@ -12,7 +12,7 @@
 #include <QElapsedTimer>
 #include <QTime>
 #include "recyclebin.h"
-#include "recyclebin2.h"
+#include "recyclebingraphics.h"
 #include "circle.h"
 #include "gui.h"
 #include <QItemSelection>
@@ -46,6 +46,7 @@ public slots:
     void addCircle();
     void reset();
     void quitLevel();
+    void position();
 
     void rotateLeft();
     void rotateRight();
@@ -67,9 +68,9 @@ private:
     Block* elem5;
     Block* elem6;
 
-    QStringList levelenab;
     RecycleBin* recyclebin1;
-    RecycleBin2* recyclebin2;
+    RecycleBin* recyclebin2;
+    RecycleBinGraphics* recyclebin3;
     Triangle* triangle1;
 
 
@@ -90,6 +91,8 @@ private:
     MeinElement* umrandung2;
 
     QTimer* timer;
+    QTimer* timer2;
+    QPointF oldpos;
     int anzahl;
     b2Vec2 positionElem;
     QPushButton* bt_start;
