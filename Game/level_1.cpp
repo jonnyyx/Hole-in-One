@@ -328,17 +328,47 @@ void Level_1::reset(){
  */
 void Level_1::quitLevel()
 {
-    QFile file("level1.txt");
+    QFile file("level.txt");
+    if(file.exists("level.txt")){
+        file.open(QIODevice::ReadOnly |QIODevice::Text);
+        levelenab.clear();
+        while(!file.atEnd()){
+            levelenab+=file.readLine();
+        }
 
-    if(file.exists("level1.txt")){
-       file.remove("level1.txt");
-
-       QFile file("level1.txt");
+       file.close();
+       QFile::remove("level.txt");
+       QFile file("level.txt");
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
 
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+    if(levelenab.size()>0){
+        levelenab.replace(1,"true");
+        levelenab.replace(5,QString::number(leveltime));
+        levelenab.replace(6,QString::number(counterTogether));
+        levelenab.replace(7,QString::number(highscore));
+
+    }
+    else{
+        levelenab.insert(0,"true");
+        levelenab.insert(1,"false");
+        levelenab.insert(2,"false");
+        levelenab.insert(3,"false");
+        levelenab.insert(4,"Highscore");
+        levelenab.insert(5,QString::number(leveltime));
+        levelenab.insert(6,QString::number(counterTogether));
+        levelenab.insert(7,QString::number(highscore));
+    }
+    file.resize(0);
+
+    foreach (QString data, levelenab) {
+        out<<data<<endl;
+    }
+
+
+   // out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+
 
     file.close();
     this->close();
