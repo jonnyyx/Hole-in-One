@@ -16,5 +16,20 @@
         <file>images/helpbuttonhover.png</file>
         <file>images/soundoff.png</file>
         <file>images/soundon.png</file>
+        <file>basket.png</file>
+        <file>block_bttn.png</file>
+        <file>block_obs.png</file>
+        <file>block_tool.png</file>
+        <file>circle_bttn.png</file>
+        <file>circle_obs.png</file>
+        <file>circle_tool.png</file>
+        <file>dummy.png</file>
+        <file>Icon.png</file>
+        <file>paper.png</file>
+        <file>triangle_bttn.png</file>
+        <file>triangle_obs.png</file>
+        <file>triangle_tool.png</file>
+        <file>block_toolhover.png</file>
+        <file>circle_toolhover.png</file>
     </qresource>
 </RCC>

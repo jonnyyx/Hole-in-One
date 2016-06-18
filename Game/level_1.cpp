@@ -18,12 +18,12 @@ using namespace std;
  */
 Level_1::Level_1(QWidget *parent)
 {
-    /*!Screen setup. No scroll bar available*/
+    //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
 
-    /*!Scene setup*/
+    //Scene setup
     level = new QGraphicsScene();
     level->setSceneRect(0,0,1024,768);
     setScene(level);
@@ -65,23 +65,14 @@ void Level_1::update(){
 void Level_1::startLevel(){
 
     rechteck1->drawGraphics();
-    //triangle1->drawGraphics();
 	recyclebin1->drawGraphics();
     recyclebin2->drawGraphics();
-    //obstaclescircle1->drawGraphics();
-    //obstaclescircle2->drawGraphics();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-//    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-//    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-//    obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-//    obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     rechteck1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-//    triangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-//    triangle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
 
     if(counterRec==1){
         elem4->drawGraphics();
@@ -370,6 +361,11 @@ void Level_1::showLevel(){
      level->addWidget(bt__reset);
 
      //Rect Button
+
+//     picButton *rectButton = new picButton(QPixmap(":/images/block_tool.png"), QPixmap(":/images/block_toolhover.png"));
+//     rectButton->move(200.0,650.0);
+//     connect(rectButton, SIGNAL(clicked()), this, SLOT(addRectangle()));
+//     level->addWidget(rectButton);
      bt__rect=new QPushButton();
      bt__rect->setText("Rectangle (3)");
      bt__rect->setEnabled(true);
@@ -377,7 +373,12 @@ void Level_1::showLevel(){
      connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
      level->addWidget(bt__rect);
 
+
      //Circle Button
+//     picButton *circleButton = new picButton(QPixmap(":/images/circle_tool.png"), QPixmap(":/images/circle_toolhover.png"));
+//     circleButton->move(400.0,650.0);
+//     connect(circleButton, SIGNAL(clicked()), this, SLOT(addCircle()));
+//     level->addWidget(circleButton);
      bt__circle=new QPushButton();
      bt__circle->setText("Circle  (3)");
      bt__circle->setEnabled(true);
@@ -436,6 +437,7 @@ void Level_1::showLevel(){
      //obstaclescircle1->draw(); //static Elemente may be drawn here
      //obstaclescircle2->draw();
      bottom->drawBottom();
+     umrandung1->graphics->hide();
      umrandung2->graphics->hide();
 }
 /*!

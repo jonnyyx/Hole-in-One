@@ -14,21 +14,17 @@ using namespace std;
 
 Level_2::Level_2(QWidget *parent)
 {
-    /*!Screen setup. No scroll bar available*/
+    //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
 
-
-
-    /*!Scene setup*/
+    //Scene setup
     level2 = new QGraphicsScene();
     level2->setSceneRect(0,0,1024,768);
     setScene(level2);
 
     showLevel();
-
-
 }
 
 void Level_2::update(){
@@ -439,22 +435,11 @@ void Level_2::showLevel(){
 
      ball->drawBall2();
 
-
      bottom->drawBottom();
-
+     umrandung1->graphics->hide();
      umrandung2->graphics->hide();
 
 }
-
-
-//void Level_1::enableRotation(){
-//    bt__left->setEnabled(true);
-//    bt__right->setEnabled(true);
-//}
-
-//void Level_1::disableRotation(){
-
-//}
 
 void Level_2::rotateLeft(){
 

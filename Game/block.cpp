@@ -64,15 +64,21 @@ void Block::drawGraphics(){
 }
 
 void Block::rotateright(){
+    Block::drawGraphics();
+    QPointF v=graphics->pos();
     qreal a=body->GetAngle();
-    b2Vec2 p=body->GetPosition();
-    body->SetTransform(p,a-30);
+    //b2Vec2 p=body->GetPosition();
+    body->SetTransform(b2Vec2(v.x(),v.y()),0); // FEHLER bei 0 wird der body nicht gedreht und der Ball fällt nicht durch
+    // bei angle ungleich 0 wird der body irgendwohin verschoben und ich checks nicht...
+    //ansonsten müsst so passen, man kann das rechteck irgendwo hin machen und es wird an der stelle dann gedreht.
+
     graphics->setRotation(a-30);
+
     //b2Vec2 b=body->GetPosition();
     //body->SetTransform(b,a-30);
-    QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),a-30);
-    Block::drawGraphics();
+    //QPointF v=graphics->pos();
+    //body->SetTransform(b2Vec2(v.x()-21,v.y()-21),a-30);
+    //Block::drawGraphics();
 
 }
 void Block::rotateleft(){
