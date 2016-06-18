@@ -499,8 +499,11 @@ void Level_1::rotateRight(){
         //rechteck1->rotateright();
         qreal angle=rechteck1->angle+0.5235;
         qreal degreeangle=angle*180/3.1415;
+        QPointF pos = rechteck1->graphics->pos();
+
         level->removeItem(rechteck1->graphics);
-        rechteck1 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x(),pos.y()),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1->graphics->setTransformOriginPoint(pos.x(),pos.y());
         rechteck1->graphics->setRotation(degreeangle);
 
     }
