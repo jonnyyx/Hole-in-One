@@ -121,6 +121,9 @@ void Level_1::startLevel(){
         addcircle3->drawGraphics();
         addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
+    QPointF pos=rechteck1->graphics->pos();
+    qDebug()<<pos.x()+(rechteck1->length)/2.0;
+    qDebug()<<pos.y()+(rechteck1->width)/2.0;
 
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
@@ -498,9 +501,14 @@ void Level_1::rotateRight(){
     if(rechteck1->graphics->isSelected()){
         //rechteck1->rotateright();
         qreal angle=rechteck1->angle+0.5235;
+        QPointF pos=rechteck1->graphics->pos();
+
         qreal degreeangle=angle*180/3.1415;
         level->removeItem(rechteck1->graphics);
-        rechteck1 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+        qDebug()<<pos.x()+(rechteck1->length)/2.0;
+        qDebug()<<pos.y()+(rechteck1->width)/2.0;
+//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()-21,pos.y()-21),angle , 100, 40, b2_staticBody,1.0);
         rechteck1->graphics->setRotation(degreeangle);
 
     }

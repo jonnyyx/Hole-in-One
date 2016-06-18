@@ -5,9 +5,11 @@
 #include <qdebug.h>
 
 
-Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal length, qreal width, b2BodyType type, qreal friction)
+Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction)
 {
     angle=m_angle;
+    length=m_length;
+    width=m_width;
     b2PolygonShape polygon;
     polygon.SetAsBox(length/2, width/2, center, angle);
     b2BodyDef myBodyDef;
