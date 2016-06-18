@@ -21,10 +21,8 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
 
-    QPixmap bkgnd(":/pic/paper.png");
+    QPixmap bkgnd(":/pic/circle_tool.png");
     bkgnd.scaled(QSize(42,42));
-
-
     graphics = level->addPixmap(bkgnd);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
