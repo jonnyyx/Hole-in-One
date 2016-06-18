@@ -1041,7 +1041,7 @@ void GUI::triangle()
 //}
 
 void GUI::checkLevel(){
-    QFile file("level1.txt");
+    QFile file("level.txt");
     if(file.exists()==true){
         file.open(QIODevice::ReadOnly |QIODevice::Text);
 
