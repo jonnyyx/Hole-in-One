@@ -66,6 +66,7 @@ private:
     Block* elem5;
     Block* elem6;
 
+    QStringList levelenab;
     RecycleBin* recyclebin1;
     RecycleBin2* recyclebin2;
     Triangle* triangle1;

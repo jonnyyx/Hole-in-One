@@ -311,14 +311,39 @@ void Level_1::quitLevel()
     QFile file("level1.txt");
 
     if(file.exists("level1.txt")){
-       file.remove("level1.txt");
-
-       QFile file("level1.txt");
+        file.open(QIODevice::ReadOnly |QIODevice::Text);
+        levelenab.clear();
+        while(!file.atEnd()){
+            levelenab+=file.readLine();
+        }
+       file.resize(0);
+       file.close();
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
+    out.reset();
+    if(levelenab.size()>0){
+        levelenab.replace(1,"true");
+        levelenab.replace(5,QString::number(leveltime));
+        levelenab.replace(6,QString::number(counterTogether));
+        levelenab.replace(7,QString::number(highscore));
 
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+    }
+    else{
+        levelenab.insert(0,"true");
+        levelenab.insert(1,"false");
+        levelenab.insert(2,"false");
+        levelenab.insert(3,"false");
+        levelenab.insert(4,"Highscore");
+        levelenab.insert(5,QString::number(leveltime));
+        levelenab.insert(6,QString::number(counterTogether));
+        levelenab.insert(7,QString::number(highscore));
+    }
+    for(int i=0;i<levelenab.size();i++){
+
+        out<<levelenab.at(i)<<endl;
+    }
+   // out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
     file.close();
     this->close();
@@ -504,14 +529,10 @@ void Level_1::rotateRight(){
         QPointF pos=rechteck1->graphics->pos();
 
         qreal degreeangle=angle*180/3.1415;
-        QPointF pos = rechteck1->graphics->pos();
-
         level->removeItem(rechteck1->graphics);
 
-        qDebug()<<pos.x()+(rechteck1->length)/2.0;
-        qDebug()<<pos.y()+(rechteck1->width)/2.0;
-//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
-        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()-21,pos.y()-21),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
+
 
         rechteck1->graphics->setRotation(degreeangle);
 
@@ -527,7 +548,13 @@ void Level_1::rotateRight(){
         }
     }
     if(counterRec==2){
-
+        if(elem4->graphics->isSelected()){
+            qreal angle=elem4->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
+        }
         if(elem5->graphics->isSelected()){
             qreal angle=elem5->angle+0.5235;
             qreal degreeangle=angle*180/3.1415;
@@ -538,6 +565,20 @@ void Level_1::rotateRight(){
     }
 
     if(counterRec==3){
+        if(elem4->graphics->isSelected()){
+            qreal angle=elem4->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem4->graphics);
+            elem4 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem4->graphics->setRotation(degreeangle);
+        }
+        if(elem5->graphics->isSelected()){
+            qreal angle=elem5->angle+0.5235;
+            qreal degreeangle=angle*180/3.1415;
+            level->removeItem(elem5->graphics);
+            elem5 =new Block(myWorld, level, b2Vec2 (290,200),angle , 100, 40, b2_staticBody,1.0);
+            elem5->graphics->setRotation(degreeangle);
+        }
        if(elem6->graphics->isSelected()){
            qreal angle=elem6->angle+0.5235;
            qreal degreeangle=angle*180/3.1415;
