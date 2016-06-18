@@ -1,4 +1,4 @@
-#ifndef LEVEL_1_H
+﻿#ifndef LEVEL_1_H
 #define LEVEL_1_H
 #include"Box2D/Box2D.h"
 #include <QMainWindow>
@@ -68,7 +68,6 @@ private:
     Block* elem5;
     Block* elem6;
 
-    QStringList levelenab;
     RecycleBin* recyclebin1;
     RecycleBin2* recyclebin2;
     Triangle* triangle1;
