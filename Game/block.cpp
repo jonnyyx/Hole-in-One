@@ -64,6 +64,7 @@ void Block::drawRec(int x,int y){
 
 void Block::drawGraphics(){
     QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x()-21,v.y()-20),body->GetAngle());
+    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
+
 }
 
