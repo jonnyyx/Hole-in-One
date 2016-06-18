@@ -64,7 +64,6 @@ void Block::drawGraphics(){
 }
 
 void Block::rotateright(){
-
     qreal a=body->GetAngle();
     b2Vec2 p=body->GetPosition();
     body->SetTransform(p,a-30);

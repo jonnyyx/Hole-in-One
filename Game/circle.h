@@ -16,7 +16,8 @@ public:
 
     b2Body* body;
     QGraphicsItem* graphics;
-    bool drawBall();
+    bool drawBall1(); //123... for detecting win situation for different levels
+    bool drawBall2();
     void drawGraphics();
 };
 
