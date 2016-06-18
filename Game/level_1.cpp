@@ -23,12 +23,32 @@ Level_1::Level_1(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
 
+    timer2=new QTimer(this);
+    timer2->setInterval(1.0/120.0*1000.0);
+    timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(position()));
+    timer2->start();
+
+    oldpos*=(0.0,0.0);
     //Scene setup
     level = new QGraphicsScene();
     level->setSceneRect(0,0,1024,768);
     setScene(level);
+    QGraphicsRectItem *rect = level->addRect(QRectF(0, 0, 100, 100));
     showLevel();
 }
+
+void Level_1::position(){
+
+    auto newpos=rechteck1->graphics->pos();
+    if(newpos!=oldpos){
+
+
+        qDebug()<<rechteck1->graphics->pos();
+    }
+    oldpos=rechteck1->graphics->pos();
+
+}
+
 /*!
  * \brief Level_1::update
  * update function for moveable objects like our ball - sets the graphics of the ball to the position
@@ -55,6 +75,7 @@ void Level_1::update(){
         level->addWidget(quitLevel);
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
     }
+
 }
 
 /*!
@@ -501,18 +522,20 @@ void Level_1::rotateRight(){
     if(rechteck1->graphics->isSelected()){
         //rechteck1->rotateright();
         qreal angle=rechteck1->angle+0.5235;
+        qreal x=rechteck1->graphics->x();
+        qreal y=rechteck1->graphics->y();
         QPointF pos=rechteck1->graphics->pos();
 
+        qDebug()<<x;
+        qDebug()<<y;
+        qDebug()<<pos;
+
         qreal degreeangle=angle*180/3.1415;
-        QPointF pos = rechteck1->graphics->pos();
 
         level->removeItem(rechteck1->graphics);
 
-        qDebug()<<pos.x()+(rechteck1->length)/2.0;
-        qDebug()<<pos.y()+(rechteck1->width)/2.0;
-//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
-        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()-21,pos.y()-21),angle , 100, 40, b2_staticBody,1.0);
-
+        rechteck1 =new Block(myWorld, level, b2Vec2(x+(rechteck1->length)/2.0,y+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
+        rechteck1->graphics->setSelected(true);
         rechteck1->graphics->setRotation(degreeangle);
 
     }

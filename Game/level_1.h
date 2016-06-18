@@ -45,6 +45,7 @@ public slots:
     void addCircle();
     void reset();
     void quitLevel();
+    void position();
 
     void rotateLeft();
     void rotateRight();
@@ -88,6 +89,8 @@ private:
     MeinElement* umrandung2;
 
     QTimer* timer;
+    QTimer* timer2;
+    QPointF oldpos;
     int anzahl;
     b2Vec2 positionElem;
     QPushButton* bt_start;
