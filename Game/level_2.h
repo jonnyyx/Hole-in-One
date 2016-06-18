@@ -12,6 +12,7 @@
 #include <QElapsedTimer>
 #include <QTime>
 #include "recyclebin.h"
+#include "recyclebingraphics.h"
 #include "circle.h"
 #include "gui.h"
 #include <QItemSelection>
@@ -67,6 +68,7 @@ private:
 
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
+    RecycleBinGraphics* recyclebin3;
     Triangle* triangle1;
 
 

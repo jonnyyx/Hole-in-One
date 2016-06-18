@@ -41,11 +41,10 @@ bool Paperball::drawBall1()
 {
     b2Vec2 v=body->GetPosition();
     qreal a=body->GetAngle();
-    qreal grad=a*(180.0/3.14);
     //qDebug() << v.x << v.y;
     graphics->setPos(v.x,v.y);
 
-    qreal dx=549;
+    qreal dx=519;
     qreal dy=510;
 
 
@@ -62,14 +61,13 @@ bool Paperball::drawBall2()
 {
     b2Vec2 v=body->GetPosition();
     qreal a=body->GetAngle();
-    qreal grad=a*(180.0/3.14);
     //qDebug() << v.x << v.y;
     graphics->setPos(v.x,v.y);
 
-    qreal dx=549;
+    qreal dx=519;
     qreal dy=510;
 
-     if ((v.x<=dx)&&(v.x>=548)&&(v.y>=dy)){ //set postition of win for level_1
+     if ((v.x<=dx)&&(v.x>=518)&&(v.y>=dy)){ //set postition of win for level_1
        return true;
      }
      else{

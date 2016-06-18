@@ -56,8 +56,7 @@ void Level_1::position(){
 void Level_1::update(){
     myWorld->Step(framerate, 20, 20);
     win = ball->drawBall1(); //nur bewegende Elemente in Update
-    qDebug()<<recyclebin1->body->GetPosition().x;
-    qDebug()<<recyclebin1->body->GetPosition().y;
+    qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
 	
 	    if (win==true){
         Level_1::pauseLevel();
@@ -447,9 +446,11 @@ void Level_1::showLevel(){
      // game Objects
      ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      rechteck1 = new Block(myWorld, level, b2Vec2 (290,200),0 , 100, 40, b2_staticBody,1.0);
-	 recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
-     recyclebin1->graphics->setPos(498,505); //Set Graphic of Bin to desired position
-     recyclebin2 = new RecycleBin2(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
+     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin3 = new RecycleBinGraphics(level);
+
+     //->graphics->setPos(498,505); //Set Graphic of Bin to desired position
 
      //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
      //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
