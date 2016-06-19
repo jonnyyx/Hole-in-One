@@ -145,9 +145,7 @@ void Level_1::startLevel(){
         addcircle3->drawGraphics();
         addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
-    QPointF pos=rechteck1->graphics->pos();
-//    qDebug()<<pos.x()+(rechteck1->length)/2.0;
-//    qDebug()<<pos.y()+(rechteck1->width)/2.0;
+
 
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
@@ -319,7 +317,7 @@ void Level_1::highscoreCounter(){
  * Clear scene and load Level again.
  */
 void Level_1::reset(){
-    pauseLevel();
+   pauseLevel();
    level->clear();
    counterRec = 0;
    counterCircle = 0;
@@ -501,7 +499,7 @@ void Level_1::showLevel(){
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
      ball->drawBall1();
-     rechteck1->draw();
+
      //obstaclescircle1->draw(); //static Elemente may be drawn here
      //obstaclescircle2->draw();
      bottom->drawBottom();
