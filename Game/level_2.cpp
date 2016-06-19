@@ -42,7 +42,7 @@ void Level_2::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 2");
+        winText->setPlainText("You have finished Level 2!");
         level2->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);

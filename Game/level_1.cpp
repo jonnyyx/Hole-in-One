@@ -56,7 +56,7 @@ void Level_1::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 1");
+        winText->setPlainText("You have finished Level 1!");
         level->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
@@ -488,7 +488,7 @@ void Level_1::showLevel(){
      obstaclescircle11 = new Circle(myWorld, level, QPointF(950.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle12 = new Circle(myWorld, level, QPointF(1000.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     obstaclesrec1=new Block(myWorld,level,b2Vec2(469,350),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec1=new Block(myWorld,level,b2Vec2(469,350),0.5235,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec2=new Block(myWorld,level,b2Vec2(369,350),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec3=new Block(myWorld,level,b2Vec2(269,350),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec4=new Block(myWorld,level,b2Vec2(569,350),0,100,40,b2_staticBody,1.0,"obs");

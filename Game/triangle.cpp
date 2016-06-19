@@ -41,13 +41,42 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     triangle << a << b << c;
 //    graphics = level->addPolygon(triangle);
     if(mode=="obs"){
-        QPixmap bkgnd(":/pic/triangle_obs.png");
-        bkgnd.scaled(QSize(100,100));
-        graphics = level->addPixmap(bkgnd);
+        if(angle==0){
+            QPixmap bkgnd(":/pic/triangle_obs.png");
+            bkgnd.scaled(QSize(100,100));
+            graphics = level->addPixmap(bkgnd);
 
-        graphics->setPos(QPointF(a.x()+21,a.y()+21));
-        graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+            graphics->setPos(QPointF(a.x()+21,a.y()+21));
+            graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+            graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        }else if(angle==1.57){
+
+            QPixmap bkgnd(":/pic/triangle_obs_90degree.png");
+            bkgnd.scaled(QSize(100,100));
+            graphics = level->addPixmap(bkgnd);
+
+            graphics->setPos(QPointF(a.x()+21,a.y()+21));
+            graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+            graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        }else if(angle==3.1415){
+
+            QPixmap bkgnd(":/pic/triangle_obs_180degree.png");
+            bkgnd.scaled(QSize(100,100));
+            graphics = level->addPixmap(bkgnd);
+
+            graphics->setPos(QPointF(a.x()+21,a.y()+21));
+            graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+            graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        }else if(angle==4.7124){
+
+            QPixmap bkgnd(":/pic/triangle_obs_270degree.png");
+            bkgnd.scaled(QSize(100,100));
+            graphics = level->addPixmap(bkgnd);
+
+            graphics->setPos(QPointF(a.x()+21,a.y()+21));
+            graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+            graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        }
 
     }else if(mode=="tool"){
         QPixmap bkgnd(":/pic/triangle_tool.png");
@@ -57,8 +86,10 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
-    graphics->setTransformOriginPoint(b);
-
+    qreal anglegraphics=angle*180/3.1415;
+    QPointF hypopoint= QPointF(c.x()-50,c.y()-50);
+    graphics->setTransformOriginPoint(hypopoint);
+    graphics->setRotation(anglegraphics);
     draw();
 }
 
