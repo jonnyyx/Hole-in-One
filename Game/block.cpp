@@ -25,6 +25,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
+
     int x=center.x-length/2;
     int y=center.y-width/2;
 

@@ -47,16 +47,15 @@ Level_1::Level_1()
 void Level_1::update(){
     myWorld->Step(framerate, 20, 20);
     win = ball->drawBall1(); //nur bewegende Elemente in Update
-   // qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
+    // qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
 	
-	    if (win==true){
+        if (win==true){
         Level_1::pauseLevel();
-
         msgbox = new MeinElement(level,QPointF(375,275),300,175);
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 1");
+        winText->setPlainText("You have finished Level 1!");
         level->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
@@ -335,7 +334,7 @@ void Level_1::quitLevel()
     if(levelenab.size()>0){
         if(levelenab.at(7).toInt()<highscore){
             levelenab.replace(1,"true\n");
-            levelenab.replace(5,QString::number(leveltime)+"\n");
+            levelenab.replace(5,QString::number(leveltime)+" s\n");
             levelenab.replace(6,QString::number(counterTogether)+"\n");
             levelenab.replace(7,QString::number(highscore)+"\n");
         }
@@ -347,7 +346,7 @@ void Level_1::quitLevel()
         levelenab.insert(2,"false\n");
         levelenab.insert(3,"false\n");
         levelenab.insert(4,"Highscore\n");
-        levelenab.insert(5,QString::number(leveltime)+"\n");
+        levelenab.insert(5,QString::number(leveltime)+" s\n");
         levelenab.insert(6,QString::number(counterTogether)+"\n");
         levelenab.insert(7,QString::number(highscore)+"\n");
     }
@@ -488,7 +487,7 @@ void Level_1::showLevel(){
      obstaclescircle11 = new Circle(myWorld, level, QPointF(950.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle12 = new Circle(myWorld, level, QPointF(1000.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     obstaclesrec1=new Block(myWorld,level,b2Vec2(469,350),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec1=new Block(myWorld,level,b2Vec2(469,350),0.5235,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec2=new Block(myWorld,level,b2Vec2(369,350),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec3=new Block(myWorld,level,b2Vec2(269,350),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec4=new Block(myWorld,level,b2Vec2(569,350),0,100,40,b2_staticBody,1.0,"obs");

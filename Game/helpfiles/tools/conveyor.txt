@@ -1,1 +1,0 @@
-The conveyor is a very powerful tool, too. Once the paperball lands on it, the ball will be accelerated in the direction the conveyor is aiming at ('<': left direction, '>': right direction). There are different models, which can be identified by '<<' '<' '>' '>>', which is written on the side of the tool. Neither can it be rotated, nor can the direction be changed by the player.

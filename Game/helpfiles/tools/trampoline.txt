@@ -1,1 +1,0 @@
-The trampolin is quite similar to the spring. The difference is, that the trampoline can be used multiple times, and it will not add power to the ball (e.g. If the ball drops from a certain heigth on the trampoline it will not reach the start value when reflected, due to friction losses etc.). To move the object click and hold on the object and drag it with your mouse. 

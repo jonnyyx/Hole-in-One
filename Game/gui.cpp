@@ -43,7 +43,7 @@ GUI::GUI(QWidget *parent){
 
     bksnd = new QMediaPlayer();
     bksnd -> setPlaylist(playlist);
-    bksnd -> setVolume(70);
+    bksnd -> setVolume(35);
     bksnd -> play();
 
     /*
@@ -84,7 +84,7 @@ void GUI::mute()
     else if(ismute==true){
         ismute=false;
         mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
-        bksnd -> setVolume(70);
+        bksnd -> setVolume(35);
         bksnd -> play();
     }
 }

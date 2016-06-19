@@ -1,8 +1,9 @@
 #ifndef MEINELEMENT_H
 #define MEINELEMENT_H
-#include"Box2D/Box2D.h"
-#include"QGraphicsItem"
-#include<QPointF>
+#include "Box2D/Box2D.h"
+#include "QGraphicsItem"
+#include <QMediaPlayer>
+#include <QPointF>
 
 class MainWindow;
 
@@ -24,6 +25,7 @@ public:
     b2Body* body;
     QGraphicsItem* graphics;
     QGraphicsItem* white;
+    QMediaPlayer* applause;
 
 
 

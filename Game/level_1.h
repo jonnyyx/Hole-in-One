@@ -17,7 +17,7 @@
 #include "gui.h"
 #include <QItemSelection>
 #include "paperball.h"
-
+#include <QMediaPlayer>
 #include "block.h"
 
 
@@ -64,7 +64,7 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     QGraphicsItem* backgnd;
-
+    QMediaPlayer *applause;
 
 
     //Elements to add

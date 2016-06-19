@@ -56,7 +56,7 @@ void Level_3::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 1");
+        winText->setPlainText("You have finished Level 3!");
         level->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
@@ -335,7 +335,7 @@ void Level_3::quitLevel()
     if(levelenab.size()>9){
         if(levelenab.at(13).toInt()<highscore){
 
-            levelenab.replace(11,QString::number(leveltime)+"\n");
+            levelenab.replace(11,QString::number(leveltime)+" s\n");
             levelenab.replace(12,QString::number(counterTogether)+"\n");
             levelenab.replace(13,QString::number(highscore)+"\n");
         }
@@ -347,7 +347,7 @@ void Level_3::quitLevel()
         levelenab.insert(2,"true\n");
         levelenab.insert(3,"true\n");
         levelenab.insert(4,"Highscore\n");
-        levelenab.insert(11,QString::number(leveltime)+"\n");
+        levelenab.insert(11,QString::number(leveltime)+" s\n");
         levelenab.insert(12,QString::number(counterTogether)+"\n");
         levelenab.insert(13,QString::number(highscore)+"\n");
     }
@@ -475,7 +475,7 @@ void Level_3::showLevel(){
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level);
 
-     triangle1 = new Triangle(myWorld, level, QPointF(450.0,400.0), QPointF(550.0,400.0), QPointF(550.0,500.0), 0, b2_staticBody, 1.0,"obs");
+     triangle1 = new Triangle(myWorld, level, QPointF(200.0,400.0), QPointF(300.0,400.0), QPointF(300.0,500.0), 0.5235, b2_staticBody, 1.0,"obs");
 
      //so that ball is not moveable like the other objects
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);

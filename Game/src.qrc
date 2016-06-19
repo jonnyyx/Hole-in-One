@@ -23,5 +23,6 @@
         <file>block_bttn_h.png</file>
         <file>circle_bttn_h.png</file>
         <file>triangle_bttn_h.png</file>
+        <file>applause.mp3</file>
     </qresource>
 </RCC>
