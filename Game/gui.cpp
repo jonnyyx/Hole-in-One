@@ -286,13 +286,13 @@ void GUI::levelMenu()
 //    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
 //    scene->addWidget(eightpicButton);
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
     int backyPos = 650;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
-    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-    scene->addItem(backButton);
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
 }
 
 void GUI::back(){
@@ -567,14 +567,13 @@ void GUI::highscore()
     score4text->setPos(score4textxPos,score4textyPos);
     scene->addItem(score4text);
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
-    int backyPos = 550;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
-    scene->addItem(backButton);
-
-
+    int backyPos = 650;
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
 }
 
 void GUI::help()
@@ -725,12 +724,13 @@ void GUI::help()
     scene -> addItem(obstText);
 
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()));
-    scene->addItem(backButton);
+    int backyPos = 650;
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
 
 }
 
@@ -794,12 +794,14 @@ void GUI::box()
     rectText->setPos(rectxPos,rectyPos);
     scene -> addItem(rectText);
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    scene->addItem(backButton);
+    int backyPos = 650;
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
+
 }
 
 void GUI::circle()
@@ -855,12 +857,13 @@ void GUI::circle()
     circleText->setPos(circlexPos,circleyPos);
     scene -> addItem(circleText);
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    scene->addItem(backButton);
+    int backyPos = 650;
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
 }
 
 void GUI::triangle()
@@ -919,12 +922,13 @@ void GUI::triangle()
     triText->setPos(trixPos,triyPos);
     scene -> addItem(triText);
 
-    Button* backButton = new Button(QString("Back"));
+    picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 50;
-    int backyPos = 670;
-    backButton->setPos(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-    scene->addItem(backButton);
+    int backyPos = 650;
+    backButton->move(backxPos,backyPos);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
+    scene->addWidget(backButton);
 }
 
 //void GUI::spring()
