@@ -31,6 +31,8 @@ public slots:
     void back();        //for back-button
     void showLevel1();
     void showLevel2();
+    void showLevel3();
+    void showLevel4();
     void help();        //for help-menu-button
 
     void box();         //instruction for rect

@@ -6,6 +6,8 @@
 #include <QRect>
 #include "level_1.h"
 #include "level_2.h"
+#include "level_3.h"
+#include "level_4.h"
 #include "qdebug.h"
 
 GUI::GUI(QWidget *parent){
@@ -240,37 +242,50 @@ void GUI::levelMenu()
     connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
     connect(twopicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(twopicButton);
+    picButton* threepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+    int threexPos = 548;
+    int threeyPos = 250;
+    threepicButton->move(threexPos,threeyPos);
+    connect(threepicButton, SIGNAL(clicked()), this, SLOT(showLevel3()));
+    scene->addWidget(threepicButton);
 
-    picButton* fivepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int fivexPos = 148;
-    int fiveyPos = 450;
-    fivepicButton->move(fivexPos,fiveyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(fivepicButton);
+    picButton* fourpicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1disabled.png"));
+    int fourxPos = 748;
+    int fouryPos = 250;
+    fourpicButton->move(fourxPos,fouryPos);
+    connect(fourpicButton, SIGNAL(clicked()), this, SLOT(showLevel4()));
+    scene->addWidget(fourpicButton);
 
-
-    picButton* sixpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int sixxPos = 348;
-    int sixyPos = 450;
-    sixpicButton->move(sixxPos,sixyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(sixpicButton);
-
-
-    picButton* sevenpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int sevenxPos = 548;
-    int sevenyPos = 450;
-    sevenpicButton->move(sevenxPos,sevenyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(sevenpicButton);
+//    picButton* fivepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+//    int fivexPos = 148;
+//    int fiveyPos = 450;
+//    fivepicButton->move(fivexPos,fiveyPos);
+//    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+//    scene->addWidget(fivepicButton);
 
 
-    picButton* eightpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-    int eightxPos = 748;
-    int eightyPos = 450;
-    eightpicButton->move(eightxPos,eightyPos);
-    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
-    scene->addWidget(eightpicButton);
+//    picButton* sixpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+//    int sixxPos = 348;
+//    int sixyPos = 450;
+//    sixpicButton->move(sixxPos,sixyPos);
+//    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+//    scene->addWidget(sixpicButton);
+
+
+//    picButton* sevenpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+//    int sevenxPos = 548;
+//    int sevenyPos = 450;
+//    sevenpicButton->move(sevenxPos,sevenyPos);
+//    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+//    scene->addWidget(sevenpicButton);
+
+
+//    picButton* eightpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+//    int eightxPos = 748;
+//    int eightyPos = 450;
+//    eightpicButton->move(eightxPos,eightyPos);
+//    //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+//    scene->addWidget(eightpicButton);
 
     Button* backButton = new Button(QString("Back"));
     int backxPos = 50;
@@ -320,6 +335,21 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
     test2 = new Level_2();
     test2->show();
 
+}
+
+void GUI::showLevel3()
+{
+    Level_3 *test;
+    test = new Level_3();
+    test->show();
+
+}
+
+void GUI::showLevel4()
+{
+    Level_4 *test;
+    test = new Level_4();
+    test->show();
 }
 
 void GUI::highscore()
