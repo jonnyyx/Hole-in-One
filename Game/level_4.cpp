@@ -342,11 +342,7 @@ void Level_4::quitLevel()
 
     }
     else{
-        levelenab.insert(0,"true\n");
-        levelenab.insert(1,"true\n");
-        levelenab.insert(2,"true\n");
-        levelenab.insert(3,"true\n");
-        levelenab.insert(4,"Highscore\n");
+
         levelenab.insert(14,QString::number(leveltime)+" s\n");
         levelenab.insert(15,QString::number(counterTogether)+"\n");
         levelenab.insert(16,QString::number(highscore)+"\n");
