@@ -56,7 +56,7 @@ void Level_3::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 1");
+        winText->setPlainText("You have finished Level 3!");
         level->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
@@ -335,7 +335,7 @@ void Level_3::quitLevel()
     if(levelenab.size()>9){
         if(levelenab.at(13).toInt()<highscore){
 
-            levelenab.replace(11,QString::number(leveltime)+"\n");
+            levelenab.replace(11,QString::number(leveltime)+" s\n");
             levelenab.replace(12,QString::number(counterTogether)+"\n");
             levelenab.replace(13,QString::number(highscore)+"\n");
         }
@@ -347,7 +347,7 @@ void Level_3::quitLevel()
         levelenab.insert(2,"true\n");
         levelenab.insert(3,"true\n");
         levelenab.insert(4,"Highscore\n");
-        levelenab.insert(11,QString::number(leveltime)+"\n");
+        levelenab.insert(11,QString::number(leveltime)+" s\n");
         levelenab.insert(12,QString::number(counterTogether)+"\n");
         levelenab.insert(13,QString::number(highscore)+"\n");
     }
