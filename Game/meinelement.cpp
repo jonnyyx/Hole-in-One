@@ -111,6 +111,12 @@ MeinElement::MeinElement(QGraphicsScene *level, QPointF center, qreal length, qr
     bk.scaled(QSize(length, width));
     white = level->addPixmap(bk);
     white->setPos(center.x(),center.y());
+
+    //Aplause for Win
+    applause = new QMediaPlayer();
+    applause->setMedia(QUrl("qrc:/pic/applause.mp3"));
+    applause->setVolume(100);
+    applause->play();
 }
 
  void MeinElement::draw()

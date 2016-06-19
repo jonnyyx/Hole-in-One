@@ -47,11 +47,10 @@ Level_1::Level_1()
 void Level_1::update(){
     myWorld->Step(framerate, 20, 20);
     win = ball->drawBall1(); //nur bewegende Elemente in Update
-   // qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
+    // qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
 	
-	    if (win==true){
+        if (win==true){
         Level_1::pauseLevel();
-
         msgbox = new MeinElement(level,QPointF(375,275),300,175);
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
