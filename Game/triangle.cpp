@@ -86,10 +86,8 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
-    qreal anglegraphics=angle*180/3.1415;
-    QPointF hypopoint= QPointF(c.x()-50,c.y()-50);
-    graphics->setTransformOriginPoint(hypopoint);
-    graphics->setRotation(anglegraphics);
+
+
     draw();
 }
 
