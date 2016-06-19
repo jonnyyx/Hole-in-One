@@ -29,7 +29,5 @@
         <file>triangle_bttn.png</file>
         <file>triangle_obs.png</file>
         <file>triangle_tool.png</file>
-        <file>block_toolhover.png</file>
-        <file>circle_toolhover.png</file>
     </qresource>
 </RCC>

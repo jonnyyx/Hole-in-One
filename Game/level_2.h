@@ -17,6 +17,7 @@
 #include "gui.h"
 #include <QItemSelection>
 #include <paperball.h>
+#include "triangle.h"
 
 #include "block.h"
 
@@ -43,6 +44,7 @@ public slots:
     void resumeLevel();
     void addRectangle();
     void addCircle();
+    void addTriangle();
     void reset();
     void quitLevel();
 
@@ -64,14 +66,17 @@ private:
     QGraphicsItem* backgnd;
 
     //Elements to add
-    Block* elem4;
-    Block* elem5;
-    Block* elem6;
+    Block* addblock1;
+    Block* addblock2;
+    Block* addblock3;
 
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
-    Triangle* triangle1;
+    Triangle* addtriangle1;
+    Triangle* addtriangle2;
+    Triangle* addtriangle3;
+
 
 
     Circle* addcircle1;
@@ -83,8 +88,44 @@ private:
     Paperball* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
+    Circle* obstaclescircle3;
+    Circle* obstaclescircle4;
+    Circle* obstaclescircle5;
+    Circle* obstaclescircle6;
+    Circle* obstaclescircle7;
+    Circle* obstaclescircle8;
+    Circle* obstaclescircle9;
+    Circle* obstaclescircle10;
+    Circle* obstaclescircle11;
+    Circle* obstaclescircle12;
+    Circle* obstaclescircle13;
+    Circle* obstaclescircle14;
+    Circle* obstaclescircle15;
+    Circle* obstaclescircle16;
 
-    Block* rechteck1;
+    Block* obstaclesrec1;
+    Block* obstaclesrec2;
+    Block* obstaclesrec3;
+    Block* obstaclesrec4;
+    Block* obstaclesrec5;
+    Block* obstaclesrec6;
+    Block* obstaclesrec7;
+    Block* obstaclesrec8;
+    Block* obstaclesrec9;
+    Block* obstaclesrec10;
+
+    Triangle* obstacletriangle1;
+    Triangle* obstacletriangle2;
+    Triangle* obstacletriangle3;
+    Triangle* obstacletriangle4;
+    Triangle* obstacletriangle5;
+    Triangle* obstacletriangle6;
+    Triangle* obstacletriangle7;
+    Triangle* obstacletriangle8;
+    Triangle* obstacletriangle9;
+    Triangle* obstacletriangle10;
+    Triangle* obstacletriangle11;
+
 
     MeinElement* bottom;
     MeinElement* umrandung1;
@@ -101,11 +142,13 @@ private:
     QTime leveltime_normal;
     QPushButton* bt__rect;
     QPushButton* bt__circle;
+    QPushButton* bt__triangle;
     QPushButton* bt__reset;
     QPushButton* bt__left;
     QPushButton* bt__right;
     int counterRec = 0;
     int counterCircle=0;
+    int counterTriangle=0;
     int highscore = 0;
     int counterTogether = 0;
     int leveltime;
