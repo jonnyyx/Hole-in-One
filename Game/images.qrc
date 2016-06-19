@@ -29,5 +29,7 @@
         <file>triangle_bttn.png</file>
         <file>triangle_obs.png</file>
         <file>triangle_tool.png</file>
+        <file>images/Bachhover.png</file>
+        <file>images/Backdefault.png</file>
     </qresource>
 </RCC>
