@@ -14,6 +14,9 @@ using namespace std;
 
 Level_2::Level_2(QWidget *parent)
 {
+    /*!Set Application-Name*/
+    setWindowTitle(tr("Hole in One - Level 2"));
+
     //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -34,6 +37,9 @@ void Level_2::update(){
 
         if (win==true){
         Level_2::pauseLevel();
+
+        msgbox = new MeinElement(level2,QPointF(375,275),300,175);
+
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 2");
@@ -334,8 +340,14 @@ void Level_2::quitLevel()
  */
 void Level_2::showLevel(){
 
-    //Start Button
+     //set Background Image
+     QPixmap background(":/pic/Game_background_spwn.png");
+     background.scaled(QSize(1021,766));
+     backgnd = level2->addPixmap(background);
+     backgnd->setPos(0,0); //Set Graphic to top left corner
+     backgnd->setFlag(QGraphicsItem::ItemIsMovable, false);
 
+     //Start Button
      bt_start=new QPushButton();
      bt_start->setText("Start");
      bt_start->move(900.0,620.0);

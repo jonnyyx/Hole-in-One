@@ -18,6 +18,9 @@ using namespace std;
  */
 Level_4::Level_4(QWidget *parent)
 {
+    /*!Set Application-Name*/
+    setWindowTitle(tr("Hole in One - Level 4"));
+
     //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -367,8 +370,8 @@ void Level_4::quitLevel()
  * Connect Buttons with SLOT.
  */
 void Level_4::showLevel(){
-    //set Background Image
 
+     //set Background Image
      QPixmap background(":/pic/Game_background_spwn.png");
      background.scaled(QSize(1021,766));
      backgnd = level->addPixmap(background);

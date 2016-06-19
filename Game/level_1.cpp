@@ -18,6 +18,9 @@ using namespace std;
  */
 Level_1::Level_1(QWidget *parent)
 {
+    /*!Set Application-Name*/
+    setWindowTitle(tr("Hole in One - Level 1"));
+
     //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
