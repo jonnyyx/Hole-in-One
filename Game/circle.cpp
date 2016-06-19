@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QDebug>
 
-Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle)
+Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle,QString mode)
 {
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
@@ -20,11 +20,18 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
     body->CreateFixture(&circleFixtureDef);
 
 //  body->SetLinearVelocity(b2Vec2(0.0,0.0));
-
-    QPixmap bkgnd(":/pic/circle_tool.png");
-    bkgnd.scaled(QSize(42,42));
-    graphics = level->addPixmap(bkgnd);
-    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+    if(mode=="obs"){
+        QPixmap bkgnd(":/pic/circle_obs.png");
+        bkgnd.scaled(QSize(42,42));
+        graphics = level->addPixmap(bkgnd);
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+    }
+    else if(mode=="tool"){
+        QPixmap bkgnd(":/pic/circle_tool.png");
+        bkgnd.scaled(QSize(42,42));
+        graphics = level->addPixmap(bkgnd);
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+    }
 
 }
 void Circle::draw()
@@ -32,7 +39,7 @@ void Circle::draw()
     b2Vec2 v=body->GetPosition();
 
     graphics->setPos(QPointF(v.x,v.y));
-    qreal a=body->GetAngle();
+    //qreal a=body->GetAngle();
 
 }
 

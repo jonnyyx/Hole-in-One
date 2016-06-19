@@ -224,7 +224,7 @@ void Level_3::addCircle(){
     qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (2)");
         bt__circle->setText("Circle (2)");
@@ -235,7 +235,7 @@ void Level_3::addCircle(){
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle2 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (1)");
         bt__circle->setText("Circle (1)");
@@ -246,7 +246,7 @@ void Level_3::addCircle(){
 
     if(counterCircle==3){
         circle.m_radius = 21.0;
-        addcircle3 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle3 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (0)");
         bt__circle->setText("Circle (0)");

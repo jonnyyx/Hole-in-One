@@ -81,10 +81,13 @@ void Level_1::startLevel(){
 
 	recyclebin1->drawGraphics();
     recyclebin2->drawGraphics();
-
+    obstaclescircle1->drawGraphics();
+    obstaclescircle2->drawGraphics();
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
 
     if(counterRec==1){
@@ -224,7 +227,7 @@ void Level_1::addCircle(){
     qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (2)");
         bt__circle->setText("Circle (2)");
@@ -235,7 +238,7 @@ void Level_1::addCircle(){
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle2 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (1)");
         bt__circle->setText("Circle (1)");
@@ -246,7 +249,7 @@ void Level_1::addCircle(){
 
     if(counterCircle==3){
         circle.m_radius = 21.0;
-        addcircle3 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle);
+        addcircle3 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         //bt__rect->setText("Rectangle (0)");
         bt__circle->setText("Circle (0)");
@@ -478,8 +481,8 @@ void Level_1::showLevel(){
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level);
 
-     //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-     //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
+     obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
 
      //so that ball is not moveable like the other objects
@@ -487,8 +490,8 @@ void Level_1::showLevel(){
 
      ball->drawBall1();
 
-     //obstaclescircle1->draw(); //static Elemente may be drawn here
-     //obstaclescircle2->draw();
+     obstaclescircle1->draw(); //static Elemente may be drawn here
+     obstaclescircle2->draw();
      bottom->drawBottom();
      umrandung1->graphics->hide();
      umrandung2->graphics->hide();
