@@ -87,6 +87,32 @@ private:
     Paperball* ball;
     Circle* obstaclescircle1;
     Circle* obstaclescircle2;
+    Circle* obstaclescircle3;
+    Circle* obstaclescircle4;
+    Circle* obstaclescircle5;
+    Circle* obstaclescircle6;
+    Circle* obstaclescircle7;
+    Circle* obstaclescircle8;
+    Circle* obstaclescircle9;
+    Circle* obstaclescircle10;
+    Circle* obstaclescircle11;
+    Circle* obstaclescircle12;
+    Circle* obstaclescircle13;
+    Circle* obstaclescircle14;
+    Circle* obstaclescircle15;
+    Circle* obstaclescircle16;
+
+    Block* obstaclesrec1;
+    Block* obstaclesrec2;
+    Block* obstaclesrec3;
+    Block* obstaclesrec4;
+    Block* obstaclesrec5;
+    Block* obstaclesrec6;
+    Block* obstaclesrec7;
+    Block* obstaclesrec8;
+    Block* obstaclesrec9;
+    Block* obstaclesrec10;
+
 
     Block* rechteck1;
 

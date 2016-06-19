@@ -181,7 +181,7 @@ void Level_2::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem4 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0,"tool");
 
         bt__rect->setText("Rectangle (2)");
         //bt__circle->setText("Circle (2)");
@@ -190,7 +190,7 @@ void Level_2::addRectangle()
     }
 
     else if(counterRec==2){
-        elem5 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem5 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0,"tool");
 
         bt__rect->setText("Rectangle (1)");
         //bt__circle->setText("Circle (1)");
@@ -199,7 +199,7 @@ void Level_2::addRectangle()
     }
 
     else if(counterRec==3){
-        elem6 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0);
+        elem6 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0,"tool");
         elem6->draw();
 
         bt__rect->setEnabled(false);
@@ -432,7 +432,7 @@ void Level_2::showLevel(){
 
      ball  = new Paperball(myWorld2, level2, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
      obstaclescircle1 = new Circle(myWorld2, level2, QPointF(400.0,170), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     rechteck1 = new Block(myWorld2, level2, b2Vec2 (300,150), 0, 100, 40, b2_staticBody,1.0);
+     rechteck1 = new Block(myWorld2, level2, b2Vec2 (300,150), 0, 100, 40, b2_staticBody,1.0,"obs");
      recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level2);

@@ -32,7 +32,7 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
         graphics = level->addPixmap(bkgnd);
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     }
-
+    draw();
 }
 void Circle::draw()
 {

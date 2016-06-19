@@ -5,13 +5,13 @@
 #include <qdebug.h>
 
 
-Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction)
+Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
 {
     angle=m_angle;
     length=m_length;
     width=m_width;
     b2PolygonShape polygon;
-    polygon.SetAsBox(length/2, width/2, center, angle);
+    polygon.SetAsBox(length/2, width/2,center, angle);
     b2BodyDef myBodyDef;
     myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
     myBodyDef.active = true;
@@ -25,21 +25,39 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     polygonFixtureDef.friction=friction;
     body->CreateFixture(&polygonFixtureDef);
 
-
-
     int x=center.x-length/2;
     int y=center.y-width/2;
 
-    QPixmap bkgnd(":/pic/block_tool.png");
-    bkgnd.scaled(QSize(length,width));
-    graphics = level->addPixmap(bkgnd);
+//    QRectF polyf(QPoint(x,y),QSize(length,width));
+
+//    graphics = level->addRect(polyf);
+
+//   graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+
+    if(mode=="obs"){
+        QPixmap bkgnd(":/pic/block_obs.png");
+        bkgnd.scaled(QSize(length,width));
+        graphics = level->addPixmap(bkgnd);
+        graphics->setPos(QPoint(x+21,y+21));
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    }
+    else if(mode=="tool"){
+        QPixmap bkgnd(":/pic/block_tool.png");
+        bkgnd.scaled(QSize(length,width));
+        graphics = level->addPixmap(bkgnd);
+        graphics->setPos(QPoint(x+21,y+21));
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    }
+
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
 
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
-    drawRec(x,y);
+
 }
 
 //FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
@@ -49,16 +67,17 @@ void Block::draw()
 {
     b2Vec2 v=body->GetPosition();
 
-    graphics->setPos(QPointF(v.x,v.y));
-    qreal a=body->GetAngle();
+    //graphics->setPos(QPointF(v.x,v.y));
+
 
 }
 
 void Block::drawRec(int x,int y){
 
-    graphics->setPos(QPointF(x,y));
-    qreal a=body->GetAngle();
-    graphics->setRotation(a);
+
+    b2Vec2 a=body->GetPosition();
+    graphics->setPos(QPointF(a.x,a.y));
+
 }
 
 void Block::drawGraphics()
@@ -67,4 +86,6 @@ void Block::drawGraphics()
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
 
 }
+
+
 
