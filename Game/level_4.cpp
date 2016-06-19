@@ -61,7 +61,7 @@ void Level_4::update(){
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
 
-        QString time = QString("Time: %1").arg(leveltime);
+        QString time = QString("Time: %1 s").arg(leveltime);
         qDebug()<<time;
         timeText->setPlainText( time);
         level->addItem(timeText);
@@ -319,46 +319,43 @@ void Level_4::reset(){
  */
 void Level_4::quitLevel()
 {
+    QList <QString> levelenab;
     QFile file("level.txt");
+    file.open(QIODevice::ReadWrite |QIODevice::Text);
     if(file.exists("level.txt")){
-        file.open(QIODevice::ReadOnly |QIODevice::Text);
+
         levelenab.clear();
         while(!file.atEnd()){
-            levelenab+=file.readLine();
+            levelenab.append(file.readLine());
         }
+       file.resize(0);
 
-       file.close();
-       QFile::remove("level.txt");
-       QFile file("level.txt");
     }
-    file.open(QIODevice::WriteOnly |QIODevice::Text);
-    QTextStream out(&file);
 
-    if(levelenab.size()>0){
-        levelenab.replace(1,"true");
-        levelenab.replace(5,QString::number(leveltime));
-        levelenab.replace(6,QString::number(counterTogether));
-        levelenab.replace(7,QString::number(highscore));
+    if(levelenab.size()>12){
+        if(levelenab.at(16).toInt()<highscore){
+
+            levelenab.replace(14,QString::number(leveltime)+"\n");
+            levelenab.replace(15,QString::number(counterTogether)+"\n");
+            levelenab.replace(16,QString::number(highscore)+"\n");
+        }
 
     }
     else{
-        levelenab.insert(0,"true");
-        levelenab.insert(1,"false");
-        levelenab.insert(2,"false");
-        levelenab.insert(3,"false");
-        levelenab.insert(4,"Highscore");
-        levelenab.insert(5,QString::number(leveltime));
-        levelenab.insert(6,QString::number(counterTogether));
-        levelenab.insert(7,QString::number(highscore));
+        levelenab.insert(0,"true\n");
+        levelenab.insert(1,"true\n");
+        levelenab.insert(2,"true\n");
+        levelenab.insert(3,"true\n");
+        levelenab.insert(4,"Highscore\n");
+        levelenab.insert(14,QString::number(leveltime)+"\n");
+        levelenab.insert(15,QString::number(counterTogether)+"\n");
+        levelenab.insert(16,QString::number(highscore)+"\n");
     }
-    file.resize(0);
 
+    QTextStream out(&file);
     foreach (QString data, levelenab) {
-        out<<data<<endl;
+        out<<data;
     }
-
-
-   // out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
 
 
     file.close();

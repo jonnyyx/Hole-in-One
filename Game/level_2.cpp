@@ -46,7 +46,7 @@ void Level_2::update(){
         level2->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
-        QString time = QString("Time: %1").arg(leveltime);
+        QString time = QString("Time: %1 s").arg(leveltime);
         timeText->setPlainText( time);
         level2->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
@@ -291,19 +291,43 @@ void Level_2::reset(){
 
 void Level_2::quitLevel()
 {
+    QList <QString> levelenab;
     QFile file("level.txt");
-
+    file.open(QIODevice::ReadWrite |QIODevice::Text);
     if(file.exists("level.txt")){
-       file.remove("level.txt");
 
-       QFile file("level.txt");
+        levelenab.clear();
+        while(!file.atEnd()){
+            levelenab.append(file.readLine());
+        }
+       file.resize(0);
+
     }
-    file.open(QIODevice::WriteOnly |QIODevice::Text);
+
+    if(levelenab.size()>6){
+        if(levelenab.at(10).toInt()<highscore){
+            levelenab.replace(2,"true\n");
+            levelenab.replace(8,QString::number(leveltime)+"\n");
+            levelenab.replace(9,QString::number(counterTogether)+"\n");
+            levelenab.replace(10,QString::number(highscore)+"\n");
+        }
+
+    }else{
+        levelenab.insert(0,"true\n");
+        levelenab.insert(1,"true\n");
+        levelenab.insert(2,"true\n");
+        levelenab.insert(3,"false\n");
+        levelenab.insert(4,"Highscore\n");
+        levelenab.insert(8,QString::number(leveltime)+"\n");
+        levelenab.insert(9,QString::number(counterTogether)+"\n");
+        levelenab.insert(10,QString::number(highscore)+"\n");
+    }
+
+
     QTextStream out(&file);
-
-    //out.reset();
-
-    out<<"true"<<endl<<"false"<<endl<<"false"<<endl<<"false"<<endl<<"Highscore"<<endl<<leveltime<<endl<<counterTogether<<endl<<highscore<<endl;
+    foreach (QString data, levelenab) {
+        out<<data;
+    }
 
 
     file.close();

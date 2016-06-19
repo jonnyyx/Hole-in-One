@@ -343,7 +343,7 @@ void Level_1::quitLevel()
     }
     else{
         levelenab.insert(0,"true\n");
-        levelenab.insert(1,"false\n");
+        levelenab.insert(1,"true\n");
         levelenab.insert(2,"false\n");
         levelenab.insert(3,"false\n");
         levelenab.insert(4,"Highscore\n");
@@ -351,8 +351,7 @@ void Level_1::quitLevel()
         levelenab.insert(6,QString::number(counterTogether)+"\n");
         levelenab.insert(7,QString::number(highscore)+"\n");
     }
-    for(int i=0;i<levelenab.size();i++)
-        qDebug()<<levelenab.at(i);
+
     QTextStream out(&file);
     foreach (QString data, levelenab) {
         out<<data;

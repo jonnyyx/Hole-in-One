@@ -54,8 +54,6 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
 
-    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
-    graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 
 }
