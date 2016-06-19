@@ -64,7 +64,6 @@ void Level_2::update(){
 void Level_2::startLevel(){
 
     addtriangle1->drawGraphics();
-
     recyclebin1->drawGraphics();
     recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin2->drawGraphics();
@@ -474,7 +473,7 @@ void Level_2::showLevel(){
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level2);
 
-     addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+     addtriangle1 = new Triangle(myWorld2, level2, QPointF(500.0,0.0), QPointF(600.0,0.0), QPointF(600.0,100.0),1.57, b2_staticBody, 1.0,"obs");
 
 
      bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);

@@ -582,6 +582,7 @@ void GUI::highscore()
     scene->addWidget(backButton);
 }
 
+
 void GUI::help()
 {
     scene->clear();
@@ -627,16 +628,15 @@ void GUI::help()
     scene -> addItem(firstCap);
 
     QGraphicsTextItem* firstText = new QGraphicsTextItem(QString(
-                                                             "Welcome to 'Hole in One', this unique physic game will be your perfect companion" "\n"
-                                                             "for diverting hours. The aim is to lead the paperball through different levels to the" "\n"
-                                                             "trash can, to fullfill its purpose of life. To succeed the different tasks there is a" "\n"
-                                                             "wide set of tools ready to be used by the player. These tools are necessary to" "\n"
-                                                             "bypass different and many evil obstacles, which will do everything to prevent the" "\n"
-                                                             "ball from reaching his goal.""\n"
-                                                             "Be the chosen one and support the paperball!" "\n"
-                                                             "_____________________________________________________________________"
-                                                             "\n""\n""\n""\n""\n""\n""\n"
-                                                             "_____________________________________________________________________"));
+                                                  "Welcome to 'Hole in One', this unique physic game will be your perfect companion" "\n"
+                                                  "for diverting hours. The aim is to lead the paperball through different levels to the" "\n"
+                                                  "trash can, to fullfill its purpose of life. To succeed the different tasks there is a" "\n"
+                                                  "wide set of tools ready to be used by the player. These tools are necessary to" "\n"
+                                                  "bypass different and many evil obstacles, which will do everything to prevent the" "\n"
+                                                  "ball from reaching his goal.""\n"
+                                                  "Be the chosen one and support the paperball!" "\n"
+                                                  "_____________________________________________________________________"
+                                                  ));
     QFont firstFont("comic sans", 12);
     firstText->setFont(firstFont);
     int firstxPos = 120;
@@ -650,7 +650,7 @@ void GUI::help()
     QFont secondCFont("comic sans", 18);
     secondCap->setFont(secondCFont);
     int secondCxPos = 80;
-    int secondCyPos = 290;
+    int secondCyPos = 335;
     secondCap->setPos(secondCxPos,secondCyPos);
     scene -> addItem(secondCap);
 
@@ -659,25 +659,34 @@ void GUI::help()
 
     picButton* boxButton = new picButton(QPixmap(":/pic/block_bttn_h.png"), QPixmap(":/pic/block_bttn.png"));
     int blockxPos = 220;
-    int blockyPos = 300;
+    int blockyPos = 340;
     boxButton->move(blockxPos,blockyPos);
     connect(boxButton, SIGNAL(clicked()), this, SLOT(box()), Qt::QueuedConnection);
     scene->addWidget(boxButton);
 
     picButton* circleButton = new picButton(QPixmap(":/pic/circle_bttn_h.png"), QPixmap(":/pic/circle_bttn.png"));
     int circlexPos = 400;
-    int circleyPos = 300;
+    int circleyPos = 340;
     circleButton->move(circlexPos,circleyPos);
     connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()), Qt::QueuedConnection);
     scene->addWidget(circleButton);
 
     picButton* triangleButton = new picButton(QPixmap(":/pic/triangle_bttn_h.png"), QPixmap(":/pic/triangle_bttn.png"));
     int trianglexPos = 580;
-    int triangleyPos = 300;
+    int triangleyPos = 340;
     triangleButton->move(trianglexPos,triangleyPos);
     connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()), Qt::QueuedConnection);
     scene->addWidget(triangleButton);
 
+    QGraphicsTextItem* Line = new QGraphicsTextItem(QString(
+                                                  "_____________________________________________________________________"
+                                                  ));
+    QFont Font("comic sans", 12);
+    Line->setFont(Font);
+    int LxPos = 120;
+    int LyPos = 470;
+    Line->setPos(LxPos,LyPos);
+    scene -> addItem(Line);
 
 //    Button* springButton = new Button(QString("Spring"));
 //    springButton->setRect(0,0,100,100);
@@ -712,26 +721,25 @@ void GUI::help()
     QFont obstaCFont("comic sans", 18);
     obstaCap->setFont(obstaCFont);
     int obstaCxPos = 80;
-    int obstaCyPos = 425;
+    int obstaCyPos = 505;
     obstaCap->setPos(obstaCxPos,obstaCyPos);
     scene -> addItem(obstaCap);
 
     QGraphicsTextItem* obstText = new QGraphicsTextItem(QString(
-                                                            "Obstacles are objects which can not be moved by the player." "\n"
-                                                            "You can distinguish between tools and obstacles by the different brush" "\n"
-                                                            "They hamper the ball of paper to reach the trash basket, but you may" "\n"
-                                                            "use them in your favour.""\n"
-                                                               ));
+                                                            "Obstacles are objects which can not be moved by the player. You can distinguish" "\n"
+                                                            "between tools and obstacles by the different brush. They hamper the ball of paper" "\n"
+                                                            "to reach the trash basket, but you may use them in your favour." "\n"
+                                                             ));
     QFont obstFont("comic sans", 12);
     obstText->setFont(obstFont);
     int obstxPos = 120;
-    int obstyPos = 460;
+    int obstyPos = 545;
     obstText->setPos(obstxPos,obstyPos);
     scene -> addItem(obstText);
 
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 64;
+    int backxPos = 50;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -739,6 +747,7 @@ void GUI::help()
     scene->addWidget(backButton);
 
 }
+
 
 
 
