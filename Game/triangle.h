@@ -12,12 +12,11 @@ class Triangle: public QObject
 {
 
 public:
-    Triangle(b2World* world, QGraphicsScene* level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction);
+    Triangle(b2World* world, QGraphicsScene* level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction, QString mode);
 
     void draw();
     void drawGraphics();
-    void rotateleft();
-    void rotateright();
+
 
     b2Body* body;
     QGraphicsItem* graphics;

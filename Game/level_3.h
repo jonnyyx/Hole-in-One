@@ -17,7 +17,7 @@
 #include "gui.h"
 #include <QItemSelection>
 #include "paperball.h"
-
+#include "triangle.h"
 #include "block.h"
 
 
@@ -75,12 +75,13 @@ private:
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
-    Triangle* triangle1;
+
 
     QStringList levelenab;
     Circle* addcircle1;
     Circle* addcircle2;
     Circle* addcircle3;
+    Triangle* triangle1;
 
     //fixed Elements
 

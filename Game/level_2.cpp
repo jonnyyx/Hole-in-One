@@ -252,23 +252,23 @@ void Level_2::addTriangle()
     counterTriangle++;
 
     if(counterTriangle==1){
-        addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0);
-        bt__triangle->setText("Circle (1)");
+        addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+        bt__triangle->setText("Triangle (2)");
         addtriangle1->draw();
 
     }
 
     if(counterTriangle==2){
-        addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0);
-        bt__triangle->setText("Circle (1)");
+        addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+        bt__triangle->setText("Triangle (1)");
 
         addtriangle2->draw();
 
     }
 
     if(counterTriangle==3){
-        addtriangle3 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0);
-        bt__triangle->setText("Circle (0)");
+        addtriangle3 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+        bt__triangle->setText("Triangle (0)");
 
         addtriangle3->draw();
 
@@ -340,12 +340,12 @@ void Level_2::reset(){
 
 void Level_2::quitLevel()
 {
-    QFile file("level2.txt");
+    QFile file("level.txt");
 
-    if(file.exists("level2.txt")){
-       file.remove("level2.txt");
+    if(file.exists("level.txt")){
+       file.remove("level.txt");
 
-       QFile file("level2.txt");
+       QFile file("level.txt");
     }
     file.open(QIODevice::WriteOnly |QIODevice::Text);
     QTextStream out(&file);
@@ -426,11 +426,11 @@ void Level_2::showLevel(){
 
      //Triangle Button
      bt__triangle=new QPushButton();
-     bt__triangle->setText("Circle  (3)");
+     bt__triangle->setText("Triangle  (3)");
      bt__triangle->setEnabled(true);
      bt__triangle->move(600.0,700.0);
-     connect(bt__circle,SIGNAL(clicked()),this,SLOT(addTriangle()));
-     level2->addWidget(bt__circle);
+     connect(bt__triangle,SIGNAL(clicked()),this,SLOT(addTriangle()));
+     level2->addWidget(bt__triangle);
 
      //Rotate Left
      bt__left=new QPushButton();
@@ -470,7 +470,9 @@ void Level_2::showLevel(){
      recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level2);
-     addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0);
+
+     addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+
 
      bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);
 

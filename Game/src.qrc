@@ -19,5 +19,9 @@
         <file>Game_background.png</file>
         <file>Game_background_spwn.png</file>
         <file>white.png</file>
+        <file>drums.mp3</file>
+        <file>block_bttn_h.png</file>
+        <file>circle_bttn_h.png</file>
+        <file>triangle_bttn_h.png</file>
     </qresource>
 </RCC>
