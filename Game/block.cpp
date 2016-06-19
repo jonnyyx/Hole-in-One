@@ -30,19 +30,9 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     int x=center.x-length/2;
     int y=center.y-width/2;
 
-    //QRectF polyf(QPoint(x,y),QSize(length,width));
-
-//    graphics = level->addRect(polyf);
-
-
-
-
-
     QPixmap bkgnd(":/pic/block_tool.png");
     bkgnd.scaled(QSize(length,width));
     graphics = level->addPixmap(bkgnd);
-    //graphics->setPos(x,y);
-
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
 
@@ -69,8 +59,6 @@ void Block::drawRec(int x,int y){
     graphics->setPos(QPointF(x,y));
     qreal a=body->GetAngle();
     graphics->setRotation(a);
-
-
 }
 
 void Block::drawGraphics()
