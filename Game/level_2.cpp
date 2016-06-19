@@ -304,7 +304,7 @@ void Level_2::quitLevel()
 
     }
 
-    if(levelenab.size()>6){
+    if(levelenab.size()>8){
         if(levelenab.at(10).toInt()<highscore){
             levelenab.replace(2,"true\n");
             levelenab.replace(8,QString::number(leveltime)+" s\n");

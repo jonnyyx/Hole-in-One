@@ -332,7 +332,7 @@ void Level_4::quitLevel()
 
     }
 
-    if(levelenab.size()>12){
+    if(levelenab.size()>14){
         if(levelenab.at(16).toInt()<highscore){
 
             levelenab.replace(14,QString::number(leveltime)+" s\n");
