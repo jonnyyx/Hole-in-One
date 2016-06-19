@@ -68,9 +68,8 @@ private:
 
 
     //Elements to add
-    Block* elem4;
-    Block* elem5;
-    Block* elem6;
+    Block* addblock1;
+    Block* addblock2;
 
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
