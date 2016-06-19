@@ -19,7 +19,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 {
     b2BodyDef myBodyDef;
     myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-    myBodyDef.angle = angle;
+    //myBodyDef.angle = angle;
 
     body = world->CreateBody(&myBodyDef);
 
@@ -29,12 +29,18 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         vertices[0].Set(a.x(), a.y());
         vertices[1].Set(b.x(), b.y());
         vertices[2].Set(c.x(), c.y());
-        //body->SetTransform(b2Vec2(graphics->pos().x(),graphics->pos().y()),0);
     }else if(angle==1.57){
         vertices[0].Set(a.x()+100, a.y());
         vertices[1].Set(b.x(), b.y()+100);
         vertices[2].Set(c.x()-100, c.y());
-
+    }else if(angle==3.1415){
+        vertices[0].Set(a.x(), a.y());
+        vertices[1].Set(b.x()-100, b.y()+100);
+        vertices[2].Set(c.x(), c.y());
+    }else if(angle==4.7124){
+        vertices[0].Set(a.x(), a.y());
+        vertices[1].Set(b.x(), b.y());
+        vertices[2].Set(c.x()-100, c.y());
     }
 
 
@@ -60,7 +66,6 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
             graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
             graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
         }else if(angle==1.57){
-
             QPixmap bkgnd(":/pic/triangle_obs_90degree.png");
             bkgnd.scaled(QSize(100,100));
             graphics = level->addPixmap(bkgnd);
@@ -123,7 +128,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
         b2Vec2 v=body->GetLocalCenter();
-        body->SetTransform(b2Vec2(v.x-21,v.y-21),270);
+
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
@@ -149,9 +154,8 @@ void Triangle::draw()
 void Triangle::drawGraphics()
 {
     QPointF v=graphics->pos();
-   //body->SetTransform(b2Vec2(v.x()-21,v.y()-21),graphics->rotation());
+    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
 
-   // body->SetTransform(b2Vec2(v.x()-21,v.y()-21), angle);
 }
 
 
