@@ -607,7 +607,7 @@ void GUI::help()
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
     QFont titleFont("comic sans", 26);
     titleText->setFont(titleFont);
-    int titlexPos = 120;
+    int titlexPos = 80;
     int titleyPos = 30;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
@@ -617,8 +617,8 @@ void GUI::help()
     QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("What is it all about?""\n"));
     QFont firstCFont("comic sans", 18);
     firstCap->setFont(firstCFont);
-    int firstCxPos = 120;
-    int firstCyPos = 80;
+    int firstCxPos = 80;
+    int firstCyPos = 85;
     firstCap->setPos(firstCxPos,firstCyPos);
     scene -> addItem(firstCap);
 
@@ -645,46 +645,35 @@ void GUI::help()
     QGraphicsTextItem* secondCap = new QGraphicsTextItem(QString("Tools:""\n"));
     QFont secondCFont("comic sans", 18);
     secondCap->setFont(secondCFont);
-    int secondCxPos = 120;
+    int secondCxPos = 80;
     int secondCyPos = 290;
     secondCap->setPos(secondCxPos,secondCyPos);
     scene -> addItem(secondCap);
 
     //Tool instruction buttons
 
-    picButton* boxButton = new picButton(QPixmap(":/pic/block_bttn.png"), QPixmap(":/pic/block_bttn_h.png"));
-    int blockxPos = 200;
-    int blockyPos = 350;
+
+    picButton* boxButton = new picButton(QPixmap(":/pic/block_bttn_h.png"), QPixmap(":/pic/block_bttn.png"));
+    int blockxPos = 220;
+    int blockyPos = 300;
     boxButton->move(blockxPos,blockyPos);
     connect(boxButton, SIGNAL(clicked()), this, SLOT(box()), Qt::QueuedConnection);
     scene->addWidget(boxButton);
 
-//    Button* boxButton = new Button(QString("Block"));
-//    circleButton->setRect(0,0,100,100);
-//    circleButton->setBrush(QPixmap("qrc:/pic/circle_bttn.png"));
-//    int circlexPos = 350;
-//    int circleyPos = 350;
-//    circleButton->setPos(circlexPos,circleyPos);
-//    connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()));
-//    scene->addItem(circleButton);
+    picButton* circleButton = new picButton(QPixmap(":/pic/circle_bttn_h.png"), QPixmap(":/pic/circle_bttn.png"));
+    int circlexPos = 400;
+    int circleyPos = 300;
+    circleButton->move(circlexPos,circleyPos);
+    connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()), Qt::QueuedConnection);
+    scene->addWidget(circleButton);
 
-    Button* circleButton = new Button(QString("Cirlce"));
-    circleButton->setRect(0,0,100,100);
-    circleButton->setBrush(QPixmap("qrc:/pic/circle_bttn.png"));
-    int circlexPos = 350;
-    int circleyPos = 350;
-    circleButton->setPos(circlexPos,circleyPos);
-    connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()));
-    scene->addItem(circleButton);
+    picButton* triangleButton = new picButton(QPixmap(":/pic/triangle_bttn_h.png"), QPixmap(":/pic/triangle_bttn.png"));
+    int trianglexPos = 580;
+    int triangleyPos = 300;
+    triangleButton->move(trianglexPos,triangleyPos);
+    connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()), Qt::QueuedConnection);
+    scene->addWidget(triangleButton);
 
-
-    Button* triangleButton = new Button(QString("Triangle"));
-    triangleButton->setRect(0,0,100,100);
-    int trianglexPos = 500;
-    int triangleyPos = 350;
-    triangleButton->setPos(trianglexPos,triangleyPos);
-    connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()));
-    scene->addItem(triangleButton);
 
 //    Button* springButton = new Button(QString("Spring"));
 //    springButton->setRect(0,0,100,100);
@@ -718,23 +707,21 @@ void GUI::help()
     QGraphicsTextItem* obstaCap = new QGraphicsTextItem(QString("Obstacles:""\n"));
     QFont obstaCFont("comic sans", 18);
     obstaCap->setFont(obstaCFont);
-    int obstaCxPos = 120;
-    int obstaCyPos = 540;
+    int obstaCxPos = 80;
+    int obstaCyPos = 425;
     obstaCap->setPos(obstaCxPos,obstaCyPos);
     scene -> addItem(obstaCap);
 
     QGraphicsTextItem* obstText = new QGraphicsTextItem(QString(
-                                                             "Obstacles are objects which can not be moved by the player." "\n"
-                                                             "Since obstacles can be of the same type as tools (such as" "\n"
-                                                             "trampolines, springs, conveyors etc.) they just vary in colour." "\n"
-                                                             "They hamper the ball of paper to reach the trash basket, but" "\n"
-                                                             "you may use them in your favour. Mostly they are fixed in the" "\n"
-                                                             "scene, but some managed to move around to raise difficulty."
-                                                             ));
+                                                            "Obstacles are objects which can not be moved by the player." "\n"
+                                                            "You can distinguish between tools and obstacles by the different brush" "\n"
+                                                            "They hamper the ball of paper to reach the trash basket, but you may" "\n"
+                                                            "use them in your favour.""\n"
+                                                               ));
     QFont obstFont("comic sans", 12);
     obstText->setFont(obstFont);
-    int obstxPos = 260;
-    int obstyPos = 552;
+    int obstxPos = 120;
+    int obstyPos = 460;
     obstText->setPos(obstxPos,obstyPos);
     scene -> addItem(obstText);
 
