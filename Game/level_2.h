@@ -61,6 +61,8 @@ private:
 
     b2World* myWorld2;
     QGraphicsScene* level2;
+    QGraphicsItem* backgnd;
+
     //Elements to add
     Block* elem4;
     Block* elem5;
@@ -87,6 +89,7 @@ private:
     MeinElement* bottom;
     MeinElement* umrandung1;
     MeinElement* umrandung2;
+    MeinElement* msgbox;
 
     QTimer* timer;
     int anzahl;
