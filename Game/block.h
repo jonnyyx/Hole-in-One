@@ -22,6 +22,7 @@ public:
     QGraphicsItem* graphics;
     QGraphicsItem* graphics1; //for background
 
+
 signals:
     clicked();
 
