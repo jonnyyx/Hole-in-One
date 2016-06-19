@@ -15,7 +15,7 @@
  * \param type
  * \param friction
  */
-Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction)
+Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction, QString mode)
 {
     b2BodyDef myBodyDef;
     myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
@@ -40,16 +40,23 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     QPolygonF triangle;
     triangle << a << b << c;
 //    graphics = level->addPolygon(triangle);
+    if(mode=="obs"){
+        QPixmap bkgnd(":/pic/triangle_obs.png");
+        bkgnd.scaled(QSize(100,100));
+        graphics = level->addPixmap(bkgnd);
 
-    QPixmap bkgnd(":/pic/triangle_tool.png");
-    bkgnd.scaled(QSize(100,100));
-    graphics = level->addPixmap(bkgnd);
-    graphics->setPos(a);
+        graphics->setPos(QPointF(a.x()+21,a.y()+21));
 
+    }else if(mode=="tool"){
+        QPixmap bkgnd(":/pic/triangle_tool.png");
+        bkgnd.scaled(QSize(100,100));
+        graphics = level->addPixmap(bkgnd);
+        graphics->setPos(QPointF(a.x()+21,a.y()+21));
+    }
     graphics->setTransformOriginPoint(b);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
-
+    draw();
 }
 
 /*!
@@ -57,13 +64,11 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
  */
 void Triangle::draw()
 {
-    /*!
-     * \brief v
-     */
+
     b2Vec2 v=body->GetPosition();
 
-    graphics->setPos(QPointF(v.x,v.y));
-    qreal a=body->GetAngle();
+//    graphics->setPos(QPointF(v.x,v.y));
+//    qreal a=body->GetAngle();
 }
 /*!
  * \brief Triangle::drawGraphics
@@ -75,17 +80,4 @@ void Triangle::drawGraphics()
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
 }
 
-void Triangle::rotateright(){
 
-    qreal a=body->GetAngle();
-    graphics->setRotation(a-30);
-    b2Vec2 b=body->GetPosition();
-    body->SetTransform(b,a-30);
-}
-void Triangle::rotateleft(){
-
-    qreal a=body->GetAngle();
-    graphics->setRotation(a+30);
-    b2Vec2 b=body->GetPosition();
-    body->SetTransform(b,a+30);
-}

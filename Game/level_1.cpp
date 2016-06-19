@@ -330,7 +330,7 @@ void Level_1::quitLevel()
         while(!file.atEnd()){
             levelenab+=file.readLine();
         }
-       QFile::resize("level.txt",0);
+       file.resize(0);
        file.close();
 
 

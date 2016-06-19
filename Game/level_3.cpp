@@ -478,9 +478,7 @@ void Level_3::showLevel(){
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
      recyclebin3 = new RecycleBinGraphics(level);
 
-     //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-     //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-     //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
+     triangle1 = new Triangle(myWorld, level, QPointF(450.0,400.0), QPointF(550.0,400.0), QPointF(550.0,500.0), 0, b2_staticBody, 1.0,"obs");
 
      //so that ball is not moveable like the other objects
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
