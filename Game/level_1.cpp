@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QTextStream>
 #include "string"
+#include "gui.h"
 
 
 using namespace std;
@@ -51,6 +52,7 @@ void Level_1::update(){
 	
         if (win==true){
         Level_1::pauseLevel();
+
         msgbox = new MeinElement(level,QPointF(375,275),300,175);
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
