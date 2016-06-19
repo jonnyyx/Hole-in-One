@@ -28,11 +28,6 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     int x=center.x-length/2;
     int y=center.y-width/2;
 
-//    QRectF polyf(QPoint(x,y),QSize(length,width));
-
-//    graphics = level->addRect(polyf);
-
-//   graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 
     if(mode=="obs"){
         QPixmap bkgnd(":/pic/block_obs.png");
@@ -65,7 +60,7 @@ void Block::draw()
 {
     b2Vec2 v=body->GetPosition();
 
-    //graphics->setPos(QPointF(v.x,v.y));
+
 
 
 }

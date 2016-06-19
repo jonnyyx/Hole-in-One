@@ -46,16 +46,19 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics = level->addPixmap(bkgnd);
 
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
 
     }else if(mode=="tool"){
         QPixmap bkgnd(":/pic/triangle_tool.png");
         bkgnd.scaled(QSize(100,100));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
+        graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
     graphics->setTransformOriginPoint(b);
-    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
-    graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
+
     draw();
 }
 

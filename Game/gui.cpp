@@ -185,7 +185,8 @@ void GUI::levelMenu()
     scene->addWidget(onepicButton);
 
     if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
-        picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+
         int twoxPos = 348;
         int twoyPos = 250;
         twopicButton->move(twoxPos,twoyPos);
@@ -195,7 +196,7 @@ void GUI::levelMenu()
 
     }
     else{
-        picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+         picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
         int twoxPos = 348;
         int twoyPos = 250;
         twopicButton->move(twoxPos,twoyPos);
@@ -206,7 +207,9 @@ void GUI::levelMenu()
             int threexPos = 548;
             int threeyPos = 250;
             threepicButton->move(threexPos,threeyPos);
-            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            connect(threepicButton, SIGNAL(clicked()), this, SLOT(showLevel3()));
+            connect(threepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
+
             scene->addWidget(threepicButton);
 
     }
@@ -223,7 +226,9 @@ void GUI::levelMenu()
             int fourxPos = 748;
             int fouryPos = 250;
             fourpicButton->move(fourxPos,fouryPos);
-            //connect(level1, SIGNAL(clicked()), this, SLOT(level_1234...));
+            connect(fourpicButton, SIGNAL(clicked()), this, SLOT(showLevel4()));
+            connect(fourpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
+
             scene->addWidget(fourpicButton);
 
     }else{
@@ -338,17 +343,17 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
 
 void GUI::showLevel3()
 {
-    Level_3 *test;
-    test = new Level_3();
-    test->show();
+    Level_3 *test3;
+    test3 = new Level_3();
+    test3->show();
 
 }
 
 void GUI::showLevel4()
 {
-    Level_4 *test;
-    test = new Level_4();
-    test->show();
+    Level_4 *test4;
+    test4 = new Level_4();
+    test4->show();
 }
 
 void GUI::highscore()
