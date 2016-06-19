@@ -20,7 +20,6 @@ public:
     qreal angle;
     b2Body* body;
     QGraphicsItem* graphics;
-    QGraphicsItem* graphics1; //for background
 
 
 signals:

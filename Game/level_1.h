@@ -64,7 +64,6 @@ private:
     b2World* myWorld;
     QGraphicsScene* level;
     QGraphicsItem* backgnd;
-    QStringList levelenab;
 
 
 

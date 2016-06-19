@@ -31,7 +31,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     int x=center.x-length/2;
     int y=center.y-width/2;
 
-//    QRectF polyf(QPoint(x,y),QSize(length,width));
+    //QRectF polyf(QPoint(x,y),QSize(length,width));
 
 //    graphics = level->addRect(polyf);
 //    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
@@ -41,16 +41,19 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 //    graphics->setTransformOriginPoint(x+length/2,y+width/2);
 
 //    drawRec(x,y);
-    body->SetTransform(b2Vec2(center.x,center.y),0);
+    //body->SetTransform(b2Vec2(center.x,center.y),0);
     QPixmap bkgnd(":/pic/block_tool.png");
-    bkgnd.scaled(QSize(101,41));
+    bkgnd.scaled(QSize(length,width));
     graphics = level->addPixmap(bkgnd);
-    //graphics->setTransformOriginPoint(x+length/2,y+width/2);
-    graphics->setPos(body->GetPosition().x,body->GetPosition().y);
+    //graphics->setPos(x,y);
+
+    graphics->setTransformOriginPoint(x+length/2,y+width/2);
+//    graphics->setPos(x,y);
 
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
-    drawGraphics();
+//    drawGraphics();
+    drawRec(x,y);
 }
 
 //FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
@@ -70,7 +73,7 @@ void Block::drawRec(int x,int y){
     graphics->setPos(QPointF(x,y));
     qreal a=body->GetAngle();
     graphics->setRotation(a);
-    graphics1->setPos(x,y);
+
 
 }
 
