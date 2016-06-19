@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>images/1disabled.png</file>
-        <file>images/1enabled.png</file>
-        <file>images/1hover.png</file>
         <file>images/highscorebuttondefault.png</file>
         <file>images/highscorebuttonhover.png</file>
         <file>images/levelbuttondefault.png</file>
@@ -31,5 +28,17 @@
         <file>triangle_tool.png</file>
         <file>images/Bachhover.png</file>
         <file>images/Backdefault.png</file>
+        <file>images/1disabled.png</file>
+        <file>images/1enabled.png</file>
+        <file>images/1hover.png</file>
+        <file>images/2disabled.png</file>
+        <file>images/2enabled.png</file>
+        <file>images/2hover.png</file>
+        <file>images/3disabled.png</file>
+        <file>images/3enabled.png</file>
+        <file>images/3hover.png</file>
+        <file>images/4disabled.png</file>
+        <file>images/4enabled.png</file>
+        <file>images/4hover.png</file>
     </qresource>
 </RCC>

@@ -176,19 +176,19 @@ void GUI::levelMenu()
     //levelenab[2]="true";
 
     /*!create level menu button*/
-    picButton* onepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
-    int onexPos = 148;
-    int oneyPos = 250;
+    picButton* onepicButton = new picButton(QPixmap(":/images/images/1enabled.png"), QPixmap(":/images/images/1hover.png"));
+    int onexPos = 64;
+    int oneyPos = 300;
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(onepicButton);
 
     if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
-        picButton* twopicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
+        picButton* twopicButton = new picButton(QPixmap(":/images/images/2enabled.png"), QPixmap(":/images/images/2hover.png"));
 
-        int twoxPos = 348;
-        int twoyPos = 250;
+        int twoxPos = 296;
+        int twoyPos = 300;
         twopicButton->move(twoxPos,twoyPos);
         connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
         connect(twopicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -196,16 +196,16 @@ void GUI::levelMenu()
 
     }
     else{
-         picButton* twopicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-        int twoxPos = 348;
-        int twoyPos = 250;
+         picButton* twopicButton = new picButton(QPixmap(":/images/images/2disabled.png"), QPixmap(":/images/images/2disabled.png"));
+        int twoxPos = 296;
+        int twoyPos = 300;
         twopicButton->move(twoxPos,twoyPos);
         scene->addWidget(twopicButton);
     }
     if(!levelenab.isEmpty()&&levelenab.at(2)=="true\n"){
-            picButton* threepicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1enabled.png"));
-            int threexPos = 548;
-            int threeyPos = 250;
+            picButton* threepicButton = new picButton(QPixmap(":/images/images/3enabled.png"), QPixmap(":/images/images/3hover.png"));
+            int threexPos = 528;
+            int threeyPos = 300;
             threepicButton->move(threexPos,threeyPos);
             connect(threepicButton, SIGNAL(clicked()), this, SLOT(showLevel3()));
             connect(threepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -214,17 +214,17 @@ void GUI::levelMenu()
 
     }
     else{
-        picButton* threepicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-        int threexPos = 548;
-        int threeyPos = 250;
+        picButton* threepicButton = new picButton(QPixmap(":/images/images/3disabled.png"), QPixmap(":/images/images/3disabled.png"));
+        int threexPos = 528;
+        int threeyPos = 300;
         threepicButton->move(threexPos,threeyPos);
 
         scene->addWidget(threepicButton);
     }
     if(!levelenab.isEmpty()&&levelenab.at(3)=="true\n"){
-            picButton* fourpicButton = new picButton(QPixmap(":/images/images/1hover.png"), QPixmap(":/images/images/1disabled.png"));
-            int fourxPos = 748;
-            int fouryPos = 250;
+            picButton* fourpicButton = new picButton(QPixmap(":/images/images/4enabled.png"), QPixmap(":/images/images/4hover.png"));
+            int fourxPos = 760;
+            int fouryPos = 300;
             fourpicButton->move(fourxPos,fouryPos);
             connect(fourpicButton, SIGNAL(clicked()), this, SLOT(showLevel4()));
             connect(fourpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -232,9 +232,9 @@ void GUI::levelMenu()
             scene->addWidget(fourpicButton);
 
     }else{
-        picButton* fourpicButton = new picButton(QPixmap(":/images/images/1disabled.png"), QPixmap(":/images/images/1disabled.png"));
-        int fourxPos = 748;
-        int fouryPos = 250;
+        picButton* fourpicButton = new picButton(QPixmap(":/images/images/4disabled.png"), QPixmap(":/images/images/4disabled.png"));
+        int fourxPos = 760;
+        int fouryPos = 300;
         fourpicButton->move(fourxPos,fouryPos);
         scene->addWidget(fourpicButton);
     }
@@ -292,7 +292,7 @@ void GUI::levelMenu()
 //    scene->addWidget(eightpicButton);
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -573,7 +573,7 @@ void GUI::highscore()
     scene->addItem(score4text);
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -730,7 +730,7 @@ void GUI::help()
 
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -800,7 +800,7 @@ void GUI::box()
     scene -> addItem(rectText);
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -863,7 +863,7 @@ void GUI::circle()
     scene -> addItem(circleText);
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -928,7 +928,7 @@ void GUI::triangle()
     scene -> addItem(triText);
 
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
-    int backxPos = 50;
+    int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
@@ -971,7 +971,7 @@ void GUI::triangle()
 //    scene -> addItem(springText);
 
 //    Button* backButton = new Button(QString("Back"));
-//    int backxPos = 50;
+//    int backxPos = 64;
 //    int backyPos = 670;
 //    backButton->setPos(backxPos,backyPos);
 //    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
