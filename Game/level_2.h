@@ -30,7 +30,7 @@ class Level_2 : public QGraphicsView
     Q_OBJECT
 
 public:
-    Level_2(QWidget *parent = 0);
+    Level_2();
     //void displayLevel();
 
     std::vector<Block*> vectb;

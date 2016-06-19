@@ -12,7 +12,7 @@
 using namespace std;
 
 
-Level_2::Level_2(QWidget *parent)
+Level_2::Level_2()
 {
     //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
