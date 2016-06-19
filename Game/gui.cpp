@@ -37,13 +37,13 @@ GUI::GUI(QWidget *parent){
 
     //Background music
     playlist = new QMediaPlaylist;
-    playlist->addMedia(QUrl("qrc:/pic/music.mp3"));
+    playlist->addMedia(QUrl("qrc:/pic/drums.mp3"));
     playlist->setPlaybackMode(QMediaPlaylist::Loop);
     playlist->setCurrentIndex(1);
 
     bksnd = new QMediaPlayer();
     bksnd -> setPlaylist(playlist);
-    bksnd -> setVolume(90);
+    bksnd -> setVolume(70);
     bksnd -> play();
 
     /*
@@ -84,7 +84,7 @@ void GUI::mute()
     else if(ismute==true){
         ismute=false;
         mutepicButton->setdefaultpic(QPixmap(":/images/images/soundon.png"));
-        bksnd -> setVolume(90);
+        bksnd -> setVolume(70);
         bksnd -> play();
     }
 }
@@ -652,7 +652,7 @@ void GUI::help()
 
     //Tool instruction buttons
 
-    picButton* boxButton = new picButton(QPixmap("qrc:/pic/block_bttn.png"), QPixmap("qrc:/pic/circle_bttn.png"));
+    picButton* boxButton = new picButton(QPixmap(":/pic/block_bttn.png"), QPixmap(":/pic/block_bttn_h.png"));
     int blockxPos = 200;
     int blockyPos = 350;
     boxButton->move(blockxPos,blockyPos);
