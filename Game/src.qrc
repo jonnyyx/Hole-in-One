@@ -16,5 +16,8 @@
         <file>block_bttn.png</file>
         <file>circle_bttn.png</file>
         <file>triangle_bttn.png</file>
+        <file>Game_background.png</file>
+        <file>Game_background_spwn.png</file>
+        <file>white.png</file>
     </qresource>
 </RCC>

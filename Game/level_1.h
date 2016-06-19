@@ -63,6 +63,11 @@ private:
 
     b2World* myWorld;
     QGraphicsScene* level;
+    QGraphicsItem* backgnd;
+    QStringList levelenab;
+
+
+
     //Elements to add
     Block* elem4;
     Block* elem5;
@@ -89,6 +94,7 @@ private:
     MeinElement* bottom;
     MeinElement* umrandung1;
     MeinElement* umrandung2;
+    MeinElement* msgbox;
 
     QTimer* timer;
     QTimer* timer2;

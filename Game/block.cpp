@@ -34,6 +34,15 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 
     QRectF polyf(QPoint(x,y),QSize(length,width));
 
+    QPixmap bkgnd(":/pic/block_tool.png");
+    bkgnd.scaled(QSize(101,41));
+    graphics1 = level->addPixmap(bkgnd);
+    graphics1->setPos(center.x,center.y);
+
+//    graphics1->setTransformOriginPoint(x+length/2,y+width/2);
+    graphics1->setFlag(QGraphicsItem::ItemIsMovable,true);
+    graphics1->setFlag(QGraphicsItem::ItemIsSelectable,true);
+
     graphics = level->addRect(polyf);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
     graphics->setRotation(30);
@@ -59,12 +68,15 @@ void Block::drawRec(int x,int y){
     graphics->setPos(QPointF(x,y));
     qreal a=body->GetAngle();
     graphics->setRotation(a);
+    graphics1->setPos(x,y);
 
 }
 
 void Block::drawGraphics(){
     QPointF v=graphics->pos();
+//    b2Vec2 vv=body->GetPosition();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
+//    graphics1->setPos(vv.x,vv.y);
 
 }
 

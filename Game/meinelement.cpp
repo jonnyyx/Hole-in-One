@@ -101,6 +101,18 @@ MeinElement::MeinElement(b2World* world, QGraphicsScene* level, QPointF a, QPoin
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 }
 
+MeinElement::MeinElement(QGraphicsScene *level, QPointF center, qreal length, qreal width)
+{
+    int x=center.x();
+    int y=center.y();
+    QRectF polyf(QPoint(x,y),QSize(length,width));
+    graphics = level->addRect(polyf);
+    QPixmap bk(":/pic/white.png");
+    bk.scaled(QSize(length, width));
+    white = level->addPixmap(bk);
+    white->setPos(center.x(),center.y());
+}
+
  void MeinElement::draw()
  {
      b2Vec2 v=body->GetPosition();

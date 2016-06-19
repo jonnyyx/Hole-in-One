@@ -43,7 +43,7 @@ void Level_1::position(){
     if(newpos!=oldpos){
 
 
-        //qDebug()<<rechteck1->graphics->pos();
+       qDebug()<<rechteck1->graphics->pos();
     }
     oldpos=rechteck1->graphics->pos();
 }
@@ -60,12 +60,16 @@ void Level_1::update(){
 	
 	    if (win==true){
         Level_1::pauseLevel();
+
+        msgbox = new MeinElement(level,QPointF(375,275),300,175);
+
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 1");
         level->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
+
         QString time = QString("Time: %1").arg(leveltime);
         qDebug()<<time;
         timeText->setPlainText( time);
@@ -142,8 +146,8 @@ void Level_1::startLevel(){
         addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
     QPointF pos=rechteck1->graphics->pos();
-    qDebug()<<pos.x()+(rechteck1->length)/2.0;
-    qDebug()<<pos.y()+(rechteck1->width)/2.0;
+//    qDebug()<<pos.x()+(rechteck1->length)/2.0;
+//    qDebug()<<pos.y()+(rechteck1->width)/2.0;
 
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
@@ -379,8 +383,15 @@ void Level_1::quitLevel()
  * Connect Buttons with SLOT.
  */
 void Level_1::showLevel(){
+    //set Background Image
 
-    //Start Button
+     QPixmap background(":/pic/Game_background_spwn.png");
+     background.scaled(QSize(1021,766));
+     backgnd = level->addPixmap(background);
+     backgnd->setPos(0,0); //Set Graphic to top left corner
+     backgnd->setFlag(QGraphicsItem::ItemIsMovable, false);
+
+     //Start Button
      bt_start=new QPushButton();
      bt_start->setText("Start");
      bt_start->move(900.0,620.0);
