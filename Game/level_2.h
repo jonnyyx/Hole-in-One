@@ -68,20 +68,18 @@ private:
     //Elements to add
     Block* addblock1;
     Block* addblock2;
-    Block* addblock3;
+
 
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
     Triangle* addtriangle1;
     Triangle* addtriangle2;
-    Triangle* addtriangle3;
-
 
 
     Circle* addcircle1;
     Circle* addcircle2;
-    Circle* addcircle3;
+
 
     //fixed Elements
 
@@ -102,6 +100,17 @@ private:
     Circle* obstaclescircle14;
     Circle* obstaclescircle15;
     Circle* obstaclescircle16;
+    Circle* obstaclescircle17;
+    Circle* obstaclescircle18;
+    Circle* obstaclescircle19;
+    Circle* obstaclescircle20;
+    Circle* obstaclescircle21;
+    Circle* obstaclescircle22;
+    Circle* obstaclescircle23;
+    Circle* obstaclescircle24;
+    Circle* obstaclescircle25;
+    Circle* obstaclescircle26;
+    Circle* obstaclescircle27;
 
     Block* obstaclesrec1;
     Block* obstaclesrec2;
