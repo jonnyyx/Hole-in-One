@@ -1071,6 +1071,7 @@ void GUI::triangle()
 //}
 
 void GUI::checkLevel(){
+    levelenab.clear();
     QFile file("level.txt");
     if(file.exists()==true){
         file.open(QIODevice::ReadOnly |QIODevice::Text);

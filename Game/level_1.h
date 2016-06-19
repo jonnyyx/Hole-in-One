@@ -77,7 +77,7 @@ private:
     RecycleBinGraphics* recyclebin3;
     Triangle* triangle1;
 
-    QStringList levelenab;
+
     Circle* addcircle1;
     Circle* addcircle2;
     Circle* addcircle3;
