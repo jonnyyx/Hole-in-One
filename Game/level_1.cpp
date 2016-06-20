@@ -413,7 +413,6 @@ void Level_1::showLevel(){
      connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
      level->addWidget(bt__reset);
 
-
      //Rect Button
      bt__rect=new picButton(QPixmap(":/images/images/rec3defualt.png"), QPixmap(":/images/images/rec3hover.png"));
      bt__rect->setEnabled(true);
@@ -444,7 +443,7 @@ void Level_1::showLevel(){
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level->addWidget(bt__left);
 
-     //Rotate Left
+     //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
      bt__right->move(30.0,685.0);
