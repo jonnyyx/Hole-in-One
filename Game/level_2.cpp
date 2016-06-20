@@ -437,7 +437,7 @@ void Level_2::showLevel(){
 
      //Triangle Button
      bt__triangle=new picButton(QPixmap(":/images/images/tri2default.png"), QPixmap(":/images/images/tri2hover.png"));
-     bt__triangle->setEnabled(false);
+     bt__triangle->setEnabled(true);
      bt__triangle->move(537.0,640.0);
      connect(bt__triangle,SIGNAL(clicked()),this,SLOT(addTriangle()), Qt::QueuedConnection);
      level2->addWidget(bt__triangle);
