@@ -10,6 +10,7 @@
 #include "gui.h"
 
 
+
 using namespace std;
 
 /*!
@@ -69,7 +70,9 @@ void Level_1::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,400);
         level->addWidget(quitLevel);
+
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+
     }
 }
 
@@ -366,7 +369,10 @@ void Level_1::quitLevel()
 
 
     file.close();
+
     this->close();
+
+
 }
 
 /*!
