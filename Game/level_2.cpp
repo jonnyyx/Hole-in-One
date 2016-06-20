@@ -191,8 +191,8 @@ void Level_2::addRectangle()
     if (counterRec==1){
         addblock1 = new Block(myWorld2, level2, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
-       bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
-       bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
+        bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
+        bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
 
 
     }
@@ -252,15 +252,20 @@ void Level_2::addTriangle()
 
     if(counterTriangle==1){
         addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+
         bt__triangle->sethoverpic(QPixmap(":/images/images/tri1hover.png"));
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
+       // addtriangle1->draw();
+
 
     }
 
     if(counterTriangle==2){
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
-        bt__triangle->sethoverpic(QPixmap(":/images/images/tri0.png"));
-        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+
+        bt__circle->sethoverpic(QPixmap(":/images/images/tri0.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+
         bt__triangle->setEnabled(false);
        // addtriangle2->draw();
 

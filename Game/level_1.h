@@ -101,6 +101,7 @@ private:
     Circle* obstaclescircle14;
     Circle* obstaclescircle15;
     Circle* obstaclescircle16;
+    Circle* obstaclescircle17;
 
     Block* obstaclesrec1;
     Block* obstaclesrec2;
