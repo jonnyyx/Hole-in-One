@@ -191,14 +191,16 @@ void Level_2::addRectangle()
     if (counterRec==1){
         addblock1 = new Block(myWorld2, level2, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
-        bt__rect->setText("Rectangle (1)");
+        bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
+        bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
 
     }
 
     else if(counterRec==2){
         addblock2 = new Block(myWorld2, level2, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
-        bt__rect->setText("Rectangle (0)");
+        bt__rect->sethoverpic(QPixmap(":/images/images/rec0.png"));
+        bt__rect->setdefaultpic(QPixmap(":/images/images/rec0.png"));
         bt__rect->setEnabled(false);
 
     }
@@ -219,7 +221,8 @@ void Level_2::addCircle(){
         circle.m_radius = 21.0;
         addcircle1 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
-        bt__circle->setText("Circle (1)");
+        bt__circle->sethoverpic(QPixmap(":/images/images/circle1hover.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/circle1default.png"));
 
         addcircle1->draw();
 
@@ -228,8 +231,8 @@ void Level_2::addCircle(){
     if(counterCircle==2){
         circle.m_radius = 21.0;
         addcircle2 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
-
-        bt__circle->setText("Circle (0)");
+        bt__circle->sethoverpic(QPixmap(":/images/images/circ0.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/circ0.png"));
         bt__circle->setEnabled(false);
         addcircle2->draw();
 
@@ -247,14 +250,17 @@ void Level_2::addTriangle()
 
     if(counterTriangle==1){
         addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
-        bt__triangle->setText("Triangle (1)");
+
+        bt__triangle->sethoverpic(QPixmap(":/images/images/tri1hover.png"));
+        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
        // addtriangle1->draw();
 
     }
 
     if(counterTriangle==2){
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
-        bt__triangle->setText("Triangle (0)");
+        bt__circle->sethoverpic(QPixmap(":/images/images/tri0.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
         bt__triangle->setEnabled(false);
        // addtriangle2->draw();
 

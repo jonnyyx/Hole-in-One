@@ -378,78 +378,69 @@ void Level_4::showLevel(){
      backgnd->setFlag(QGraphicsItem::ItemIsMovable, false);
 
      //Start Button
-     bt_start=new QPushButton();
-     bt_start->setText("Start");
-     bt_start->move(900.0,620.0);
-     connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()));
+     bt_start=new picButton(QPixmap(":/images/images/startdefault.png"), QPixmap(":/images/images/starthover.png"));
+     bt_start->move(726.0,640.0);
+     connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()), Qt::QueuedConnection);
      level->addWidget(bt_start);
 
      //Pause Button
-     bt_pause=new QPushButton();
-     bt_pause->setText("Pause");
+     bt_pause=new picButton(QPixmap(":/images/images/pauseenabled.png"), QPixmap(":/images/images/pausehover.png"));
      bt_pause->setEnabled(false);
-     bt_pause->move(900.0,660.0);
-     connect(bt_pause,SIGNAL(clicked()),this,SLOT(getTime()));
-     connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()));
-     connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()));
+     bt_pause->move(865.0,640.0);
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(getTime()),Qt::QueuedConnection);
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()),Qt::QueuedConnection);
+     connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()),Qt::QueuedConnection);
      level->addWidget(bt_pause);
 
      //Resume Button
-     bt__resume=new QPushButton();
-     bt__resume->setText("Resume");
+     bt__resume=new picButton(QPixmap(":/images/images/resumeenabled.png"), QPixmap(":/images/images/resumehover.png"));
      bt__resume->setEnabled(false);
-     bt__resume->move(900.0,700.0);
+     bt__resume->move(726.0, 685.0);
      connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
      level->addWidget(bt__resume);
 
      //Reset
-     bt__reset=new QPushButton();
-     bt__reset->setText("Reset");
+     bt__reset=new picButton(QPixmap(":/images/images/resetenabled.png"), QPixmap(":/images/images/resethover.png"));
      bt__reset->setEnabled(true);
-     bt__reset->move(900.0, 740.0);
+     bt__reset->move(865.0, 685.0);
      connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
      level->addWidget(bt__reset);
 
      //Rect Button
-
-//     picButton *rectButton = new picButton(QPixmap(":/images/block_tool.png"), QPixmap(":/images/block_toolhover.png"));
-//     rectButton->move(200.0,650.0);
-//     connect(rectButton, SIGNAL(clicked()), this, SLOT(addRectangle()));
-//     level->addWidget(rectButton);
-     bt__rect=new QPushButton();
-     bt__rect->setText("Rectangle (3)");
+     bt__rect=new picButton(QPixmap(":/images/images/rec3defualt.png"), QPixmap(":/images/images/rec3hover.png"));
      bt__rect->setEnabled(true);
-     bt__rect->move(200.0,700.0);
-     connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()));
+     bt__rect->move(219.0,640.0);
+     connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()), Qt::QueuedConnection);
      level->addWidget(bt__rect);
 
-
      //Circle Button
-//     picButton *circleButton = new picButton(QPixmap(":/images/circle_tool.png"), QPixmap(":/images/circle_toolhover.png"));
-//     circleButton->move(400.0,650.0);
-//     connect(circleButton, SIGNAL(clicked()), this, SLOT(addCircle()));
-//     level->addWidget(circleButton);
-     bt__circle=new QPushButton();
-     bt__circle->setText("Circle  (3)");
+     bt__circle=new picButton(QPixmap(":/images/images/circ3default.png"), QPixmap(":/images/images/circ3hover.png"));
      bt__circle->setEnabled(true);
-     bt__circle->move(400.0,700.0);
-     connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()));
+     bt__circle->move(378.0,640.0);
+     connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
      level->addWidget(bt__circle);
 
-     //Rotate Left
-     bt__left=new QPushButton();
-     bt__left->setText("Rotate Left");
-     bt__left->setEnabled(true);
-     bt__left->move(5.0,650.0);
-     connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()));
-     level->addWidget(bt__left);
+     //Triangle Button
+     bt_triangle=new picButton(QPixmap(":/images/images/tri0.png"), QPixmap(":/images/images/tri0.png"));
+     bt_triangle->setEnabled(false);
+     bt_triangle->move(537.0,640.0);
+     //connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
+     level->addWidget(bt_triangle);
+
+
 
      //Rotate Left
-     bt__right=new QPushButton();
-     bt__right->setText("Rotate Right");
+     bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
+     bt__left->setEnabled(true);
+     bt__left->move(30.0,640.0);
+     connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
+     level->addWidget(bt__left);
+
+     //Rotate Right
+     bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
-     bt__right->move(105.0,650.0);
-     connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()));
+     bt__right->move(30.0,685.0);
+     connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level->addWidget(bt__right);
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
