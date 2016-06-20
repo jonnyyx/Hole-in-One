@@ -116,7 +116,7 @@ private:
     MeinElement* bottom;
     MeinElement* umrandung1;
     MeinElement* umrandung2;
-    MeinElement* msgbox;
+    MeinElement* msgbox;       // Problem beim linksrotieren für 270 Grad -> 180 Grad & 90 Grad -> 0 Grad ok. Also 0 Grad -> 270 Grad funktioniert
 
     QTimer* timer;
     QTimer* timer2;
