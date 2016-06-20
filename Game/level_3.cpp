@@ -52,13 +52,20 @@ void Level_3::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 3!");
         level3->addItem(winText);
+        if(newhighscore){
+            QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
+            highscoretext->setPos(400,350);
+            highscoretext->setPlainText("New Highscore!!");
+            level3->addItem(highscoretext);
+
+        }
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
-        timeText->setPos(400,350);
+        timeText->setPos(400,400);
         QString time = QString("Time: %1 s").arg(leveltime);
         timeText->setPlainText( time);
         level3->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,400);
+        quitLevel->move(400,500);
         level3->addWidget(quitLevel);
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
     }
@@ -337,45 +344,49 @@ void Level_3::reset(){
  * \brief Level_3::quitLevel
  * quits game and writes time/score into highscore table
  */
-void Level_3::quitLevel()
+void Level_3::saveLevel()
 {
     QList <QString> levelenab;
-    QFile file("level.txt");
-    file.open(QIODevice::ReadWrite |QIODevice::Text);
-    if(file.exists("level.txt")){
+        QFile file("level.txt");
+        file.open(QIODevice::ReadWrite |QIODevice::Text);
+        if(file.exists("level.txt")){
 
-        levelenab.clear();
-        while(!file.atEnd()){
-            levelenab.append(file.readLine());
-        }
-       file.resize(0);
+            levelenab.clear();
+            while(!file.atEnd()){
+                levelenab.append(file.readLine());
+            }
+           file.resize(0);
 
-    }
-
-    if(levelenab.size()>8){
-        if(levelenab.at(10).toInt()<highscore){
-            levelenab.replace(2,"true\n");
-            levelenab.replace(8,QString::number(leveltime)+" s\n");
-            levelenab.replace(9,QString::number(counterTogether)+"\n");
-            levelenab.replace(10,QString::number(highscore)+"\n");
         }
 
-    }else{
-        levelenab.replace(2,"true\n");
-        levelenab.insert(8,QString::number(leveltime)+" s\n");
-        levelenab.insert(9,QString::number(counterTogether)+"\n");
-        levelenab.insert(10,QString::number(highscore)+"\n");
-    }
+        if(levelenab.size()>11){
+            if(levelenab.at(13).toInt()<highscore){
+                levelenab.replace(3,"true\n");
+                levelenab.replace(11,QString::number(leveltime)+" s\n");
+                levelenab.replace(12,QString::number(counterTogether)+"\n");
+                levelenab.replace(13,QString::number(highscore)+"\n");
+                newhighscore=true;
+            }else{
+                newhighscore=false;
+            }
+
+        }
+        else{
+            levelenab.replace(3,"true\n");
+            levelenab.insert(11,QString::number(leveltime)+" s\n");
+            levelenab.insert(12,QString::number(counterTogether)+"\n");
+            levelenab.insert(13,QString::number(highscore)+"\n");
+            newhighscore=true;
+        }
+
+        QTextStream out(&file);
+        foreach (QString data, levelenab) {
+            out<<data;
+        }
 
 
-    QTextStream out(&file);
-    foreach (QString data, levelenab) {
-        out<<data;
-    }
-
-
-    file.close();
-    this->close();
+        file.close();
+        this->close();
 }
 
 /*!
