@@ -46,7 +46,7 @@ public slots:
     void addCircle();
     void addTriangle();
     void reset();
-    void quitLevel();
+
 
     void rotateLeft();
     void rotateRight();
@@ -64,6 +64,10 @@ private:
     b2World* myWorld4;
     QGraphicsScene* level4;
     QGraphicsItem* backgnd;
+
+    bool newhighscore=false;
+    void saveLevel();
+    QList <QString> levelenab;
 
     //Elements to add
     Block* addblock1;
