@@ -121,8 +121,9 @@ void GUI::csnd()
  */
 void GUI::displayGUI()
 {
-    scene->clear();
+
     checkLevel();
+
      /*!create title text*/
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
@@ -205,6 +206,7 @@ void GUI::levelMenu()
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
+
     scene->addWidget(onepicButton);
 
     if(!levelenab.isEmpty()&&levelenab.at(1)=="true\n"){
@@ -352,13 +354,14 @@ void GUI::back(){
     }
 }
 
+
+
 /*!
  * \brief GUI::showLevel1
  * starts Level_1
  */
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
-    displayGUI();
     Level_1 *test;
     test = new Level_1();
     test->show();
@@ -371,10 +374,11 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
  */
 void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
-    displayGUI();
+
     Level_2 *test2;
     test2 = new Level_2();
     test2->show();
+
 
 }
 
@@ -384,10 +388,11 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
  */
 void GUI::showLevel3()
 {
-    displayGUI();
+
     Level_3 *test3;
     test3 = new Level_3();
     test3->show();
+
 
 }
 
@@ -397,10 +402,11 @@ void GUI::showLevel3()
  */
 void GUI::showLevel4()
 {
-    displayGUI();
+
     Level_4 *test4;
     test4 = new Level_4();
     test4->show();
+
 }
 
 /*!

@@ -383,12 +383,7 @@ void Level_1::saveLevel()
 
     file.close();
 
-<<<<<<< HEAD
-    this->close();
 
-
-=======
->>>>>>> 16454014da41c8c907afaae4efe0b56a74ef3db3
 }
 
 /*!
