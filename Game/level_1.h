@@ -130,6 +130,7 @@ private:
     QTime leveltime_normal;
     picButton* bt__rect;
     picButton* bt__circle;
+    picButton* bt__triangle;
     picButton* bt__reset;
     picButton* bt__left;
     picButton* bt__right;
