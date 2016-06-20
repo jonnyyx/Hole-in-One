@@ -31,8 +31,6 @@ Paperball::Paperball(b2World *world, QGraphicsScene *level, QPointF position, qr
 
     QPixmap bkgnd(":/pic/paper.png");
     bkgnd.scaled(QSize(42,42));
-
-
     graphics = level->addPixmap(bkgnd);
     graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
 

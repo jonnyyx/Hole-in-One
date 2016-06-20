@@ -8,7 +8,6 @@
 #include <button.h>
 #include <picbutton.h>
 
-
 class GUI : public QGraphicsView
 {
     Q_OBJECT
@@ -29,6 +28,7 @@ public slots:
     void levelMenu();   //for level menu-button
     void highscore();   //for highscore menu-button
     void back();        //for back-button
+    //void displayGUI();
 
     void showLevel1();
     void showLevel2();
