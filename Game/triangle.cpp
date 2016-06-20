@@ -105,7 +105,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 
     }else if(angle==1.57){
 
-        QPixmap bkgnd(":/pic/triangle_obs_90degree.png");
+        QPixmap bkgnd(":/pic/triangle_tool_90degree.png");
         bkgnd.scaled(QSize(100,100));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
@@ -114,7 +114,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }else if(angle==3.1415){
 
-        QPixmap bkgnd(":/pic/triangle_obs_180degree.png");
+        QPixmap bkgnd(":/pic/triangle_tool_180degree.png");
         bkgnd.scaled(QSize(100,100));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
@@ -123,7 +123,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }else if(angle==4.7124){
 
-        QPixmap bkgnd(":/pic/triangle_obs_270degree.png");
+        QPixmap bkgnd(":/pic/triangle_tool_270degree.png");
         bkgnd.scaled(QSize(100,100));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
