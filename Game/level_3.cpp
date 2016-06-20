@@ -185,7 +185,7 @@ void Level_3::addRectangle()
         bt__rect->setText("Rectangle (2)");
         //bt__circle->setText("Circle (2)");
 
-        addblock1->draw();
+
     }
 
     else if(counterRec==2){
@@ -194,7 +194,6 @@ void Level_3::addRectangle()
         bt__rect->setText("Rectangle (1)");
         //bt__circle->setText("Circle (1)");
 
-        addblock2->draw();
     }
 
 }

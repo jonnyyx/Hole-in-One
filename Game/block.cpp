@@ -72,11 +72,6 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
  * \brief Block::draw
  * connects the Graphics to the Box2D-Object
  */
-void Block::draw()
-{
-    b2Vec2 v=body->GetPosition();
-
-}
 
 /*!
  * \brief Block::drawRec

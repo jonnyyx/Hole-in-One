@@ -196,7 +196,6 @@ void Level_1::addRectangle()
         bt__rect->sethoverpic(QPixmap(":/images/images/rec2hover.png"));
         bt__rect->setdefaultpic(QPixmap(":/images/images/rec2default.png"));
 
-        addblock1->draw();
     }
 
     else if(counterRec==2){
@@ -205,12 +204,10 @@ void Level_1::addRectangle()
         bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
        bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
 
-        addblock2->draw();
     }
 
     else if(counterRec==3){
         addblock3 = new Block(myWorld, level, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
-        addblock3->draw();
         bt__rect->sethoverpic(QPixmap(":/images/images/rec0.png"));
         bt__rect->setdefaultpic(QPixmap(":/images/images/rec0.png"));
         bt__rect->setEnabled(false);
@@ -506,7 +503,6 @@ void Level_1::showLevel(){
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
      ball->drawBall1();
-     obstaclesrec1->draw();
 
      bottom->drawBottom();
      umrandung1->graphics->hide();

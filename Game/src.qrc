@@ -27,5 +27,8 @@
         <file>triangle_obs_90degree.png</file>
         <file>triangle_obs_180degree.png</file>
         <file>triangle_obs_270degree.png</file>
+        <file>triangle_tool_90degree.png</file>
+        <file>triangle_tool_180degree.png</file>
+        <file>triangle_tool_270degree.png</file>
     </qresource>
 </RCC>

@@ -193,7 +193,7 @@ void Level_4::addRectangle()
         bt__rect->setText("Rectangle (2)");
         //bt__circle->setText("Circle (2)");
 
-        elem4->draw();
+
     }
 
     else if(counterRec==2){
@@ -202,12 +202,10 @@ void Level_4::addRectangle()
         bt__rect->setText("Rectangle (1)");
         //bt__circle->setText("Circle (1)");
 
-        elem5->draw();
     }
 
     else if(counterRec==3){
         elem6 = new Block(myWorld, level, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
-        elem6->draw();
 
         bt__rect->setEnabled(false);
         bt__circle->setEnabled(false);

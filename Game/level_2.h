@@ -74,13 +74,7 @@ private:
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
     Triangle* addtriangle1;
-    Triangle* addtriangle1_90;
-    Triangle* addtriangle1_180;
-    Triangle* addtriangle1_270;
     Triangle* addtriangle2;
-    Triangle* addtriangle2_90;
-    Triangle* addtriangle2_180;
-    Triangle* addtriangle2_270;
 
     Circle* addcircle1;
     Circle* addcircle2;
@@ -116,17 +110,13 @@ private:
     Circle* obstaclescircle25;
     Circle* obstaclescircle26;
     Circle* obstaclescircle27;
+    Circle* obstaclescircle28;
+    Circle* obstaclescircle29;
+    Circle* obstaclescircle30;
+    Circle* obstaclescircle31;
 
     Block* obstaclesrec1;
-    Block* obstaclesrec2;
-    Block* obstaclesrec3;
-    Block* obstaclesrec4;
-    Block* obstaclesrec5;
-    Block* obstaclesrec6;
-    Block* obstaclesrec7;
-    Block* obstaclesrec8;
-    Block* obstaclesrec9;
-    Block* obstaclesrec10;
+
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;
@@ -167,7 +157,8 @@ private:
     int counterTogether = 0;
     int leveltime;
     bool win = false;
-    int counterTriangleangle=0;
+    int counterTriangleangle1=0;
+    int counterTriangleangle2=0;
 
     void showLevel();
 

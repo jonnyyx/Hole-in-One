@@ -77,7 +77,7 @@ void Level_2::startLevel(){
     recyclebin2->drawGraphics();
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->drawGraphics();
-    //obstaclescircle2->drawGraphics();
+    obstaclesrec1->drawGraphics();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
@@ -117,55 +117,18 @@ void Level_2::startLevel(){
         if(addtriangle1!=NULL){
            addtriangle1->drawGraphics();
            addtriangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_90!=NULL){
-           addtriangle1_90->drawGraphics();
-           addtriangle1_90->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_180!=NULL){
-           addtriangle1_180->drawGraphics();
-           addtriangle1_180->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_270!=NULL){
-           addtriangle1_270->drawGraphics();
-           addtriangle1_270->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-
+           }
     }
     if(counterTriangle==2){
 
         if(addtriangle1!=NULL){
            addtriangle1->drawGraphics();
            addtriangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_90!=NULL){
-           addtriangle1_90->drawGraphics();
-           addtriangle1_90->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_180!=NULL){
-           addtriangle1_180->drawGraphics();
-           addtriangle1_180->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle1_270!=NULL){
-           addtriangle1_270->drawGraphics();
-           addtriangle1_270->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
+           }
         if(addtriangle2!=NULL){
            addtriangle2->drawGraphics();
            addtriangle2->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle2_90!=NULL){
-           addtriangle2_90->drawGraphics();
-           addtriangle2_90->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle2_180!=NULL){
-           addtriangle2_180->drawGraphics();
-           addtriangle2_180->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
-        if(addtriangle2_270!=NULL){
-           addtriangle2_270->drawGraphics();
-           addtriangle2_270->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
-        }
+           }
     }
 
     timer=new QTimer(this);
@@ -226,22 +189,19 @@ void Level_2::addRectangle()
 
 
     if (counterRec==1){
-        addblock1 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0,"tool");
+        addblock1 = new Block(myWorld2, level2, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
         bt__rect->setText("Rectangle (1)");
 
-        addblock1->draw();
     }
 
     else if(counterRec==2){
-        addblock2 = new Block(myWorld2, level2, b2Vec2 (400.0,400.0), 0, 100, 100, b2_staticBody,1.0,"tool");
+        addblock2 = new Block(myWorld2, level2, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
         bt__rect->setText("Rectangle (0)");
         bt__rect->setEnabled(false);
 
-        addblock2->draw();
     }
-
 
 }
 
@@ -288,7 +248,7 @@ void Level_2::addTriangle()
     if(counterTriangle==1){
         addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
         bt__triangle->setText("Triangle (1)");
-        addtriangle1->draw();
+       // addtriangle1->draw();
 
     }
 
@@ -296,7 +256,7 @@ void Level_2::addTriangle()
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
         bt__triangle->setText("Triangle (0)");
         bt__triangle->setEnabled(false);
-        addtriangle2->draw();
+       // addtriangle2->draw();
 
     }
 
@@ -356,6 +316,7 @@ void Level_2::reset(){
    level2->clear();
    counterRec = 0;
    counterCircle = 0;
+   counterTriangle = 0;
 
    showLevel();
 
@@ -531,7 +492,7 @@ void Level_2::showLevel(){
      obstaclescircle24 = new Circle(myWorld2, level2, QPointF(550.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle25 = new Circle(myWorld2, level2, QPointF(592.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle26 = new Circle(myWorld2, level2, QPointF(634.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-
+     obstaclescircle29 = new Circle(myWorld2, level2, QPointF(676.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
      obstaclescircle15 = new Circle(myWorld2, level2, QPointF(982.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle16 = new Circle(myWorld2, level2, QPointF(940.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
@@ -545,6 +506,11 @@ void Level_2::showLevel(){
      obstaclescircle24 = new Circle(myWorld2, level2, QPointF(898.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle25 = new Circle(myWorld2, level2, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle26 = new Circle(myWorld2, level2, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle27 = new Circle(myWorld2, level2, QPointF(772.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle28 = new Circle(myWorld2, level2, QPointF(730.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+
+     obstaclesrec1=new Block(myWorld2,level2,b2Vec2(530,380),0,100,40,b2_staticBody,1.0,"obs");
+
 
      recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
@@ -570,7 +536,7 @@ void Level_2::showLevel(){
  * possibility to rotate objects to the left
  */
 void Level_2::rotateLeft(){
-
+    qreal angle;
     if(counterRec==1){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle-0.5235;
@@ -601,49 +567,24 @@ void Level_2::rotateLeft(){
 
     }
     if(counterTriangle==1){
+
+        counterTriangleangle1--;
+
+        if(counterTriangleangle1==-1){
+            angle=4.7124;
+        }else if(counterTriangleangle1==2){
+            angle=3.1415;
+        }else if(counterTriangleangle1==3){
+            angle=1.57;
+        }else if(counterTriangleangle1==4){
+            angle=0;
+            counterTriangleangle1=0;
+        }
         if(addtriangle1->graphics->isSelected()){
             level2->removeItem(addtriangle1->graphics);
-            addtriangle1_90 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-
-        }else if(addtriangle1_90->graphics->isSelected()){
-            level2->removeItem(addtriangle1_90->graphics);
-            addtriangle1_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_180->graphics->isSelected()){
-            level2->removeItem(addtriangle1_180->graphics);
-            addtriangle1_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_270->graphics->isSelected()){
-            level2->removeItem(addtriangle1_270->graphics);
-            addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
+            addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
         }
     }
-    if(counterTriangle==2){
-        if(addtriangle1->graphics->isSelected()){
-            level2->removeItem(addtriangle1->graphics);
-            addtriangle1_90 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_90->graphics->isSelected()){
-            level2->removeItem(addtriangle1_90->graphics);
-            addtriangle1_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_180->graphics->isSelected()){
-            level2->removeItem(addtriangle1_180->graphics);
-            addtriangle1_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_270->graphics->isSelected()){
-            level2->removeItem(addtriangle1_270->graphics);
-            addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2->graphics->isSelected()){
-            level2->removeItem(addtriangle2->graphics);
-            addtriangle2_90 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_90->graphics->isSelected()){
-            level2->removeItem(addtriangle2_90->graphics);
-            addtriangle2_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_180->graphics->isSelected()){
-            level2->removeItem(addtriangle2_180->graphics);
-            addtriangle2_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_270->graphics->isSelected()){
-            level2->removeItem(addtriangle2_270->graphics);
-            addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
-        }
-    }
-
 }
 
 /*!
@@ -682,58 +623,58 @@ void Level_2::rotateRight(){
 
     }
     if(counterTriangle==1){
-        counterTriangleangle++;
-
-        if(counterTriangleangle==1){
+        counterTriangleangle1++;
+        if(counterTriangleangle1==1){
             angle=1.57;
-        }else if(counterTriangleangle==2){
+        }else if(counterTriangleangle1==2){
             angle=3.1415;
-        }else if(counterTriangleangle==3){
+        }else if(counterTriangleangle1==3){
             angle=4.7124;
-        }else if(counterTriangleangle==4){
+        }else if(counterTriangleangle1==4){
             angle=0;
-            counterTriangleangle=0;
+            counterTriangleangle1=0;
         }
         if(addtriangle1->graphics->isSelected()){
             level2->removeItem(addtriangle1->graphics);
             addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
         }
-//        }else if(addtriangle1_90->graphics->isSelected()){
-//            level2->removeItem(addtriangle1_90->graphics);
-//            addtriangle1_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-//        }else if(addtriangle1_180->graphics->isSelected()){
-//            level2->removeItem(addtriangle1_180->graphics);
-//            addtriangle1_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-//        }else if(addtriangle1_270->graphics->isSelected()){
-//        level2->removeItem(addtriangle1_270->graphics);
-//        addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
-//        }
+
     }
     if(counterTriangle==2){
+        counterTriangleangle1++;
+        counterTriangleangle2++;
         if(addtriangle1->graphics->isSelected()){
+            counterTriangleangle2--;
+            if(counterTriangleangle1==1){
+                angle=1.57;
+            }else if(counterTriangleangle1==2){
+                angle=3.1415;
+            }else if(counterTriangleangle1==3){
+                angle=4.7124;
+            }else if(counterTriangleangle1==4){
+                angle=0;
+                counterTriangleangle1=0;
+            }
+            addtriangle1->graphics->isSelected();
             level2->removeItem(addtriangle1->graphics);
-            addtriangle1_90 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_90->graphics->isSelected()){
-            level2->removeItem(addtriangle1_90->graphics);
-            addtriangle1_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_180->graphics->isSelected()){
-            level2->removeItem(addtriangle1_180->graphics);
-            addtriangle1_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle1_270->graphics->isSelected()){
-            level2->removeItem(addtriangle1_270->graphics);
-            addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
+            addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
+
         }else if(addtriangle2->graphics->isSelected()){
+            counterTriangleangle1--;
+            if(counterTriangleangle2==1){
+                angle=1.57;
+            }else if(counterTriangleangle2==2){
+                angle=3.1415;
+            }else if(counterTriangleangle2==3){
+                angle=4.7124;
+            }else if(counterTriangleangle2==4){
+                angle=0;
+                counterTriangleangle2=0;
+            }
+            addtriangle2->graphics->isSelected();
             level2->removeItem(addtriangle2->graphics);
-            addtriangle2_90 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_90->graphics->isSelected()){
-            level2->removeItem(addtriangle2_90->graphics);
-            addtriangle2_180 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),3.1415, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_180->graphics->isSelected()){
-            level2->removeItem(addtriangle2_180->graphics);
-            addtriangle2_270 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),4.7124, b2_staticBody, 1.0,"tool");
-        }else if(addtriangle2_270->graphics->isSelected()){
-            level2->removeItem(addtriangle1_270->graphics);
-            addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),0.0, b2_staticBody, 1.0,"tool");
-        }
+            addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),1.57, b2_staticBody, 1.0,"tool");
+
+       }
     }
 }
