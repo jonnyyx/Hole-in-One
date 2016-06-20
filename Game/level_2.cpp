@@ -253,16 +253,16 @@ void Level_2::addTriangle()
 
         bt__triangle->sethoverpic(QPixmap(":/images/images/tri1hover.png"));
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
-       // addtriangle1->draw();
+        addtriangle1->draw();
 
     }
 
     if(counterTriangle==2){
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
-        bt__circle->sethoverpic(QPixmap(":/images/images/tri0.png"));
-        bt__circle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+        bt__triangle->sethoverpic(QPixmap(":/images/images/tri0.png"));
+        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
         bt__triangle->setEnabled(false);
-       // addtriangle2->draw();
+        addtriangle2->draw();
 
     }
 
@@ -431,10 +431,10 @@ void Level_2::showLevel(){
      level2->addWidget(bt__circle);
 
      //Triangle Button
-     bt__triangle=new picButton(QPixmap(":/images/images/tri0.png"), QPixmap(":/images/images/tri0.png"));
-     bt__triangle->setEnabled(false);
+     bt__triangle=new picButton(QPixmap(":/images/images/tri2default.png"), QPixmap(":/images/images/tri2hover.png"));
+     bt__triangle->setEnabled(true);
      bt__triangle->move(537.0,640.0);
-     //connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
+     connect(bt__triangle,SIGNAL(clicked()),this,SLOT(addTriangle()), Qt::QueuedConnection);
      level2->addWidget(bt__triangle);
 
      //Rotate Left
