@@ -167,6 +167,7 @@ private:
     int counterTogether = 0;
     int leveltime;
     bool win = false;
+    int counterTriangleangle=0;
 
     void showLevel();
 
