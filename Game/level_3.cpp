@@ -324,7 +324,7 @@ void Level_3::quitLevel()
 
     if(levelenab.size()>11){
         if(levelenab.at(13).toInt()<highscore){
-
+            levelenab.replace(3,"true\n");
             levelenab.replace(11,QString::number(leveltime)+" s\n");
             levelenab.replace(12,QString::number(counterTogether)+"\n");
             levelenab.replace(13,QString::number(highscore)+"\n");
@@ -332,7 +332,7 @@ void Level_3::quitLevel()
 
     }
     else{
-
+        levelenab.replace(3,"true\n");
         levelenab.insert(11,QString::number(leveltime)+" s\n");
         levelenab.insert(12,QString::number(counterTogether)+"\n");
         levelenab.insert(13,QString::number(highscore)+"\n");

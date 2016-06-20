@@ -18,7 +18,7 @@
 #include <QItemSelection>
 #include <paperball.h>
 #include "triangle.h"
-
+#include "picbutton.h"
 #include "block.h"
 
 
@@ -144,9 +144,9 @@ private:
     QPushButton* bt__resume;
     QElapsedTimer leveltime_elapsed;
     QTime leveltime_normal;
-    QPushButton* bt__rect;
-    QPushButton* bt__circle;
-    QPushButton* bt__triangle;
+    picButton* bt__rect;
+    picButton* bt__circle;
+    picButton* bt__triangle;
     QPushButton* bt__reset;
     QPushButton* bt__left;
     QPushButton* bt__right;
