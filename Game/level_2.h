@@ -74,8 +74,13 @@ private:
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
     Triangle* addtriangle1;
+    Triangle* addtriangle1_90;
+    Triangle* addtriangle1_180;
+    Triangle* addtriangle1_270;
     Triangle* addtriangle2;
-
+    Triangle* addtriangle2_90;
+    Triangle* addtriangle2_180;
+    Triangle* addtriangle2_270;
 
     Circle* addcircle1;
     Circle* addcircle2;

@@ -127,14 +127,13 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
         bkgnd.scaled(QSize(100,100));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPointF(a.x()+21,a.y()+21));
-        b2Vec2 v=body->GetLocalCenter();
 
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
         graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
 
 }
-    draw();
+draw();
 }
 
 /*!
