@@ -220,7 +220,7 @@ void Level_2::addCircle(){
 
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle1 = new Circle(myWorld2, level2, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         bt__circle->sethoverpic(QPixmap(":/images/images/circle1hover.png"));
         bt__circle->setdefaultpic(QPixmap(":/images/images/circle1default.png"));
@@ -231,7 +231,7 @@ void Level_2::addCircle(){
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle2 = new Circle(myWorld2, level2, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         bt__circle->sethoverpic(QPixmap(":/images/images/circ0.png"));
         bt__circle->setdefaultpic(QPixmap(":/images/images/circ0.png"));
@@ -263,8 +263,8 @@ void Level_2::addTriangle()
     if(counterTriangle==2){
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
 
-        bt__circle->sethoverpic(QPixmap(":/images/images/tri0.png"));
-        bt__circle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+        bt__triangle->sethoverpic(QPixmap(":/images/images/tri0.png"));
+        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
 
         bt__triangle->setEnabled(false);
        // addtriangle2->draw();
@@ -437,7 +437,7 @@ void Level_2::showLevel(){
 
      //Triangle Button
      bt__triangle=new picButton(QPixmap(":/images/images/tri2default.png"), QPixmap(":/images/images/tri2hover.png"));
-     bt__triangle->setEnabled(false);
+     bt__triangle->setEnabled(true);
      bt__triangle->move(537.0,640.0);
      connect(bt__triangle,SIGNAL(clicked()),this,SLOT(addTriangle()), Qt::QueuedConnection);
      level2->addWidget(bt__triangle);
