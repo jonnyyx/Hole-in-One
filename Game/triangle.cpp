@@ -93,6 +93,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 
 /*!
  * \brief Triangle::draw
+ * connects the Graphics to the Box2D-Object
  */
 void Triangle::draw()
 {
@@ -102,8 +103,10 @@ void Triangle::draw()
 //    graphics->setPos(QPointF(v.x,v.y));
 //    qreal a=body->GetAngle();
 }
+
 /*!
  * \brief Triangle::drawGraphics
+ * connects the Box2D-Object to the Graphics after relocation
  */
 
 void Triangle::drawGraphics()

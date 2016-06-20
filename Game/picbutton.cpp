@@ -1,5 +1,10 @@
 #include "picbutton.h"
 
+/*!
+ * \brief picButton::picButton
+ * \param _defaultpic
+ * \param _hoverpic
+ */
 picButton::picButton(QPixmap _defaultpic, QPixmap _hoverpic)
 {
     defaultpic=_defaultpic;

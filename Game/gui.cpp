@@ -10,6 +10,10 @@
 #include "level_4.h"
 #include "qdebug.h"
 
+/*!
+ * \brief GUI::GUI
+ * \param parent
+ */
 GUI::GUI(QWidget *parent){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -73,6 +77,10 @@ GUI::GUI(QWidget *parent){
 
 
 //Sound
+/*!
+ * \brief GUI::mute
+ * enables and disables the backgroundsound
+ */
 void GUI::mute()
 {
     if(ismute==false){
@@ -89,6 +97,9 @@ void GUI::mute()
     }
 }
 
+/*!
+ * \brief GUI::csnd
+ */
 void GUI::csnd()
 {
         if(ismute == false) {
@@ -103,7 +114,11 @@ void GUI::csnd()
 
 
 
-
+/*!
+ * \brief GUI::displayGUI
+ * opens the Startmenu
+ * creates the needed Buttons and connects them
+ */
 void GUI::displayGUI()
 {
     checkLevel();
@@ -162,6 +177,12 @@ void GUI::displayGUI()
 
 }
 
+/*!
+ * \brief GUI::levelMenu
+ * opens the Levelmenu
+ * shows the Levels which can be selected
+ * opens the selected Level
+ */
 void GUI::levelMenu()
 {
 
@@ -300,6 +321,10 @@ void GUI::levelMenu()
     scene->addWidget(backButton);
 }
 
+/*!
+ * \brief GUI::back
+ *
+ */
 void GUI::back(){
     scene->clear();
     displayGUI();
@@ -325,6 +350,10 @@ void GUI::back(){
     }
 }
 
+/*!
+ * \brief GUI::showLevel1
+ * starts Level_1
+ */
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
     Level_1 *test;
@@ -333,6 +362,10 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
 
 }
 
+/*!
+ * \brief GUI::showLevel2
+ * starts Level_2
+ */
 void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
     Level_2 *test2;
@@ -341,6 +374,10 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
 
 }
 
+/*!
+ * \brief GUI::showLevel3
+ * starts Level_3
+ */
 void GUI::showLevel3()
 {
     Level_3 *test3;
@@ -349,6 +386,10 @@ void GUI::showLevel3()
 
 }
 
+/*!
+ * \brief GUI::showLevel4
+ * starts Level_4
+ */
 void GUI::showLevel4()
 {
     Level_4 *test4;
@@ -356,6 +397,12 @@ void GUI::showLevel4()
     test4->show();
 }
 
+/*!
+ * \brief GUI::highscore
+ * opens the Highscoretable
+ * checkout of the enabled levels
+ * relaeses the playable Levels
+ */
 void GUI::highscore()
 {
     QStringList object;
@@ -581,7 +628,10 @@ void GUI::highscore()
     scene->addWidget(backButton);
 }
 
-
+/*!
+ * \brief GUI::help
+ * opens the Helpmenu
+ */
 void GUI::help()
 {
     scene->clear();
@@ -747,11 +797,9 @@ void GUI::help()
 
 }
 
-
-
-
-
-
+/*!
+ * \brief GUI::box
+ */
 void GUI::box()
 {
     scene->clear();
@@ -818,6 +866,9 @@ void GUI::box()
 
 }
 
+/*!
+ * \brief GUI::circle
+ */
 void GUI::circle()
 {
     scene->clear();
@@ -880,6 +931,9 @@ void GUI::circle()
     scene->addWidget(backButton);
 }
 
+/*!
+ * \brief GUI::triangle
+ */
 void GUI::triangle()
 {
     scene->clear();
@@ -1074,6 +1128,9 @@ void GUI::triangle()
 //    scene->addItem(backButton);
 //}
 
+/*!
+ * \brief GUI::checkLevel
+ */
 void GUI::checkLevel(){
     levelenab.clear();
     QFile file("level.txt");

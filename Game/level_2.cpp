@@ -11,7 +11,10 @@
 
 using namespace std;
 
-
+/*!
+ * \brief Level_2::Level_2
+ * Initialize Level1 - Screen/Scene Setup...
+ */
 Level_2::Level_2()
 {
     /*!Set Application-Name*/
@@ -30,6 +33,11 @@ Level_2::Level_2()
     showLevel();
 }
 
+/*!
+ * \brief Level_2::update
+ * update function for moveable objects like our ball - sets the graphics of the ball to the position
+ * of the box2D body.
+ */
 void Level_2::update(){
     myWorld2->Step(framerate, 20, 20);
 
@@ -58,8 +66,9 @@ void Level_2::update(){
 }
 
 /*!
- * \brief Level_1::startLevel
- * Set the flag of the QGraphicsItem, after click Start.
+ * \brief Level_2::startLevel
+ * Set the flag of the QGraphicsItem, after start was clicked.
+ * draw the graphics if the body was moved before start was clicked.
  */
 void Level_2::startLevel(){
 
@@ -126,6 +135,10 @@ void Level_2::startLevel(){
 
 }
 
+/*!
+ * \brief Level_2::pauseLevel
+ * pauses game when button pause is clicked
+ */
 void Level_2::pauseLevel(){
     if(timer!=NULL){
         timer->stop();
@@ -142,6 +155,10 @@ void Level_2::pauseLevel(){
     //qDebug()<<highscore;
 }
 
+/*!
+ * \brief Level_2::resumeLevel
+ * resumes game when button resume is clicked
+ */
 void Level_2::resumeLevel()
 {
     timer->start();
@@ -151,6 +168,10 @@ void Level_2::resumeLevel()
 
 }
 
+/*!
+ * \brief Level_2::addRectangle
+ * Create new rectangle and count the rectangle items. limited to number.
+ */
 void Level_2::addRectangle()
 {
     counterRec++;
@@ -177,8 +198,8 @@ void Level_2::addRectangle()
 }
 
 /*!
- * \brief Level_1::addCircle
- * Create new Circle and count the circle items. If you want to add more than 3 Circle, don't add a new Circle anymore.
+ * \brief Level_2::addCircle
+ * Create new Circle and count the circle items. Limited to number.
  */
 
 void Level_2::addCircle(){
@@ -207,6 +228,11 @@ void Level_2::addCircle(){
     }
 
 }
+
+/*!
+ * \brief Level_2::addTriangle
+ * Create new Triangle and count the triangle items. Limited to number.
+ */
 void Level_2::addTriangle()
 {
     counterTriangle++;
@@ -228,10 +254,8 @@ void Level_2::addTriangle()
 
 }
 
-
-
 /*!
- * \brief Level_1::getTime
+ * \brief Level_2::getTime
  * Stop time and convert it to ms.
  */
 void Level_2::getTime(){
@@ -240,7 +264,7 @@ void Level_2::getTime(){
 }
 
 /*!
- * \brief Level_1::highscoreCounter
+ * \brief Level_2::highscoreCounter
  * Calculate the highscore.
  */
 void Level_2::highscoreCounter(){
@@ -276,7 +300,7 @@ void Level_2::highscoreCounter(){
 }
 
 /*!
- * \brief Level_1::reset
+ * \brief Level_2::reset
  * Clear scene and load Level again.
  */
 void Level_2::reset(){
@@ -289,6 +313,10 @@ void Level_2::reset(){
 
 }
 
+/*!
+ * \brief Level_2::quitLevel
+ * quits game and writes time/score into highscore table
+ */
 void Level_2::quitLevel()
 {
     QList <QString> levelenab;
@@ -331,7 +359,7 @@ void Level_2::quitLevel()
 }
 
 /*!
- * \brief Level_1::showLevel
+ * \brief Level_2::showLevel
  * Create all Objects for Level 1.
  * Connect Buttons with SLOT.
  */
@@ -470,8 +498,8 @@ void Level_2::showLevel(){
      obstaclescircle25 = new Circle(myWorld2, level2, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle26 = new Circle(myWorld2, level2, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
-     recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
+     recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
      recyclebin3 = new RecycleBinGraphics(level2);
 
      addtriangle1 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
@@ -491,8 +519,9 @@ void Level_2::showLevel(){
      umrandung2->graphics->hide();
 
 }
+
 /*!
- * \brief Level_1::rotateLeft
+ * \brief Level_2::rotateLeft
  * possibility to rotate objects to the left
  */
 void Level_2::rotateLeft(){
@@ -528,8 +557,9 @@ void Level_2::rotateLeft(){
     }
 
 }
+
 /*!
- * \brief Level_1::rotateRight
+ * \brief Level_2::rotateRight
  * possibility to rotate right
  */
 void Level_2::rotateRight(){

@@ -4,7 +4,18 @@
 #include <QSize>
 #include <qdebug.h>
 
-
+/*!
+ * \brief Block::Block
+ * \param world
+ * \param level
+ * \param center
+ * \param m_angle
+ * \param m_length
+ * \param m_width
+ * \param type
+ * \param friction
+ * \param mode
+ */
 Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
 {
     angle=m_angle;
@@ -57,15 +68,22 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 //FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
 //also wenn jemand bock hat hier weitermachen
 
+/*!
+ * \brief Block::draw
+ * connects the Graphics to the Box2D-Object
+ */
 void Block::draw()
 {
     b2Vec2 v=body->GetPosition();
 
-
-
-
 }
 
+/*!
+ * \brief Block::drawRec
+ * \param x
+ * \param y
+ * connects the Graphics to the Box2D-Object
+ */
 void Block::drawRec(int x,int y){
 
 
@@ -74,11 +92,14 @@ void Block::drawRec(int x,int y){
 
 }
 
+/*!
+ * \brief Block::drawGraphics
+ * connects the Box2D-Object to the Graphics after relocation
+ */
 void Block::drawGraphics()
 {
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
-
 }
 
 
