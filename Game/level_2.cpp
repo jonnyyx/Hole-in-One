@@ -77,7 +77,7 @@ void Level_2::startLevel(){
     recyclebin2->drawGraphics();
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->drawGraphics();
-    obstaclesrec1->drawGraphics();
+    //obstaclesrec1->drawGraphics();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
@@ -194,6 +194,7 @@ void Level_2::addRectangle()
         bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
         bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
 
+
     }
 
     else if(counterRec==2){
@@ -215,11 +216,11 @@ void Level_2::addRectangle()
 void Level_2::addCircle(){
     counterCircle++;
 
-     b2CircleShape circle;
+    b2CircleShape circle;
 
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle1 = new Circle(myWorld2, level2, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
         bt__circle->sethoverpic(QPixmap(":/images/images/circle1hover.png"));
         bt__circle->setdefaultpic(QPixmap(":/images/images/circle1default.png"));
@@ -230,7 +231,8 @@ void Level_2::addCircle(){
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld2, level2, QPointF(200.0,170), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle2 = new Circle(myWorld2, level2, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+
         bt__circle->sethoverpic(QPixmap(":/images/images/circ0.png"));
         bt__circle->setdefaultpic(QPixmap(":/images/images/circ0.png"));
         bt__circle->setEnabled(false);
@@ -255,12 +257,15 @@ void Level_2::addTriangle()
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
         addtriangle1->draw();
 
+
     }
 
     if(counterTriangle==2){
         addtriangle2 = new Triangle(myWorld2, level2, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+
         bt__triangle->sethoverpic(QPixmap(":/images/images/tri0.png"));
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+
         bt__triangle->setEnabled(false);
         addtriangle2->draw();
 
@@ -356,7 +361,7 @@ void Level_2::quitLevel()
         }
 
     }else{
-
+        levelenab.replace(2,"true\n");
         levelenab.insert(8,QString::number(leveltime)+" s\n");
         levelenab.insert(9,QString::number(counterTogether)+"\n");
         levelenab.insert(10,QString::number(highscore)+"\n");
@@ -417,14 +422,14 @@ void Level_2::showLevel(){
      level2->addWidget(bt__reset);
 
      //Rect Button
-     bt__rect=new picButton(QPixmap(":/images/images/rec3defualt.png"), QPixmap(":/images/images/rec3hover.png"));
+     bt__rect=new picButton(QPixmap(":/images/images/rec2default.png"), QPixmap(":/images/images/rec2hover.png"));
      bt__rect->setEnabled(true);
      bt__rect->move(219.0,640.0);
      connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()), Qt::QueuedConnection);
      level2->addWidget(bt__rect);
 
      //Circle Button
-     bt__circle=new picButton(QPixmap(":/images/images/circ3default.png"), QPixmap(":/images/images/circ3hover.png"));
+     bt__circle=new picButton(QPixmap(":/images/images/circ2default.png"), QPixmap(":/images/images/circ2hover.png"));
      bt__circle->setEnabled(true);
      bt__circle->move(378.0,640.0);
      connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
@@ -511,7 +516,7 @@ void Level_2::showLevel(){
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
      recyclebin3 = new RecycleBinGraphics(level2);
 
-          bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);
+     bottom= new MeinElement(myWorld2, level2, b2Vec2(0.0,level2->height()-200), level2->width(), 22, b2_staticBody, 0.1);
 
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 

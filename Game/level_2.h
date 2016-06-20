@@ -18,7 +18,7 @@
 #include <QItemSelection>
 #include <paperball.h>
 #include "triangle.h"
-
+#include "picbutton.h"
 #include "block.h"
 
 
@@ -147,9 +147,11 @@ private:
     picButton* bt__rect;
     picButton* bt__circle;
     picButton* bt__triangle;
+
     picButton* bt__reset;
     picButton* bt__left;
     picButton* bt__right;
+
     int counterRec = 0;
     int counterCircle=0;
     int counterTriangle=0;
