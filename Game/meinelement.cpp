@@ -124,7 +124,7 @@ MeinElement::MeinElement(QGraphicsScene *level, QPointF center, qreal length, qr
      b2Vec2 v=body->GetPosition();
 
      graphics->setPos(QPointF(v.x,v.y));
-     qreal a=body->GetAngle();
+     //qreal a=body->GetAngle();
 
  }
 

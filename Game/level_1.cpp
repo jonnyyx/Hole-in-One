@@ -15,7 +15,7 @@ using namespace std;
 /*!
  * \brief Level_1::Level_1
  * \param parent
- * Initialize Level1 - Screen/Scene SetuP...
+ *  Initialize Level1 - Screen/Scene Setup...
  */
 Level_1::Level_1()
 {
@@ -153,6 +153,7 @@ void Level_1::startLevel(){
 
     leveltime_elapsed.start();
 }
+
 /*!
  * \brief Level_1::pauseLevel
  * pauses game when button pause is clicked
@@ -264,6 +265,7 @@ void Level_1::addCircle(){
     }
 
 }
+
 /*!
  * \brief Level_1::getTime
  * Stop time and convert it to ms.
@@ -272,6 +274,7 @@ void Level_1::getTime(){
     leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
     leveltime = leveltime/1000; //leveltime in sec
 }
+
 /*!
  * \brief Level_1::highscoreCounter
  * Calculate the highscore.
@@ -306,6 +309,7 @@ void Level_1::highscoreCounter(){
 
     highscore=highscore*100;
 }
+
 /*!
  * \brief Level_1::reset
  * Clear scene and load Level again.
@@ -318,6 +322,7 @@ void Level_1::reset(){
    
    showLevel();
 }
+
 /*!
  * \brief Level_1::quitLevel
  * quits game and writes time/score into highscore table
@@ -366,6 +371,7 @@ void Level_1::quitLevel()
     file.close();
     this->close();
 }
+
 /*!
  * \brief Level_1::showLevel
  * Create all Objects for Level 1.
@@ -469,8 +475,8 @@ void Level_1::showLevel(){
      // game Objects
      ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
-     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
-     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
+     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
      recyclebin3 = new RecycleBinGraphics(level);
 
      obstaclescircle1 = new Circle(myWorld, level, QPointF(0.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
@@ -506,6 +512,7 @@ void Level_1::showLevel(){
      umrandung1->graphics->hide();
      umrandung2->graphics->hide();
 }
+
 /*!
  * \brief Level_1::rotateLeft
  * possibility to rotate objects to the left

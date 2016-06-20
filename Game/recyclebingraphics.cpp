@@ -4,6 +4,10 @@
 #include <QSize>
 #include <qdebug.h>
 
+/*!
+ * \brief RecycleBinGraphics::RecycleBinGraphics
+ * \param level
+ */
 RecycleBinGraphics::RecycleBinGraphics(QGraphicsScene *level)
 {
     QPixmap bkgnd(":/pic/basket.png");

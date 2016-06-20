@@ -4,7 +4,18 @@
 #include <QSize>
 #include <qdebug.h>
 
-RecycleBin::RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF b,QPointF c, QPointF d, qreal angle, b2BodyType type, qreal friction)
+/*!
+ * \brief RecycleBin::RecycleBin
+ * \param world
+ * \param level
+ * \param a
+ * \param b
+ * \param c
+ * \param d
+ * \param angle
+ * \param type
+ */
+RecycleBin::RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF b,QPointF c, QPointF d, qreal angle, b2BodyType type)
 {
 
     b2BodyDef myBodyDef;
@@ -44,16 +55,23 @@ RecycleBin::RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF
 
 }
 
+/*!
+ * \brief RecycleBin::draw
+ * connects the Graphics to the Box2D-Object
+ */
 void RecycleBin::draw()
 {
     b2Vec2 v=body->GetPosition();
 
     graphics->setPos(QPointF(v.x,v.y));
-    qreal a=body->GetAngle();
+    //qreal a=body->GetAngle();
 
 }
 
-
+/*!
+ * \brief RecycleBin::drawGraphics
+ * connects the Box2D-Object to the Graphics after relocation
+ */
 void RecycleBin::drawGraphics(){
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());

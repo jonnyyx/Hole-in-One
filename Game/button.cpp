@@ -2,6 +2,11 @@
 #include <QGraphicsTextItem>
 #include <QBrush>
 
+/*!
+ * \brief Button::Button
+ * \param buttonName
+ * \param parent
+ */
 Button::Button(QString buttonName, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
     /*Rectangle for buttons!*/

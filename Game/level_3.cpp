@@ -140,6 +140,7 @@ void Level_3::startLevel(){
 
     leveltime_elapsed.start();
 }
+
 /*!
  * \brief Level_3::pauseLevel
  * pauses game when button pause is clicked
@@ -156,6 +157,7 @@ void Level_3::pauseLevel(){
     qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
 }
+
 /*!
  * \brief Level_3::resumeLevel
  * resumes game when button resume is clicked
@@ -195,9 +197,8 @@ void Level_3::addRectangle()
         addblock2->draw();
     }
 
-
-
 }
+
 /*!
  * \brief Level_3::addCircle
  * create new circle and count the circle items. limited to number.
@@ -245,6 +246,7 @@ void Level_3::addCircle(){
     }
 
 }
+
 /*!
  * \brief Level_3::getTime
  * Stop time and convert it to ms.
@@ -253,6 +255,7 @@ void Level_3::getTime(){
     leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
     leveltime = leveltime/1000; //leveltime in sec
 }
+
 /*!
  * \brief Level_3::highscoreCounter
  * Calculate the highscore.
@@ -287,6 +290,7 @@ void Level_3::highscoreCounter(){
 
     highscore=highscore*100;
 }
+
 /*!
  * \brief Level_3::reset
  * Clear scene and load Level again.
@@ -299,6 +303,7 @@ void Level_3::reset(){
 
    showLevel();
 }
+
 /*!
  * \brief Level_3::quitLevel
  * quits game and writes time/score into highscore table
@@ -343,6 +348,7 @@ void Level_3::quitLevel()
     file.close();
     this->close();
 }
+
 /*!
  * \brief Level_3::showLevel
  * Create all Objects for Level 1.
@@ -453,8 +459,8 @@ void Level_3::showLevel(){
      // game Objects
      ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
-     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody, 0.5);
-     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody, 0.5);
+     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
+     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
      recyclebin3 = new RecycleBinGraphics(level);
 
      triangle1 = new Triangle(myWorld, level, QPointF(200.0,400.0), QPointF(300.0,400.0), QPointF(300.0,500.0), 1.57, b2_staticBody, 1.0,"obs");
@@ -470,6 +476,7 @@ void Level_3::showLevel(){
      umrandung1->graphics->hide();
      umrandung2->graphics->hide();
 }
+
 /*!
  * \brief Level_3::rotateLeft
  * possibility to rotate objects to the left
@@ -540,6 +547,7 @@ void Level_3::rotateLeft(){
 
 //    }
 }
+
 /*!
  * \brief Level_3::rotateRight
  * possibility to rotate right
