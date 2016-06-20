@@ -697,6 +697,7 @@ void GUI::help()
 
     //Tool instruction
     QGraphicsTextItem* secondCap = new QGraphicsTextItem(QString("Tools:""\n"));
+
     QFont secondCFont("comic sans", 18);
     secondCap->setFont(secondCFont);
     int secondCxPos = 80;

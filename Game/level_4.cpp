@@ -13,8 +13,7 @@ using namespace std;
 
 /*!
  * \brief Level_4::Level_4
- * \param parent
- * Initialize Level1 - Screen/Scene SetuP...
+ * Initialize Level1 - Screen/Scene Setup...
  */
 Level_4::Level_4()
 {
@@ -26,18 +25,13 @@ Level_4::Level_4()
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
 
-    timer2=new QTimer(this);
-    timer2->setInterval(1.0/120.0*1000.0);
-    //timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(position()));
-    timer2->start();
-
     //Scene setup
-    level = new QGraphicsScene();
-    level->setSceneRect(0,0,1024,768);
-    setScene(level);
+    level4 = new QGraphicsScene();
+    level4->setSceneRect(0,0,1024,768);
+    setScene(level4);
+
     showLevel();
 }
-
 
 /*!
  * \brief Level_4::update
@@ -45,31 +39,30 @@ Level_4::Level_4()
  * of the box2D body.
  */
 void Level_4::update(){
-    myWorld->Step(framerate, 20, 20);
+    myWorld4->Step(framerate, 20, 20);
+
     win = ball->drawBall1(); //nur bewegende Elemente in Update
-    qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
 
         if (win==true){
         Level_4::pauseLevel();
 
-        msgbox = new MeinElement(level,QPointF(375,275),300,175);
+        msgbox = new MeinElement(level4,QPointF(375,275),300,175);
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 4!");
-        level->addItem(winText);
+        level4->addItem(winText);
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,350);
-
         QString time = QString("Time: %1 s").arg(leveltime);
-        qDebug()<<time;
         timeText->setPlainText( time);
-        level->addItem(timeText);
+        level4->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,400);
-        level->addWidget(quitLevel);
+        level4->addWidget(quitLevel);
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
     }
+
 }
 
 /*!
@@ -80,38 +73,32 @@ void Level_4::update(){
 void Level_4::startLevel(){
 
     recyclebin1->drawGraphics();
+    recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin2->drawGraphics();
+    recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->drawGraphics();
+    //obstaclesrec1->drawGraphics();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
 
 
     if(counterRec==1){
-        elem4->drawGraphics();
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        addblock1->drawGraphics();
+        addblock1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addblock1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
 
     if(counterRec==2){
-        elem4->drawGraphics();
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-        elem5->drawGraphics();
-        elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem5->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-    }
-
-    if(counterRec==3){
-        elem4->drawGraphics();
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem4->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-        elem5->drawGraphics();
-        elem5->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem5->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-        elem6->drawGraphics();
-        elem6->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        elem6->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        addblock1->drawGraphics();
+        addblock1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addblock1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
+        addblock2->drawGraphics();
+        addblock2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        addblock2->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
 
     if(counterCircle==1){
@@ -126,15 +113,23 @@ void Level_4::startLevel(){
         addcircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     }
 
-    if(counterCircle==3){
-        addcircle1->drawGraphics();
-        addcircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        addcircle2->drawGraphics();
-        addcircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-        addcircle3->drawGraphics();
-        addcircle3->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+    if(counterTriangle==1){
+        if(addtriangle1!=NULL){
+           addtriangle1->drawGraphics();
+           addtriangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
+           }
     }
+    if(counterTriangle==2){
 
+        if(addtriangle1!=NULL){
+           addtriangle1->drawGraphics();
+           addtriangle1->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
+           }
+        if(addtriangle2!=NULL){
+           addtriangle2->drawGraphics();
+           addtriangle2->graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
+           }
+    }
 
     timer=new QTimer(this);
     timer->setInterval(1.0/120.0*1000.0);
@@ -146,7 +141,9 @@ void Level_4::startLevel(){
     bt__rect->setEnabled(false);
     bt__circle->setEnabled(false);
 
+
     leveltime_elapsed.start();
+
 }
 
 /*!
@@ -162,8 +159,11 @@ void Level_4::pauseLevel(){
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
+
     qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
+    //qDebug()<<leveltime;
+    //qDebug()<<highscore;
 }
 
 /*!
@@ -176,6 +176,7 @@ void Level_4::resumeLevel()
     bt_pause->setEnabled(true);
     bt__resume->setEnabled(false);
     bt_start->setEnabled(false);
+
 }
 
 /*!
@@ -188,47 +189,41 @@ void Level_4::addRectangle()
 
 
     if (counterRec==1){
-        elem4 = new Block(myWorld, level, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
+        addblock1 = new Block(myWorld4, level4, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
-        bt__rect->setText("Rectangle (2)");
-        //bt__circle->setText("Circle (2)");
+        bt__rect->sethoverpic(QPixmap(":/images/images/rec1hover.png"));
+        bt__rect->setdefaultpic(QPixmap(":/images/images/rec1default.png"));
 
 
     }
 
     else if(counterRec==2){
-        elem5 = new Block(myWorld, level, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
+        addblock2 = new Block(myWorld4, level4, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
 
-        bt__rect->setText("Rectangle (1)");
-        //bt__circle->setText("Circle (1)");
-
-    }
-
-    else if(counterRec==3){
-        elem6 = new Block(myWorld, level, b2Vec2 (50.0,20.0), 0, 100, 40, b2_staticBody,1.0,"tool");
-
+        bt__rect->sethoverpic(QPixmap(":/images/images/rec0.png"));
+        bt__rect->setdefaultpic(QPixmap(":/images/images/rec0.png"));
         bt__rect->setEnabled(false);
-        bt__circle->setEnabled(false);
+
     }
 
 }
 
 /*!
  * \brief Level_4::addCircle
- * create new circle and count the circle items. limited to number.
+ * Create new Circle and count the circle items. Limited to number.
  */
+
 void Level_4::addCircle(){
     counterCircle++;
 
     b2CircleShape circle;
 
-    qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
-        addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle1 = new Circle(myWorld4, level4, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
-        //bt__rect->setText("Rectangle (2)");
-        bt__circle->setText("Circle (2)");
+        bt__circle->sethoverpic(QPixmap(":/images/images/circle1hover.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/circle1default.png"));
 
         addcircle1->draw();
 
@@ -236,26 +231,43 @@ void Level_4::addCircle(){
 
     if(counterCircle==2){
         circle.m_radius = 21.0;
-        addcircle2 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+        addcircle2 = new Circle(myWorld4, level4, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
 
-        //bt__rect->setText("Rectangle (1)");
-        bt__circle->setText("Circle (1)");
-
+        bt__circle->sethoverpic(QPixmap(":/images/images/circ0.png"));
+        bt__circle->setdefaultpic(QPixmap(":/images/images/circ0.png"));
+        bt__circle->setEnabled(false);
         addcircle2->draw();
 
     }
 
-    if(counterCircle==3){
-        circle.m_radius = 21.0;
-        addcircle3 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
+}
 
-        //bt__rect->setText("Rectangle (0)");
-        bt__circle->setText("Circle (0)");
+/*!
+ * \brief Level_4::addTriangle
+ * Create new Triangle and count the triangle items. Limited to number.
+ */
+void Level_4::addTriangle()
+{
+    counterTriangle++;
 
-        addcircle3->draw();
+    if(counterTriangle==1){
+        addtriangle1 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
 
-        bt__rect->setEnabled(false);
-        bt__circle->setEnabled(false);
+        bt__triangle->sethoverpic(QPixmap(":/images/images/tri1hover.png"));
+        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
+       // addtriangle1->draw();
+
+
+    }
+
+    if(counterTriangle==2){
+        addtriangle2 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0), 0, b2_staticBody, 1.0,"tool");
+
+        bt__triangle->sethoverpic(QPixmap(":/images/images/tri0.png"));
+        bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
+
+        bt__triangle->setEnabled(false);
+       // addtriangle2->draw();
 
     }
 
@@ -303,6 +315,7 @@ void Level_4::highscoreCounter(){
     }
 
     highscore=highscore*100;
+
 }
 
 /*!
@@ -310,12 +323,14 @@ void Level_4::highscoreCounter(){
  * Clear scene and load Level again.
  */
 void Level_4::reset(){
-   pauseLevel();
-   level->clear();
+    pauseLevel();
+   level4->clear();
    counterRec = 0;
    counterCircle = 0;
+   counterTriangle = 0;
 
    showLevel();
+
 }
 
 /*!
@@ -337,21 +352,21 @@ void Level_4::quitLevel()
 
     }
 
-    if(levelenab.size()>14){
-        if(levelenab.at(16).toInt()<highscore){
-
-            levelenab.replace(14,QString::number(leveltime)+" s\n");
-            levelenab.replace(15,QString::number(counterTogether)+"\n");
-            levelenab.replace(16,QString::number(highscore)+"\n");
+    if(levelenab.size()>8){
+        if(levelenab.at(10).toInt()<highscore){
+            levelenab.replace(2,"true\n");
+            levelenab.replace(8,QString::number(leveltime)+" s\n");
+            levelenab.replace(9,QString::number(counterTogether)+"\n");
+            levelenab.replace(10,QString::number(highscore)+"\n");
         }
 
+    }else{
+        levelenab.replace(2,"true\n");
+        levelenab.insert(8,QString::number(leveltime)+" s\n");
+        levelenab.insert(9,QString::number(counterTogether)+"\n");
+        levelenab.insert(10,QString::number(highscore)+"\n");
     }
-    else{
 
-        levelenab.insert(14,QString::number(leveltime)+" s\n");
-        levelenab.insert(15,QString::number(counterTogether)+"\n");
-        levelenab.insert(16,QString::number(highscore)+"\n");
-    }
 
     QTextStream out(&file);
     foreach (QString data, levelenab) {
@@ -373,7 +388,7 @@ void Level_4::showLevel(){
      //set Background Image
      QPixmap background(":/pic/Game_background_spwn.png");
      background.scaled(QSize(1021,766));
-     backgnd = level->addPixmap(background);
+     backgnd = level4->addPixmap(background);
      backgnd->setPos(0,0); //Set Graphic to top left corner
      backgnd->setFlag(QGraphicsItem::ItemIsMovable, false);
 
@@ -381,7 +396,7 @@ void Level_4::showLevel(){
      bt_start=new picButton(QPixmap(":/images/images/startdefault.png"), QPixmap(":/images/images/starthover.png"));
      bt_start->move(726.0,640.0);
      connect(bt_start,SIGNAL(clicked()),this,SLOT(startLevel()), Qt::QueuedConnection);
-     level->addWidget(bt_start);
+     level4->addWidget(bt_start);
 
      //Pause Button
      bt_pause=new picButton(QPixmap(":/images/images/pauseenabled.png"), QPixmap(":/images/images/pausehover.png"));
@@ -390,98 +405,130 @@ void Level_4::showLevel(){
      connect(bt_pause,SIGNAL(clicked()),this,SLOT(getTime()),Qt::QueuedConnection);
      connect(bt_pause,SIGNAL(clicked()),this,SLOT(highscoreCounter()),Qt::QueuedConnection);
      connect(bt_pause,SIGNAL(clicked()),this,SLOT(pauseLevel()),Qt::QueuedConnection);
-     level->addWidget(bt_pause);
+     level4->addWidget(bt_pause);
 
      //Resume Button
      bt__resume=new picButton(QPixmap(":/images/images/resumeenabled.png"), QPixmap(":/images/images/resumehover.png"));
      bt__resume->setEnabled(false);
      bt__resume->move(726.0, 685.0);
      connect(bt__resume,SIGNAL(clicked()),this,SLOT(resumeLevel()));
-     level->addWidget(bt__resume);
+     level4->addWidget(bt__resume);
 
      //Reset
      bt__reset=new picButton(QPixmap(":/images/images/resetenabled.png"), QPixmap(":/images/images/resethover.png"));
      bt__reset->setEnabled(true);
      bt__reset->move(865.0, 685.0);
      connect(bt__reset, SIGNAL(clicked()), this, SLOT(reset()), Qt::QueuedConnection);
-     level->addWidget(bt__reset);
+     level4->addWidget(bt__reset);
 
      //Rect Button
-     bt__rect=new picButton(QPixmap(":/images/images/rec3defualt.png"), QPixmap(":/images/images/rec3hover.png"));
+     bt__rect=new picButton(QPixmap(":/images/images/rec2default.png"), QPixmap(":/images/images/rec2hover.png"));
      bt__rect->setEnabled(true);
      bt__rect->move(219.0,640.0);
      connect(bt__rect,SIGNAL(clicked()),this,SLOT(addRectangle()), Qt::QueuedConnection);
-     level->addWidget(bt__rect);
+     level4->addWidget(bt__rect);
 
      //Circle Button
-     bt__circle=new picButton(QPixmap(":/images/images/circ3default.png"), QPixmap(":/images/images/circ3hover.png"));
+     bt__circle=new picButton(QPixmap(":/images/images/circ2default.png"), QPixmap(":/images/images/circ2hover.png"));
      bt__circle->setEnabled(true);
      bt__circle->move(378.0,640.0);
      connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
-     level->addWidget(bt__circle);
+     level4->addWidget(bt__circle);
 
      //Triangle Button
-     bt_triangle=new picButton(QPixmap(":/images/images/tri0.png"), QPixmap(":/images/images/tri0.png"));
-     bt_triangle->setEnabled(false);
-     bt_triangle->move(537.0,640.0);
-     //connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
-     level->addWidget(bt_triangle);
-
-
+     bt__triangle=new picButton(QPixmap(":/images/images/tri2default.png"), QPixmap(":/images/images/tri2hover.png"));
+     bt__triangle->setEnabled(true);
+     bt__triangle->move(537.0,640.0);
+     connect(bt__triangle,SIGNAL(clicked()),this,SLOT(addTriangle()), Qt::QueuedConnection);
+     level4->addWidget(bt__triangle);
 
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
      bt__left->move(30.0,640.0);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
-     level->addWidget(bt__left);
+     level4->addWidget(bt__left);
 
      //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
      bt__right->move(30.0,685.0);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
-     level->addWidget(bt__right);
+     level4->addWidget(bt__right);
+
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
-
-     myWorld = new b2World(gravity);
+     myWorld4 = new b2World(gravity);
 
      float32 timeStep = 1.0/100.0;     //the length of time passed to simulate (seconds)
      int32 velocityIterations = 8.0;   //how strongly to correct velocity
      int32 positionIterations = 3.0;   //how strongly to correct position
 
-     myWorld->Step(timeStep, velocityIterations, positionIterations);
+     myWorld4->Step(timeStep, velocityIterations, positionIterations);
 
      b2CircleShape circle;
      circle.m_radius = 21.0;
 
-     //Outer borders
-     umrandung1 = new MeinElement(myWorld,level, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
-     umrandung2 = new MeinElement(myWorld,level, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
-     bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
+     umrandung1 = new MeinElement(myWorld4,level4, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
+     umrandung2 = new MeinElement(myWorld4,level4, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
 
-     // game Objects
-     ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld4, level4, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
-     recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
-     recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
-     recyclebin3 = new RecycleBinGraphics(level);
+     obstaclescircle1 = new Circle(myWorld4, level4, QPointF(0.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle2 = new Circle(myWorld4, level4, QPointF(42.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle3 = new Circle(myWorld4, level4, QPointF(84.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle4 = new Circle(myWorld4, level4, QPointF(128.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle5 = new Circle(myWorld4, level4, QPointF(170.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle6 = new Circle(myWorld4, level4, QPointF(212.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle7 = new Circle(myWorld4, level4, QPointF(256.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle8 = new Circle(myWorld4, level4, QPointF(212.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle9 = new Circle(myWorld4, level4, QPointF(256.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle10 = new Circle(myWorld4, level4, QPointF(298.0,253), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle11 = new Circle(myWorld4, level4, QPointF(340.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle12 = new Circle(myWorld4, level4, QPointF(382.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle13 = new Circle(myWorld4, level4, QPointF(424.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle14 = new Circle(myWorld4, level4, QPointF(466.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle23 = new Circle(myWorld4, level4, QPointF(508.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle24 = new Circle(myWorld4, level4, QPointF(550.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle25 = new Circle(myWorld4, level4, QPointF(592.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle26 = new Circle(myWorld4, level4, QPointF(634.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle29 = new Circle(myWorld4, level4, QPointF(676.0,211), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     //obstaclescircle1 = new Circle(myWorld, level, QPointF(80.0,170), 0*(3.14/180.0), b2_staticBody, circle);
-     //obstaclescircle2 = new Circle(myWorld, level, QPointF(120.0,500.0), 0*(3.14/180.0), b2_staticBody, circle);
-     //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
+     obstaclescircle15 = new Circle(myWorld4, level4, QPointF(982.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle16 = new Circle(myWorld4, level4, QPointF(940.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle17 = new Circle(myWorld4, level4, QPointF(898.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle18 = new Circle(myWorld4, level4, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle19 = new Circle(myWorld4, level4, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle20 = new Circle(myWorld4, level4, QPointF(212.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle21 = new Circle(myWorld4, level4, QPointF(256.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle22 = new Circle(myWorld4, level4, QPointF(982.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle23 = new Circle(myWorld4, level4, QPointF(940.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle24 = new Circle(myWorld4, level4, QPointF(898.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle25 = new Circle(myWorld4, level4, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle26 = new Circle(myWorld4, level4, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle27 = new Circle(myWorld4, level4, QPointF(772.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle28 = new Circle(myWorld4, level4, QPointF(730.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     //so that ball is not moveable like the other objects
+     obstaclesrec1=new Block(myWorld4,level4,b2Vec2(530,380),0,100,40,b2_staticBody,1.0,"obs");
+
+
+     recyclebin1 = new RecycleBin(myWorld4, level4, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
+     recyclebin2 = new RecycleBin(myWorld4, level4, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
+     recyclebin3 = new RecycleBinGraphics(level4);
+
+     bottom= new MeinElement(myWorld4, level4, b2Vec2(0.0,level4->height()-200), level4->width(), 22, b2_staticBody, 0.1);
+
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+
+     obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
+     //obstaclescircle2->draw();
 
      ball->drawBall1();
 
-     //obstaclescircle1->draw(); //static Elemente may be drawn here
-     //obstaclescircle2->draw();
      bottom->drawBottom();
      umrandung1->graphics->hide();
      umrandung2->graphics->hide();
+
 }
 
 /*!
@@ -489,76 +536,101 @@ void Level_4::showLevel(){
  * possibility to rotate objects to the left
  */
 void Level_4::rotateLeft(){
-
-//    if(rechteck1->graphics->isSelected()){
-//        qreal angle=rechteck1->angle-0.5235;
-//        QPointF pos=rechteck1->graphics->pos();
-//        qreal degreeangle=angle*180/3.1415;
-//        level->removeItem(rechteck1->graphics);
-//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
-//        rechteck1->graphics->setRotation(degreeangle);
-
-//    }
-
+    qreal angle;
     if(counterRec==1){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle-0.5235;
-          //  QPointF pos=elem4->graphics->pos();
+        if(addblock1->graphics->isSelected()){
+            qreal angle=addblock1->angle-0.5235;
+           // QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
+            level4->removeItem(addblock1->graphics);
+            addblock1 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock1->graphics->setRotation(degreeangle);
         }
     }
     if(counterRec==2){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle-0.5235;
-           // QPointF pos=elem4->graphics->pos();
+        if(addblock1->graphics->isSelected()){
+            qreal angle=addblock1->angle-0.5235;
+           // QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
+            level4->removeItem(addblock1->graphics);
+            addblock1 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock1->graphics->setRotation(degreeangle);
         }
-       if(elem5->graphics->isSelected()){
-           qreal angle=elem5->angle-0.5235;
-          // QPointF pos=elem5->graphics->pos();
-           qreal degreeangle=angle*180/3.1415;
-           level->removeItem(elem5->graphics);
-           elem5 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-           elem5->graphics->setRotation(degreeangle);
+        if(addblock2->graphics->isSelected()){
+            qreal angle=addblock2->angle-0.5235;
+           // QPointF pos=addblock2->graphics->pos();
+            qreal degreeangle=angle*180/3.1415;
+            level4->removeItem(addblock2->graphics);
+            addblock2 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock2->graphics->setRotation(degreeangle);
+        }
+
+    }
+    if(counterTriangle==1){
+        if(addtriangle1->graphics->isSelected()){
+            counterTriangleangle1--;
+
+            if(abs(counterTriangleangle1)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle1)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle1)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle1)==4){
+                angle=0;
+                counterTriangleangle1=0;
+            }
+            else if(counterTriangleangle1==0){
+                angle=0;
+            }
+
+            level4->removeItem(addtriangle1->graphics);
+            addtriangle1 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
         }
     }
 
-    if(counterRec==3){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle-0.5235;
-           // QPointF pos=elem4->graphics->pos();
-            qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
-        }
-        if(elem5->graphics->isSelected()){
-            qreal angle=elem5->angle-0.5235;
-          //  QPointF pos=elem5->graphics->pos();
-            qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem5->graphics);
-            elem5 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem5->graphics->setRotation(degreeangle);
-         }
-        if(elem6->graphics->isSelected()){
-            qreal angle=elem6->angle-0.5235;
-           qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem6->graphics);
-            elem6 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem6->graphics->setRotation(degreeangle);
-        }
+    if(counterTriangle==2){
+
+
+        if(addtriangle1->graphics->isSelected()){
+            counterTriangleangle1--;
+            if(abs(counterTriangleangle1)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle1)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle1)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle1)==4){
+                angle=0;
+                counterTriangleangle1=0;
+            }else if(counterTriangleangle1==0){
+                angle=0;
+            }
+
+            level4->removeItem(addtriangle1->graphics);
+            addtriangle1 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
+
+        }else if(addtriangle2->graphics->isSelected()){
+            counterTriangleangle2--;
+            if(abs(counterTriangleangle2)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle2)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle2)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle2)==4){
+                angle=0;
+                counterTriangleangle2=0;
+            }
+            else if(counterTriangleangle1==0){
+                angle=0;
+             }
+
+            level4->removeItem(addtriangle2->graphics);
+            addtriangle2 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
+
+       }
     }
-
-//    if(triangle1->graphics->isSelected()){
-//        triangle1->rotateleft();
-
-//    }
 }
 
 /*!
@@ -566,78 +638,97 @@ void Level_4::rotateLeft(){
  * possibility to rotate right
  */
 void Level_4::rotateRight(){
-
-//    if(rechteck1->graphics->isSelected()){
-//        qreal angle=rechteck1->angle+0.5235;
-//        QPointF pos=rechteck1->graphics->pos();
-//        qreal degreeangle=angle*180/3.1415;
-//        level->removeItem(rechteck1->graphics);
-//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
-//        rechteck1->graphics->setRotation(degreeangle);
-
-    //}
-
+    qreal angle;
     if(counterRec==1){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle+0.5235;
-          //  QPointF pos=elem4->graphics->pos();
+        if(addblock1->graphics->isSelected()){
+            qreal angle=addblock1->angle+0.5235;
+            //QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
+            level4->removeItem(addblock1->graphics);
+            addblock1 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock1->graphics->setRotation(degreeangle);
         }
     }
     if(counterRec==2){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle+0.5235;
-       //     QPointF pos=elem4->graphics->pos();
+        if(addblock1->graphics->isSelected()){
+            qreal angle=addblock1->angle+0.5235;
+           // QPointF pos=addblock2->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
+            level4->removeItem(addblock1->graphics);
+            addblock1 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock1->graphics->setRotation(degreeangle);
         }
-        if(elem5->graphics->isSelected()){
-            qreal angle=elem5->angle+0.5235;
-         //   QPointF pos=elem5->graphics->pos();
+        if(addblock2->graphics->isSelected()){
+            qreal angle=addblock2->angle+0.5235;
+           // QPointF pos=addblock2->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem5->graphics);
-            elem5 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem5->graphics->setRotation(degreeangle);
+            level4->removeItem(addblock2->graphics);
+            addblock2 =new Block(myWorld4, level4, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
+            addblock2->graphics->setRotation(degreeangle);
         }
-    }
 
-    if(counterRec==3){
-        if(elem4->graphics->isSelected()){
-            qreal angle=elem4->angle+0.5235;
-       //     QPointF pos=elem4->graphics->pos();
-            qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem4->graphics);
-            elem4 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem4->graphics->setRotation(degreeangle);
-        }
-        if(elem5->graphics->isSelected()){
-            qreal angle=elem5->angle+0.5235;
-       //     QPointF pos=elem5->graphics->pos();
-            qreal degreeangle=angle*180/3.1415;
-            level->removeItem(elem5->graphics);
-            elem5 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-            elem5->graphics->setRotation(degreeangle);
-        }
-       if(elem6->graphics->isSelected()){
-           qreal angle=elem6->angle+0.5235;
-       //    QPointF pos=elem6->graphics->pos();
-           qreal degreeangle=angle*180/3.1415;
-           level->removeItem(elem6->graphics);
-           elem6 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
-           elem6->graphics->setRotation(degreeangle);
-        }
     }
+    if(counterTriangle==1){
+        if(addtriangle1->graphics->isSelected()){
+            counterTriangleangle1++;
+            if(abs(counterTriangleangle1)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle1)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle1)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle1)==4){
+                angle=0;
+                counterTriangleangle1=0;
+            }else if(counterTriangleangle1==0){
+                angle=0;
+            }
 
+            level4->removeItem(addtriangle1->graphics);
+            addtriangle1 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
+        }
+
+    }
+    if(counterTriangle==2){
+
+
+        if(addtriangle1->graphics->isSelected()){
+            counterTriangleangle1++;
+            if(abs(counterTriangleangle1)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle1)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle1)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle1)==4){
+                angle=0;
+                counterTriangleangle1=0;
+            }else if(counterTriangleangle1==0){
+                angle=0;
+            }
+
+            level4->removeItem(addtriangle1->graphics);
+            addtriangle1 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
+
+        }else if(addtriangle2->graphics->isSelected()){
+            counterTriangleangle2++;
+            if(abs(counterTriangleangle2)==1){
+                angle=1.57;
+            }else if(abs(counterTriangleangle2)==2){
+                angle=3.1415;
+            }else if(abs(counterTriangleangle2)==3){
+                angle=4.7124;
+            }else if(abs(counterTriangleangle2)==4){
+                angle=0;
+                counterTriangleangle2=0;
+            }
+            else if(counterTriangleangle1==0){
+                angle=0;
+             }
+
+            level4->removeItem(addtriangle2->graphics);
+            addtriangle2 = new Triangle(myWorld4, level4, QPointF(0.0,0.0), QPointF(100.0,0.0), QPointF(100.0,100.0),angle, b2_staticBody, 1.0,"tool");
+
+       }
+    }
 }
-
-
-
-
-
-
-
