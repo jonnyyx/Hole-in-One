@@ -24,7 +24,7 @@
 
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
-
+class GUI;
 class Level_1 : public QGraphicsView
 {
     Q_OBJECT
