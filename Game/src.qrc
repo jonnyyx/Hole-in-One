@@ -16,7 +16,6 @@
         <file>block_bttn.png</file>
         <file>circle_bttn.png</file>
         <file>triangle_bttn.png</file>
-        <file>Game_background.png</file>
         <file>Game_background_spwn.png</file>
         <file>white.png</file>
         <file>drums.mp3</file>
@@ -30,5 +29,6 @@
         <file>triangle_tool_90degree.png</file>
         <file>triangle_tool_180degree.png</file>
         <file>triangle_tool_270degree.png</file>
+        <file>Game_background_tut.png</file>
     </qresource>
 </RCC>

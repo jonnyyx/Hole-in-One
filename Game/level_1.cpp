@@ -390,7 +390,7 @@ void Level_1::saveLevel()
 void Level_1::showLevel(){
     //set Background Image
 
-     QPixmap background(":/pic/Game_background_spwn.png");
+     QPixmap background(":/pic/Game_background_tut.png");
      background.scaled(QSize(1021,766));
      backgnd = level->addPixmap(background);
      backgnd->setPos(0,0); //Set Graphic to top left corner
