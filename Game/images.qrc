@@ -40,5 +40,42 @@
         <file>images/4disabled.png</file>
         <file>images/4enabled.png</file>
         <file>images/4hover.png</file>
+        <file>images/circ0.png</file>
+        <file>images/circ2default.png</file>
+        <file>images/circ2hover.png</file>
+        <file>images/circ3default.png</file>
+        <file>images/circ3hover.png</file>
+        <file>images/circle1default.png</file>
+        <file>images/circle1hover.png</file>
+        <file>images/pausedisabled.png</file>
+        <file>images/pauseenabled.png</file>
+        <file>images/pausehover.png</file>
+        <file>images/rec0.png</file>
+        <file>images/rec1default.png</file>
+        <file>images/rec1hover.png</file>
+        <file>images/rec2default.png</file>
+        <file>images/rec2hover.png</file>
+        <file>images/rec3defualt.png</file>
+        <file>images/rec3hover.png</file>
+        <file>images/resetdisabled.png</file>
+        <file>images/resetenabled.png</file>
+        <file>images/resethover.png</file>
+        <file>images/resumedisabled.png</file>
+        <file>images/resumeenabled.png</file>
+        <file>images/resumehover.png</file>
+        <file>images/rotleftdefault.png</file>
+        <file>images/rotlefthover.png</file>
+        <file>images/rotrightdefault.png</file>
+        <file>images/rotrighthover.png</file>
+        <file>images/startdefault.png</file>
+        <file>images/startdisabled.png</file>
+        <file>images/starthover.png</file>
+        <file>images/tri0.png</file>
+        <file>images/tri1default.png</file>
+        <file>images/tri1hover.png</file>
+        <file>images/tri2default.png</file>
+        <file>images/tri2hover.png</file>
+        <file>images/tri3default.png</file>
+        <file>images/tri3hover.png</file>
     </qresource>
 </RCC>

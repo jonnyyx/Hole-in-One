@@ -17,7 +17,7 @@ public:
     GUI(QWidget* parent=NULL);  //constructor
 
     void displayGUI();
-
+     void checkLevel();
     QGraphicsScene* scene;  //attributes
 
     picButton* mutepicButton;
@@ -29,6 +29,7 @@ public slots:
     void levelMenu();   //for level menu-button
     void highscore();   //for highscore menu-button
     void back();        //for back-button
+
     void showLevel1();
     void showLevel2();
     void showLevel3();
@@ -47,7 +48,7 @@ public slots:
     void csnd();
 
 private:
-    void checkLevel();
+
     QStringList levelenab;
     QMediaPlayer *clicksnd;
     QMediaPlayer *bksnd;

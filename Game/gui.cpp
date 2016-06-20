@@ -187,6 +187,7 @@ void GUI::levelMenu()
 {
 
     scene->clear();
+
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 60;
