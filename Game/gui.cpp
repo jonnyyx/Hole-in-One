@@ -706,7 +706,7 @@ void GUI::help()
     QFont secondCFont("comic sans", 18);
     secondCap->setFont(secondCFont);
     int secondCxPos = 80;
-    int secondCyPos = 360;
+    int secondCyPos = 365;
     secondCap->setPos(secondCxPos,secondCyPos);
     scene -> addItem(secondCap);
 
@@ -715,21 +715,21 @@ void GUI::help()
 
     picButton* boxButton = new picButton(QPixmap(":/pic/block_bttn_h.png"), QPixmap(":/pic/block_bttn.png"));
     int blockxPos = 220;
-    int blockyPos = 365;
+    int blockyPos = 370;
     boxButton->move(blockxPos,blockyPos);
     connect(boxButton, SIGNAL(clicked()), this, SLOT(box()), Qt::QueuedConnection);
     scene->addWidget(boxButton);
 
     picButton* circleButton = new picButton(QPixmap(":/pic/circle_bttn_h.png"), QPixmap(":/pic/circle_bttn.png"));
     int circlexPos = 400;
-    int circleyPos = 365;
+    int circleyPos = 370;
     circleButton->move(circlexPos,circleyPos);
     connect(circleButton, SIGNAL(clicked()), this, SLOT(circle()), Qt::QueuedConnection);
     scene->addWidget(circleButton);
 
     picButton* triangleButton = new picButton(QPixmap(":/pic/triangle_bttn_h.png"), QPixmap(":/pic/triangle_bttn.png"));
     int trianglexPos = 580;
-    int triangleyPos = 365;
+    int triangleyPos = 370;
     triangleButton->move(trianglexPos,triangleyPos);
     connect(triangleButton, SIGNAL(clicked()), this, SLOT(triangle()), Qt::QueuedConnection);
     scene->addWidget(triangleButton);
@@ -867,7 +867,7 @@ void GUI::box()
     int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
     connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
     scene->addWidget(backButton);
 
@@ -933,7 +933,7 @@ void GUI::circle()
     int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
     connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
     scene->addWidget(backButton);
 }
@@ -1001,7 +1001,7 @@ void GUI::triangle()
     int backxPos = 64;
     int backyPos = 650;
     backButton->move(backxPos,backyPos);
-    connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
+    connect(backButton, SIGNAL(clicked()), this, SLOT(help()), Qt::QueuedConnection);
     connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
     scene->addWidget(backButton);
 }

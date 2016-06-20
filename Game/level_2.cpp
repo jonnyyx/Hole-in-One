@@ -52,15 +52,23 @@ void Level_2::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 2!");
         level2->addItem(winText);
+        saveLevel();
+        if(newhighscore){
+            QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
+            highscoretext->setPos(400,350);
+            highscoretext->setPlainText("New Highscore!!");
+            level2->addItem(highscoretext);
+
+        }
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
-        timeText->setPos(400,350);
+        timeText->setPos(400,400);
         QString time = QString("Time: %1 s").arg(leveltime);
         timeText->setPlainText( time);
         level2->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,400);
+        quitLevel->move(400,500);
         level2->addWidget(quitLevel);
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
     }
 
 }
@@ -255,7 +263,7 @@ void Level_2::addTriangle()
 
         bt__triangle->sethoverpic(QPixmap(":/images/images/tri1hover.png"));
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri1default.png"));
-       // addtriangle1->draw();
+        addtriangle1->draw();
 
 
     }
@@ -267,7 +275,7 @@ void Level_2::addTriangle()
         bt__triangle->setdefaultpic(QPixmap(":/images/images/tri0.png"));
 
         bt__triangle->setEnabled(false);
-       // addtriangle2->draw();
+        addtriangle2->draw();
 
     }
 
@@ -337,7 +345,7 @@ void Level_2::reset(){
  * \brief Level_2::quitLevel
  * quits game and writes time/score into highscore table
  */
-void Level_2::quitLevel()
+void Level_2::saveLevel()
 {
     QList <QString> levelenab;
     QFile file("level.txt");
@@ -358,6 +366,9 @@ void Level_2::quitLevel()
             levelenab.replace(8,QString::number(leveltime)+" s\n");
             levelenab.replace(9,QString::number(counterTogether)+"\n");
             levelenab.replace(10,QString::number(highscore)+"\n");
+            newhighscore=true;
+        }else{
+            newhighscore=false;
         }
 
     }else{
@@ -365,6 +376,7 @@ void Level_2::quitLevel()
         levelenab.insert(8,QString::number(leveltime)+" s\n");
         levelenab.insert(9,QString::number(counterTogether)+"\n");
         levelenab.insert(10,QString::number(highscore)+"\n");
+        newhighscore=true;
     }
 
 
@@ -375,7 +387,7 @@ void Level_2::quitLevel()
 
 
     file.close();
-    this->close();
+
 }
 
 /*!

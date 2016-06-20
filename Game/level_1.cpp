@@ -60,18 +60,26 @@ void Level_1::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 1!");
         level->addItem(winText);
+        saveLevel();
+        if(newhighscore){
+            QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
+            highscoretext->setPos(400,350);
+            highscoretext->setPlainText("New Highscore!!");
+            level->addItem(highscoretext);
+
+        }
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
-        timeText->setPos(400,350);
+        timeText->setPos(400,400);
 
         QString time = QString("Time: %1 s").arg(leveltime);
         qDebug()<<time;
         timeText->setPlainText( time);
         level->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,400);
+        quitLevel->move(400,500);
         level->addWidget(quitLevel);
 
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
 
     }
 }
@@ -327,9 +335,9 @@ void Level_1::reset(){
  * \brief Level_1::quitLevel
  * quits game and writes time/score into highscore table
  */
-void Level_1::quitLevel()
+void Level_1::saveLevel()
 {
-    QList <QString> levelenab;
+
     QFile file("level.txt");
     file.open(QIODevice::ReadWrite |QIODevice::Text);
     if(file.exists("level.txt")){
@@ -348,6 +356,10 @@ void Level_1::quitLevel()
             levelenab.replace(5,QString::number(leveltime)+" s\n");
             levelenab.replace(6,QString::number(counterTogether)+"\n");
             levelenab.replace(7,QString::number(highscore)+"\n");
+            newhighscore=true;
+        }
+        else{
+            newhighscore=false;
         }
 
     }
@@ -360,6 +372,7 @@ void Level_1::quitLevel()
         levelenab.insert(5,QString::number(leveltime)+" s\n");
         levelenab.insert(6,QString::number(counterTogether)+"\n");
         levelenab.insert(7,QString::number(highscore)+"\n");
+        newhighscore=true;
     }
 
     QTextStream out(&file);
@@ -370,9 +383,12 @@ void Level_1::quitLevel()
 
     file.close();
 
+<<<<<<< HEAD
     this->close();
 
 
+=======
+>>>>>>> 16454014da41c8c907afaae4efe0b56a74ef3db3
 }
 
 /*!

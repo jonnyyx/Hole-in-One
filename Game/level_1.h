@@ -45,7 +45,6 @@ public slots:
     void addRectangle();
     void addCircle();
     void reset();
-    void quitLevel();
 
 
     void rotateLeft();
@@ -65,8 +64,9 @@ private:
     QGraphicsScene* level;
     QGraphicsItem* backgnd;
     QMediaPlayer *applause;
-
-
+    bool newhighscore=false;
+    void saveLevel();
+    QList <QString> levelenab;
     //Elements to add
     Block* addblock1;
     Block* addblock2;
