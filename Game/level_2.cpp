@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QTextStream>
 #include "string"
-
+#include "trampoline.h"
 
 using namespace std;
 
@@ -524,6 +524,7 @@ void Level_2::showLevel(){
      obstaclesrec1=new Block(myWorld2,level2,b2Vec2(530,380),0,100,40,b2_staticBody,1.0,"obs");
 
 
+     trampoline = new Trampoline(myWorld2,level2,b2Vec2(650,525),0,100,40,b2_staticBody,1.0,"obs");
      recyclebin1 = new RecycleBin(myWorld2, level2, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld2, level2, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
      recyclebin3 = new RecycleBinGraphics(level2);

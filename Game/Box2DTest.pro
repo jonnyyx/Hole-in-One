@@ -79,7 +79,9 @@ SOURCES += main.cpp\
     paperball.cpp \
     recyclebingraphics.cpp \
     level_3.cpp \
-    level_4.cpp
+    level_4.cpp \
+    mover.cpp \
+    trampoline.cpp
 
 
 
@@ -145,7 +147,9 @@ HEADERS  += \
     paperball.h \
     recyclebingraphics.h \
     level_3.h \
-    level_4.h
+    level_4.h \
+    mover.h \
+    trampoline.h
 
 
 DISTFILES += \
