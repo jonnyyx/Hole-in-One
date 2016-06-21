@@ -113,6 +113,7 @@ private:
     Block* obstaclesrec8;
     Block* obstaclesrec9;
     Block* obstaclesrec10;
+    Block* obstaclesrec11;
 
     MeinElement* bottom;
     MeinElement* umrandung1;
