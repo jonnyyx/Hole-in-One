@@ -18,7 +18,7 @@ using namespace std;
 Level_5::Level_5()
 {
     /*!Set Application-Name*/
-    setWindowTitle(tr("Hole in One - Level 4"));
+    setWindowTitle(tr("Hole in One - Level 5"));
 
     //Screen setup. No scroll bar available
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -50,7 +50,7 @@ void Level_5::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 4!\n asd");
+        winText->setPlainText("You have finished Level 5!\n asd");
         level5->addItem(winText);
         if(newhighscore){
             QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
@@ -65,7 +65,7 @@ void Level_5::update(){
         timeText->setPlainText( time);
         level5->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,500);
+        quitLevel->move(400,440);
         level5->addWidget(quitLevel);
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
     }
