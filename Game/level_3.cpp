@@ -392,7 +392,7 @@ void Level_3::saveLevel()
 
 
         file.close();
-        this->close();
+
 }
 
 /*!
