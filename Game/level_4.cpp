@@ -50,8 +50,9 @@ void Level_4::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 4!\n asd");
+        winText->setPlainText("You have finished Level 4!");
         level4->addItem(winText);
+        saveLevel();
         if(newhighscore){
             QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
             highscoretext->setPos(400,350);
@@ -629,7 +630,7 @@ void Level_4::rotateLeft(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 
@@ -729,7 +730,7 @@ void Level_4::rotateRight(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 

@@ -40,9 +40,6 @@ public slots:
     void box();         //instruction for rect
     void circle();      //instruction for circle
     void triangle();    //instruction for triangle
-//    void spring();      //instruction for spring
-//    void trampoline();  //instruction for trampoline
-//    void conveyor();    //instruction for conveyor
 
     //sound slots
     void mute();        //for mute-button

@@ -241,25 +241,6 @@ void GUI::levelMenu()
         scene->addWidget(fourpicButton);
     }
 
-
-//    if(!levelenab.isEmpty()&&levelenab.at(4)=="true\n"){
-//            picButton* fivepicButton = new picButton(QPixmap(":/images/images/6enabled.png"), QPixmap(":/images/images/6hover.png"));
-//            int sixxPos = 64;
-//            int sixyPos = 430;
-//            sixpicButton->move(sixxPos,sixyPos);
-//            connect(sixpicButton, SIGNAL(clicked()), this, SLOT(showLevel6()));
-//            connect(sixpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
-
-//            scene->addWidget(fivepicButton);
-
-//    }else{
-//        picButton* sixpicButton = new picButton(QPixmap(":/images/images/6disabled.png"), QPixmap(":/images/images/6disabled.png"));
-//        int sixxPos = 296;
-//        int sixyPos = 430;
-//        fivepicButton->move(sixxPos,sixyPos);
-//        scene->addWidget(sixpicButton);
-//    }
-
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 64;
     int backyPos = 650;
