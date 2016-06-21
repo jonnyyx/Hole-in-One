@@ -137,14 +137,6 @@ private:
     Circle* obstaclescircle40;
     Circle* obstaclescircle41;
     Circle* obstaclescircle42;
-    Circle* obstaclescircle43;
-    Circle* obstaclescircle44;
-    Circle* obstaclescircle45;
-    Circle* obstaclescircle46;
-    Circle* obstaclescircle47;
-    Circle* obstaclescircle48;
-    Circle* obstaclescircle49;
-    Circle* obstaclescircle50;
 
     Block* obstaclesrec1;
     Block* obstaclesrec2;
@@ -158,26 +150,6 @@ private:
     Block* obstaclesrec10;
     Block* obstaclesrec11;
     Block* obstaclesrec12;
-    Block* obstaclesrec13;
-    Block* obstaclesrec14;
-    Block* obstaclesrec15;
-    Block* obstaclesrec16;
-    Block* obstaclesrec17;
-    Block* obstaclesrec18;
-    Block* obstaclesrec19;
-
-    Triangle* obstacletriangle1;
-    Triangle* obstacletriangle2;
-    Triangle* obstacletriangle3;
-    Triangle* obstacletriangle4;
-    Triangle* obstacletriangle5;
-    Triangle* obstacletriangle6;
-    Triangle* obstacletriangle7;
-    Triangle* obstacletriangle8;
-    Triangle* obstacletriangle9;
-    Triangle* obstacletriangle10;
-    Triangle* obstacletriangle11;
-
 
     MeinElement* bottom;
     MeinElement* umrandung1;

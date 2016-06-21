@@ -47,7 +47,7 @@ GUI::GUI(QWidget *parent){
 
     bksnd = new QMediaPlayer();
     bksnd -> setPlaylist(playlist);
-    bksnd -> setVolume(0);
+    bksnd -> setVolume(35);
     bksnd -> play();
 
 }
