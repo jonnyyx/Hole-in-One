@@ -52,6 +52,7 @@ void Level_3::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 3!");
         level3->addItem(winText);
+        saveLevel();
         if(newhighscore){
             QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
             highscoretext->setPos(400,350);
