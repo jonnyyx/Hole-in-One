@@ -142,7 +142,7 @@ HEADERS  += \
     triangle.h\
     circle.h\
     block.h \
-   level_2.h\
+    level_2.h\
     recyclebin.h \
     paperball.h \
     recyclebingraphics.h \

@@ -21,8 +21,7 @@ public:
     QGraphicsItem* graphics;
 
 
-signals:
-    clicked();
+
 
 
 private:

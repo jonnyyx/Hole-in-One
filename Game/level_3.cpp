@@ -52,6 +52,7 @@ void Level_3::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 3!");
         level3->addItem(winText);
+        saveLevel();
         if(newhighscore){
             QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
             highscoretext->setPos(400,350);
@@ -67,9 +68,14 @@ void Level_3::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,440);
         level3->addWidget(quitLevel);
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
-    }
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(closeLevel()));
 
+    }
+}
+
+void Level_3::closeLevel(){
+    emit levelcompleted();
+    this->close();
 }
 
 /*!
