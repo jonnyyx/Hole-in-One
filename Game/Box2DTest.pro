@@ -81,7 +81,8 @@ SOURCES += main.cpp\
     level_3.cpp \
     level_4.cpp \
     mover.cpp \
-    trampoline.cpp
+    trampoline.cpp \
+    level_5.cpp
 
 
 
@@ -149,7 +150,8 @@ HEADERS  += \
     level_3.h \
     level_4.h \
     mover.h \
-    trampoline.h
+    trampoline.h \
+    level_5.h
 
 
 DISTFILES += \
