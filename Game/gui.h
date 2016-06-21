@@ -34,7 +34,7 @@ public slots:
     void showLevel2();
     void showLevel3();
     void showLevel4();
-    void showLevel5();
+
 
     void help();        //for help-menu-button
 

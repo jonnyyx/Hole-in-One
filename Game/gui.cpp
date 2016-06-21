@@ -8,7 +8,7 @@
 #include "level_2.h"
 #include "level_3.h"
 #include "level_4.h"
-#include "level_5.h"
+
 #include "qdebug.h"
 
 /*!
@@ -242,23 +242,7 @@ void GUI::levelMenu()
         scene->addWidget(fourpicButton);
     }
 
-    if(!levelenab.isEmpty()&&levelenab.at(4)=="true\n"){
-            picButton* fivepicButton = new picButton(QPixmap(":/images/images/5enabled.png"), QPixmap(":/images/images/5hover.png"));
-            int fivexPos = 64;
-            int fiveyPos = 430;
-            fivepicButton->move(fivexPos,fiveyPos);
-            connect(fivepicButton, SIGNAL(clicked()), this, SLOT(showLevel5()));
-            connect(fivepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
 
-            scene->addWidget(fivepicButton);
-
-    }else{
-        picButton* fivepicButton = new picButton(QPixmap(":/images/images/5disabled.png"), QPixmap(":/images/images/5disabled.png"));
-        int fivexPos = 64;
-        int fiveyPos = 430;
-        fivepicButton->move(fivexPos,fiveyPos);
-        scene->addWidget(fivepicButton);
-    }
 
 //    if(!levelenab.isEmpty()&&levelenab.at(4)=="true\n"){
 //            picButton* fivepicButton = new picButton(QPixmap(":/images/images/6enabled.png"), QPixmap(":/images/images/6hover.png"));
@@ -371,18 +355,6 @@ void GUI::showLevel4()
 
 }
 
-/*!
- * \brief GUI::showLevel5
- * starts Level_5
- */
-void GUI::showLevel5()
-{
-
-    Level_5 *test5;
-    test5 = new Level_5();
-    test5->show();
-
-}
 
 /*!
  * \brief GUI::highscore

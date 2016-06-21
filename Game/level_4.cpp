@@ -50,7 +50,7 @@ void Level_4::update(){
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
-        winText->setPlainText("You have finished Level 4!\n asd");
+        winText->setPlainText("You have finished Level 4!");
         level4->addItem(winText);
         saveLevel();
         if(newhighscore){
