@@ -35,12 +35,9 @@ public slots:
     void showLevel3();
     void showLevel4();
 
-<<<<<<< HEAD
+
     void showGuiagain();
 
-
-=======
->>>>>>> 801c904528106710f2a95fb1cc148f9cc6f4ff9b
     void help();        //for help-menu-button
 
     void box();         //instruction for rect

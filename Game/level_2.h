@@ -38,6 +38,9 @@ public:
     std::vector<Block*> vectb;
     std::vector<Triangle*> vectt;
 
+signals:
+    void levelcompleted();
+
 public slots:
     void update();
     void startLevel();
@@ -48,7 +51,7 @@ public slots:
     void addTriangle();
     void reset();
 
-
+    void closeLevel();
     void rotateLeft();
     void rotateRight();
 //    void enableRotation();

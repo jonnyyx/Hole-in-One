@@ -290,11 +290,11 @@ void GUI::showGuiagain(){
  */
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
-    Level_1 *test;
-    test = new Level_1();
-    test->show();
+    Level_1 *level1;
+    level1 = new Level_1();
+    level1->show();
     window()->hide();
-    connect(test,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
+    connect(level1,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 
 }
 
@@ -305,11 +305,11 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
 void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
 
-    Level_2 *test2;
-    test2 = new Level_2();
-    test2->show();
+    Level_2 *level2;
+    level2 = new Level_2();
+    level2->show();
     window()->hide();
-
+    connect(level2,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 
 }
 
@@ -320,10 +320,11 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
 void GUI::showLevel3()
 {
 
-    Level_3 *test3;
-    test3 = new Level_3();
-    test3->show();
+    Level_3 *level3;
+    level3 = new Level_3();
+    level3->show();
     window()->hide();
+    connect(level3,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 
 
 }
@@ -335,11 +336,11 @@ void GUI::showLevel3()
 void GUI::showLevel4()
 {
 
-    Level_4 *test4;
-    test4 = new Level_4();
-    test4->show();
+    Level_4 *level4;
+    level4 = new Level_4();
+    level4->show();
     window()->hide();
-
+    connect(level4,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 }
 
 

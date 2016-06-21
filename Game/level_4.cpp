@@ -68,9 +68,14 @@ void Level_4::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,440);
         level4->addWidget(quitLevel);
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
-    }
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(closeLevel()));
 
+    }
+}
+
+void Level_4::closeLevel(){
+    emit levelcompleted();
+    this->close();
 }
 
 /*!
