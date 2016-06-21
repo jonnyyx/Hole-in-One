@@ -8,7 +8,7 @@
 #include <QTextStream>
 #include "string"
 #include "gui.h"
-
+#include <QtWidgets>
 
 
 using namespace std;
@@ -240,7 +240,6 @@ void Level_1::addCircle(){
 
     b2CircleShape circle;
 
-    qDebug()<<counterCircle;
     if(counterCircle==1){
         circle.m_radius = 21.0;
         addcircle1 = new Circle(myWorld, level, QPointF(0.0,0.0), 0*(3.14/180.0), b2_staticBody, circle,"tool");
@@ -329,12 +328,16 @@ void Level_1::highscoreCounter(){
  */
 void Level_1::reset(){
    pauseLevel();
+//   right->disconnect();
+//   left->disconnect();
    level->clear();
    counterRec = 0;
    counterCircle = 0;
    
    showLevel();
 }
+
+
 
 /*!
  * \brief Level_1::quitLevel
@@ -456,12 +459,11 @@ void Level_1::showLevel(){
      //connect(bt__circle,SIGNAL(clicked()),this,SLOT(addCircle()), Qt::QueuedConnection);
      level->addWidget(bt__triangle);
 
-
-
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
      bt__left->move(30.0,640.0);
+     bt__left->setShortcut(Qt::Key_Left);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level->addWidget(bt__left);
 
@@ -469,6 +471,7 @@ void Level_1::showLevel(){
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
      bt__right->move(30.0,685.0);
+     bt__right->setShortcut(Qt::Key_Right);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level->addWidget(bt__right);
 
@@ -527,8 +530,6 @@ void Level_1::showLevel(){
      obstaclesrec10=new Block(myWorld,level,b2Vec2(799,527),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec10=new Block(myWorld,level,b2Vec2(356,527),0,100,40,b2_staticBody,1.0,"obs");
 
-     //triangle1 = new Triangle(myWorld, level, QPointF(60.0,100.0), QPointF(160.0,100.0), QPointF(160.0,200.0), 0, b2_staticBody, 1.0);
-
      //so that ball is not moveable like the other objects
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
@@ -539,21 +540,13 @@ void Level_1::showLevel(){
      umrandung2->graphics->hide();
 }
 
+
 /*!
  * \brief Level_1::rotateLeft
  * possibility to rotate objects to the left
  */
 void Level_1::rotateLeft(){
 
-//    if(rechteck1->graphics->isSelected()){
-//        qreal angle=rechteck1->angle-0.5235;
-//        QPointF pos=rechteck1->graphics->pos();
-//        qreal degreeangle=angle*180/3.1415;
-//        level->removeItem(rechteck1->graphics);
-//        rechteck1 =new Block(myWorld, level, b2Vec2(pos.x()+(rechteck1->length)/2.0,pos.y()+(rechteck1->width)/2.0),angle , 100, 40, b2_staticBody,1.0);
-//        rechteck1->graphics->setRotation(degreeangle);
-
-//    }
 
     if(counterRec==1){
         if(addblock1->graphics->isSelected()){
@@ -563,6 +556,7 @@ void Level_1::rotateLeft(){
             level->removeItem(addblock1->graphics);
             addblock1 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock1->graphics->setRotation(degreeangle);
+            addblock1->graphics->setSelected(true);
         }
     }
     if(counterRec==2){
@@ -581,6 +575,7 @@ void Level_1::rotateLeft(){
            level->removeItem(addblock2->graphics);
            addblock2 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
            addblock2->graphics->setRotation(degreeangle);
+           addblock2->graphics->setSelected(true);
         }
     }
 
@@ -592,6 +587,7 @@ void Level_1::rotateLeft(){
             level->removeItem(addblock1->graphics);
             addblock1 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock1->graphics->setRotation(degreeangle);
+            addblock1->graphics->setSelected(true);
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle-0.5235;
@@ -600,7 +596,8 @@ void Level_1::rotateLeft(){
             level->removeItem(addblock2->graphics);
             addblock2 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock2->graphics->setRotation(degreeangle);
-         }
+            addblock2->graphics->setSelected(true);
+        }
         if(addblock3->graphics->isSelected()){
             qreal angle=addblock3->angle-0.5235;
             //QPointF pos=elem6->graphics->pos();
@@ -608,13 +605,9 @@ void Level_1::rotateLeft(){
             level->removeItem(addblock3->graphics);
             addblock3 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock3->graphics->setRotation(degreeangle);
+            addblock3->graphics->setSelected(true);
         }
     }
-
-//    if(triangle1->graphics->isSelected()){
-//        triangle1->rotateleft();
-
-//    }
 }
 /*!
  * \brief Level_1::rotateRight
@@ -630,6 +623,7 @@ void Level_1::rotateRight(){
             level->removeItem(addblock1->graphics);
             addblock1 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock1->graphics->setRotation(degreeangle);
+            addblock1->graphics->setSelected(true);
         }
     }
     if(counterRec==2){
@@ -640,6 +634,7 @@ void Level_1::rotateRight(){
             level->removeItem(addblock1->graphics);
             addblock1 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock1->graphics->setRotation(degreeangle);
+            addblock1->graphics->setSelected(true);
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle+0.5235;
@@ -648,6 +643,7 @@ void Level_1::rotateRight(){
             level->removeItem(addblock2->graphics);
             addblock2 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock2->graphics->setRotation(degreeangle);
+            addblock2->graphics->setSelected(true);
         }
     }
 
@@ -659,6 +655,7 @@ void Level_1::rotateRight(){
             level->removeItem(addblock1->graphics);
             addblock1 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock1->graphics->setRotation(degreeangle);
+            addblock1->graphics->setSelected(true);
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle+0.5235;
@@ -667,6 +664,7 @@ void Level_1::rotateRight(){
             level->removeItem(addblock2->graphics);
             addblock2 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
             addblock2->graphics->setRotation(degreeangle);
+            addblock2->graphics->setSelected(true);
         }
        if(addblock3->graphics->isSelected()){
            qreal angle=addblock3->angle+0.5235;
@@ -675,6 +673,7 @@ void Level_1::rotateRight(){
            level->removeItem(addblock3->graphics);
            addblock3 =new Block(myWorld, level, b2Vec2 (50,20),angle , 100, 40, b2_staticBody,1.0,"tool");
            addblock3->graphics->setRotation(degreeangle);
+           addblock3->graphics->setSelected(true);
         }
     }
 

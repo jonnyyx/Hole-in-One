@@ -51,9 +51,6 @@ public slots:
     void closeLevel();
     void rotateLeft();
     void rotateRight();
-//    void enableRotation();
-//    void disableRotation();
-
 
     void getTime();
     void highscoreCounter();
@@ -69,6 +66,11 @@ private:
     bool newhighscore=false;
     void saveLevel();
     QList <QString> levelenab;
+
+    //QAction *right;
+    //QAction *left;
+
+
     //Elements to add
     Block* addblock1;
     Block* addblock2;
@@ -77,8 +79,6 @@ private:
     RecycleBin* recyclebin1;
     RecycleBin* recyclebin2;
     RecycleBinGraphics* recyclebin3;
-    Triangle* triangle1;
-
 
     Circle* addcircle1;
     Circle* addcircle2;
