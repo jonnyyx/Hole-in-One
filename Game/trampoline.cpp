@@ -1,11 +1,11 @@
-#include "block.h"
+#include "trampoline.h"
 #include <QGraphicsScene>
 #include <QPoint>
 #include <QSize>
 #include <qdebug.h>
 
 /*!
- * \brief Block::Block
+ * \brief Trampoline::Trampoline
  * \param world
  * \param level
  * \param center
@@ -16,7 +16,7 @@
  * \param friction
  * \param mode
  */
-Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
+Trampoline::Trampoline(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
 {
     angle=m_angle;
     length=m_length;
@@ -34,6 +34,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     polygonFixtureDef.shape=&polygon;
     polygonFixtureDef.density=1;
     polygonFixtureDef.friction=friction;
+    polygonFixtureDef.restitution=1;
 
     body->CreateFixture(&polygonFixtureDef);
 
@@ -44,7 +45,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 
 
     if(mode=="obs"){
-        QPixmap bkgnd(":/pic/block_obs.png");
+        QPixmap bkgnd(":/pic/tram_obs.png");
         bkgnd.scaled(QSize(length,width));
         graphics = level->addPixmap(bkgnd);
         graphics->setPos(QPoint(x+21,y+21));
@@ -67,21 +68,18 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 
 }
 
-//FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
-//also wenn jemand bock hat hier weitermachen
-
 /*!
- * \brief Block::draw
+ * \brief Trampoline::draw
  * connects the Graphics to the Box2D-Object
  */
 
 /*!
- * \brief Block::drawRec
+ * \brief Trampoline::drawTramp()
  * \param x
  * \param y
  * connects the Graphics to the Box2D-Object
  */
-void Block::drawRec(int x,int y){
+void Trampoline::drawTramp(int x,int y){
 
 
     b2Vec2 a=body->GetPosition();
@@ -90,10 +88,10 @@ void Block::drawRec(int x,int y){
 }
 
 /*!
- * \brief Block::drawGraphics
+ * \brief Trampoline::drawGraphics
  * connects the Box2D-Object to the Graphics after relocation
  */
-void Block::drawGraphics()
+void Trampoline::drawGraphics()
 {
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());

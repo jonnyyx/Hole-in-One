@@ -20,6 +20,7 @@
 #include "triangle.h"
 #include "picbutton.h"
 #include "block.h"
+#include "trampoline.h"
 
 
 
@@ -83,7 +84,7 @@ private:
 
     Circle* addcircle1;
     Circle* addcircle2;
-
+    Trampoline* trampoline;
 
     //fixed Elements
 
