@@ -520,7 +520,7 @@ void Level_3::showLevel(){
     // obstaclescircle27 = new Circle(myWorld3, level3, QPointF(772.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      //obstaclescircle28 = new Circle(myWorld3, level3, QPointF(730.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
 
-     obstaclesrec1=new Block(myWorld3,level3,b2Vec2(520,427),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec1=new Block(myWorld3,level3,b2Vec2(520,420),0,100,40,b2_staticBody,1.0,"obs");
      obstacletriangle1=new Triangle(myWorld3,level3,QPointF(440,121),QPointF(540,121),QPointF(540,221),1.57,b2_staticBody,1.0,"obs");
      obstacletriangle2=new Triangle(myWorld3,level3,QPointF(540,121),QPointF(640,121),QPointF(640,221),3.1415,b2_staticBody,1.0,"obs");
 
