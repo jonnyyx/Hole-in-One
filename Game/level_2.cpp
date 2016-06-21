@@ -634,7 +634,7 @@ void Level_2::rotateLeft(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 
@@ -734,7 +734,7 @@ void Level_2::rotateRight(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 

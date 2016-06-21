@@ -52,6 +52,7 @@ void Level_4::update(){
         winText->setPos(400,300);
         winText->setPlainText("You have finished Level 4!\n asd");
         level4->addItem(winText);
+        saveLevel();
         if(newhighscore){
             QGraphicsTextItem* highscoretext=new QGraphicsTextItem();
             highscoretext->setPos(400,350);
@@ -67,7 +68,7 @@ void Level_4::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,500);
         level4->addWidget(quitLevel);
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
     }
 
 }
@@ -633,7 +634,7 @@ void Level_4::rotateLeft(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 
@@ -733,7 +734,7 @@ void Level_4::rotateRight(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 

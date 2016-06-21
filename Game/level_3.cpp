@@ -67,7 +67,7 @@ void Level_3::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,500);
         level3->addWidget(quitLevel);
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(quitLevel()));
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
     }
 
 }
@@ -736,7 +736,7 @@ void Level_3::rotateRight(){
                 angle=0;
                 counterTriangleangle2=0;
             }
-            else if(counterTriangleangle1==0){
+            else if(counterTriangleangle2==0){
                 angle=0;
              }
 
