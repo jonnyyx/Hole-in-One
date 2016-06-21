@@ -78,10 +78,14 @@ void Level_1::update(){
         QPushButton* quitLevel = new QPushButton("Quit");
         quitLevel->move(400,440);
         level->addWidget(quitLevel);
-
-        connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
+        connect(quitLevel, SIGNAL(clicked()),this,SLOT(closeLevel()));
 
     }
+}
+
+void Level_1::closeLevel(){
+    emit levelcompleted();
+    this->close();
 }
 
 /*!
@@ -90,6 +94,7 @@ void Level_1::update(){
  * draw the graphics if the body was moved before start was clicked.
  */
 void Level_1::startLevel(){
+
 
 	recyclebin1->drawGraphics();
     recyclebin2->drawGraphics();

@@ -167,7 +167,7 @@ void GUI::levelMenu()
 {
 
     scene->clear();
-
+    checkLevel();
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/LevelTitle.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 60;
@@ -300,7 +300,10 @@ void GUI::back(){
     }
 }
 
-
+void GUI::showGuiagain(){
+    levelMenu();
+    window()->show();
+}
 
 /*!
  * \brief GUI::showLevel1
@@ -311,6 +314,8 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
     Level_1 *test;
     test = new Level_1();
     test->show();
+    window()->hide();
+    connect(test,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 
 }
 
@@ -324,6 +329,7 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
     Level_2 *test2;
     test2 = new Level_2();
     test2->show();
+    window()->hide();
 
 
 }
@@ -338,6 +344,7 @@ void GUI::showLevel3()
     Level_3 *test3;
     test3 = new Level_3();
     test3->show();
+    window()->hide();
 
 
 }
@@ -352,6 +359,7 @@ void GUI::showLevel4()
     Level_4 *test4;
     test4 = new Level_4();
     test4->show();
+    window()->hide();
 
 }
 

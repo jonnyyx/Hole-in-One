@@ -35,6 +35,8 @@ public slots:
     void showLevel3();
     void showLevel4();
 
+    void showGuiagain();
+
 
     void help();        //for help-menu-button
 
