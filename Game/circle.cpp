@@ -35,12 +35,14 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
         bkgnd.scaled(QSize(42,42));
         graphics = level->addPixmap(bkgnd);
         graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
     }
     else if(mode=="tool"){
         QPixmap bkgnd(":/pic/circle_tool.png");
         bkgnd.scaled(QSize(42,42));
         graphics = level->addPixmap(bkgnd);
         graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
+        graphics->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
     draw();
 }
