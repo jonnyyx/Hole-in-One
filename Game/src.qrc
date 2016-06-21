@@ -30,5 +30,6 @@
         <file>triangle_tool_180degree.png</file>
         <file>triangle_tool_270degree.png</file>
         <file>Game_background_tut.png</file>
+        <file>tram_obs.png</file>
     </qresource>
 </RCC>

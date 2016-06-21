@@ -1,11 +1,11 @@
-#include "block.h"
+#include "mover.h"
 #include <QGraphicsScene>
 #include <QPoint>
 #include <QSize>
 #include <qdebug.h>
 
 /*!
- * \brief Block::Block
+ * \brief Mover::Mover
  * \param world
  * \param level
  * \param center
@@ -16,7 +16,7 @@
  * \param friction
  * \param mode
  */
-Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
+Mover::Mover(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, qreal friction,QString mode)
 {
     angle=m_angle;
     length=m_length;
@@ -24,7 +24,7 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     b2PolygonShape polygon;
     polygon.SetAsBox(length/2, width/2,center, angle);
     b2BodyDef myBodyDef;
-    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
+    myBodyDef.type = b2_kinematicBody;
     myBodyDef.active = true;
     myBodyDef.gravityScale = 1.0;
 
@@ -34,9 +34,9 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     polygonFixtureDef.shape=&polygon;
     polygonFixtureDef.density=1;
     polygonFixtureDef.friction=friction;
+    polygonFixtureDef.restitution;
 
     body->CreateFixture(&polygonFixtureDef);
-
 
 
     int x=center.x-length/2;
@@ -67,21 +67,18 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
 
 }
 
-//FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
-//also wenn jemand bock hat hier weitermachen
-
 /*!
- * \brief Block::draw
+ * \brief Mover::draw
  * connects the Graphics to the Box2D-Object
  */
 
 /*!
- * \brief Block::drawRec
+ * \brief Mover::drawMover
  * \param x
  * \param y
  * connects the Graphics to the Box2D-Object
  */
-void Block::drawRec(int x,int y){
+void Mover::drawMover(int x,int y){
 
 
     b2Vec2 a=body->GetPosition();
@@ -90,10 +87,10 @@ void Block::drawRec(int x,int y){
 }
 
 /*!
- * \brief Block::drawGraphics
+ * \brief Mover::drawGraphics
  * connects the Box2D-Object to the Graphics after relocation
  */
-void Block::drawGraphics()
+void Mover::drawGraphics()
 {
     QPointF v=graphics->pos();
     body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
