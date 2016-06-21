@@ -486,10 +486,10 @@ void Level_3::showLevel(){
      ball  = new Paperball(myWorld3, level3, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      trampoline1 = new Trampoline(myWorld3,level3,b2Vec2(205,256),0,100,40,b2_staticBody,1.0,"obs");
+     trampoline2 = new Trampoline(myWorld3,level3,b2Vec2(855,380),0,100,40,b2_staticBody,1.0,"obs");
 
      obstacletriangle1=new Triangle(myWorld3,level3,QPointF(440,121),QPointF(540,121),QPointF(540,221),1.57,b2_staticBody,1.0,"obs");
      obstacletriangle2=new Triangle(myWorld3,level3,QPointF(540,121),QPointF(640,121),QPointF(640,221),3.1415,b2_staticBody,1.0,"obs");
-
      obstacletriangle3=new Triangle(myWorld3,level3,QPointF(905,449),QPointF(1005,549),QPointF(1005,549),3.1415,b2_staticBody,1.0,"obs");
      obstacletriangle4=new Triangle(myWorld3,level3,QPointF(805,366),QPointF(905,466),QPointF(905,466),1.57,b2_staticBody,1.0,"obs");
      obstacletriangle5=new Triangle(myWorld3,level3,QPointF(805,366),QPointF(905,466),QPointF(905,466),3.1415,b2_staticBody,1.0,"obs");

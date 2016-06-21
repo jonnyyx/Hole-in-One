@@ -118,6 +118,7 @@ private:
     Block* obstaclesrec7;
 
     Trampoline* trampoline1;
+    Trampoline* trampoline2;
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;
