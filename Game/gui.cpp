@@ -8,7 +8,6 @@
 #include "level_2.h"
 #include "level_3.h"
 #include "level_4.h"
-
 #include "qdebug.h"
 
 /*!
@@ -48,7 +47,7 @@ GUI::GUI(QWidget *parent){
 
     bksnd = new QMediaPlayer();
     bksnd -> setPlaylist(playlist);
-    bksnd -> setVolume(35);
+    bksnd -> setVolume(0);
     bksnd -> play();
 
 }
@@ -180,7 +179,7 @@ void GUI::levelMenu()
     /*!create level menu button*/
     picButton* onepicButton = new picButton(QPixmap(":/images/images/1enabled.png"), QPixmap(":/images/images/1hover.png"));
     int onexPos = 64;
-    int oneyPos = 210;
+    int oneyPos = 300;
     onepicButton->move(onexPos,oneyPos);
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(showLevel1()));
     connect(onepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -191,7 +190,7 @@ void GUI::levelMenu()
         picButton* twopicButton = new picButton(QPixmap(":/images/images/2enabled.png"), QPixmap(":/images/images/2hover.png"));
 
         int twoxPos = 296;
-        int twoyPos = 210;
+        int twoyPos = 300;
         twopicButton->move(twoxPos,twoyPos);
         connect(twopicButton, SIGNAL(clicked()), this, SLOT(showLevel2()));
         connect(twopicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -201,14 +200,14 @@ void GUI::levelMenu()
     else{
          picButton* twopicButton = new picButton(QPixmap(":/images/images/2disabled.png"), QPixmap(":/images/images/2disabled.png"));
         int twoxPos = 296;
-        int twoyPos = 210;
+        int twoyPos = 300;
         twopicButton->move(twoxPos,twoyPos);
         scene->addWidget(twopicButton);
     }
     if(!levelenab.isEmpty()&&levelenab.at(2)=="true\n"){
             picButton* threepicButton = new picButton(QPixmap(":/images/images/3enabled.png"), QPixmap(":/images/images/3hover.png"));
             int threexPos = 528;
-            int threeyPos = 210;
+            int threeyPos = 300;
             threepicButton->move(threexPos,threeyPos);
             connect(threepicButton, SIGNAL(clicked()), this, SLOT(showLevel3()));
             connect(threepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -219,7 +218,7 @@ void GUI::levelMenu()
     else{
         picButton* threepicButton = new picButton(QPixmap(":/images/images/3disabled.png"), QPixmap(":/images/images/3disabled.png"));
         int threexPos = 528;
-        int threeyPos = 210;
+        int threeyPos = 300;
         threepicButton->move(threexPos,threeyPos);
 
         scene->addWidget(threepicButton);
@@ -227,7 +226,7 @@ void GUI::levelMenu()
     if(!levelenab.isEmpty()&&levelenab.at(3)=="true\n"){
             picButton* fourpicButton = new picButton(QPixmap(":/images/images/4enabled.png"), QPixmap(":/images/images/4hover.png"));
             int fourxPos = 760;
-            int fouryPos = 210;
+            int fouryPos = 300;
             fourpicButton->move(fourxPos,fouryPos);
             connect(fourpicButton, SIGNAL(clicked()), this, SLOT(showLevel4()));
             connect(fourpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
@@ -237,34 +236,14 @@ void GUI::levelMenu()
     }else{
         picButton* fourpicButton = new picButton(QPixmap(":/images/images/4disabled.png"), QPixmap(":/images/images/4disabled.png"));
         int fourxPos = 760;
-        int fouryPos = 210;
+        int fouryPos = 300;
         fourpicButton->move(fourxPos,fouryPos);
         scene->addWidget(fourpicButton);
     }
 
-
-
-//    if(!levelenab.isEmpty()&&levelenab.at(4)=="true\n"){
-//            picButton* fivepicButton = new picButton(QPixmap(":/images/images/6enabled.png"), QPixmap(":/images/images/6hover.png"));
-//            int sixxPos = 64;
-//            int sixyPos = 430;
-//            sixpicButton->move(sixxPos,sixyPos);
-//            connect(sixpicButton, SIGNAL(clicked()), this, SLOT(showLevel6()));
-//            connect(sixpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
-
-//            scene->addWidget(fivepicButton);
-
-//    }else{
-//        picButton* sixpicButton = new picButton(QPixmap(":/images/images/6disabled.png"), QPixmap(":/images/images/6disabled.png"));
-//        int sixxPos = 296;
-//        int sixyPos = 430;
-//        fivepicButton->move(sixxPos,sixyPos);
-//        scene->addWidget(sixpicButton);
-//    }
-
     picButton* backButton = new picButton(QPixmap(":/images/images/Backdefault.png"), QPixmap(":/images/images/Bachhover.png"));
     int backxPos = 64;
-    int backyPos = 665;
+    int backyPos = 650;
     backButton->move(backxPos,backyPos);
     connect(backButton, SIGNAL(clicked()), this, SLOT(back()), Qt::QueuedConnection);
     connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()), Qt::QueuedConnection);
@@ -705,33 +684,6 @@ void GUI::help()
     Line->setPos(LxPos,LyPos);
     scene -> addItem(Line);
 
-//    Button* springButton = new Button(QString("Spring"));
-//    springButton->setRect(0,0,100,100);
-//    int springxPos = 570;
-//    int springyPos = 412;
-//    springButton->setPos(springxPos,springyPos);
-//    connect(springButton, SIGNAL(clicked()), this, SLOT(spring()));
-//    connect(springButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(springButton);
-
-//    Button* trampolineButton = new Button(QString("Trampoline"));
-//    trampolineButton->setRect(0,0,100,100);
-//    int trampolinexPos = 700;
-//    int trampolineyPos = 412;
-//    trampolineButton->setPos(trampolinexPos,trampolineyPos);
-//    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(trampoline()));
-//    connect(trampolineButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(trampolineButton);
-
-//    Button* conveyorButton = new Button(QString("Conveyor"));
-//    conveyorButton->setRect(0,0,100,100);
-//    int conveyorxPos = 830;
-//    int conveyoryPos = 412;
-//    conveyorButton->setPos(conveyorxPos,conveyoryPos);
-//    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(conveyor()));
-//    connect(conveyorButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(conveyorButton);
-
 
     //Obstacles instruction
     QGraphicsTextItem* obstaCap = new QGraphicsTextItem(QString("Obstacles:""\n"));
@@ -967,134 +919,6 @@ void GUI::triangle()
     scene->addWidget(backButton);
 }
 
-//void GUI::spring()
-//{
-//    scene->clear();
-//    /*!create title text*/
-//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-//    QFont titleFont("comic sans", 40);
-//    titleText->setFont(titleFont);
-//    int titlexPos = 50;
-//    int titleyPos = 30;
-//    titleText->setPos(titlexPos,titleyPos);
-//    scene->addItem(titleText);
-
-//    //Spring instruction
-//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Spring""\n"));
-//    QFont firstCFont("comic sans", 26);
-//    firstCap->setFont(firstCFont);
-//    int firstCxPos = 50;
-//    int firstCyPos = 110;
-//    firstCap->setPos(firstCxPos,firstCyPos);
-//    scene -> addItem(firstCap);
-
-//    QGraphicsTextItem* springText = new QGraphicsTextItem(QString("The spring is a very useful and powerful tool. The spring is prestressed and triggers" "\n"
-//                                                                  "once the ball touches the surface of it. It will accelerate the paperball (within the" "\n"
-//                                                                  "physical boundaries of: angle of incidence equals angle of reflection). Once it is" "\n"
-//                                                                  "used it will not accelerate the ball again. To move the object click and hold on the" "\n"
-//                                                                  "object and drag it with your mouse."
-//                                                                ));
-//    QFont springFont("comic sans", 18);
-//    springText->setFont(springFont);
-//    int springxPos = 50;
-//    int springyPos = 160;
-//    springText->setPos(springxPos,springyPos);
-//    scene -> addItem(springText);
-
-//    Button* backButton = new Button(QString("Back"));
-//    int backxPos = 64;
-//    int backyPos = 670;
-//    backButton->setPos(backxPos,backyPos);
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(backButton);
-//}
-
-//void GUI::trampoline()
-//{
-//    scene->clear();
-//    /*!create title text*/
-//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-//    QFont titleFont("comic sans", 40);
-//    titleText->setFont(titleFont);
-//    int titlexPos = 50;
-//    int titleyPos = 30;
-//    titleText->setPos(titlexPos,titleyPos);
-//    scene->addItem(titleText);
-
-//    //Trampoline instruction
-//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Trampoline""\n"));
-//    QFont firstCFont("comic sans", 26);
-//    firstCap->setFont(firstCFont);
-//    int firstCxPos = 50;
-//    int firstCyPos = 110;
-//    firstCap->setPos(firstCxPos,firstCyPos);
-//    scene -> addItem(firstCap);
-
-//    QGraphicsTextItem* trampText = new QGraphicsTextItem(QString("The trampolin is quite similar to the spring. The difference is, that the trampoline" "\n"
-//                                                                 "can be used multiple times, and it will not add power to the ball (e.g. If the ball" "\n"
-//                                                                 "drops from a certain heigth on the trampoline it will not reach the start value when" "\n"
-//                                                                 "reflected, due to friction losses etc.). To move the object click and hold on the" "\n"
-//                                                                 "object and drag it with your mouse."
-//                                                                ));
-//    QFont trampFont("comic sans", 18);
-//    trampText->setFont(trampFont);
-//    int trampxPos = 50;
-//    int trampyPos = 160;
-//    trampText->setPos(trampxPos,trampyPos);
-//    scene -> addItem(trampText);
-
-//    Button* backButton = new Button(QString("Back"));
-//    int backxPos = 50;
-//    int backyPos = 670;
-//    backButton->setPos(backxPos,backyPos);
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(backButton);
-//}
-
-//void GUI::conveyor()
-//{
-//    scene->clear();
-//    /*!create title text*/
-//    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Help"));
-//    QFont titleFont("comic sans", 40);
-//    titleText->setFont(titleFont);
-//    int titlexPos = 50;
-//    int titleyPos = 30;
-//    titleText->setPos(titlexPos,titleyPos);
-//    scene->addItem(titleText);
-
-//    //Conveyor instruction
-//    QGraphicsTextItem* firstCap = new QGraphicsTextItem(QString("Conveyor""\n"));
-//    QFont firstCFont("comic sans", 26);
-//    firstCap->setFont(firstCFont);
-//    int firstCxPos = 50;
-//    int firstCyPos = 110;
-//    firstCap->setPos(firstCxPos,firstCyPos);
-//    scene -> addItem(firstCap);
-
-//    QGraphicsTextItem* conveyorText = new QGraphicsTextItem(QString("The conveyor is a very powerful tool, too. Once the paperball lands on it, the ball " "\n"
-//                                                                    "will be accelerated in the direction the conveyor is aiming at" "\n"
-//                                                                    "('<': left direction, '>': right direction). There are different models, which can" "\n"
-//                                                                    "be identified by '<<' '<' '>' '>>', which is written on the side of the tool." "\n"
-//                                                                    "Neither can it be rotated, nor can the direction be changed by the player."
-//                                                                ));
-//    QFont conveyorFont("comic sans", 18);
-//    conveyorText->setFont(conveyorFont);
-//    int conveyorxPos = 50;
-//    int conveyoryPos = 160;
-//    conveyorText->setPos(conveyorxPos,conveyoryPos);
-//    scene -> addItem(conveyorText);
-
-//    Button* backButton = new Button(QString("Back"));
-//    int backxPos = 50;
-//    int backyPos = 670;
-//    backButton->setPos(backxPos,backyPos);
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(help()));
-//    connect(backButton, SIGNAL(clicked()), this, SLOT(csnd()));
-//    scene->addItem(backButton);
-//}
 
 /*!
  * \brief GUI::checkLevel

@@ -485,46 +485,43 @@ void Level_3::showLevel(){
 
      ball  = new Paperball(myWorld3, level3, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
-     obstaclescircle1 = new Circle(myWorld3,level3, QPointF(0.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle2 = new Circle(myWorld3,level3, QPointF(0.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle3 = new Circle(myWorld3, level3, QPointF(44.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle4 = new Circle(myWorld3, level3, QPointF(44.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle5 = new Circle(myWorld3, level3, QPointF(87.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle6 = new Circle(myWorld3, level3, QPointF(87.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle7 = new Circle(myWorld3, level3, QPointF(130.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle8 = new Circle(myWorld3, level3, QPointF(130.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle9 = new Circle(myWorld3, level3, QPointF(540.0,100), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle10 = new Circle(myWorld3, level3, QPointF(900.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle11 = new Circle(myWorld3, level3, QPointF(800.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle12 = new Circle(myWorld3, level3, QPointF(382.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle13 = new Circle(myWorld3, level3, QPointF(424.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle14 = new Circle(myWorld3, level3, QPointF(466.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle23 = new Circle(myWorld3, level3, QPointF(508.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle24 = new Circle(myWorld3, level3, QPointF(550.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle25 = new Circle(myWorld3, level3, QPointF(592.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle26 = new Circle(myWorld3, level3, QPointF(634.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle29 = new Circle(myWorld3, level3, QPointF(676.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle15 = new Circle(myWorld3, level3, QPointF(718.0,241.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     trampoline1 = new Trampoline(myWorld3,level3,b2Vec2(205,256),0,100,40,b2_staticBody,1.0,"obs");
 
-     obstaclescircle16 = new Circle(myWorld3, level3, QPointF(940.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle17 = new Circle(myWorld3, level3, QPointF(898.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle18 = new Circle(myWorld3, level3, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle19 = new Circle(myWorld3, level3, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle20 = new Circle(myWorld3, level3, QPointF(212.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle21 = new Circle(myWorld3, level3, QPointF(256.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle22 = new Circle(myWorld3, level3, QPointF(982.0,547.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle23 = new Circle(myWorld3, level3, QPointF(940.0,505), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle24 = new Circle(myWorld3, level3, QPointF(898.0,463), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle25 = new Circle(myWorld3, level3, QPointF(856.0,421), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     obstaclescircle26 = new Circle(myWorld3, level3, QPointF(814.0,379), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-    // obstaclescircle27 = new Circle(myWorld3, level3, QPointF(772.0,337), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-     //obstaclescircle28 = new Circle(myWorld3, level3, QPointF(730.0,295), 0*(3.14/180.0), b2_staticBody, circle,"obs");
-
-     obstaclesrec1=new Block(myWorld3,level3,b2Vec2(520,420),0,100,40,b2_staticBody,1.0,"obs");
      obstacletriangle1=new Triangle(myWorld3,level3,QPointF(440,121),QPointF(540,121),QPointF(540,221),1.57,b2_staticBody,1.0,"obs");
      obstacletriangle2=new Triangle(myWorld3,level3,QPointF(540,121),QPointF(640,121),QPointF(640,221),3.1415,b2_staticBody,1.0,"obs");
 
+     obstacletriangle3=new Triangle(myWorld3,level3,QPointF(905,449),QPointF(1005,549),QPointF(1005,549),3.1415,b2_staticBody,1.0,"obs");
+     obstacletriangle4=new Triangle(myWorld3,level3,QPointF(805,366),QPointF(905,466),QPointF(905,466),1.57,b2_staticBody,1.0,"obs");
+     obstacletriangle5=new Triangle(myWorld3,level3,QPointF(805,366),QPointF(905,466),QPointF(905,466),3.1415,b2_staticBody,1.0,"obs");
 
+     obstaclescircle1 = new Circle(myWorld3, level3, QPointF(470.0,420), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle2 = new Circle(myWorld3, level3, QPointF(570.0,420), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle3 = new Circle(myWorld3, level3, QPointF(540.0,100), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle4 = new Circle(myWorld3,level3, QPointF(0.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle5 = new Circle(myWorld3, level3, QPointF(44.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle6 = new Circle(myWorld3, level3, QPointF(87.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle7 = new Circle(myWorld3, level3, QPointF(130.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle8 = new Circle(myWorld3,level3, QPointF(0.0,445), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle9 = new Circle(myWorld3, level3, QPointF(44.0,445), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle10 = new Circle(myWorld3, level3, QPointF(87.0,445), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle11 = new Circle(myWorld3, level3, QPointF(130.0,445), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle12 = new Circle(myWorld3, level3, QPointF(382.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle13 = new Circle(myWorld3, level3, QPointF(424.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle14 = new Circle(myWorld3, level3, QPointF(466.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle15 = new Circle(myWorld3, level3, QPointF(508.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle16 = new Circle(myWorld3, level3, QPointF(550.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle17 = new Circle(myWorld3, level3, QPointF(592.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle18 = new Circle(myWorld3, level3, QPointF(634.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle19 = new Circle(myWorld3, level3, QPointF(676.0,241), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     obstaclescircle20 = new Circle(myWorld3, level3, QPointF(718.0,241.0), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+
+     obstaclesrec1=new Block(myWorld3,level3,b2Vec2(520,420),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec2=new Block(myWorld3,level3,b2Vec2(0.0,486),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec3=new Block(myWorld3,level3,b2Vec2(100.0,486),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec4=new Block(myWorld3,level3,b2Vec2(205,335),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec5=new Block(myWorld3,level3,b2Vec2(205,295),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec6=new Block(myWorld3,level3,b2Vec2(854,486),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec7=new Block(myWorld3,level3,b2Vec2(854,526),0,100,40,b2_staticBody,1.0,"obs");
 
      recyclebin1 = new RecycleBin(myWorld3, level3, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld3, level3, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
@@ -535,7 +532,6 @@ void Level_3::showLevel(){
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
 
      obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
-     //obstaclescircle2->draw();
 
      ball->drawBall1();
 

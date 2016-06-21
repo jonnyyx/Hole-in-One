@@ -84,7 +84,10 @@ private:
 
     Circle* addcircle1;
     Circle* addcircle2;
-    Trampoline* trampoline;
+
+    Trampoline* trampoline1;
+    Trampoline* trampoline2;
+
 
     //fixed Elements
 
@@ -120,9 +123,45 @@ private:
     Circle* obstaclescircle29;
     Circle* obstaclescircle30;
     Circle* obstaclescircle31;
+    Circle* obstaclescircle32;
+    Circle* obstaclescircle33;
+    Circle* obstaclescircle34;
+    Circle* obstaclescircle35;
+    Circle* obstaclescircle36;
+    Circle* obstaclescircle37;
+    Circle* obstaclescircle38;
+    Circle* obstaclescircle39;
+    Circle* obstaclescircle40;
+    Circle* obstaclescircle41;
+    Circle* obstaclescircle42;
+    Circle* obstaclescircle43;
+    Circle* obstaclescircle44;
+    Circle* obstaclescircle45;
+    Circle* obstaclescircle46;
+    Circle* obstaclescircle47;
+    Circle* obstaclescircle48;
+    Circle* obstaclescircle49;
+    Circle* obstaclescircle50;
 
     Block* obstaclesrec1;
-
+    Block* obstaclesrec2;
+    Block* obstaclesrec3;
+    Block* obstaclesrec4;
+    Block* obstaclesrec5;
+    Block* obstaclesrec6;
+    Block* obstaclesrec7;
+    Block* obstaclesrec8;
+    Block* obstaclesrec9;
+    Block* obstaclesrec10;
+    Block* obstaclesrec11;
+    Block* obstaclesrec12;
+    Block* obstaclesrec13;
+    Block* obstaclesrec14;
+    Block* obstaclesrec15;
+    Block* obstaclesrec16;
+    Block* obstaclesrec17;
+    Block* obstaclesrec18;
+    Block* obstaclesrec19;
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;

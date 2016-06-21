@@ -19,6 +19,7 @@
 #include <paperball.h>
 #include "triangle.h"
 #include "picbutton.h"
+#include "trampoline.h"
 #include "block.h"
 
 
@@ -107,20 +108,16 @@ private:
     Circle* obstaclescircle18;
     Circle* obstaclescircle19;
     Circle* obstaclescircle20;
-    Circle* obstaclescircle21;
-    Circle* obstaclescircle22;
-    Circle* obstaclescircle23;
-    Circle* obstaclescircle24;
-    Circle* obstaclescircle25;
-    Circle* obstaclescircle26;
-    Circle* obstaclescircle27;
-    Circle* obstaclescircle28;
-    Circle* obstaclescircle29;
-    Circle* obstaclescircle30;
-    Circle* obstaclescircle31;
 
     Block* obstaclesrec1;
+    Block* obstaclesrec2;
+    Block* obstaclesrec3;
+    Block* obstaclesrec4;
+    Block* obstaclesrec5;
+    Block* obstaclesrec6;
+    Block* obstaclesrec7;
 
+    Trampoline* trampoline1;
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;
