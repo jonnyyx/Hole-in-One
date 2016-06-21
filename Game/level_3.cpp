@@ -65,7 +65,7 @@ void Level_3::update(){
         timeText->setPlainText( time);
         level3->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,500);
+        quitLevel->move(400,440);
         level3->addWidget(quitLevel);
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));
     }

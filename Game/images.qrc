@@ -77,5 +77,14 @@
         <file>images/tri2hover.png</file>
         <file>images/tri3default.png</file>
         <file>images/tri3hover.png</file>
+        <file>images/5disabled.png</file>
+        <file>images/5enabled.png</file>
+        <file>images/5hover.png</file>
+        <file>images/circ4hover.png</file>
+        <file>images/rec4defualt.png</file>
+        <file>images/rec4hover.png</file>
+        <file>images/tri4default.png</file>
+        <file>images/tri4hover.png</file>
+        <file>images/circ4default.png</file>
     </qresource>
 </RCC>

@@ -54,7 +54,7 @@ void Level_1::update(){
         if (win==true){
         Level_1::pauseLevel();
 
-        msgbox = new MeinElement(level,QPointF(375,275),300,175);
+        msgbox = new MeinElement(level,QPointF(375,275),300,210);
 
         QGraphicsTextItem * winText = new QGraphicsTextItem;
         winText->setPos(400,300);
@@ -76,7 +76,7 @@ void Level_1::update(){
         timeText->setPlainText( time);
         level->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
-        quitLevel->move(400,500);
+        quitLevel->move(400,440);
         level->addWidget(quitLevel);
 
         connect(quitLevel, SIGNAL(clicked()),this,SLOT(close()));

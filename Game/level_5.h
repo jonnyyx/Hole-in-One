@@ -1,5 +1,5 @@
-#ifndef LEVEL_2_H
-#define LEVEL_2_H
+#ifndef LEVEL_5_H
+#define LEVEL_5_H
 #include"Box2D/Box2D.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -20,19 +20,18 @@
 #include "triangle.h"
 #include "picbutton.h"
 #include "block.h"
-#include "trampoline.h"
 
 
 
 
 #define framerate 1.0/35.0  //2 framerates eines grafik eines physic nötig //TODO
 
-class Level_2 : public QGraphicsView
+class Level_5 : public QGraphicsView
 {
     Q_OBJECT
 
 public:
-    Level_2();
+    Level_5();
     //void displayLevel();
 
     std::vector<Block*> vectb;
@@ -62,14 +61,13 @@ public slots:
 
 private:
 
-    b2World* myWorld2;
-    QGraphicsScene* level2;
+    b2World* myWorld4;
+    QGraphicsScene* level5;
     QGraphicsItem* backgnd;
 
     bool newhighscore=false;
     void saveLevel();
     QList <QString> levelenab;
-
 
     //Elements to add
     Block* addblock1;
@@ -84,57 +82,42 @@ private:
 
     Circle* addcircle1;
     Circle* addcircle2;
-    Trampoline* trampoline;
+
 
     //fixed Elements
 
     Paperball* ball;
     Circle* obstaclescircle1;
-    Circle* obstaclescircle2;
-    Circle* obstaclescircle3;
-    Circle* obstaclescircle4;
-    Circle* obstaclescircle5;
-    Circle* obstaclescircle6;
-    Circle* obstaclescircle7;
-    Circle* obstaclescircle8;
-    Circle* obstaclescircle9;
-    Circle* obstaclescircle10;
-    Circle* obstaclescircle11;
-    Circle* obstaclescircle12;
-    Circle* obstaclescircle13;
-    Circle* obstaclescircle14;
-    Circle* obstaclescircle15;
-    Circle* obstaclescircle16;
-    Circle* obstaclescircle17;
-    Circle* obstaclescircle18;
-    Circle* obstaclescircle19;
-    Circle* obstaclescircle20;
-    Circle* obstaclescircle21;
-    Circle* obstaclescircle22;
-    Circle* obstaclescircle23;
-    Circle* obstaclescircle24;
-    Circle* obstaclescircle25;
-    Circle* obstaclescircle26;
-    Circle* obstaclescircle27;
-    Circle* obstaclescircle28;
-    Circle* obstaclescircle29;
-    Circle* obstaclescircle30;
-    Circle* obstaclescircle31;
 
     Block* obstaclesrec1;
+    Block* obstaclesrec2;
+    Block* obstaclesrec3;
+    Block* obstaclesrec4;
+    Block* obstaclesrec5;
+    Block* obstaclesrec6;
+    Block* obstaclesrec7;
+    Block* obstaclesrec8;
+    Block* obstaclesrec9;
+    Block* obstaclesrec10;
+    Block* obstaclesrec11;
+    Block* obstaclesrec12;
+    Block* obstaclesrec13;
+    Block* obstaclesrec14;
+    Block* obstaclesrec15;
+    Block* obstaclesrec16;
+    Block* obstaclesrec17;
+    Block* obstaclesrec18;
+    Block* obstaclesrec19;
+    Block* obstaclesrec20;
+    Block* obstaclesrec21;
+    Block* obstaclesrec22;
+    Block* obstaclesrec23;
+    Block* obstaclesrec24;
+    //Block* obstaclesrec25;
 
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;
-    Triangle* obstacletriangle3;
-    Triangle* obstacletriangle4;
-    Triangle* obstacletriangle5;
-    Triangle* obstacletriangle6;
-    Triangle* obstacletriangle7;
-    Triangle* obstacletriangle8;
-    Triangle* obstacletriangle9;
-    Triangle* obstacletriangle10;
-    Triangle* obstacletriangle11;
 
 
     MeinElement* bottom;
@@ -173,4 +156,4 @@ private:
 
 };
 
-#endif // LEVEL_2_H
+#endif // LEVEL_5_H
