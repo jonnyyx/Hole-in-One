@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/pic">
+        <file>paper.png</file>
+        <file>click.mp3</file>
+        <file>basket.png</file>
+        <file>block_obs.png</file>
+        <file>block_tool.png</file>
+        <file>circle_obs.png</file>
+        <file>circle_tool.png</file>
+        <file>Icon.png</file>
+        <file>triangle_obs.png</file>
+        <file>triangle_tool.png</file>
+        <file>music.mp3</file>
+        <file>Icon.ico</file>
+        <file>block_bttn.png</file>
+        <file>circle_bttn.png</file>
+        <file>triangle_bttn.png</file>
+        <file>Game_background_spwn.png</file>
+        <file>white.png</file>
+        <file>drums.mp3</file>
+        <file>block_bttn_h.png</file>
+        <file>circle_bttn_h.png</file>
+        <file>triangle_bttn_h.png</file>
+        <file>applause.mp3</file>
+        <file>triangle_obs_90degree.png</file>
+        <file>triangle_obs_180degree.png</file>
+        <file>triangle_obs_270degree.png</file>
+        <file>triangle_tool_90degree.png</file>
+        <file>triangle_tool_180degree.png</file>
+        <file>triangle_tool_270degree.png</file>
+        <file>Game_background_tut.png</file>
+        <file>tram_obs.png</file>
+    </qresource>
+</RCC>
