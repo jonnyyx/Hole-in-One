@@ -71,7 +71,7 @@ void Level_1::update(){
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,400);
 
-        QString time = QString("Time: %1 s").arg(leveltime);
+        QString time = QString("Time: %3 s").arg(leveltime);
         qDebug()<<time;
         timeText->setPlainText( time);
         level->addItem(timeText);
@@ -183,8 +183,7 @@ void Level_1::pauseLevel(){
     bt_pause->setEnabled(false);
     bt__resume->setEnabled(true);
     bt_start->setEnabled(false);
-    qDebug()<<"Level paused";
-    qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
+
 }
 /*!
  * \brief Level_1::resumeLevel
@@ -284,7 +283,7 @@ void Level_1::addCircle(){
  */
 void Level_1::getTime(){
     leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
-    leveltime = leveltime/1000; //leveltime in sec
+    leveltime = ((double)((long)(leveltime)))/1000; //leveltime in sec
 }
 
 /*!
@@ -328,8 +327,7 @@ void Level_1::highscoreCounter(){
  */
 void Level_1::reset(){
    pauseLevel();
-//   right->disconnect();
-//   left->disconnect();
+
    level->clear();
    counterRec = 0;
    counterCircle = 0;
@@ -359,12 +357,17 @@ void Level_1::saveLevel()
     }
 
     if(levelenab.size()>0){
-        if(levelenab.at(7).toInt()<highscore){
-            levelenab.replace(1,"true\n");
-            levelenab.replace(5,QString::number(leveltime)+" s\n");
-            levelenab.replace(6,QString::number(counterTogether)+"\n");
-            levelenab.replace(7,QString::number(highscore)+"\n");
-            newhighscore=true;
+        if(levelenab.at(7).toInt()<=highscore){
+            QStringList timescortest=levelenab.at(5).split(" ");
+            if(timescortest.at(0).toDouble()>leveltime){
+                levelenab.replace(1,"true\n");
+                levelenab.replace(5,QString::number(leveltime)+" s\n");
+                levelenab.replace(6,QString::number(counterTogether)+"\n");
+                levelenab.replace(7,QString::number(highscore)+"\n");
+                newhighscore=true;
+            }else{
+                newhighscore=false;
+            }
         }
         else{
             newhighscore=false;

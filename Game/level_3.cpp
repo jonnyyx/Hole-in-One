@@ -62,7 +62,7 @@ void Level_3::update(){
         }
         QGraphicsTextItem * timeText = new QGraphicsTextItem;
         timeText->setPos(400,400);
-        QString time = QString("Time: %1 s").arg(leveltime);
+        QString time = QString("Time: %3 s").arg(leveltime);
         timeText->setPlainText( time);
         level3->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
@@ -366,12 +366,18 @@ void Level_3::saveLevel()
         }
 
         if(levelenab.size()>11){
-            if(levelenab.at(13).toInt()<highscore){
-                levelenab.replace(3,"true\n");
-                levelenab.replace(11,QString::number(leveltime)+" s\n");
-                levelenab.replace(12,QString::number(counterTogether)+"\n");
-                levelenab.replace(13,QString::number(highscore)+"\n");
-                newhighscore=true;
+            if(levelenab.at(13).toInt()<=highscore){
+                QStringList timescortest=levelenab.at(11).split(" ");
+                if(timescortest.at(0).toDouble()>leveltime){
+                    levelenab.replace(3,"true\n");
+                    levelenab.replace(11,QString::number(leveltime)+" s\n");
+                    levelenab.replace(12,QString::number(counterTogether)+"\n");
+                    levelenab.replace(13,QString::number(highscore)+"\n");
+                    newhighscore=true;
+                }else{
+                    newhighscore=false;
+                }
+
             }else{
                 newhighscore=false;
             }

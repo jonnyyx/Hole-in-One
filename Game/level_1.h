@@ -142,7 +142,7 @@ private:
     int counterCircle=0;
     int highscore = 0;
     int counterTogether = 0;
-    int leveltime;
+    double leveltime;
 	bool win = false;
 	
     void showLevel();
