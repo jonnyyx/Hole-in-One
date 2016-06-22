@@ -544,6 +544,13 @@ void Level_2::showLevel(){
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level2->addWidget(bt__right);
 
+     //Levelmenue
+     bt_levelmenue=new QPushButton;
+     bt_levelmenue->move(450.0,685.0);
+     bt_levelmenue->setText("Levelmenue");
+     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()));
+     level2->addWidget(bt_levelmenue);
+
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
      myWorld2 = new b2World(gravity);

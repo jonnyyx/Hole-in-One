@@ -138,6 +138,7 @@ private:
     picButton* bt__reset;
     picButton* bt__left;
     picButton* bt__right;
+    QPushButton* bt_levelmenue;
     int counterRec = 0;
     int counterCircle=0;
     int highscore = 0;
