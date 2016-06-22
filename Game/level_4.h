@@ -19,6 +19,7 @@
 #include <paperball.h>
 #include "triangle.h"
 #include "picbutton.h"
+#include "trampoline.h"
 #include "block.h"
 
 
@@ -89,7 +90,6 @@ private:
     //fixed Elements
 
     Paperball* ball;
-    Circle* obstaclescircle1;
 
     Block* obstaclesrec1;
     Block* obstaclesrec2;
@@ -113,10 +113,10 @@ private:
     Block* obstaclesrec20;
     Block* obstaclesrec21;
     Block* obstaclesrec22;
-    Block* obstaclesrec23;
-    Block* obstaclesrec24;
-    //Block* obstaclesrec25;
 
+
+    Trampoline* trampoline1;
+    Trampoline* trampoline2;
 
     Triangle* obstacletriangle1;
     Triangle* obstacletriangle2;

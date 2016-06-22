@@ -153,6 +153,7 @@ void Level_3::startLevel(){
     bt_start->setEnabled(false);
     bt__rect->setEnabled(false);
     bt__circle->setEnabled(false);
+    bt__triangle->setEnabled(false);
 
 
     leveltime_elapsed.start();
@@ -301,7 +302,7 @@ void Level_3::getTime(){
  */
 void Level_3::highscoreCounter(){
 
-    counterTogether = counterRec + counterCircle;
+    counterTogether = counterRec + counterCircle + counterTriangle;
 
     if ( (counterTogether==6)||(counterTogether==5) ){
         highscore = 1;

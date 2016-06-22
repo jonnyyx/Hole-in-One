@@ -89,15 +89,8 @@ void Level_4::startLevel(){
     recyclebin1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     recyclebin2->drawGraphics();
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle1->drawGraphics();
-    //obstaclesrec1->drawGraphics();
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-    //obstaclescircle2->graphics->setFlag(QGraphicsItem::ItemIsSelectable,false);
-
 
     if(counterRec==1){
         addblock1->drawGraphics();
@@ -153,7 +146,7 @@ void Level_4::startLevel(){
     bt_start->setEnabled(false);
     bt__rect->setEnabled(false);
     bt__circle->setEnabled(false);
-
+    bt__triangle->setEnabled(false);
 
     leveltime_elapsed.start();
 
@@ -298,7 +291,7 @@ void Level_4::getTime(){
  */
 void Level_4::highscoreCounter(){
 
-    counterTogether = counterRec + counterCircle;
+    counterTogether = counterRec + counterCircle + counterTriangle;
 
     if ( (counterTogether==6)||(counterTogether==5) ){
         highscore = 1;
@@ -495,10 +488,10 @@ void Level_4::showLevel(){
 
      ball  = new Paperball(myWorld4, level4, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
-     obstaclescircle1 = new Circle(myWorld4, level4, QPointF(0.0,547), 0*(3.14/180.0), b2_staticBody, circle,"obs");
+     trampoline1 = new Trampoline(myWorld4,level4,b2Vec2(200,220),0,100,40,b2_staticBody,1.0,"obs");
+     trampoline2 = new Trampoline(myWorld4,level4,b2Vec2(100,220),0,100,40,b2_staticBody,1.0,"obs");
 
-
-     //obstaclesrec1=new Block(myWorld4,level4,b2Vec2(200,100),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec1=new Block(myWorld4,level4,b2Vec2(1000,225),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec2=new Block(myWorld4,level4,b2Vec2(300,100),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec2=new Block(myWorld4,level4,b2Vec2(400,100),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec3=new Block(myWorld4,level4,b2Vec2(500,100),0,100,40,b2_staticBody,1.0,"obs");
@@ -514,20 +507,16 @@ void Level_4::showLevel(){
      obstaclesrec13=new Block(myWorld4,level4,b2Vec2(350,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec14=new Block(myWorld4,level4,b2Vec2(450,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec15=new Block(myWorld4,level4,b2Vec2(550,400),0,100,40,b2_staticBody,1.0,"obs");
-     //obstaclesrec16=new Block(myWorld4,level4,b2Vec2(200,400),0,100,40,b2_staticBody,1.0,"obs");
+     obstaclesrec16=new Block(myWorld4,level4,b2Vec2(300,500),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec17=new Block(myWorld4,level4,b2Vec2(100,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec18=new Block(myWorld4,level4,b2Vec2(0,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec19=new Block(myWorld4,level4,b2Vec2(750,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec20=new Block(myWorld4,level4,b2Vec2(850,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec21=new Block(myWorld4,level4,b2Vec2(950,400),0,100,40,b2_staticBody,1.0,"obs");
      obstaclesrec22=new Block(myWorld4,level4,b2Vec2(200,500),0,100,40,b2_staticBody,1.0,"obs");
-     obstaclesrec23=new Block(myWorld4,level4,b2Vec2(300,500),0,100,40,b2_staticBody,1.0,"obs");
-     obstaclesrec24=new Block(myWorld4,level4,b2Vec2(1000,225),0,100,40,b2_staticBody,1.0,"obs");
-     //obstaclesrec25=new Block(myWorld4,level4,b2Vec2(530,380),0,100,40,b2_staticBody,1.0,"obs");
 
      obstacletriangle1=new Triangle(myWorld4,level4,QPointF(300,280),QPointF(400,280),QPointF(400,380),1.57,b2_staticBody,1.0,"obs");
      obstacletriangle2=new Triangle(myWorld4,level4,QPointF(400,280),QPointF(500,280),QPointF(500,380),3.1415,b2_staticBody,1.0,"obs");
-
 
      recyclebin1 = new RecycleBin(myWorld4, level4, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld4, level4, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
@@ -536,10 +525,6 @@ void Level_4::showLevel(){
      bottom= new MeinElement(myWorld4, level4, b2Vec2(0.0,level4->height()-200), level4->width(), 22, b2_staticBody, 0.1);
 
      ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
-
-     obstaclescircle1->draw(); //Static Elemente lassen sich auch hier "drawn"
-     //obstaclescircle2->draw();
-
      ball->drawBall1();
 
      bottom->drawBottom();
