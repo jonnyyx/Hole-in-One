@@ -30,7 +30,7 @@ Level_1::Level_1()
 
     timer2=new QTimer(this);
     timer2->setInterval(1.0/120.0*1000.0);
-    //timer2->connect(timer2, SIGNAL(timeout()),this, SLOT(position()));
+
     timer2->start();
 
     //Scene setup

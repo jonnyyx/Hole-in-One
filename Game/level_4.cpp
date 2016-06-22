@@ -282,7 +282,7 @@ void Level_4::addTriangle()
  */
 void Level_4::getTime(){
     leveltime = leveltime_elapsed.elapsed(); //leveltime in msec
-    leveltime = leveltime/1000; //leveltime in sec
+    leveltime = ((double)((long)(leveltime)))/1000; //leveltime in sec
 }
 
 /*!
