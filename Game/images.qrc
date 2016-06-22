@@ -20,7 +20,6 @@
         <file>circle_bttn.png</file>
         <file>circle_obs.png</file>
         <file>circle_tool.png</file>
-        <file>dummy.png</file>
         <file>Icon.png</file>
         <file>paper.png</file>
         <file>triangle_bttn.png</file>
@@ -77,11 +76,5 @@
         <file>images/tri2hover.png</file>
         <file>images/tri3default.png</file>
         <file>images/tri3hover.png</file>
-        <file>images/circ4hover.png</file>
-        <file>images/rec4defualt.png</file>
-        <file>images/rec4hover.png</file>
-        <file>images/tri4default.png</file>
-        <file>images/tri4hover.png</file>
-        <file>images/circ4default.png</file>
     </qresource>
 </RCC>

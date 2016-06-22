@@ -301,7 +301,7 @@ void Level_2::getTime(){
  */
 void Level_2::highscoreCounter(){
 
-    counterTogether = counterRec + counterCircle;
+    counterTogether = counterRec + counterCircle + counterTriangle;
 
     if ( (counterTogether==6)||(counterTogether==5) ){
         highscore = 1;

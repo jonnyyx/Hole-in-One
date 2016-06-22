@@ -767,6 +767,7 @@ void GUI::box()
     QGraphicsTextItem* rectText = new QGraphicsTextItem(QString("The block is the most common tool in the game. It can even be rotated, simply select" "\n"
                                                                 "the object (through clicking on it) and push the arrow buttons '<-' & '->' to rotate the" "\n"
                                                                 "object. Pressing the '->' button will lead to a clockwise rotation, and vise versa." "\n"
+                                                                "You can rotate via the arrow-keys on your keyboard, too." "\n"
                                                                 "To unselect the object just click elsewhere." "\n"
                                                                 "To move the object click and hold on the object and drag it with your mouse."
                                                                 ));
@@ -901,6 +902,7 @@ void GUI::triangle()
                                                                "useful to solve levels. It can be rotated, simply select the object (through" "\n"
                                                                "clicking on it) and push the arrow buttons '<-' & '->' to rotate the object." "\n"
                                                                "Pressing the '->' button will lead to a clockwise rotation, and vise versa." "\n"
+                                                               "You can rotate via the arrow-keys on your keyboard, too." "\n"
                                                                "To unselect the object just click elsewhere. To move the object click and hold " "\n"
                                                                "on the object and drag it with your mouse."
                                                                 ));
