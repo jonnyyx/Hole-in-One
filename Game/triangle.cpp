@@ -144,8 +144,7 @@ void Triangle::draw()
 {
     b2Vec2 v=body->GetPosition();
 
-//    graphics->setPos(QPointF(v.x,v.y));
-//    qreal a=body->GetAngle();
+
 }
 
 /*!
