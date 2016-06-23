@@ -379,19 +379,7 @@ void Level_2::highscoreCounter(){
         highscore = 3;
     }
 
-    if ( (leveltime>=30) ){
-        highscore = highscore*1;
-    }
-
-    else if( (leveltime<30)&&(leveltime>=15) ){
-        highscore = highscore*2;
-    }
-
-    else if( (leveltime<15)&&(leveltime>=0) ){
-        highscore = highscore*3;
-    }
-
-    highscore=highscore*100;
+    highscore=highscore/leveltime*3000;
 
 }
 

@@ -72,7 +72,6 @@ void Level_1::update(){
         timeText->setPos(400,400);
 
         QString time = QString("Time: %3 s").arg(leveltime);
-        qDebug()<<time;
         timeText->setPlainText( time);
         level->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
@@ -342,19 +341,7 @@ void Level_1::highscoreCounter(){
         highscore = 3;
     }
 
-    if ( (leveltime>=30) ){
-        highscore = highscore*1;
-    }
-
-    else if( (leveltime<30)&&(leveltime>=15) ){
-        highscore = highscore*2;
-    }
-
-    else if( (leveltime<15)&&(leveltime>=0) ){
-        highscore = highscore*3;
-    }
-
-    highscore=highscore*100;
+    highscore=highscore/leveltime*3000;
 }
 
 /*!
@@ -540,7 +527,7 @@ void Level_1::showLevel(){
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
 
      // game Objects
-     ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld, level, QPointF(520.0,440.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);

@@ -144,6 +144,7 @@ private:
     int highscore = 0;
     int counterTogether = 0;
     double leveltime;
+    double leveltime1;
 	bool win = false;
 	
     void showLevel();
