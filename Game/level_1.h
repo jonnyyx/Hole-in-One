@@ -138,12 +138,13 @@ private:
     picButton* bt__reset;
     picButton* bt__left;
     picButton* bt__right;
-    QPushButton* bt_levelmenue;
+    picButton* bt_levelmenue;
     int counterRec = 0;
     int counterCircle=0;
     int highscore = 0;
     int counterTogether = 0;
     double leveltime;
+    double leveltime1;
 	bool win = false;
 	
     void showLevel();

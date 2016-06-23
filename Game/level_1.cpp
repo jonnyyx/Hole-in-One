@@ -76,7 +76,6 @@ void Level_1::update(){
         timeText->setPos(400,400);
 
         QString time = QString("Time: %3 s").arg(leveltime);
-        qDebug()<<time;
         timeText->setPlainText( time);
         level->addItem(timeText);
         QPushButton* quitLevel = new QPushButton("Quit");
@@ -179,8 +178,8 @@ void Level_1::startLevel(){
  * pauses game when button pause is clicked
  */
 void Level_1::pauseLevel(){
-    if(timer!=NULL){
-        timer->stop();
+    if(leveltime_elapsed.elapsed()>0.0){
+         timer->stop();
     }
     Level_1::getTime();
     Level_1::highscoreCounter();
@@ -334,31 +333,30 @@ void Level_1::highscoreCounter(){
 
     counterTogether = counterRec + counterCircle;
 
-    if ( (counterTogether==6)||(counterTogether==5) ){
+    if (counterTogether==6){
         highscore = 1;
     }
-
-    else if( (counterTogether==4)||(counterTogether==3) ){
+    else if (counterTogether==5){
         highscore = 2;
     }
-
-    else if( (counterTogether==1)||(counterTogether==2)||(counterTogether==0) ){
+    else if (counterTogether==4){
         highscore = 3;
     }
-
-    if ( (leveltime>=30) ){
-        highscore = highscore*1;
+    else if (counterTogether==3){
+        highscore = 4;
     }
-
-    else if( (leveltime<30)&&(leveltime>=15) ){
-        highscore = highscore*2;
+    else if (counterTogether==2){
+        highscore = 5;
     }
-
-    else if( (leveltime<15)&&(leveltime>=0) ){
-        highscore = highscore*3;
+    else if (counterTogether==1){
+        highscore = 6;
     }
-
-    highscore=highscore*100;
+    else if (counterTogether==0){
+        highscore = 7;
+    }
+    qDebug()<<counterTogether;
+    highscore=highscore/leveltime*3000;
+    qDebug()<<highscore;
 }
 
 /*!
@@ -397,19 +395,24 @@ void Level_1::saveLevel()
     }
 
     if(levelenab.size()>0){
-        if(levelenab.at(7).toInt()<=highscore){
-            QStringList timescortest=levelenab.at(5).split(" ");
-            if(timescortest.at(0).toDouble()>leveltime){
+        if(levelenab.at(7).toInt()<highscore){
                 levelenab.replace(1,"true\n");
                 levelenab.replace(5,QString::number(leveltime)+" s\n");
                 levelenab.replace(6,QString::number(counterTogether)+"\n");
                 levelenab.replace(7,QString::number(highscore)+"\n");
                 newhighscore=true;
-            }else{
+            }else if(levelenab.at(7).toInt()==highscore){
+                 QStringList timescortest=levelenab.at(5).split(" ");
+                 if(timescortest.at(0).toDouble()>leveltime){
+                     levelenab.replace(1,"true\n");
+                     levelenab.replace(5,QString::number(leveltime)+" s\n");
+                     levelenab.replace(6,QString::number(counterTogether)+"\n");
+                     levelenab.replace(7,QString::number(highscore)+"\n");
+                     newhighscore=true;
+            } else{
                 newhighscore=false;
             }
-        }
-        else{
+        }else{
             newhighscore=false;
         }
 
@@ -505,7 +508,7 @@ void Level_1::showLevel(){
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
-     bt__left->move(30.0,640.0);
+     bt__left->move(30.0,654.0);
      bt__left->setShortcut(Qt::Key_Left);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level->addWidget(bt__left);
@@ -513,16 +516,16 @@ void Level_1::showLevel(){
      //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
-     bt__right->move(30.0,685.0);
+     bt__right->move(30.0,699.0);
      bt__right->setShortcut(Qt::Key_Right);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level->addWidget(bt__right);
 
      //Levelmenue
-     bt_levelmenue=new QPushButton;
-     bt_levelmenue->move(450.0,685.0);
-     bt_levelmenue->setText("Levelmenue");
-     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()));
+     bt_levelmenue=new picButton(QPixmap(":/images/images/levelmenue_bt.png"), QPixmap(":/images/images/levelmenue_hover.png"));
+     bt_levelmenue->setEnabled(true);
+     bt_levelmenue->move(30.0,609.0);
+     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()), Qt::QueuedConnection);
      level->addWidget(bt_levelmenue);
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
@@ -544,7 +547,7 @@ void Level_1::showLevel(){
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
 
      // game Objects
-     ball  = new Paperball(myWorld, level, QPointF(520.0,40.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld, level, QPointF(520.0,440.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
