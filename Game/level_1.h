@@ -66,7 +66,7 @@ private:
     bool newhighscore=false;
     void saveLevel();
     QList <QString> levelenab;
-
+    void closeEvent(QCloseEvent *);
     //QAction *right;
     //QAction *left;
 

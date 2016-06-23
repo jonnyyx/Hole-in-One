@@ -72,7 +72,7 @@ private:
     bool newhighscore=false;
     void saveLevel();
     QList <QString> levelenab;
-
+    void closeEvent(QCloseEvent *);
 
     //Elements to add
     Block* addblock1;

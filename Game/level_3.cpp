@@ -32,6 +32,9 @@ Level_3::Level_3()
 
     showLevel();
 }
+void Level_3::closeEvent(QCloseEvent *){
+    closeLevel();
+}
 
 /*!
  * \brief Level_3::update

@@ -294,6 +294,7 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
     level1 = new Level_1();
     level1->show();
     window()->hide();
+
     connect(level1,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 
 }
@@ -340,6 +341,7 @@ void GUI::showLevel4()
     level4 = new Level_4();
     level4->show();
     window()->hide();
+
     connect(level4,SIGNAL(levelcompleted()),this,SLOT(showGuiagain()));
 }
 

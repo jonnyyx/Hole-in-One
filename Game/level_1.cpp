@@ -37,9 +37,13 @@ Level_1::Level_1()
     level = new QGraphicsScene();
     level->setSceneRect(0,0,1024,768);
     setScene(level);
+
     showLevel();
 }
 
+void Level_1::closeEvent(QCloseEvent *){
+    closeLevel();
+}
 
 /*!
  * \brief Level_1::update

@@ -32,6 +32,9 @@ Level_4::Level_4()
 
     showLevel();
 }
+void Level_4::closeEvent(QCloseEvent *){
+    closeLevel();
+}
 
 /*!
  * \brief Level_4::update
