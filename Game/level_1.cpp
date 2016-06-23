@@ -174,8 +174,8 @@ void Level_1::startLevel(){
  * pauses game when button pause is clicked
  */
 void Level_1::pauseLevel(){
-    if(timer!=NULL){
-        timer->stop();
+    if(leveltime_elapsed.elapsed()>0.0){
+         timer->stop();
     }
     Level_1::getTime();
     Level_1::highscoreCounter();
@@ -329,19 +329,30 @@ void Level_1::highscoreCounter(){
 
     counterTogether = counterRec + counterCircle;
 
-    if ( (counterTogether==6)||(counterTogether==5) ){
+    if (counterTogether==6){
         highscore = 1;
     }
-
-    else if( (counterTogether==4)||(counterTogether==3) ){
+    else if (counterTogether==5){
         highscore = 2;
     }
-
-    else if( (counterTogether==1)||(counterTogether==2)||(counterTogether==0) ){
+    else if (counterTogether==4){
         highscore = 3;
     }
-
+    else if (counterTogether==3){
+        highscore = 4;
+    }
+    else if (counterTogether==2){
+        highscore = 5;
+    }
+    else if (counterTogether==1){
+        highscore = 6;
+    }
+    else if (counterTogether==0){
+        highscore = 7;
+    }
+    qDebug()<<counterTogether;
     highscore=highscore/leveltime*3000;
+    qDebug()<<highscore;
 }
 
 /*!
@@ -380,19 +391,24 @@ void Level_1::saveLevel()
     }
 
     if(levelenab.size()>0){
-        if(levelenab.at(7).toInt()<=highscore){
-            QStringList timescortest=levelenab.at(5).split(" ");
-            if(timescortest.at(0).toDouble()>leveltime){
+        if(levelenab.at(7).toInt()<highscore){
                 levelenab.replace(1,"true\n");
                 levelenab.replace(5,QString::number(leveltime)+" s\n");
                 levelenab.replace(6,QString::number(counterTogether)+"\n");
                 levelenab.replace(7,QString::number(highscore)+"\n");
                 newhighscore=true;
-            }else{
+            }else if(levelenab.at(7).toInt()==highscore){
+                 QStringList timescortest=levelenab.at(5).split(" ");
+                 if(timescortest.at(0).toDouble()>leveltime){
+                     levelenab.replace(1,"true\n");
+                     levelenab.replace(5,QString::number(leveltime)+" s\n");
+                     levelenab.replace(6,QString::number(counterTogether)+"\n");
+                     levelenab.replace(7,QString::number(highscore)+"\n");
+                     newhighscore=true;
+            } else{
                 newhighscore=false;
             }
-        }
-        else{
+        }else{
             newhighscore=false;
         }
 

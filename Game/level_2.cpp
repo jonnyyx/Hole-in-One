@@ -163,8 +163,8 @@ void Level_2::startLevel(){
  * pauses game when button pause is clicked
  */
 void Level_2::pauseLevel(){
-    if(timer!=NULL){
-        timer->stop();
+    if(leveltime_elapsed.elapsed()>0.0){
+         timer->stop();
     }
     Level_2::getTime();
     Level_2::highscoreCounter();
@@ -367,20 +367,30 @@ void Level_2::highscoreCounter(){
 
     counterTogether = counterRec + counterCircle + counterTriangle;
 
-    if ( (counterTogether==6)||(counterTogether==5) ){
+    if (counterTogether==6){
         highscore = 1;
     }
-
-    else if( (counterTogether==4)||(counterTogether==3) ){
+    else if (counterTogether==5){
         highscore = 2;
     }
-
-    else if( (counterTogether==1)||(counterTogether==2)||(counterTogether==0) ){
+    else if (counterTogether==4){
         highscore = 3;
     }
-
+    else if (counterTogether==3){
+        highscore = 4;
+    }
+    else if (counterTogether==2){
+        highscore = 5;
+    }
+    else if (counterTogether==1){
+        highscore = 6;
+    }
+    else if (counterTogether==0){
+        highscore = 7;
+}
+        qDebug()<<counterTogether;
     highscore=highscore/leveltime*3000;
-
+    qDebug()<<highscore;
 }
 
 /*!
@@ -418,15 +428,21 @@ void Level_2::saveLevel()
     }
 
     if(levelenab.size()>8){
-        if(levelenab.at(10).toInt()<=highscore){
-            QStringList timescortest=levelenab.at(8).split(" ");
-            if(timescortest.at(0).toDouble()>leveltime){
+        if(levelenab.at(10).toInt()<highscore){
                 levelenab.replace(2,"true\n");
                 levelenab.replace(8,QString::number(leveltime)+" s\n");
                 levelenab.replace(9,QString::number(counterTogether)+"\n");
                 levelenab.replace(10,QString::number(highscore)+"\n");
                 newhighscore=true;
-            }else{
+            }else if(levelenab.at(10).toInt()==highscore){
+                 QStringList timescortest=levelenab.at(5).split(" ");
+                 if(timescortest.at(0).toDouble()>leveltime){
+                     levelenab.replace(2,"true\n");
+                     levelenab.replace(8,QString::number(leveltime)+" s\n");
+                     levelenab.replace(9,QString::number(counterTogether)+"\n");
+                     levelenab.replace(10,QString::number(highscore)+"\n");
+                     newhighscore=true;
+            } else{
                 newhighscore=false;
             }
         }else{
@@ -555,7 +571,7 @@ void Level_2::showLevel(){
      umrandung1 = new MeinElement(myWorld2,level2, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
      umrandung2 = new MeinElement(myWorld2,level2, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
 
-     ball  = new Paperball(myWorld2, level2, QPointF(540.0,20.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld2, level2, QPointF(540.0,460.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      obstaclescircle1 = new Circle(myWorld2, level2, QPointF(0.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
      obstaclescircle2 = new Circle(myWorld2, level2, QPointF(42.0,526), 0*(3.14/180.0), b2_staticBody, circle,"obs");
