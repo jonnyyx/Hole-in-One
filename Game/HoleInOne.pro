@@ -67,7 +67,6 @@ SOURCES += main.cpp\
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
     meinelement.cpp \
-    button.cpp \
     gui.cpp \
     picbutton.cpp \
     level_1.cpp \
@@ -134,7 +133,6 @@ HEADERS  += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     meinelement.h \
-    button.h \
     gui.h \
     main.h \
     picbutton.h \
