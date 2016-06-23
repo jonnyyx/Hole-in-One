@@ -529,7 +529,7 @@ void Level_3::showLevel(){
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
-     bt__left->move(30.0,640.0);
+     bt__left->move(30.0,654.0);
      bt__left->setShortcut(Qt::Key_Left);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level3->addWidget(bt__left);
@@ -537,16 +537,16 @@ void Level_3::showLevel(){
      //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
-     bt__right->move(30.0,685.0);
+     bt__right->move(30.0,699.0);
      bt__right->setShortcut(Qt::Key_Right);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level3->addWidget(bt__right);
 
      //Levelmenue
-     bt_levelmenue=new QPushButton;
-     bt_levelmenue->move(450.0,685.0);
-     bt_levelmenue->setText("Levelmenue");
-     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()));
+     bt_levelmenue=new picButton(QPixmap(":/images/images/levelmenue_bt.png"), QPixmap(":/images/images/levelmenue_hover.png"));
+     bt_levelmenue->setEnabled(true);
+     bt_levelmenue->move(30.0,609.0);
+     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()), Qt::QueuedConnection);
      level3->addWidget(bt_levelmenue);
 
 
