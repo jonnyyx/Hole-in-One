@@ -5,7 +5,6 @@
 #include <QGraphicsView>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
-#include <button.h>
 #include <picbutton.h>
 
 class GUI : public QGraphicsView

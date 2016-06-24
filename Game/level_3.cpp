@@ -545,7 +545,7 @@ void Level_3::showLevel(){
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
-     bt__left->move(30.0,654.0);
+     bt__left->move(30.0,640.0);
      bt__left->setShortcut(Qt::Key_Left);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level3->addWidget(bt__left);
@@ -553,17 +553,11 @@ void Level_3::showLevel(){
      //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
-     bt__right->move(30.0,699.0);
+     bt__right->move(30.0,685.0);
      bt__right->setShortcut(Qt::Key_Right);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level3->addWidget(bt__right);
 
-     //Levelmenue
-     bt_levelmenue=new picButton(QPixmap(":/images/images/levelmenue_bt.png"), QPixmap(":/images/images/levelmenue_hover.png"));
-     bt_levelmenue->setEnabled(true);
-     bt_levelmenue->move(30.0,609.0);
-     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()), Qt::QueuedConnection);
-     level3->addWidget(bt_levelmenue);
 
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
@@ -581,7 +575,7 @@ void Level_3::showLevel(){
      umrandung1 = new MeinElement(myWorld3,level3, b2Vec2 (-30.0,0.0), 10, 1024, b2_staticBody, 1.0);
      umrandung2 = new MeinElement(myWorld3,level3, b2Vec2 (1002.0,0.0), 0, 1024, b2_staticBody, 1.0);
 
-     ball  = new Paperball(myWorld3, level3, QPointF(540.0,460.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld3, level3, QPointF(540.0,46.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      trampoline1 = new Trampoline(myWorld3,level3,b2Vec2(205,256),0,100,40,b2_staticBody,1.0,"obs");
      trampoline2 = new Trampoline(myWorld3,level3,b2Vec2(855,380),0,100,40,b2_staticBody,1.0,"obs");

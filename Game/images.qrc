@@ -76,7 +76,5 @@
         <file>images/tri2hover.png</file>
         <file>images/tri3default.png</file>
         <file>images/tri3hover.png</file>
-        <file>images/levelmenue_bt.png</file>
-        <file>images/levelmenue_hover.png</file>
     </qresource>
 </RCC>

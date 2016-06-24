@@ -508,7 +508,7 @@ void Level_1::showLevel(){
      //Rotate Left
      bt__left=new picButton(QPixmap(":/images/images/rotleftdefault.png"), QPixmap(":/images/images/rotlefthover.png"));
      bt__left->setEnabled(true);
-     bt__left->move(30.0,654.0);
+     bt__left->move(30.0,640.0);
      bt__left->setShortcut(Qt::Key_Left);
      connect(bt__left,SIGNAL(clicked()),this,SLOT(rotateLeft()), Qt::QueuedConnection);
      level->addWidget(bt__left);
@@ -516,17 +516,11 @@ void Level_1::showLevel(){
      //Rotate Right
      bt__right=new picButton(QPixmap(":/images/images/rotrightdefault.png"), QPixmap(":/images/images/rotrighthover.png"));
      bt__right->setEnabled(true);
-     bt__right->move(30.0,699.0);
+     bt__right->move(30.0,685.0);
      bt__right->setShortcut(Qt::Key_Right);
      connect(bt__right,SIGNAL(clicked()),this,SLOT(rotateRight()), Qt::QueuedConnection);
      level->addWidget(bt__right);
 
-     //Levelmenue
-     bt_levelmenue=new picButton(QPixmap(":/images/images/levelmenue_bt.png"), QPixmap(":/images/images/levelmenue_hover.png"));
-     bt_levelmenue->setEnabled(true);
-     bt_levelmenue->move(30.0,609.0);
-     connect(bt_levelmenue,SIGNAL(clicked()),this,SLOT(closeLevel()), Qt::QueuedConnection);
-     level->addWidget(bt_levelmenue);
 
      b2Vec2 gravity(0, 9.8); //normal earth gravity, 9.8 m/s/s straight down!
 
@@ -547,7 +541,7 @@ void Level_1::showLevel(){
      bottom= new MeinElement(myWorld, level, b2Vec2(0.0,level->height()-200), level->width(), 22, b2_staticBody, 0.1);
 
      // game Objects
-     ball  = new Paperball(myWorld, level, QPointF(520.0,440.0), 0*(3.14/180.0), b2_dynamicBody, circle);
+     ball  = new Paperball(myWorld, level, QPointF(520.0,44.0), 0*(3.14/180.0), b2_dynamicBody, circle);
 
      recyclebin1 = new RecycleBin(myWorld, level, QPointF(500,508),QPointF(510,508),QPointF(530,568),QPointF(520,568), 0.0, b2_staticBody);
      recyclebin2 = new RecycleBin(myWorld, level, QPointF(550,568),QPointF(570,508),QPointF(580,508),QPointF(560,568), 0.0, b2_staticBody);
