@@ -5,13 +5,13 @@
 
 /*!
  * \brief Circle::Circle
- * \param world
- * \param level
- * \param position
- * \param angle
- * \param type
- * \param circle
- * \param mode
+ * \param world : Box2D world for physic engine
+ * \param level : Scene for the game
+ * \param position : left upper corner
+ * \param angle : angle for the circle
+ * \param type : Box2D type of the circle(if it's static or dynamic)
+ * \param circle : Box2D knows that it is a circle
+ * \param mode : is it a obstacle or a tool
  */
 Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle,QString mode)
 {
@@ -86,29 +86,7 @@ bool Circle::drawBall1()
     }
 }
 
-/*!
- * \brief Circle::drawBall2
- * connects the Graphics to the Box2D-Object
- * \return
- */
-bool Circle::drawBall2()
-{
-    b2Vec2 v=body->GetPosition();
-    //qreal a=body->GetAngle();
-    //qreal grad=a*(180.0/3.14);
-    //qDebug() << v.x << v.y;
-    graphics->setPos(v.x,v.y);
 
-    qreal dx=549;
-    qreal dy=510;
-
-    if ((v.x<=dx)&&(v.x>=548)&&(v.y>=dy)){ //set postition of win for level_1
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
 /*!
  * \brief Circle::drawGraphics

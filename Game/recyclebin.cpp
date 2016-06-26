@@ -45,9 +45,6 @@ RecycleBin::RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF
     polygon2 << a << b << c << d;
     graphics = level->addPolygon(polygon2);
 
-    //QGraphicsPolygonItem *polygon2 = new QGraphicsPolygonItem();
-    //polygon2->setVisible(true);
-
     graphics->setFlag(QGraphicsItem::ItemIsMovable, false);
 
 
@@ -55,18 +52,6 @@ RecycleBin::RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF
 
 }
 
-/*!
- * \brief RecycleBin::draw
- * connects the Graphics to the Box2D-Object
- */
-void RecycleBin::draw()
-{
-    b2Vec2 v=body->GetPosition();
-
-    graphics->setPos(QPointF(v.x,v.y));
-    //qreal a=body->GetAngle();
-
-}
 
 /*!
  * \brief RecycleBin::drawGraphics
@@ -79,12 +64,4 @@ void RecycleBin::drawGraphics(){
 
 
 
-
-//    b2PolygonShape polygon;
-//    points << 8.0 <<
-//    polygon.Set(vonst b2Vec2 )
-//    b2BodyDef myBodyDef;
-//    myBodyDef.type=type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-//    myBodyDef.active = true;
-//    myBodyDef.gravityScale = 1.0;
 

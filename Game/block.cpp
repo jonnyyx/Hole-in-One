@@ -6,15 +6,15 @@
 
 /*!
  * \brief Block::Block
- * \param world
- * \param level
- * \param center
- * \param m_angle
- * \param m_length
- * \param m_width
- * \param type
- * \param friction
- * \param mode
+ * \param world : Box2D world for physic engine
+ * \param level : Scene for the game
+ * \param center : is the centerposition of the block
+ * \param m_angle: angle for the block
+ * \param m_length : length bock
+ * \param m_width : width block
+ * \param type : Box2D type of the Bbock(if it's static or dynamic)
+ * \param friction : friction for the Block
+ * \param mode : is it a obstacle or a tool
  */
 Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction,QString mode)
 {
@@ -61,33 +61,13 @@ Block::Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     }
 
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
-    //drawGraphics();
 
 
 
-}
-
-//FEHLER TODO der body ist nach rechts unten versetzt. krieg ihn nicht auf die richtige pos..
-//also wenn jemand bock hat hier weitermachen
-
-/*!
- * \brief Block::draw
- * connects the Graphics to the Box2D-Object
- */
-
-/*!
- * \brief Block::drawRec
- * \param x
- * \param y
- * connects the Graphics to the Box2D-Object
- */
-void Block::drawRec(int x,int y){
-
-
-    b2Vec2 a=body->GetPosition();
-    graphics->setPos(QPointF(a.x,a.y));
 
 }
+
+
 
 /*!
  * \brief Block::drawGraphics

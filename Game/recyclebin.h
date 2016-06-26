@@ -12,7 +12,7 @@ public:
     RecycleBin(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, QPointF d, qreal angle, b2BodyType type);
 
     void drawGraphics();
-    void draw();
+
     b2Body* body;
     QGraphicsItem* graphics;
 };

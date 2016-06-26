@@ -128,12 +128,7 @@ private:
     Triangle* obstacletriangle3;
     Triangle* obstacletriangle4;
     Triangle* obstacletriangle5;
-    Triangle* obstacletriangle6;
-    Triangle* obstacletriangle7;
-    Triangle* obstacletriangle8;
-    Triangle* obstacletriangle9;
-    Triangle* obstacletriangle10;
-    Triangle* obstacletriangle11;
+
 
 
     MeinElement* bottom;

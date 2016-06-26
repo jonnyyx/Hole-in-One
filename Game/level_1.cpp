@@ -28,10 +28,7 @@ Level_1::Level_1()
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(1024,768);
 
-    timer2=new QTimer(this);
-    timer2->setInterval(1.0/120.0*1000.0);
 
-    timer2->start();
 
     //Scene setup
     level = new QGraphicsScene();
@@ -40,7 +37,10 @@ Level_1::Level_1()
 
     showLevel();
 }
-
+/*!
+ * \brief Level_1::closeEvent
+ * listen if QGraphicsView is closed
+ */
 void Level_1::closeEvent(QCloseEvent *){
     closeLevel();
 }
@@ -53,8 +53,7 @@ void Level_1::closeEvent(QCloseEvent *){
 void Level_1::update(){
     myWorld->Step(framerate, 20, 20);
     win = ball->drawBall1(); //nur bewegende Elemente in Update
-    // qDebug()<<recyclebin1->body->GetPosition().x<<recyclebin1->body->GetPosition().y;
-	
+
         if (win==true){
         Level_1::pauseLevel();
 
@@ -85,7 +84,10 @@ void Level_1::update(){
 
     }
 }
-
+/*!
+ * \brief Level_1::closeLevel
+ * if QGraphicsView is closed emit Signal
+ */
 void Level_1::closeLevel(){
     emit levelcompleted();
     this->close();
@@ -101,7 +103,6 @@ void Level_1::startLevel(){
 
 	recyclebin1->drawGraphics();
     recyclebin2->drawGraphics();
-    //obstaclesrec1->drawGraphics();
     obstaclescircle1->drawGraphics();
     obstaclescircle2->drawGraphics();
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
@@ -354,9 +355,9 @@ void Level_1::highscoreCounter(){
     else if (counterTogether==0){
         highscore = 7;
     }
-    qDebug()<<counterTogether;
+
     highscore=highscore/leveltime*3000;
-    qDebug()<<highscore;
+
 }
 
 /*!
@@ -377,7 +378,7 @@ void Level_1::reset(){
 
 /*!
  * \brief Level_1::quitLevel
- * quits game and writes time/score into highscore table
+ * if it is a new highscore write it into level.txt with score time ande object#
  */
 void Level_1::saveLevel()
 {
@@ -610,7 +611,6 @@ void Level_1::rotateLeft(){
     if(counterRec==2){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle-0.5235;
-           // QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);
@@ -619,7 +619,6 @@ void Level_1::rotateLeft(){
         }
        if(addblock2->graphics->isSelected()){
            qreal angle=addblock2->angle-0.5235;
-           //QPointF pos=addblock2->graphics->pos();
            qreal degreeangle=angle*180/3.1415;
            level->removeItem(addblock2->graphics);
            addblock2->body->GetWorld()->DestroyBody(addblock2->body);
@@ -632,7 +631,6 @@ void Level_1::rotateLeft(){
     if(counterRec==3){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle-0.5235;
-            //QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);
@@ -642,7 +640,6 @@ void Level_1::rotateLeft(){
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle-0.5235;
-           // QPointF pos=elem5->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock2->graphics);
             addblock2->body->GetWorld()->DestroyBody(addblock2->body);
@@ -652,7 +649,6 @@ void Level_1::rotateLeft(){
         }
         if(addblock3->graphics->isSelected()){
             qreal angle=addblock3->angle-0.5235;
-            //QPointF pos=elem6->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock3->graphics);
             addblock3->body->GetWorld()->DestroyBody(addblock3->body);
@@ -671,7 +667,6 @@ void Level_1::rotateRight(){
     if(counterRec==1){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle+0.5235;
-            //QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);
@@ -683,7 +678,6 @@ void Level_1::rotateRight(){
     if(counterRec==2){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle+0.5235;
-           // QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);
@@ -693,7 +687,6 @@ void Level_1::rotateRight(){
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle+0.5235;
-            //QPointF pos=addblock2->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock2->graphics);
             addblock2->body->GetWorld()->DestroyBody(addblock2->body);
@@ -706,7 +699,6 @@ void Level_1::rotateRight(){
     if(counterRec==3){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle+0.5235;
-           // QPointF pos=addblock1->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);
@@ -716,7 +708,6 @@ void Level_1::rotateRight(){
         }
         if(addblock2->graphics->isSelected()){
             qreal angle=addblock2->angle+0.5235;
-           // QPointF pos=addblock2->graphics->pos();
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock2->graphics);
             addblock2->body->GetWorld()->DestroyBody(addblock2->body);
@@ -726,7 +717,6 @@ void Level_1::rotateRight(){
         }
        if(addblock3->graphics->isSelected()){
            qreal angle=addblock3->angle+0.5235;
-           //QPointF pos=addblock3->graphics->pos();
            qreal degreeangle=angle*180/3.1415;
            level->removeItem(addblock3->graphics);
            addblock3->body->GetWorld()->DestroyBody(addblock3->body);

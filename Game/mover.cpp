@@ -34,7 +34,7 @@ Mover::Mover(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     polygonFixtureDef.shape=&polygon;
     polygonFixtureDef.density=1;
     polygonFixtureDef.friction=friction;
-    polygonFixtureDef.restitution;
+
 
     body->CreateFixture(&polygonFixtureDef);
 
@@ -61,40 +61,16 @@ Mover::Mover(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle
     }
 
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
-    //drawGraphics();
 
 
 
-}
-
-/*!
- * \brief Mover::draw
- * connects the Graphics to the Box2D-Object
- */
-
-/*!
- * \brief Mover::drawMover
- * \param x
- * \param y
- * connects the Graphics to the Box2D-Object
- */
-void Mover::drawMover(int x,int y){
-
-
-    b2Vec2 a=body->GetPosition();
-    graphics->setPos(QPointF(a.x,a.y));
 
 }
 
-/*!
- * \brief Mover::drawGraphics
- * connects the Box2D-Object to the Graphics after relocation
- */
-void Mover::drawGraphics()
-{
-    QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
-}
+
+
+
+
 
 
 

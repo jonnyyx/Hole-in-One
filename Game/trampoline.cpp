@@ -62,40 +62,16 @@ Trampoline::Trampoline(b2World *world, QGraphicsScene *level, b2Vec2 center, qre
     }
 
     graphics->setTransformOriginPoint(x+length/2,y+width/2);
-    //drawGraphics();
 
 
 
 }
 
-/*!
- * \brief Trampoline::draw
- * connects the Graphics to the Box2D-Object
- */
-
-/*!
- * \brief Trampoline::drawTramp()
- * \param x
- * \param y
- * connects the Graphics to the Box2D-Object
- */
-void Trampoline::drawTramp(int x,int y){
 
 
-    b2Vec2 a=body->GetPosition();
-    graphics->setPos(QPointF(a.x,a.y));
 
-}
 
-/*!
- * \brief Trampoline::drawGraphics
- * connects the Box2D-Object to the Graphics after relocation
- */
-void Trampoline::drawGraphics()
-{
-    QPointF v=graphics->pos();
-    body->SetTransform(b2Vec2(v.x()-21,v.y()-21),body->GetAngle());
-}
+
 
 
 

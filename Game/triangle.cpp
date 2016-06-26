@@ -19,7 +19,7 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 {
     b2BodyDef myBodyDef;
     myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-    //myBodyDef.angle = angle;
+
 
     body = world->CreateBody(&myBodyDef);
 
@@ -56,7 +56,6 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
 
     QPolygonF triangle;
     triangle << a << b << c;
-//    graphics = level->addPolygon(triangle);
     if(mode=="obs"){
         if(angle==0){
             QPixmap bkgnd(":/pic/triangle_obs.png");
@@ -133,19 +132,10 @@ Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, 
     }
 
 }
-draw();
-}
-
-/*!
- * \brief Triangle::draw
- * connects the Graphics to the Box2D-Object
- */
-void Triangle::draw()
-{
-    b2Vec2 v=body->GetPosition();
-
 
 }
+
+
 
 /*!
  * \brief Triangle::drawGraphics

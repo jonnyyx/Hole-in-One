@@ -9,12 +9,13 @@
 #include "level_3.h"
 #include "level_4.h"
 #include "qdebug.h"
-
 /*!
  * \brief GUI::GUI
  * \param parent
+ * Create QGraphicsView and enter scene
  */
-GUI::GUI(QWidget *parent){
+
+GUI::GUI(QWidget *){
     /*!Screen setup. No scroll bar available*/
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -76,6 +77,7 @@ void GUI::mute()
 
 /*!
  * \brief GUI::csnd
+ * paly sound if it is not muted
  */
 void GUI::csnd()
 {
@@ -101,14 +103,17 @@ void GUI::displayGUI()
 
     checkLevel();
 
-     /*!create title text*/
+     /*!
+      * create title text*/
     QGraphicsPixmapItem* titleText = new QGraphicsPixmapItem(QPixmap(":/images/images/Title.png"));
     int titlexPos = this->width()/2-titleText->boundingRect().width()/2;
     int titleyPos = 120;
     titleText->setPos(titlexPos,titleyPos);
     scene->addItem(titleText);
 
-    /*!create level menu button*/
+    /*!
+     * create level menu button
+    */
     picButton* levelpicButton = new picButton(QPixmap(":/images/images/levelbuttonhover.png"), QPixmap(":/images/images/levelbuttondefault.png"));
     int levelxPos = this->width()/2-levelpicButton->width()/2;
     int levelyPos = 270;
@@ -117,7 +122,9 @@ void GUI::displayGUI()
     connect(levelpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(levelpicButton);
 
-    /*!create highscore button*/
+    /*!
+     * create highscore button
+    */
 
     picButton* scorepicButton = new picButton(QPixmap(":/images/images/highscorebuttondefault.png"), QPixmap(":/images/images/highscorebuttonhover.png"));
     int scorexPos = this->width()/2-scorepicButton->width()/2;
@@ -127,7 +134,9 @@ void GUI::displayGUI()
     connect(scorepicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(scorepicButton);
 
-    /*!create help button*/
+    /*!
+     * create help button
+    */
 
     picButton* helppicButton = new picButton(QPixmap(":/images/images/helpbuttondefault.png"), QPixmap(":/images/images/helpbuttonhover.png"));
     int helpxPos = this->width()/2-helppicButton->width()/2;
@@ -137,7 +146,9 @@ void GUI::displayGUI()
     connect(helppicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(helppicButton);
 
-    /*!create quit button*/
+    /*!
+     * create quit button
+    */
     picButton* quitpicButton = new picButton(QPixmap(":/images/images/quitbuttondefault.png"), QPixmap(":/images/images/quitbuttonhover.png"));
     int quitxPos = this->width()/2-quitpicButton->width()/2;
     int quityPos = 570;
@@ -146,7 +157,9 @@ void GUI::displayGUI()
     connect(quitpicButton, SIGNAL(clicked()), this, SLOT(csnd()));
     scene->addWidget(quitpicButton);
 
-    /*!create sound button*/
+    /*!
+     * create sound button
+    */
     mutepicButton = new picButton(QPixmap(":/images/images/soundon.png"), QPixmap(":/images/images/soundon.png"), false);
     int mutexPos = 920;
     int muteyPos = 680;
@@ -159,7 +172,7 @@ void GUI::displayGUI()
 /*!
  * \brief GUI::levelMenu
  * opens the Levelmenu
- * shows the Levels which can be selected
+ * shows the Levels which can be selected(if they are enabled)
  * opens the selected Level
  */
 void GUI::levelMenu()
@@ -174,7 +187,7 @@ void GUI::levelMenu()
 
     scene->addItem(titleText);
 
-    //levelenab[2]="true";
+
 
     /*!create level menu button*/
     picButton* onepicButton = new picButton(QPixmap(":/images/images/1enabled.png"), QPixmap(":/images/images/1hover.png"));
@@ -278,6 +291,10 @@ void GUI::back(){
         clicksnd -> play();
     }
 }
+/*!
+ * \brief GUI::showGuiagain
+ * reopen GUI after finish Level or close the level
+ */
 
 void GUI::showGuiagain(){
     levelMenu();
@@ -286,7 +303,7 @@ void GUI::showGuiagain(){
 
 /*!
  * \brief GUI::showLevel1
- * starts Level_1
+ * starts Level_1 and hide gui
  */
 void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
@@ -301,7 +318,7 @@ void GUI::showLevel1()      //scene und level anpassen. 2. Fenster wird geöffne
 
 /*!
  * \brief GUI::showLevel2
- * starts Level_2
+ * starts Level_2 and hide gui
  */
 void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffnet für Level
 {
@@ -316,7 +333,7 @@ void GUI::showLevel2()      //scene und level anpassen. 2. Fenster wird geöffne
 
 /*!
  * \brief GUI::showLevel3
- * starts Level_3
+ * starts Level_3 and hide gui
  */
 void GUI::showLevel3()
 {
@@ -332,7 +349,7 @@ void GUI::showLevel3()
 
 /*!
  * \brief GUI::showLevel4
- * starts Level_4
+ * starts Level_4 and hide gui
  */
 void GUI::showLevel4()
 {
@@ -348,9 +365,7 @@ void GUI::showLevel4()
 
 /*!
  * \brief GUI::highscore
- * opens the Highscoretable
- * checkout of the enabled levels
- * relaeses the playable Levels
+ * opens the Highscoretable and fill up the table for the level which are finished
  */
 void GUI::highscore()
 {
@@ -722,6 +737,7 @@ void GUI::help()
 
 /*!
  * \brief GUI::box
+ * box=rectangle helpmenu
  */
 void GUI::box()
 {
@@ -792,6 +808,7 @@ void GUI::box()
 
 /*!
  * \brief GUI::circle
+ * circle helpmenu
  */
 void GUI::circle()
 {
@@ -857,6 +874,7 @@ void GUI::circle()
 
 /*!
  * \brief GUI::triangle
+ * triangle helpmenu
  */
 void GUI::triangle()
 {
@@ -927,6 +945,7 @@ void GUI::triangle()
 
 /*!
  * \brief GUI::checkLevel
+ * read out level.txt and fill the content in levelenab
  */
 void GUI::checkLevel(){
     levelenab.clear();

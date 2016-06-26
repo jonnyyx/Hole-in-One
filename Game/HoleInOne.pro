@@ -134,7 +134,6 @@ HEADERS  += \
     Box2D/Rope/b2Rope.h \
     meinelement.h \
     gui.h \
-    main.h \
     picbutton.h \
     level_1.h \
     triangle.h\

@@ -115,7 +115,7 @@ private:
     Block* obstaclesrec8;
     Block* obstaclesrec9;
     Block* obstaclesrec10;
-    Block* obstaclesrec11;
+
 
     MeinElement* bottom;
     MeinElement* umrandung1;
@@ -123,7 +123,7 @@ private:
     MeinElement* msgbox;       // Problem beim linksrotieren für 270 Grad -> 180 Grad & 90 Grad -> 0 Grad ok. Also 0 Grad -> 270 Grad funktioniert
 
     QTimer* timer;
-    QTimer* timer2;
+
     QPointF oldpos;
     int anzahl;
     b2Vec2 positionElem;
