@@ -1,0 +1,141 @@
+\hypertarget{class_block}{}\section{Block Class Reference}
+\label{class_block}\index{Block@{Block}}
+
+
+The \hyperlink{class_block}{Block} class.  
+
+
+
+
+{\ttfamily \#include $<$block.\+h$>$}
+
+Inheritance diagram for Block\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_block_acb9ba4b4221f41d888628a434052af6e}{Block} (b2\+World $\ast$world, Q\+Graphics\+Scene $\ast$level, b2\+Vec2 center, qreal m\+\_\+angle, qreal m\+\_\+length, qreal m\+\_\+width, b2\+Body\+Type type, qreal friction, Q\+String mode)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_block_acb9ba4b4221f41d888628a434052af6e}{Block\+::\+Block}. \end{DoxyCompactList}\item 
+void \hyperlink{class_block_a38b7625137a54cf57193c844163f9532}{draw\+Graphics} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_block_a38b7625137a54cf57193c844163f9532}{Block\+::draw\+Graphics} connects the Box2\+D-\/\+Object to the Graphics after relocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+qreal \hyperlink{class_block_a7ad40ed8c8d961b1ca2117835853a9c5}{length}
+\begin{DoxyCompactList}\small\item\em lenth of the object \end{DoxyCompactList}\item 
+qreal \hyperlink{class_block_af7693d02f586bf02df6181995a66b768}{width}
+\begin{DoxyCompactList}\small\item\em width of the object \end{DoxyCompactList}\item 
+qreal \hyperlink{class_block_ac19871a0cf41116b9585f34c3c21ec54}{angle}
+\begin{DoxyCompactList}\small\item\em angle of the object \end{DoxyCompactList}\item 
+b2\+Body $\ast$ \hyperlink{class_block_a5c9003f7f9cd6105465da994012085f8}{body}
+\begin{DoxyCompactList}\small\item\em Box2D Body of object. \end{DoxyCompactList}\item 
+Q\+Graphics\+Item $\ast$ \hyperlink{class_block_aab0690c05a4c1c8ee999647250b3e170}{graphics}
+\begin{DoxyCompactList}\small\item\em graphic of object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_block}{Block} class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Block@{Block}!Block@{Block}}
+\index{Block@{Block}!Block@{Block}}
+\subsubsection[{\texorpdfstring{Block(b2\+World $\ast$world, Q\+Graphics\+Scene $\ast$level, b2\+Vec2 center, qreal m\+\_\+angle, qreal m\+\_\+length, qreal m\+\_\+width, b2\+Body\+Type type, qreal friction, Q\+String mode)}{Block(b2World *world, QGraphicsScene *level, b2Vec2 center, qreal m_angle, qreal m_length, qreal m_width, b2BodyType type, qreal friction, QString mode)}}]{\setlength{\rightskip}{0pt plus 5cm}Block\+::\+Block (
+\begin{DoxyParamCaption}
+\item[{b2\+World $\ast$}]{world, }
+\item[{Q\+Graphics\+Scene $\ast$}]{level, }
+\item[{b2\+Vec2}]{center, }
+\item[{qreal}]{m\+\_\+angle, }
+\item[{qreal}]{m\+\_\+length, }
+\item[{qreal}]{m\+\_\+width, }
+\item[{b2\+Body\+Type}]{type, }
+\item[{qreal}]{friction, }
+\item[{Q\+String}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{class_block_acb9ba4b4221f41d888628a434052af6e}{}\label{class_block_acb9ba4b4221f41d888628a434052af6e}
+
+
+\hyperlink{class_block_acb9ba4b4221f41d888628a434052af6e}{Block\+::\+Block}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world} & \+: Box2D world for physic engine \\
+\hline
+{\em level} & \+: Scene for the game \\
+\hline
+{\em center} & \+: is the centerposition of the block \\
+\hline
+{\em m\+\_\+angle} & angle for the block \\
+\hline
+{\em m\+\_\+length} & \+: length bock \\
+\hline
+{\em m\+\_\+width} & \+: width block \\
+\hline
+{\em type} & \+: Box2D type of the Bbock(if it\textquotesingle{}s static or dynamic) \\
+\hline
+{\em friction} & \+: friction for the \hyperlink{class_block}{Block} \\
+\hline
+{\em mode} & \+: is it a obstacle or a tool \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Block@{Block}!draw\+Graphics@{draw\+Graphics}}
+\index{draw\+Graphics@{draw\+Graphics}!Block@{Block}}
+\subsubsection[{\texorpdfstring{draw\+Graphics()}{drawGraphics()}}]{\setlength{\rightskip}{0pt plus 5cm}void Block\+::draw\+Graphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_block_a38b7625137a54cf57193c844163f9532}{}\label{class_block_a38b7625137a54cf57193c844163f9532}
+
+
+\hyperlink{class_block_a38b7625137a54cf57193c844163f9532}{Block\+::draw\+Graphics} connects the Box2\+D-\/\+Object to the Graphics after relocation. 
+
+
+
+\subsection{Member Data Documentation}
+\index{Block@{Block}!angle@{angle}}
+\index{angle@{angle}!Block@{Block}}
+\subsubsection[{\texorpdfstring{angle}{angle}}]{\setlength{\rightskip}{0pt plus 5cm}qreal Block\+::angle}\hypertarget{class_block_ac19871a0cf41116b9585f34c3c21ec54}{}\label{class_block_ac19871a0cf41116b9585f34c3c21ec54}
+
+
+angle of the object 
+
+\index{Block@{Block}!body@{body}}
+\index{body@{body}!Block@{Block}}
+\subsubsection[{\texorpdfstring{body}{body}}]{\setlength{\rightskip}{0pt plus 5cm}b2\+Body$\ast$ Block\+::body}\hypertarget{class_block_a5c9003f7f9cd6105465da994012085f8}{}\label{class_block_a5c9003f7f9cd6105465da994012085f8}
+
+
+Box2D Body of object. 
+
+\index{Block@{Block}!graphics@{graphics}}
+\index{graphics@{graphics}!Block@{Block}}
+\subsubsection[{\texorpdfstring{graphics}{graphics}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Graphics\+Item$\ast$ Block\+::graphics}\hypertarget{class_block_aab0690c05a4c1c8ee999647250b3e170}{}\label{class_block_aab0690c05a4c1c8ee999647250b3e170}
+
+
+graphic of object 
+
+\index{Block@{Block}!length@{length}}
+\index{length@{length}!Block@{Block}}
+\subsubsection[{\texorpdfstring{length}{length}}]{\setlength{\rightskip}{0pt plus 5cm}qreal Block\+::length}\hypertarget{class_block_a7ad40ed8c8d961b1ca2117835853a9c5}{}\label{class_block_a7ad40ed8c8d961b1ca2117835853a9c5}
+
+
+lenth of the object 
+
+\index{Block@{Block}!width@{width}}
+\index{width@{width}!Block@{Block}}
+\subsubsection[{\texorpdfstring{width}{width}}]{\setlength{\rightskip}{0pt plus 5cm}qreal Block\+::width}\hypertarget{class_block_af7693d02f586bf02df6181995a66b768}{}\label{class_block_af7693d02f586bf02df6181995a66b768}
+
+
+width of the object 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game/\hyperlink{block_8h}{block.\+h}\item 
+Game/\hyperlink{block_8cpp}{block.\+cpp}\end{DoxyCompactItemize}

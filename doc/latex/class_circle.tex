@@ -1,0 +1,143 @@
+\hypertarget{class_circle}{}\section{Circle Class Reference}
+\label{class_circle}\index{Circle@{Circle}}
+
+
+{\ttfamily \#include $<$circle.\+h$>$}
+
+Inheritance diagram for Circle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_circle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_circle_af0186a5b261937e4902fa143968fb846}{Circle} (b2\+World $\ast$world, Q\+Graphics\+Scene $\ast$level, Q\+PointF position, qreal angle, b2\+Body\+Type type, b2\+Circle\+Shape \&circle, Q\+String mode)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_circle_af0186a5b261937e4902fa143968fb846}{Circle\+::\+Circle}. \end{DoxyCompactList}\item 
+void \hyperlink{class_circle_a3a3fea884c3f2865b00190d3c165e7cd}{create\+Circle} (b2\+World world, Q\+Graphics\+Scene levelscene, Q\+PointF pos, qreal angle, b2\+Body\+Type type, b2\+Circle\+Shape \&circle)
+\item 
+void \hyperlink{class_circle_a3a3f7166e7f629e44f9044b0e537eb22}{draw} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_circle_a3a3f7166e7f629e44f9044b0e537eb22}{Circle\+::draw} connects the Graphics to the Box2\+D-\/\+Object. \end{DoxyCompactList}\item 
+bool \hyperlink{class_circle_a71e6174daf2374f4c07361ba42c15276}{draw\+Ball1} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_circle_a71e6174daf2374f4c07361ba42c15276}{Circle\+::draw\+Ball1} connects the Graphics to the Box2\+D-\/\+Object. \end{DoxyCompactList}\item 
+void \hyperlink{class_circle_a62401396510855dbb2e3a2fb3444c90a}{draw\+Graphics} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_circle_a62401396510855dbb2e3a2fb3444c90a}{Circle\+::draw\+Graphics} connects the Box2\+D-\/\+Object to the Graphics after relocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+b2\+Body $\ast$ \hyperlink{class_circle_ac3736c952dbac0c813f6d98f29a3e34b}{body}
+\begin{DoxyCompactList}\small\item\em Box2D Body of object. \end{DoxyCompactList}\item 
+Q\+Graphics\+Item $\ast$ \hyperlink{class_circle_adcb606946696832caca242eafcc8322a}{graphics}
+\begin{DoxyCompactList}\small\item\em graphic of object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Circle@{Circle}!Circle@{Circle}}
+\index{Circle@{Circle}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{Circle(b2\+World $\ast$world, Q\+Graphics\+Scene $\ast$level, Q\+Point\+F position, qreal angle, b2\+Body\+Type type, b2\+Circle\+Shape \&circle, Q\+String mode)}{Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal angle, b2BodyType type, b2CircleShape &circle, QString mode)}}]{\setlength{\rightskip}{0pt plus 5cm}Circle\+::\+Circle (
+\begin{DoxyParamCaption}
+\item[{b2\+World $\ast$}]{world, }
+\item[{Q\+Graphics\+Scene $\ast$}]{level, }
+\item[{Q\+PointF}]{position, }
+\item[{qreal}]{angle, }
+\item[{b2\+Body\+Type}]{type, }
+\item[{b2\+Circle\+Shape \&}]{circle, }
+\item[{Q\+String}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{class_circle_af0186a5b261937e4902fa143968fb846}{}\label{class_circle_af0186a5b261937e4902fa143968fb846}
+
+
+\hyperlink{class_circle_af0186a5b261937e4902fa143968fb846}{Circle\+::\+Circle}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world} & \+: Box2D world for physic engine \\
+\hline
+{\em level} & \+: Scene for the game \\
+\hline
+{\em position} & \+: left upper corner \\
+\hline
+{\em angle} & \+: angle for the circle \\
+\hline
+{\em type} & \+: Box2D type of the circle(if it\textquotesingle{}s static or dynamic) \\
+\hline
+{\em circle} & \+: Box2D knows that it is a circle \\
+\hline
+{\em mode} & \+: is it a obstacle or a tool \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Circle@{Circle}!create\+Circle@{create\+Circle}}
+\index{create\+Circle@{create\+Circle}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{create\+Circle(b2\+World world, Q\+Graphics\+Scene levelscene, Q\+Point\+F pos, qreal angle, b2\+Body\+Type type, b2\+Circle\+Shape \&circle)}{createCircle(b2World world, QGraphicsScene levelscene, QPointF pos, qreal angle, b2BodyType type, b2CircleShape &circle)}}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\+::create\+Circle (
+\begin{DoxyParamCaption}
+\item[{b2\+World}]{world, }
+\item[{Q\+Graphics\+Scene}]{levelscene, }
+\item[{Q\+PointF}]{pos, }
+\item[{qreal}]{angle, }
+\item[{b2\+Body\+Type}]{type, }
+\item[{b2\+Circle\+Shape \&}]{circle}
+\end{DoxyParamCaption}
+)}\hypertarget{class_circle_a3a3fea884c3f2865b00190d3c165e7cd}{}\label{class_circle_a3a3fea884c3f2865b00190d3c165e7cd}
+\index{Circle@{Circle}!draw@{draw}}
+\index{draw@{draw}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{draw()}{draw()}}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\+::draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_circle_a3a3f7166e7f629e44f9044b0e537eb22}{}\label{class_circle_a3a3f7166e7f629e44f9044b0e537eb22}
+
+
+\hyperlink{class_circle_a3a3f7166e7f629e44f9044b0e537eb22}{Circle\+::draw} connects the Graphics to the Box2\+D-\/\+Object. 
+
+\index{Circle@{Circle}!draw\+Ball1@{draw\+Ball1}}
+\index{draw\+Ball1@{draw\+Ball1}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{draw\+Ball1()}{drawBall1()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Circle\+::draw\+Ball1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_circle_a71e6174daf2374f4c07361ba42c15276}{}\label{class_circle_a71e6174daf2374f4c07361ba42c15276}
+
+
+\hyperlink{class_circle_a71e6174daf2374f4c07361ba42c15276}{Circle\+::draw\+Ball1} connects the Graphics to the Box2\+D-\/\+Object. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\index{Circle@{Circle}!draw\+Graphics@{draw\+Graphics}}
+\index{draw\+Graphics@{draw\+Graphics}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{draw\+Graphics()}{drawGraphics()}}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\+::draw\+Graphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_circle_a62401396510855dbb2e3a2fb3444c90a}{}\label{class_circle_a62401396510855dbb2e3a2fb3444c90a}
+
+
+\hyperlink{class_circle_a62401396510855dbb2e3a2fb3444c90a}{Circle\+::draw\+Graphics} connects the Box2\+D-\/\+Object to the Graphics after relocation. 
+
+
+
+\subsection{Member Data Documentation}
+\index{Circle@{Circle}!body@{body}}
+\index{body@{body}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{body}{body}}]{\setlength{\rightskip}{0pt plus 5cm}b2\+Body$\ast$ Circle\+::body}\hypertarget{class_circle_ac3736c952dbac0c813f6d98f29a3e34b}{}\label{class_circle_ac3736c952dbac0c813f6d98f29a3e34b}
+
+
+Box2D Body of object. 
+
+\index{Circle@{Circle}!graphics@{graphics}}
+\index{graphics@{graphics}!Circle@{Circle}}
+\subsubsection[{\texorpdfstring{graphics}{graphics}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Graphics\+Item$\ast$ Circle\+::graphics}\hypertarget{class_circle_adcb606946696832caca242eafcc8322a}{}\label{class_circle_adcb606946696832caca242eafcc8322a}
+
+
+graphic of object 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game/\hyperlink{circle_8h}{circle.\+h}\item 
+Game/\hyperlink{circle_8cpp}{circle.\+cpp}\end{DoxyCompactItemize}
