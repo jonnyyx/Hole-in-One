@@ -6,6 +6,9 @@
 #include<QPointF>
 #include "meinelement.h"
 
+/*!
+ * \brief The Paperball class
+ */
 class Paperball : public QObject
 {
 
@@ -15,8 +18,8 @@ public:
     void createPaper(b2World world, QGraphicsScene levelscene, QPointF pos, qreal angle, b2BodyType type, b2CircleShape &circle);
 
 
-    b2Body* body;
-    QGraphicsItem* graphics;
+    b2Body* body; ///<Box2D Body of Object
+    QGraphicsItem* graphics; ///<Graphic of Object
     bool drawBall1();
 
 
