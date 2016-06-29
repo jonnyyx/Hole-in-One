@@ -6,6 +6,9 @@
 
 class MainWindow;
 
+/*!
+ * \brief The RecycleBin class
+ */
 class RecycleBin {
 
 public:
@@ -13,8 +16,8 @@ public:
 
     void drawGraphics();
 
-    b2Body* body;
-    QGraphicsItem* graphics;
+    b2Body* body; ///<Box2D Body of Object
+    QGraphicsItem* graphics; ///<Graphic of Object
 };
 
 #endif // RECYCLEBIN_H

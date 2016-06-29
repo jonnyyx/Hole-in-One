@@ -7,6 +7,9 @@
 #include <QMediaPlaylist>
 #include <picbutton.h>
 
+/*!
+ * \brief The GUI class
+ */
 class GUI : public QGraphicsView
 {
     Q_OBJECT
@@ -16,11 +19,11 @@ public:
 
     void displayGUI();
      void checkLevel();
-    QGraphicsScene* scene;  //attributes
+    QGraphicsScene* scene;  ///<Scene for GUI
 
-    picButton* mutepicButton;
+    picButton* mutepicButton; ///<Mutepicbutton for Sound
 
-    bool ismute = false;
+    bool ismute = false; ///<Check if Sound is on or off
 
 
 public slots:
@@ -49,10 +52,10 @@ public slots:
 
 private:
 
-    QStringList levelenab;
-    QMediaPlayer *clicksnd;
-    QMediaPlayer *bksnd;
-    QMediaPlaylist *playlist;
+    QStringList levelenab; ///<List if Level is enabled or not
+    QMediaPlayer *clicksnd; ///<Mediaplayer for Clicksound
+    QMediaPlayer *bksnd; ///<Mediaplayer for Backgrounsound
+    QMediaPlaylist *playlist; ///<Playlist for Backgroundsound
 
 };
 

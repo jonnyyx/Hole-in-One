@@ -6,12 +6,15 @@
 
 class MainWindow;
 
+/*!
+ * \brief The RecycleBinGraphics class
+ */
 class RecycleBinGraphics {
 
 public:
     RecycleBinGraphics(QGraphicsScene *level);
 
-    QGraphicsItem* graphics;
+    QGraphicsItem* graphics; ///<Graphic of Recyclebinobject
 };
 
 #endif // RECYCLEBIN2_H
