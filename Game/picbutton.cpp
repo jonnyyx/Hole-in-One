@@ -22,7 +22,12 @@ picButton::picButton(QPixmap _defaultpic, QPixmap _hoverpic)
     setMouseTracking(true);
 
 }
-
+/*!
+ * \brief picButton::picButton
+ * \param _defaultpic picture of button
+ * \param _hoverpic picture if you hover over button
+ * \param _hover does mouse hover
+ */
 picButton::picButton(QPixmap _defaultpic, QPixmap _hoverpic, bool _hover)
 {
     defaultpic=_defaultpic;
@@ -40,7 +45,10 @@ picButton::picButton(QPixmap _defaultpic, QPixmap _hoverpic, bool _hover)
     setMouseTracking(true);
 
 }
-
+/*!
+ * \brief picButton::enterEvent
+ * \param event clickevent
+ */
 void picButton::enterEvent(QEvent *event)
 {
 
@@ -51,7 +59,10 @@ void picButton::enterEvent(QEvent *event)
     }
 
 }
-
+/*!
+ * \brief picButton::leaveEvent
+ * \param event mouse leave butto area
+ */
 void picButton::leaveEvent(QEvent *event)
 {
     if(hover==true){
@@ -62,13 +73,20 @@ void picButton::leaveEvent(QEvent *event)
 
 
 }
-
+/*!
+ * \brief picButton::setdefaultpic
+ * \param _defaultpic insert picutre
+ */
 void picButton::setdefaultpic(QPixmap _defaultpic){
     defaultpic=_defaultpic;
     QIcon ButtonIcon(defaultpic);
     setIcon(ButtonIcon);
 
 }
+/*!
+ * \brief picButton::sethoverpic
+ * \param _hoverpic insert picture
+ */
 void picButton::sethoverpic(QPixmap _hoverpic){
     hoverpic=_hoverpic;
     QIcon ButtonIcon(hoverpic);

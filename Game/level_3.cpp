@@ -184,9 +184,7 @@ void Level_3::pauseLevel(){
 
     qDebug()<<"Level paused";
     qDebug()<<leveltime_elapsed.elapsed()<<"milliseconds";
-    //qDebug()<<leveltime;
-    //qDebug()<<highscore;
-}
+  }
 
 /*!
  * \brief Level_3::resumeLevel

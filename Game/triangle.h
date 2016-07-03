@@ -18,8 +18,8 @@ public:
     void drawGraphics();
 
 
-    b2Body* body;
-    QGraphicsItem* graphics;
+    b2Body* body;///<body of triangle
+    QGraphicsItem* graphics;///<graphic of triangle
 
 private:
 

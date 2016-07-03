@@ -35,34 +35,7 @@ MeinElement::MeinElement(b2World *world, QGraphicsScene *level, b2Vec2 center, q
 
 }
 
-//MeinElement::MeinElement(b2World* world, QGraphicsScene* level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction){
 
-//    b2BodyDef myBodyDef;
-//    myBodyDef.type = type; // Unterscheidung zwischen Dynamic, Static and Kinematic Body
-//    myBodyDef.angle = angle;
-
-//    body = world->CreateBody(&myBodyDef);
-
-//    //set each vertex of polygon in an array
-//    b2Vec2 vertices[3];
-//    vertices[0].Set(a.x(), a.y());
-//    vertices[1].Set(b.x(), b.y());
-//    vertices[2].Set(c.x(), c.y());
-
-//    b2PolygonShape polygon;
-//    polygon.Set(vertices, 3); //pass array to the shape
-
-//    b2FixtureDef triangleFixtureDef;
-//    triangleFixtureDef.shape = &polygon; //change the shape of the fixture
-//    triangleFixtureDef.friction=friction;
-//    body->CreateFixture(&triangleFixtureDef); //add a fixture to the body
-
-//    QPolygonF triangle;
-//    triangle << a << b << c;
-//    graphics = level->addPolygon(triangle);
-
-//    graphics->setFlag(QGraphicsItem::ItemIsMovable,true);
-//}
 
 MeinElement::MeinElement(QGraphicsScene *level, QPointF center, qreal length, qreal width)
 {

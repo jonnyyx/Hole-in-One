@@ -599,7 +599,7 @@ void Level_1::rotateLeft(){
     if(counterRec==1){
         if(addblock1->graphics->isSelected()){
             qreal angle=addblock1->angle-0.5235;
-           // QPointF pos=addblock1->graphics->pos();
+
             qreal degreeangle=angle*180/3.1415;
             level->removeItem(addblock1->graphics);
             addblock1->body->GetWorld()->DestroyBody(addblock1->body);

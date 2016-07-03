@@ -12,11 +12,11 @@ public:
 
 
 
-    qreal length;
-    qreal width;
-    qreal angle;
-    b2Body* body;
-    QGraphicsItem* graphics;
+    qreal length;///<length of object
+    qreal width;///<width of object
+    qreal angle;///<angle of object
+    b2Body* body;///<body of object
+    QGraphicsItem* graphics;///<graphics of object
 
 
 

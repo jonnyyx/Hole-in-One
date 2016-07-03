@@ -21,15 +21,15 @@ Inheritance diagram for pic\+Button\+:\begin{figure}[H]
 \hyperlink{classpic_button_a1d5dc5f3e6a73e24dd873fb6a33a3e7f}{pic\+Button} (Q\+Pixmap \+\_\+defaultpic, Q\+Pixmap \+\_\+hoverpic)
 \begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a1d5dc5f3e6a73e24dd873fb6a33a3e7f}{pic\+Button\+::pic\+Button} \end{DoxyCompactList}\item 
 \hyperlink{classpic_button_a6c7eca4ea10251d19dde58edea0f0e12}{pic\+Button} (Q\+Pixmap \+\_\+defaultpic, Q\+Pixmap \+\_\+hoverpic, bool \hyperlink{classpic_button_ab011ab567cb14054023cc46cfc3110c1}{hover})
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a1d5dc5f3e6a73e24dd873fb6a33a3e7f}{pic\+Button\+::pic\+Button} \end{DoxyCompactList}\item 
 void \hyperlink{classpic_button_a8e06509469d6b2c5efe9c58558209350}{enter\+Event} (Q\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a8e06509469d6b2c5efe9c58558209350}{pic\+Button\+::enter\+Event} \end{DoxyCompactList}\item 
 void \hyperlink{classpic_button_a22c110a8f610d4a315b2c260e7d1f2b9}{leave\+Event} (Q\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a22c110a8f610d4a315b2c260e7d1f2b9}{pic\+Button\+::leave\+Event} \end{DoxyCompactList}\item 
 void \hyperlink{classpic_button_a38c0a41c10500e605cda766094ee00a5}{setdefaultpic} (Q\+Pixmap \hyperlink{classpic_button_a13f03c5d3c47b0a10b3798f9588a8cf5}{defaultpic})
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a38c0a41c10500e605cda766094ee00a5}{pic\+Button\+::setdefaultpic} \end{DoxyCompactList}\item 
 void \hyperlink{classpic_button_a632d61dedf5693fcade81c6a998a377d}{sethoverpic} (Q\+Pixmap \hyperlink{classpic_button_a6e387b9fc6348b681a786db8452fbc9d}{hoverpic})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classpic_button_a632d61dedf5693fcade81c6a998a377d}{pic\+Button\+::sethoverpic} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -70,9 +70,22 @@ Hovering mouse \index{pic\+Button@{pic\+Button}!pic\+Button@{pic\+Button}}
 \begin{DoxyParamCaption}
 \item[{Q\+Pixmap}]{\+\_\+defaultpic, }
 \item[{Q\+Pixmap}]{\+\_\+hoverpic, }
-\item[{bool}]{hover}
+\item[{bool}]{\+\_\+hover}
 \end{DoxyParamCaption}
 )}\hypertarget{classpic_button_a6c7eca4ea10251d19dde58edea0f0e12}{}\label{classpic_button_a6c7eca4ea10251d19dde58edea0f0e12}
+
+
+\hyperlink{classpic_button_a1d5dc5f3e6a73e24dd873fb6a33a3e7f}{pic\+Button\+::pic\+Button} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+defaultpic} & picture of button \\
+\hline
+{\em \+\_\+hoverpic} & picture if you hover over button \\
+\hline
+{\em \+\_\+hover} & does mouse hover \\
+\hline
+\end{DoxyParams}
 Hovering mouse 
 
 \subsection{Member Function Documentation}
@@ -83,6 +96,15 @@ Hovering mouse
 \item[{Q\+Event $\ast$}]{event}
 \end{DoxyParamCaption}
 )}\hypertarget{classpic_button_a8e06509469d6b2c5efe9c58558209350}{}\label{classpic_button_a8e06509469d6b2c5efe9c58558209350}
+
+
+\hyperlink{classpic_button_a8e06509469d6b2c5efe9c58558209350}{pic\+Button\+::enter\+Event} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & clickevent \\
+\hline
+\end{DoxyParams}
 when hovering -\/$>$ change pic \index{pic\+Button@{pic\+Button}!leave\+Event@{leave\+Event}}
 \index{leave\+Event@{leave\+Event}!pic\+Button@{pic\+Button}}
 \subsubsection[{\texorpdfstring{leave\+Event(\+Q\+Event $\ast$event)}{leaveEvent(QEvent *event)}}]{\setlength{\rightskip}{0pt plus 5cm}void pic\+Button\+::leave\+Event (
@@ -90,20 +112,47 @@ when hovering -\/$>$ change pic \index{pic\+Button@{pic\+Button}!leave\+Event@{l
 \item[{Q\+Event $\ast$}]{event}
 \end{DoxyParamCaption}
 )}\hypertarget{classpic_button_a22c110a8f610d4a315b2c260e7d1f2b9}{}\label{classpic_button_a22c110a8f610d4a315b2c260e7d1f2b9}
+
+
+\hyperlink{classpic_button_a22c110a8f610d4a315b2c260e7d1f2b9}{pic\+Button\+::leave\+Event} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & mouse leave butto area \\
+\hline
+\end{DoxyParams}
 Change pic back \index{pic\+Button@{pic\+Button}!setdefaultpic@{setdefaultpic}}
 \index{setdefaultpic@{setdefaultpic}!pic\+Button@{pic\+Button}}
 \subsubsection[{\texorpdfstring{setdefaultpic(\+Q\+Pixmap defaultpic)}{setdefaultpic(QPixmap defaultpic)}}]{\setlength{\rightskip}{0pt plus 5cm}void pic\+Button\+::setdefaultpic (
 \begin{DoxyParamCaption}
-\item[{Q\+Pixmap}]{defaultpic}
+\item[{Q\+Pixmap}]{\+\_\+defaultpic}
 \end{DoxyParamCaption}
 )}\hypertarget{classpic_button_a38c0a41c10500e605cda766094ee00a5}{}\label{classpic_button_a38c0a41c10500e605cda766094ee00a5}
+
+
+\hyperlink{classpic_button_a38c0a41c10500e605cda766094ee00a5}{pic\+Button\+::setdefaultpic} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+defaultpic} & insert picutre \\
+\hline
+\end{DoxyParams}
 \index{pic\+Button@{pic\+Button}!sethoverpic@{sethoverpic}}
 \index{sethoverpic@{sethoverpic}!pic\+Button@{pic\+Button}}
 \subsubsection[{\texorpdfstring{sethoverpic(\+Q\+Pixmap hoverpic)}{sethoverpic(QPixmap hoverpic)}}]{\setlength{\rightskip}{0pt plus 5cm}void pic\+Button\+::sethoverpic (
 \begin{DoxyParamCaption}
-\item[{Q\+Pixmap}]{hoverpic}
+\item[{Q\+Pixmap}]{\+\_\+hoverpic}
 \end{DoxyParamCaption}
 )}\hypertarget{classpic_button_a632d61dedf5693fcade81c6a998a377d}{}\label{classpic_button_a632d61dedf5693fcade81c6a998a377d}
+
+
+\hyperlink{classpic_button_a632d61dedf5693fcade81c6a998a377d}{pic\+Button\+::sethoverpic} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+hoverpic} & insert picture \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Data Documentation}
@@ -128,5 +177,5 @@ Picture when Button is selected.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game/\hyperlink{picbutton_8h}{picbutton.\+h}\item 
-Game/\hyperlink{picbutton_8cpp}{picbutton.\+cpp}\end{DoxyCompactItemize}
+C\+:/\+Users/\+Maximilian/\+Desktop/\+T\+U\+M/6.\+Semester/\+Grundkurs C++/\+Hauptprojekt/gruppe4\+\_\+hauptprojekt/gruppe4\+\_\+hauptprojekt/\+Game/\hyperlink{picbutton_8h}{picbutton.\+h}\item 
+C\+:/\+Users/\+Maximilian/\+Desktop/\+T\+U\+M/6.\+Semester/\+Grundkurs C++/\+Hauptprojekt/gruppe4\+\_\+hauptprojekt/gruppe4\+\_\+hauptprojekt/\+Game/\hyperlink{picbutton_8cpp}{picbutton.\+cpp}\end{DoxyCompactItemize}

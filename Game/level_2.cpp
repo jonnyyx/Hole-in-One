@@ -100,7 +100,7 @@ void Level_2::startLevel(){
     recyclebin2->drawGraphics();
     recyclebin2->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->drawGraphics();
-    //obstaclesrec1->drawGraphics();
+
 
     ball->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);
     obstaclescircle1->graphics->setFlag(QGraphicsItem::ItemIsMovable,false);

@@ -27,7 +27,7 @@ Paperball::Paperball(b2World *world, QGraphicsScene *level, QPointF position, qr
     paperFixtureDef.restitution = 0.6;
     body->CreateFixture(&paperFixtureDef);
 
-//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
+
 
     QPixmap bkgnd(":/pic/paper.png");
     bkgnd.scaled(QSize(42,42));

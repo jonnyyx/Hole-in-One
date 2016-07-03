@@ -33,10 +33,7 @@ class Level_4 : public QGraphicsView
 
 public:
     Level_4();
-    //void displayLevel();
 
-    std::vector<Block*> vectb;
-    std::vector<Triangle*> vectt;
 signals:
     void levelcompleted();
 
@@ -53,8 +50,7 @@ public slots:
     void closeLevel();
     void rotateLeft();
     void rotateRight();
-//    void enableRotation();
-//    void disableRotation();
+
 
 
     void getTime();
@@ -64,95 +60,95 @@ public slots:
 
 private:
 
-    b2World* myWorld4;
-    QGraphicsScene* level4;
-    QGraphicsItem* backgnd;
+    b2World* myWorld4;///< Scene of Box2D
+    QGraphicsScene* level4;///<Scene for QGraphicsItem
+    QGraphicsItem* backgnd;///< Background of level
 
-    bool newhighscore=false;
+    bool newhighscore=false;///< is it a new Highscore?
     void saveLevel();
-    QList <QString> levelenab;
+    QList <QString> levelenab;///< read out and rewrite file for Highscore
     void closeEvent(QCloseEvent *);
 
     //Elements to add
-    Block* addblock1;
-    Block* addblock2;
+    Block* addblock1;///< Tool rectangle
+    Block* addblock2;///< Tool rectangle
 
 
-    RecycleBin* recyclebin1;
-    RecycleBin* recyclebin2;
-    RecycleBinGraphics* recyclebin3;
-    Triangle* addtriangle1;
-    Triangle* addtriangle2;
+    RecycleBin* recyclebin1;///< build the goal
+    RecycleBin* recyclebin2;///< build the goal
+    RecycleBinGraphics* recyclebin3;///< graphic for the goal
 
-    Circle* addcircle1;
-    Circle* addcircle2;
+    Triangle* addtriangle1;///< Tool triangle
+    Triangle* addtriangle2;///< Tool triangle
+
+    Circle* addcircle1;///< Tool circle
+    Circle* addcircle2;///< Tool circle
 
 
     //fixed Elements
 
-    Paperball* ball;
+    Paperball* ball;///< game ball
 
-    Block* obstaclesrec1;
-    Block* obstaclesrec2;
-    Block* obstaclesrec3;
-    Block* obstaclesrec4;
-    Block* obstaclesrec5;
-    Block* obstaclesrec6;
-    Block* obstaclesrec7;
-    Block* obstaclesrec8;
-    Block* obstaclesrec9;
-    Block* obstaclesrec10;
-    Block* obstaclesrec11;
-    Block* obstaclesrec12;
-    Block* obstaclesrec13;
-    Block* obstaclesrec14;
-    Block* obstaclesrec15;
-    Block* obstaclesrec16;
-    Block* obstaclesrec17;
-    Block* obstaclesrec18;
-    Block* obstaclesrec19;
-    Block* obstaclesrec20;
-    Block* obstaclesrec21;
-    Block* obstaclesrec22;
-
-
-    Trampoline* trampoline1;
-    Trampoline* trampoline2;
-
-    Triangle* obstacletriangle1;
-    Triangle* obstacletriangle2;
+    Block* obstaclesrec1;///< obstacle rectangle
+    Block* obstaclesrec2;///< obstacle rectangle
+    Block* obstaclesrec3;///< obstacle rectangle
+    Block* obstaclesrec4;///< obstacle rectangle
+    Block* obstaclesrec5;///< obstacle rectangle
+    Block* obstaclesrec6;///< obstacle rectangle
+    Block* obstaclesrec7;///< obstacle rectangle
+    Block* obstaclesrec8;///< obstacle rectangle
+    Block* obstaclesrec9;///< obstacle rectangle
+    Block* obstaclesrec10;///< obstacle rectangle
+    Block* obstaclesrec11;///< obstacle rectangle
+    Block* obstaclesrec12;///< obstacle rectangle
+    Block* obstaclesrec13;///< obstacle rectangle
+    Block* obstaclesrec14;///< obstacle rectangle
+    Block* obstaclesrec15;///< obstacle rectangle
+    Block* obstaclesrec16;///< obstacle rectangle
+    Block* obstaclesrec17;///< obstacle rectangle
+    Block* obstaclesrec18;///< obstacle rectangle
+    Block* obstaclesrec19;///< obstacle rectangle
+    Block* obstaclesrec20;///< obstacle rectangle
+    Block* obstaclesrec21;///< obstacle rectangle
+    Block* obstaclesrec22;///< obstacle rectangle
 
 
-    MeinElement* bottom;
-    MeinElement* umrandung1;
-    MeinElement* umrandung2;
-    MeinElement* msgbox;
+    Trampoline* trampoline1;///< trampolin as obstacle
+    Trampoline* trampoline2;///< trampolin as obstacle
 
-    QTimer* timer;
-    int anzahl;
-    b2Vec2 positionElem;
-    picButton* bt_start;
-    picButton* bt_pause;
-    picButton* bt__resume;
-    QElapsedTimer leveltime_elapsed;
-    QTime leveltime_normal;
-    picButton* bt__rect;
-    picButton* bt__circle;
-    picButton* bt__triangle;
+    Triangle* obstacletriangle1;///< obstacle triangle
+    Triangle* obstacletriangle2;///< obstacle triangle
 
-    picButton* bt__reset;
-    picButton* bt__left;
-    picButton* bt__right;
 
-    int counterRec = 0;
-    int counterCircle=0;
-    int counterTriangle=0;
-    int highscore = 0;
-    int counterTogether = 0;
-    double leveltime;
-    bool win = false;
-    int counterTriangleangle1=0;
-    int counterTriangleangle2=0;
+    MeinElement* bottom;///< bottom of playground
+    MeinElement* umrandung1;///< border of playground, ball cannot roll out of screen
+    MeinElement* umrandung2;///< border of playground, ball cannot roll out of screen
+    MeinElement* msgbox;///< messagebox at the end of game
+
+    QTimer* timer;///< timer for starting game
+
+    picButton* bt_start;///< button for starting game
+    picButton* bt_pause;///< button for pause game
+    picButton* bt__resume;///< button for resume game
+    QElapsedTimer leveltime_elapsed;///< time of finishing level for highscore
+    QTime leveltime_normal;///< time in millisecond after starting game
+    picButton* bt__rect;///< button for add tool rectangle
+    picButton* bt__circle;///< button for add tool circle
+    picButton* bt__triangle;///< button for add tool triangle
+
+    picButton* bt__reset;///< button for reset game
+    picButton* bt__left;///< button for rotating left selected tool object
+    picButton* bt__right;///< button for rotating right selected tool object
+
+    int counterRec = 0;///< counter for added tool rectangles
+    int counterCircle=0;///< counter for added tool circles
+    int counterTriangle=0;///< counter for added tool triangles
+    int highscore = 0;///< counter for highscore
+    int counterTogether = 0;///< counting score
+    double leveltime;///< time for level
+    bool win = false;///< is ball in goal
+    int counterTriangleangle1=0;///< rotation of tool triangle 1
+    int counterTriangleangle2=0;///< rotation of tool triangle 2
 
     void showLevel();
 

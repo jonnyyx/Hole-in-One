@@ -29,7 +29,7 @@ Circle::Circle(b2World *world, QGraphicsScene *level, QPointF position, qreal an
     circleFixtureDef.restitution = 0.6;
     body->CreateFixture(&circleFixtureDef);
 
-//  body->SetLinearVelocity(b2Vec2(0.0,0.0));
+
     if(mode=="obs"){
         QPixmap bkgnd(":/pic/circle_obs.png");
         bkgnd.scaled(QSize(42,42));
@@ -56,7 +56,7 @@ void Circle::draw()
     b2Vec2 v=body->GetPosition();
 
     graphics->setPos(QPointF(v.x,v.y));
-    //qreal a=body->GetAngle();
+
 
 }
 
@@ -68,9 +68,7 @@ void Circle::draw()
 bool Circle::drawBall1()
 {
     b2Vec2 v=body->GetPosition();
-    //qreal a=body->GetAngle();
-    //qreal grad=a*(180.0/3.14);
-    //qDebug() << v.x << v.y;
+
     graphics->setPos(v.x,v.y);
 
     qreal dx=549;

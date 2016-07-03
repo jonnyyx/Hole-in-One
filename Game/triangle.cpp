@@ -6,14 +6,15 @@
 
 /*!
  * \brief Triangle::Triangle
- * \param world
- * \param level
- * \param a
- * \param b
- * \param c
- * \param angle
- * \param type
- * \param friction
+ * \param world box2d world
+ * \param level scene of qt
+ * \param a left upper corner, default setting if rotate calculate new position of a
+ * \param b right upper corner, default setting if rotate calculate new position of b
+ * \param c right lower corner, default setting if rotate calculate new position of c
+ * \param angle box2d angle
+ * \param type static or dynamic object
+ * \param friction box2d friction
+ *
  */
 Triangle::Triangle(b2World *world, QGraphicsScene *level, QPointF a, QPointF b, QPointF c, qreal angle, b2BodyType type, qreal friction, QString mode)
 {
